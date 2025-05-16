@@ -77,11 +77,21 @@
 
     /*
      * @brief Contenedor del reproductor de SoundCloud.
-     * @note Aquí se integra exactamente el código oficial de SoundCloud sin cambios.
+     * @details Centrado, con margen lateral para dejar “borde” a cada lado.
      */
     .soundcloud-container {
-      margin-top: 40px;
-      max-width: 100%;
+      margin: 40px auto 0;
+      max-width: 600px;
+      padding: 0 20px;
+    }
+
+    /*
+     * @brief Estilos del iframe de SoundCloud.
+     */
+    .soundcloud-container iframe {
+      width: 100%;
+      height: 450px;
+      border: none;
     }
 
     /*
@@ -119,7 +129,6 @@
       transition: left 0.3s ease;
       z-index: 1000;
     }
-
     .sidebar a {
       display: block;
       color: #fff;
@@ -128,25 +137,29 @@
       text-decoration: none;
       border-bottom: 1px solid #222;
     }
-
     .sidebar a:hover {
       background-color: #222;
     }
-
     .sidebar.open {
       left: 0;
     }
   </style>
 </head>
 <body>
-  <!-- Botón hamburguesa para mostrar/ocultar el menú -->
+  <!-- 
+    @brief Botón para alternar visibilidad del menú lateral.
+    @event onclick -> toggleMenu()
+  -->
   <div class="menu-toggle" onclick="toggleMenu()">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </div>
 
-  <!-- Menú lateral -->
+  <!--
+    @brief Navegación principal en sidebar.
+    @details Contiene enlaces a secciones internas.
+  -->
   <nav id="sidebar" class="sidebar">
     <a href="/">Home</a>
     <a href="/agency">Agency</a>
@@ -163,24 +176,24 @@
     <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank">SoundCloud</a>
   </div>
 
-  <!-- Integración oficial de SoundCloud, sin ninguna modificación -->
+  <!-- Contenedor del reproductor de SoundCloud -->
   <div class="soundcloud-container">
     <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1754486535&color=%23000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1754486535&color=%23918f8d&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=true">
     </iframe>
-    <div style="font-size: 10px; color: #cccccc; line-break: anywhere; word-break: normal; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif; font-weight: 100;">
-      <a href="https://soundcloud.com/dienachtbrenntclub" title="Die Nacht Brennt Club" target="_blank" style="color: #cccccc; text-decoration: none;">Die Nacht Brennt Club</a> ·
-      <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts" title="DNBC PODCASTS" target="_blank" style="color: #cccccc; text-decoration: none;">DNBC PODCASTS</a>
+
+    <div style="background-color: #000000; font-size: 10px; color: #ffffff; line-break: anywhere; word-break: normal; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif; font-weight: 100;">
+      <a href="https://soundcloud.com/dienachtbrenntclub" title="Die Nacht Brennt Club" target="_blank" style="color: #ffffff; text-decoration: none;">Die Nacht Brennt Club</a> · 
+      <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts" title="DNBC PODCASTS" target="_blank" style="color: #ffffff; text-decoration: none;">DNBC PODCASTS</a>
     </div>
   </div>
 
-  <!-- Script para alternar el sidebar -->
+  <!--
+    @brief Función para alternar la clase 'open' en el sidebar.
+    @pre El elemento con id="sidebar" existe en el DOM.
+    @post El sidebar se muestra u oculta según la clase.
+  -->
   <script>
-    /**
-     * @brief Alterna la visibilidad del menú lateral.
-     * @pre Existe un elemento con id="sidebar".
-     * @post El sidebar se mostrará u ocultará.
-     */
     function toggleMenu() {
       const sidebar = document.getElementById('sidebar');
       sidebar.classList.toggle('open');
