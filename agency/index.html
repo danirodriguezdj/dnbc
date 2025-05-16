@@ -3,23 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DNBC Agency</title>
-  <meta name="description" content="DNBC Agency - Underground DJs and artists." />
-  <meta name="author" content="DNBC Agency" />
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-
-  <!-- Fuente Horizon -->
-  <link rel="preload" href="/fonts/horizon.woff2" as="font" type="font/woff2" crossorigin />
+  <title>Agency | DNBC</title>
+  <link rel="preload" href="/fonts/horizon.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     @font-face {
       font-family: 'Horizon';
       src: url('/fonts/horizon.woff2') format('woff2');
       font-weight: normal;
       font-style: normal;
-      font-display: swap;
     }
 
     body {
@@ -29,33 +20,10 @@
       margin: 0;
       padding: 0;
       text-align: center;
+      position: relative;
+      min-height: 100vh;
     }
 
-    /* Logo */
-    img {
-      max-width: 300px;
-      margin: 60px auto 30px;
-      display: block;
-    }
-
-    h1 {
-      font-size: 32px;
-      margin: 60px 20px;
-    }
-
-    .instagram-link {
-      margin-top: 40px;
-      font-size: 16px;
-    }
-
-    .instagram-link a {
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-      margin: 0 10px;
-    }
-
-    /* Hamburger Menu */
     .menu-toggle {
       position: absolute;
       top: 20px;
@@ -99,6 +67,39 @@
     .sidebar.open {
       left: 0;
     }
+
+    header {
+      padding: 40px 0 20px;
+    }
+
+    header img {
+      max-width: 200px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .center-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 28px;
+      letter-spacing: 2px;
+    }
+
+    .instagram-link {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .instagram-link a {
+      color: white;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -115,15 +116,14 @@
     <a href="/agency">Agency</a>
   </div>
 
-  <!-- Logo -->
-  <img src="/logo.png" alt="Logo" />
+  <header>
+    <img src="/logo.png" alt="Logo" />
+  </header>
 
-  <!-- Main Content -->
-  <h1>DJ ROOSTER SOON</h1>
+  <div class="center-message">DJ ROOSTER SOON</div>
 
-  <!-- Instagram Link -->
   <div class="instagram-link">
-    <a href="https://instagram.com/dnbcagency" target="_blank">INSTAGRAM</a>
+    <a href="https://instagram.com/dnbcagency" target="_blank">@dnbcagency</a>
   </div>
 
   <script>
