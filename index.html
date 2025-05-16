@@ -1,91 +1,149 @@
-<!-- Cargar fuente HORIZON -->
-<link rel="preload" href="fonts/horizon.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/horizon.woff" as="font" type="font/woff" crossorigin>
-<style>
-  @font-face {
-    font-family: 'Horizon';
-    src: url('fonts/horizon.woff2') format('woff2'),
-         url('fonts/horizon.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Die Nacht Brennt Club | DNBC</title>
+  <meta name="description" content="DNBC — Die Nacht Brennt Club. Official page. Underground electronic music, DJ podcasts, and events." />
+  <meta name="keywords" content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club" />
+  <meta name="author" content="Die Nacht Brennt Club" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="DNBC" />
+  <link rel="manifest" href="/site.webmanifest" />
 
-  body {
-    background-color: #000;
-    color: white;
-    font-family: 'Horizon', sans-serif;
-    text-align: center;
-    padding: 100px 20px;
-    margin: 0;
-  }
+  <!-- Cargar fuente HORIZON -->
+  <link rel="preload" href="fonts/horizon.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/horizon.woff" as="font" type="font/woff" crossorigin>
+  <style>
+    @font-face {
+      font-family: 'Horizon';
+      src: url('fonts/horizon.woff2') format('woff2'),
+           url('fonts/horizon.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
 
-  img {
-    max-width: 300px;
-    margin-bottom: 30px;
-  }
+    body {
+      background-color: #000;
+      color: white;
+      font-family: 'Horizon', sans-serif;
+      text-align: center;
+      padding: 100px 20px;
+      margin: 0;
+    }
 
-  .social a {
-    color: white;
-    margin: 0 10px;
-    font-size: 20px;
-    text-decoration: none;
-  }
+    img {
+      max-width: 300px;
+      margin-bottom: 30px;
+    }
 
-  .soundcloud-container {
-    margin-top: 40px;
-    max-width: 100%;
-  }
+    .social a {
+      color: white;
+      margin: 0 10px;
+      font-size: 20px;
+      text-decoration: none;
+    }
 
-  iframe {
-    width: 100%;
-    max-width: 600px;
-    height: 450px;
-    border: none;
-  }
+    .soundcloud-container {
+      margin-top: 40px;
+      max-width: 100%;
+    }
 
-  /* Hamburger Menu */
-  .menu-toggle {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    cursor: pointer;
-    z-index: 1001;
-  }
+    iframe {
+      width: 100%;
+      max-width: 600px;
+      height: 450px;
+      border: none;
+    }
 
-  .bar {
-    width: 30px;
-    height: 3px;
-    background-color: white;
-    margin: 6px 0;
-  }
+    /* Hamburger Menu */
+    .menu-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
 
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: -250px;
-    width: 250px;
-    height: 100%;
-    background-color: #111;
-    padding-top: 60px;
-    transition: left 0.3s ease;
-    z-index: 1000;
-  }
+    .bar {
+      width: 30px;
+      height: 3px;
+      background-color: white;
+      margin: 6px 0;
+    }
 
-  .sidebar a {
-    display: block;
-    color: white;
-    padding: 20px;
-    text-decoration: none;
-    text-transform: uppercase;
-    border-bottom: 1px solid #222;
-  }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #111;
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
 
-  .sidebar a:hover {
-    background-color: #222;
-  }
+    .sidebar a {
+      display: block;
+      color: white;
+      padding: 20px;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-bottom: 1px solid #222;
+    }
 
-  .sidebar.open {
-    left: 0;
-  }
-</style>
+    .sidebar a:hover {
+      background-color: #222;
+    }
+
+    .sidebar.open {
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Menu Toggle Button -->
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <!-- Sidebar Navigation -->
+  <div id="sidebar" class="sidebar">
+    <a href="/">Home</a>
+    <a href="/agency">Agency</a>
+  </div>
+
+  <!-- Main Content -->
+  <img src="logo.png" alt="Logo" />
+  <h1>WEB UNDER CONSTRUCTION</h1>
+  <p>FOLLOW US:</p>
+  <div class="social">
+    <a href="https://instagram.com/dienachtbrenntclub" target="_blank">Instagram</a>
+    <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank">SoundCloud</a>
+  </div>
+
+  <div class="soundcloud-container">
+    <iframe scrolling="no" allow="autoplay"
+      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1754486535&color=%230b0806&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=true">
+    </iframe>
+    <div style="font-size: 10px; color: #cccccc; margin-top: 5px;">
+      <a href="https://soundcloud.com/dienachtbrenntclub" title="Die Nacht Brennt Club" target="_blank" style="color: #cccccc; text-decoration: none;">Die Nacht Brennt Club</a> · 
+      <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts" title="DNBC PODCASTS" target="_blank" style="color: #cccccc; text-decoration: none;">DNBC PODCASTS</a>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("open");
+    }
+  </script>
+</body>
+</html>
