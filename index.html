@@ -143,6 +143,19 @@
     .sidebar.open {
       left: 0;
     }
+
+    /*
+     * @brief Media queries para dispositivos móviles.
+     * @details Reduce padding y márgenes para aprovechar mejor el espacio.
+     */
+    @media (max-width: 600px) {
+      body {
+        padding: 50px 10px;    /* reduce espaciado general */
+      }
+      .soundcloud-container {
+        padding: 0 10px;       /* reduce márgenes laterales */
+      }
+    }
   </style>
 </head>
 <body>
