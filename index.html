@@ -89,7 +89,7 @@
 
     /*
      * @brief Contenedor del reproductor de SoundCloud.
-     * @note No modificar este bloque excepto para reemplazar el iframe.
+     * @note No modificar este bloque excepto para reemplazar el iframe y su crédito.
      */
     .soundcloud-container {
       margin-top: 40px;
@@ -203,8 +203,8 @@
   <!-- Contenedor del reproductor de SoundCloud -->
   <div class="soundcloud-container">
     <!--
-      @brief Iframe Visual Player con fondo oscuro y texto blanco.
-      @params visual=true para modo oscuro, color=%23ffffff para acentos blancos.
+      @brief Iframe embed actualizado con parámetros oficiales de SoundCloud.
+      @params color=%23000000 para acentos negros.
     -->
     <iframe
       width="100%"
@@ -212,14 +212,27 @@
       scrolling="no"
       frameborder="no"
       allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1754486535&amp;visual=true&amp;color=%23ffffff&amp;auto_play=false&amp;hide_related=false&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=true">
+      src="https://w.soundcloud.com/player/
+           ?url=https%3A//api.soundcloud.com/playlists/1754486535
+           &color=%23000000
+           &auto_play=false
+           &hide_related=false
+           &show_comments=true
+           &show_user=true
+           &show_reposts=false
+           &show_teaser=true">
     </iframe>
 
-    <!-- Créditos y enlaces debajo del iframe -->
+    <!--
+      @brief Créditos y enlaces debajo del iframe.
+      @details Ajustes de estilo para manejo de texto largo.
+    -->
     <div style="font-size: 10px;
                 color: #cccccc;
-                white-space: nowrap;
+                line-break: anywhere;
+                word-break: normal;
                 overflow: hidden;
+                white-space: nowrap;
                 text-overflow: ellipsis;
                 font-family: Interstate, Lucida Grande,
                              Lucida Sans Unicode, Lucida Sans,
