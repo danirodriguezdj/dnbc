@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,15 +7,12 @@
   <meta name="description" content="DNBC — Die Nacht Brennt Club. Official page. Underground electronic music, DJ podcasts, and events." />
   <meta name="keywords" content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club" />
   <meta name="author" content="Die Nacht Brennt Club" />
-
-  <!-- Favicons -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
-
   <style>
     body {
       background-color: #000;
@@ -23,56 +20,96 @@
       font-family: sans-serif;
       text-align: center;
       padding: 100px 20px;
+      margin: 0;
     }
-    header {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-    }
-    nav {
-      text-align: left;
-    }
-    nav select {
-      background: #111;
-      color: white;
-      font-size: 16px;
-      padding: 5px;
-      border: none;
-    }
+
     img {
       max-width: 300px;
       margin-bottom: 30px;
     }
+
     .social a {
       color: white;
       margin: 0 10px;
       font-size: 20px;
       text-decoration: none;
     }
+
     .soundcloud-container {
       margin-top: 40px;
       max-width: 100%;
     }
+
     iframe {
       width: 100%;
       max-width: 600px;
       height: 450px;
       border: none;
     }
+
+    /* Hamburger Menu */
+    .menu-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .bar {
+      width: 30px;
+      height: 3px;
+      background-color: white;
+      margin: 6px 0;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #111;
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      padding: 20px;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-bottom: 1px solid #222;
+    }
+
+    .sidebar a:hover {
+      background-color: #222;
+    }
+
+    .sidebar.open {
+      left: 0;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <select onchange="location = this.value;">
-        <option value="#">Menú</option>
-        <option value="/">Inicio</option>
-        <option value="/agency">Agencia</option>
-      </select>
-    </nav>
-  </header>
+  <!-- Menu Toggle Button -->
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
 
-  <img src="logo.png" alt="Mi Logo" />
+  <!-- Sidebar Navigation -->
+  <div id="sidebar" class="sidebar">
+    <a href="/">Home</a>
+    <a href="/agency">Agency</a>
+    <!-- Add more links if needed -->
+  </div>
+
+  <!-- Main Content -->
+  <img src="logo.png" alt="Logo" />
   <h1>WEB UNDER CONSTRUCTION</h1>
   <p>FOLLOW US:</p>
   <div class="social">
@@ -89,5 +126,12 @@
       <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts" title="DNBC PODCASTS" target="_blank" style="color: #cccccc; text-decoration: none;">DNBC PODCASTS</a>
     </div>
   </div>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("open");
+    }
+  </script>
 </body>
 </html>
