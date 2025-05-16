@@ -200,46 +200,54 @@
     <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank">SoundCloud</a>
   </div>
 
-  <!-- Contenedor del reproductor de SoundCloud (reemplazado) -->
+  <!-- Contenedor del reproductor de SoundCloud -->
   <div class="soundcloud-container">
-    <!--
-      @brief Iframe embed actualizado con parámetros oficiales de SoundCloud.
-      @source https://w.soundcloud.com/player/?url=...&color=%23918f8d&...&show_teaser=true
-    -->
-    <iframe width="100%"
-            height="450"
-            scrolling="no"
-            frameborder="no"
-            allow="autoplay"
-            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1754486535&amp;color=%23918f8d&amp;auto_play=false&amp;hide_related=false&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=true">
-    </iframe>
-    <!--
-      @brief Créditos y enlaces debajo del iframe.
-      @details Texto en una línea con truncado si es necesario.
-    -->
-    <div style="font-size: 10px;
-                color: #cccccc;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                font-family: Interstate, Lucida Grande,
-                             Lucida Sans Unicode, Lucida Sans,
-                             Garuda, Verdana, Tahoma, sans-serif;
-                font-weight: 100;">
-      <a href="https://soundcloud.com/dienachtbrenntclub"
-         title="Die Nacht Brennt Club"
-         target="_blank"
-         style="color: #cccccc; text-decoration: none;">
-        Die Nacht Brennt Club
-      </a> ·
-      <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts"
-         title="DNBC PODCASTS"
-         target="_blank"
-         style="color: #cccccc; text-decoration: none;">
-        DNBC PODCASTS
-      </a>
-    </div>
+  <!--
+    @brief Iframe Visual Player con fondo oscuro y texto blanco.
+    @params visual=true para modo oscuro, color=%23ffffff para acentos blancos.
+  -->
+  <iframe
+    width="100%"
+    height="450"
+    scrolling="no"
+    frameborder="no"
+    allow="autoplay"
+    src="https://w.soundcloud.com/player/
+         ?url=https%3A//api.soundcloud.com/playlists/1754486535
+         &visual=true             <!-- Activa el visual player (fondo negro) -->
+         &color=%23ffffff         <!-- Acentos (botón play, texto destacado) en blanco -->
+         &auto_play=false
+         &hide_related=false
+         &show_comments=false
+         &show_user=false
+         &show_reposts=false
+         &show_teaser=true">
+  </iframe>
+
+  <!-- Créditos y enlaces debajo del iframe -->
+  <div style="font-size: 10px;
+              color: #cccccc;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              font-family: Interstate, Lucida Grande,
+                           Lucida Sans Unicode, Lucida Sans,
+                           Garuda, Verdana, Tahoma, sans-serif;
+              font-weight: 100;">
+    <a href="https://soundcloud.com/dienachtbrenntclub"
+       title="Die Nacht Brennt Club"
+       target="_blank"
+       style="color: #cccccc; text-decoration: none;">
+      Die Nacht Brennt Club
+    </a> ·
+    <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts"
+       title="DNBC PODCASTS"
+       target="_blank"
+       style="color: #cccccc; text-decoration: none;">
+      DNBC PODCASTS
+    </a>
   </div>
+</div>
 
   <!--
     @brief Función para alternar la clase 'open' en el sidebar.
