@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Metadatos básicos -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Die Nacht Brennt Club | DNBC</title>
   <meta name="description" content="DNBC — Die Nacht Brennt Club. Official page. Underground electronic music, DJ podcasts, and events." />
   <meta name="keywords" content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club" />
   <meta name="author" content="Die Nacht Brennt Club" />
+
+  <!-- Favicon y manifest -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -14,9 +17,18 @@
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Cargar fuente Horizon -->
+  <!-- Preload de la fuente Horizon -->
+  <!--   Carga anticipada para evitar FOUT (Flash Of Unstyled Text) al aplicar la tipografía. -->
   <link rel="preload" href="/fonts/Horizon.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
+  <!-- Declaración de la política de permisos para autoplay -->
+  <!--   Permitimos autoplay exclusivamente para nuestro dominio y el de SoundCloud. -->
+  <meta http-equiv="Permissions-Policy"
+        content="autoplay=(self https://w.soundcloud.com)" />
+
+  <!-- Definición de tipografía y estilos globales -->
   <style>
+    /* @font-face para Horizon: se cargará desde /fonts/Horizon.woff2 */
     @font-face {
       font-family: 'Horizon';
       src: url('/fonts/Horizon.woff2') format('woff2');
@@ -25,20 +37,23 @@
       font-display: swap;
     }
 
+    /* Estilos básicos de página */
     body {
-      background-color: #000;
-      color: white;
-      font-family: 'Horizon', sans-serif;
-      text-align: center;
-      padding: 100px 20px;
-      margin: 0;
+      background-color: #000;             /* fondo negro para ambiente de club */
+      color: white;                       /* texto blanco */
+      font-family: 'Horizon', sans-serif;/* tipografía principal */
+      text-align: center;                 /* centrar contenido */
+      padding: 100px 20px;                /* espacio interior */
+      margin: 0;                          /* sin márgenes por defecto */
     }
 
+    /* Logo */
     img {
       max-width: 300px;
       margin-bottom: 30px;
     }
 
+    /* Enlaces a redes sociales */
     .social a {
       color: white;
       margin: 0 10px;
@@ -46,11 +61,13 @@
       text-decoration: none;
     }
 
+    /* Contenedor del player de SoundCloud */
     .soundcloud-container {
       margin-top: 40px;
       max-width: 100%;
     }
 
+    /* Estilos del iframe de SoundCloud */
     iframe {
       width: 100%;
       max-width: 600px;
@@ -58,6 +75,7 @@
       border: none;
     }
 
+    /* Botón de menú hamburguesa */
     .menu-toggle {
       position: absolute;
       top: 20px;
@@ -73,15 +91,16 @@
       margin: 6px 0;
     }
 
+    /* Sidebar lateral */
     .sidebar {
       position: fixed;
       top: 0;
-      left: -250px;
+      left: -250px;               /* oculto por defecto hacia la izquierda */
       width: 250px;
       height: 100%;
       background-color: #111;
       padding-top: 60px;
-      transition: left 0.3s ease;
+      transition: left 0.3s ease;/* animación suave al abrir/cerrar */
       z-index: 1000;
     }
 
@@ -98,42 +117,78 @@
       background-color: #222;
     }
 
+    /* Clase que muestra el sidebar */
     .sidebar.open {
       left: 0;
     }
   </style>
 </head>
 <body>
+  <!-- Botón hamburguesa para mostrar/ocultar el menú lateral -->
   <div class="menu-toggle" onclick="toggleMenu()">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </div>
 
+  <!-- Menú lateral con enlaces de navegación -->
   <div id="sidebar" class="sidebar">
     <a href="/">Home</a>
     <a href="/agency">Agency</a>
   </div>
 
-  <img src="logo.png" alt="Logo" />
+  <!-- Logo central -->
+  <img src="logo.png" alt="Die Nacht Brennt Club Logo" />
+
+  <!-- Mensaje principal -->
   <h1>WEB UNDER CONSTRUCTION</h1>
   <p>FOLLOW US:</p>
+
+  <!-- Enlaces a redes sociales -->
   <div class="social">
     <a href="https://instagram.com/dienachtbrenntclub" target="_blank">Instagram</a>
     <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank">SoundCloud</a>
   </div>
 
+  <!-- Embebido de SoundCloud sin atributo allow="autoplay" -->
   <div class="soundcloud-container">
-    <iframe scrolling="no" allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1754486535&color=%230b0806&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=true">
+    <!--
+      Iframe que carga la lista de reproducción de SoundCloud.
+      Ya no usamos `allow="autoplay"` ni `auto_play=false` en la URL,
+      porque gestionamos autoplay vía Permissions-Policy en <head>.
+    -->
+    <iframe
+      scrolling="no"
+      src="https://w.soundcloud.com/player/
+           ?url=https%3A//api.soundcloud.com/playlists/1754486535
+           &color=%230b0806
+           &hide_related=false
+           &show_comments=false
+           &show_user=false
+           &show_reposts=false
+           &show_teaser=true">
     </iframe>
+
+    <!-- Créditos y enlaces debajo del player -->
     <div style="font-size: 10px; color: #cccccc; margin-top: 5px;">
-      <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank" style="color: #cccccc; text-decoration: none;">Die Nacht Brennt Club</a> · 
-      <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts" target="_blank" style="color: #cccccc; text-decoration: none;">DNBC PODCASTS</a>
+      <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank"
+         style="color: #cccccc; text-decoration: none;">
+        Die Nacht Brennt Club
+      </a>
+      ·
+      <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts"
+         target="_blank"
+         style="color: #cccccc; text-decoration: none;">
+        DNBC PODCASTS
+      </a>
     </div>
   </div>
 
+  <!-- Script para el toggle del menú lateral -->
   <script>
+    /**
+     * Alterna la clase 'open' en el sidebar para mostrarlo/ocultarlo.
+     */
     function toggleMenu() {
       const sidebar = document.getElementById("sidebar");
       sidebar.classList.toggle("open");
