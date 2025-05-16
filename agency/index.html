@@ -4,33 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DNBC Agency</title>
-  <link rel="preload" href="../fonts/horizon.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <meta name="description" content="DNBC Agency – DJ Rooster coming soon. Underground electronic music talent." />
+  <meta name="author" content="Die Nacht Brennt Club" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="DNBC" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Cargar fuente Horizon -->
+  <link rel="preload" href="/fonts/Horizon.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
   <style>
     @font-face {
       font-family: 'Horizon';
-      src: url('../fonts/horizon.woff2') format('woff2');
+      src: url('/fonts/Horizon.woff2') format('woff2');
       font-weight: normal;
       font-style: normal;
       font-display: swap;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
+      margin: 0;
       background-color: #000;
       color: white;
       font-family: 'Horizon', sans-serif;
       height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      text-align: center;
     }
 
     .menu-toggle {
@@ -77,19 +78,33 @@
       left: 0;
     }
 
-    .logo {
+    header {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    header img {
       max-width: 250px;
-      margin-bottom: 40px;
     }
 
-    .bottom-link {
-      position: absolute;
-      bottom: 20px;
-      font-size: 14px;
+    .center-text {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      text-align: center;
+      padding: 20px;
     }
 
-    .bottom-link a {
+    .footer-link {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .footer-link a {
       color: white;
+      font-size: 14px;
       text-decoration: none;
     }
   </style>
@@ -106,10 +121,15 @@
     <a href="/agency">Agency</a>
   </div>
 
-  <img class="logo" src="../logo.png" alt="Logo">
-  <h1>DJ ROOSTER SOON</h1>
+  <header>
+    <img src="/logo.png" alt="Logo">
+  </header>
 
-  <div class="bottom-link">
+  <div class="center-text">
+    DJ ROOSTER SOON
+  </div>
+
+  <div class="footer-link">
     <a href="https://instagram.com/dnbcagency" target="_blank">@dnbcagency</a>
   </div>
 
