@@ -4,7 +4,8 @@
   <!--
     Archivo: index.html
     Propósito: Página principal de Die Nacht Brennt Club (DNBC).
-    Estándar de documentación: ISO/IEC/IEEE 26515.
+    Respuesta dinámica a diferentes tamaños de pantalla (PC y móvil).
+    Documentación: ISO/IEC/IEEE 26515.
   -->
 
   <!-- Metadatos generales -->
@@ -17,7 +18,7 @@
         content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club" />
   <meta name="author" content="Die Nacht Brennt Club" />
 
-  <!-- Íconos y PWA manifest -->
+  <!-- Íconos y manifest -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -25,15 +26,12 @@
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Preload fuente Horizon para evitar Flash Of Unstyled Text -->
+  <!-- Preload fuente Horizon -->
   <link rel="preload" href="/fonts/horizon.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
 
-  <!-- Estilos globales -->
+  <!-- Estilos responsivos -->
   <style>
-    /* 
-     * @brief Define la fuente personalizada 'horizon'.
-     * @source /fonts/horizon.woff2
-     */
+    /* Fuente personalizada */
     @font-face {
       font-family: 'horizon';
       src: url('/fonts/horizon.woff2') format('woff2');
@@ -42,174 +40,192 @@
       font-display: swap;
     }
 
-    /*
-     * @brief Estilos globales de la página.
-     * @details Aplica fondo negro, tipografía, alineación y espaciado.
-     */
-    body {
+    /* Reset y estilos base */
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 100px 20px;
-      background-color: #000;
-      color: #fff;
+      padding: 0;
+    }
+    html, body {
+      height: 100%;
+    }
+    body {
       font-family: 'horizon', sans-serif;
+      background: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 5vw;                /* padding dinámico en base al ancho de viewport */
       text-align: center;
     }
 
-    /*
-     * @brief Estilo para la imagen del logo.
-     * @details Limita anchura y margen inferior.
-     */
+    /* Logo */
     img {
-      max-width: 300px;
-      margin-bottom: 30px;
+      width: auto;
+      max-width: 80vw;             /* nunca más ancho del 80% del viewport */
+      height: auto;
+      margin-bottom: 2vh;
     }
 
-    /*
-     * @brief Estilos para los enlaces de redes sociales.
-     * @details Define color, tamaño y espaciado.
-     */
+    /* Títulos y textos */
+    h1 {
+      font-size: 6vw;              /* tamaño relativo al viewport width */
+      margin-bottom: 2vh;
+    }
+    p {
+      font-size: 4vw;
+      margin-bottom: 4vh;
+    }
+
+    /* Redes sociales */
+    .social {
+      margin-bottom: 4vh;
+    }
     .social a {
+      font-size: 5vw;
       color: #fff;
-      margin: 0 10px;
-      font-size: 20px;
       text-decoration: none;
+      margin: 0 2vw;
     }
 
-    /*
-     * @brief Contenedor del reproductor de SoundCloud.
-     * @details Centrado, con margen lateral para dejar “borde” a cada lado.
-     */
+    /* Contenedor SoundCloud: centrado, responsive */
     .soundcloud-container {
-      margin: 40px auto 0;
+      width: 100%;
       max-width: 600px;
-      padding: 0 20px;
+      margin-bottom: 5vh;
     }
-
-    /*
-     * @brief Estilos del iframe de SoundCloud.
-     */
     .soundcloud-container iframe {
       width: 100%;
-      height: 450px;
-      border: none;
+      height: calc(100vw * 0.75);  /* ratio 4:3, ajusta la altura dinámicamente */
+      max-height: 450px;
+    }
+    .soundcloud-container > div {
+      background: #000;
+      color: #fff;
+      font-size: 2.5vw;
+      padding: 1vh 1vw;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-family: Interstate, Lucida Grande, Lucida Sans Unicode,
+                   Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;
+      font-weight: 100;
+    }
+    .soundcloud-container > div a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 1vw;
     }
 
-    /*
-     * @brief Botón de menú tipo “hamburguesa”.
-     */
+    /* Menú hamburguesa */
     .menu-toggle {
       position: fixed;
-      top: 20px;
-      left: 20px;
+      top: 2vh;
+      left: 2vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 8vw;
+      height: 6vh;
       cursor: pointer;
-      z-index: 1001;
+      z-index: 1000;
+    }
+    .menu-toggle .bar {
+      height: 0.6vh;
+      width: 100%;
+      background: #fff;
     }
 
-    /*
-     * @brief Barras del botón de menú.
-     */
-    .bar {
-      width: 30px;
-      height: 3px;
-      background-color: #fff;
-      margin: 6px 0;
-    }
-
-    /*
-     * @brief Barra lateral (sidebar) oculta por defecto.
-     */
+    /* Sidebar */
     .sidebar {
       position: fixed;
       top: 0;
-      left: -250px;
-      width: 250px;
+      left: -100%;
+      width: 70vw;
+      max-width: 300px;
       height: 100%;
-      background-color: #111;
-      padding-top: 60px;
+      background: #111;
+      padding-top: 10vh;
       transition: left 0.3s ease;
-      z-index: 1000;
+      z-index: 999;
+    }
+    .sidebar.open {
+      left: 0;
     }
     .sidebar a {
       display: block;
       color: #fff;
-      padding: 20px;
+      padding: 2vh 4vw;
+      font-size: 4vw;
       text-transform: uppercase;
       text-decoration: none;
       border-bottom: 1px solid #222;
     }
     .sidebar a:hover {
-      background-color: #222;
-    }
-    .sidebar.open {
-      left: 0;
+      background: #222;
     }
 
-    /*
-     * @brief Media queries para dispositivos móviles.
-     * @details Reduce padding y márgenes para aprovechar mejor el espacio.
-     */
-    @media (max-width: 600px) {
+    /* Media Query para pantallas muy grandes (desktop) */
+    @media (min-width: 1200px) {
       body {
-        padding: 50px 10px;    /* reduce espaciado general */
+        padding: 2vw 5vw;
       }
-      .soundcloud-container {
-        padding: 0 10px;       /* reduce márgenes laterales */
-      }
+      h1 { font-size: 3vw; }
+      p  { font-size: 1.5vw; }
+      .social a { font-size: 1.5vw; }
+      .soundcloud-container > div { font-size: 1vw; }
     }
   </style>
 </head>
 <body>
-  <!-- 
-    @brief Botón para alternar visibilidad del menú lateral.
-    @event onclick -> toggleMenu()
-  -->
+
+  <!-- Botón hamburguesa -->
   <div class="menu-toggle" onclick="toggleMenu()">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </div>
 
-  <!--
-    @brief Navegación principal en sidebar.
-    @details Contiene enlaces a secciones internas.
-  -->
+  <!-- Sidebar -->
   <nav id="sidebar" class="sidebar">
     <a href="/">Home</a>
     <a href="/agency">Agency</a>
   </nav>
 
-  <!-- Logo y mensaje principal -->
+  <!-- Contenido central -->
   <img src="logo.png" alt="Logo DNBC" />
   <h1>WEB UNDER CONSTRUCTION</h1>
   <p>FOLLOW US:</p>
-
-  <!-- Enlaces de redes sociales -->
   <div class="social">
     <a href="https://instagram.com/dienachtbrenntclub" target="_blank">Instagram</a>
     <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank">SoundCloud</a>
   </div>
 
-  <!-- Contenedor del reproductor de SoundCloud -->
+  <!-- Widget SoundCloud -->
   <div class="soundcloud-container">
     <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay"
       src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1754486535&color=%23918f8d&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=true">
     </iframe>
-
-    <div style="background-color: #000000; font-size: 10px; color: #ffffff; line-break: anywhere; word-break: normal; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif; font-weight: 100;">
-      <a href="https://soundcloud.com/dienachtbrenntclub" title="Die Nacht Brennt Club" target="_blank" style="color: #ffffff; text-decoration: none;">Die Nacht Brennt Club</a> · 
-      <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts" title="DNBC PODCASTS" target="_blank" style="color: #ffffff; text-decoration: none;">DNBC PODCASTS</a>
+    <div>
+      <a href="https://soundcloud.com/dienachtbrenntclub"
+         title="Die Nacht Brennt Club"
+         target="_blank">
+        Die Nacht Brennt Club
+      </a> ·
+      <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts"
+         title="DNBC PODCASTS"
+         target="_blank">
+        DNBC PODCASTS
+      </a>
     </div>
   </div>
 
-  <!--
-    @brief Función para alternar la clase 'open' en el sidebar.
-    @pre El elemento con id="sidebar" existe en el DOM.
-    @post El sidebar se muestra u oculta según la clase.
-  -->
+  <!-- Script de toggle -->
   <script>
     function toggleMenu() {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('open');
+      document.getElementById('sidebar').classList.toggle('open');
     }
   </script>
 </body>
