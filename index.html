@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!--
+    Archivo: index.html
+    Propósito: Página principal de Die Nacht Brennt Club (DNBC).
+    Estándar de documentación: ISO/IEC/IEEE 26515.
+  -->
+
+  <!-- Metadatos generales -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Die Nacht Brennt Club | DNBC</title>
-  <meta name="description" content="DNBC — Die Nacht Brennt Club. Official page. Underground electronic music, DJ podcasts, and events." />
-  <meta name="keywords" content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club" />
+  <meta name="description"
+        content="DNBC — Die Nacht Brennt Club. Official page. Underground electronic music, DJ podcasts, and events." />
+  <meta name="keywords"
+        content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club" />
   <meta name="author" content="Die Nacht Brennt Club" />
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+  <!-- Íconos y PWA manifest -->
+  <link rel="icon"
+        type="image/png"
+        href="/favicon-96x96.png"
+        sizes="96x96" />
+  <link rel="icon"
+        type="image/svg+xml"
+        href="/favicon.svg" />
+  <link rel="shortcut icon"
+        href="/favicon.ico" />
+  <link rel="apple-touch-icon"
+        sizes="180x180"
+        href="/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Cargar fuente Horizon -->
-  <link rel="preload" href="/fonts/horizon.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <!-- Preload fuente Horizon para evitar Flash Of Unstyled Text -->
+  <link rel="preload"
+        href="/fonts/horizon.woff2"
+        as="font"
+        type="font/woff2"
+        crossorigin="anonymous" />
+
+  <!-- Estilos globales -->
   <style>
+    /* 
+     * @brief Define la fuente personalizada 'horizon'.
+     * @source /fonts/horizon.woff2
+     */
     @font-face {
       font-family: 'horizon';
       src: url('/fonts/horizon.woff2') format('woff2');
@@ -25,32 +54,51 @@
       font-display: swap;
     }
 
+    /*
+     * @brief Estilos globales de la página.
+     * @details Aplica fondo negro, tipografía, alineación y espaciado.
+     */
     body {
+      margin: 0;
+      padding: 100px 20px;
       background-color: #000;
-      color: white;
+      color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
-      padding: 100px 20px;
-      margin: 0;
     }
 
+    /*
+     * @brief Estilo para la imagen del logo.
+     * @details Limita anchura y margen inferior.
+     */
     img {
       max-width: 300px;
       margin-bottom: 30px;
     }
 
+    /*
+     * @brief Estilos para los enlaces de redes sociales.
+     * @details Define color, tamaño y espaciado.
+     */
     .social a {
-      color: white;
+      color: #fff;
       margin: 0 10px;
       font-size: 20px;
       text-decoration: none;
     }
 
+    /*
+     * @brief Contenedor del reproductor de SoundCloud.
+     * @note No modificar este bloque para asegurar la integración.
+     */
     .soundcloud-container {
       margin-top: 40px;
       max-width: 100%;
     }
 
+    /*
+     * @brief Estilos del iframe de SoundCloud.
+     */
     iframe {
       width: 100%;
       max-width: 600px;
@@ -58,6 +106,9 @@
       border: none;
     }
 
+    /*
+     * @brief Botón de menú tipo “hamburguesa”.
+     */
     .menu-toggle {
       position: absolute;
       top: 20px;
@@ -66,13 +117,20 @@
       z-index: 1001;
     }
 
+    /*
+     * @brief Barras del botón de menú.
+     */
     .bar {
       width: 30px;
       height: 3px;
-      background-color: white;
+      background-color: #fff;
       margin: 6px 0;
     }
 
+    /*
+     * @brief Barra lateral (sidebar) oculta por defecto.
+     * @details Se desplaza con transición al añadir/quitar la clase 'open'.
+     */
     .sidebar {
       position: fixed;
       top: 0;
@@ -85,67 +143,95 @@
       z-index: 1000;
     }
 
+    /*
+     * @brief Enlaces dentro del sidebar.
+     */
     .sidebar a {
       display: block;
-      color: white;
+      color: #fff;
       padding: 20px;
-      text-decoration: none;
       text-transform: uppercase;
+      text-decoration: none;
       border-bottom: 1px solid #222;
     }
 
+    /*
+     * @brief Estado hover de enlaces del sidebar.
+     */
     .sidebar a:hover {
       background-color: #222;
     }
 
+    /*
+     * @brief Clase que muestra el sidebar.
+     */
     .sidebar.open {
       left: 0;
     }
   </style>
 </head>
 <body>
+  <!-- 
+    @brief Botón para alternar visibilidad del menú lateral.
+    @event onclick -> toggleMenu()
+  -->
   <div class="menu-toggle" onclick="toggleMenu()">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </div>
 
-  <div id="sidebar" class="sidebar">
+  <!--
+    @brief Navegación principal en sidebar.
+    @details Contiene enlaces a secciones internas.
+  -->
+  <nav id="sidebar" class="sidebar">
     <a href="/">Home</a>
     <a href="/agency">Agency</a>
-  </div>
+  </nav>
 
+  <!-- Logo y mensaje principal -->
   <img src="logo.png" alt="Logo" />
   <h1>WEB UNDER CONSTRUCTION</h1>
   <p>FOLLOW US:</p>
+
+  <!-- Enlaces de redes sociales -->
   <div class="social">
     <a href="https://instagram.com/dienachtbrenntclub" target="_blank">Instagram</a>
     <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank">SoundCloud</a>
   </div>
 
+  <!-- Contenedor del reproductor de SoundCloud (no modificar) -->
   <div class="soundcloud-container">
-
-    <iframe scrolling="no" allow="autoplay"
-
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1754486535&color=%230b0806&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=true">
-
+    <iframe scrolling="no"
+            allow="autoplay"
+            src="https://w.soundcloud.com/player/
+                 ?url=https%3A//api.soundcloud.com/playlists/1754486535
+                 &color=%230b0806
+                 &auto_play=false
+                 &hide_related=false
+                 &show_comments=false
+                 &show_user=false
+                 &show_reposts=false
+                 &show_teaser=true">
     </iframe>
-
     <div style="font-size: 10px; color: #cccccc; margin-top: 5px;">
-
-      <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank" style="color: #cccccc; text-decoration: none;">Die Nacht Brennt Club</a> · 
-
-      <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts" target="_blank" style="color: #cccccc; text-decoration: none;">DNBC PODCASTS</a>
-
+      <a href="https://soundcloud.com/dienachtbrenntclub"
+         target="_blank">Die Nacht Brennt Club</a> · 
+      <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts"
+         target="_blank">DNBC PODCASTS</a>
     </div>
-
   </div>
 
-
+  <!--
+    @brief Función para alternar la clase 'open' en el sidebar.
+    @pre El elemento con id="sidebar" existe en el DOM.
+    @post El sidebar se muestra u oculta según la clase.
+  -->
   <script>
     function toggleMenu() {
-      const sidebar = document.getElementById("sidebar");
-      sidebar.classList.toggle("open");
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('open');
     }
   </script>
 </body>
