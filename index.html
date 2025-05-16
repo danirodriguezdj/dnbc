@@ -24,6 +24,21 @@
       text-align: center;
       padding: 100px 20px;
     }
+    header {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    nav {
+      text-align: left;
+    }
+    nav select {
+      background: #111;
+      color: white;
+      font-size: 16px;
+      padding: 5px;
+      border: none;
+    }
     img {
       max-width: 300px;
       margin-bottom: 30px;
@@ -47,6 +62,16 @@
   </style>
 </head>
 <body>
+  <header>
+    <nav>
+      <select onchange="location = this.value;">
+        <option value="#">Menú</option>
+        <option value="/">Inicio</option>
+        <option value="/agency">Agencia</option>
+      </select>
+    </nav>
+  </header>
+
   <img src="logo.png" alt="Mi Logo" />
   <h1>WEB UNDER CONSTRUCTION</h1>
   <p>FOLLOW US:</p>
