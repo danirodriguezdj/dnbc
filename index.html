@@ -15,13 +15,13 @@
   <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Cargar fuente HORIZON -->
-  <link rel="preload" href="fonts/horizon.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/horizon.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/horizon.woff" as="font" type="font/woff" crossorigin>
   <style>
     @font-face {
       font-family: 'Horizon';
       src: url('fonts/horizon.woff2') format('woff2'),
-           url('fonts/horizon.woff') format('woff'),
-           url('fonts/horizon.ttf') format('truetype');
+           url('fonts/horizon.woff') format('woff');
       font-weight: normal;
       font-style: normal;
       font-display: swap;
@@ -31,11 +31,33 @@
       background-color: #000;
       color: white;
       font-family: 'Horizon', sans-serif;
+      text-align: center;
+      padding: 100px 20px;
       margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+    }
+
+    img {
+      max-width: 300px;
+      margin-bottom: 30px;
+    }
+
+    .social a {
+      color: white;
+      margin: 0 10px;
+      font-size: 20px;
+      text-decoration: none;
+    }
+
+    .soundcloud-container {
+      margin-top: 40px;
+      max-width: 100%;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 600px;
+      height: 450px;
+      border: none;
     }
 
     /* Hamburger Menu */
@@ -82,62 +104,6 @@
     .sidebar.open {
       left: 0;
     }
-
-    /* Logo */
-    .logo {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 20px 20px 20px;
-    }
-
-    .logo img {
-      max-width: 300px;
-      height: auto;
-    }
-
-    /* Main Content */
-    .main-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .main-content h1 {
-      font-size: 2em;
-      margin: 0;
-    }
-
-    /* Instagram Button */
-    .instagram-button {
-      text-align: center;
-      padding: 20px;
-    }
-
-    .instagram-button a {
-      color: white;
-      font-size: 14px;
-      text-decoration: none;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 600px) {
-      .logo img {
-        max-width: 200px;
-      }
-
-      .main-content h1 {
-        font-size: 1.5em;
-      }
-
-      .instagram-button a {
-        font-size: 12px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -154,19 +120,23 @@
     <a href="/agency">Agency</a>
   </div>
 
-  <!-- Logo -->
-  <div class="logo">
-    <img src="logo.png" alt="Logo" />
-  </div>
-
   <!-- Main Content -->
-  <div class="main-content">
-    <h1>DJ ROOSTER SOON</h1>
+  <img src="logo.png" alt="Logo" />
+  <h1>WEB UNDER CONSTRUCTION</h1>
+  <p>FOLLOW US:</p>
+  <div class="social">
+    <a href="https://instagram.com/dienachtbrenntclub" target="_blank">Instagram</a>
+    <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank">SoundCloud</a>
   </div>
 
-  <!-- Instagram Button -->
-  <div class="instagram-button">
-    <a href="https://instagram.com/dnbcagency" target="_blank">@dnbcagency</a>
+  <div class="soundcloud-container">
+    <iframe scrolling="no" allow="autoplay"
+      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1754486535&color=%230b0806&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=true">
+    </iframe>
+    <div style="font-size: 10px; color: #cccccc; margin-top: 5px;">
+      <a href="https://soundcloud.com/dienachtbrenntclub" title="Die Nacht Brennt Club" target="_blank" style="color: #cccccc; text-decoration: none;">Die Nacht Brennt Club</a> · 
+      <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts" title="DNBC PODCASTS" target="_blank" style="color: #cccccc; text-decoration: none;">DNBC PODCASTS</a>
+    </div>
   </div>
 
   <script>
