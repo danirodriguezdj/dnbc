@@ -3,52 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DNBC | Agency</title>
-  <link rel="icon" href="/favicon.ico" />
+  <title>Agency | Die Nacht Brennt Club</title>
+  <link rel="preload" href="../fonts/horizon.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     @font-face {
       font-family: 'Horizon';
-      src: url('/fonts/horizon.woff2') format('woff2'),
-           url('/fonts/horizon.woff') format('woff');
+      src: url('../fonts/horizon.woff2') format('woff2');
       font-weight: normal;
       font-style: normal;
     }
 
     body {
+      margin: 0;
       background-color: #000;
       color: white;
       font-family: 'Horizon', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
       text-align: center;
-      margin: 0;
-      padding: 100px 20px;
     }
 
     header {
-      position: fixed;
-      top: 0;
       width: 100%;
-      background: #000;
-      padding: 20px;
+      padding: 20px 0;
+      text-align: center;
     }
 
     header img {
-      max-width: 120px;
+      max-height: 50px;
     }
 
     h1 {
-      margin-top: 150px;
-      font-size: 32px;
-      text-transform: uppercase;
+      margin-top: 50px;
+      font-size: 28px;
+      letter-spacing: 2px;
     }
   </style>
 </head>
 <body>
   <header>
-    <a href="/"><img src="/logo.png" alt="Logo" /></a>
+    <img src="../logo.png" alt="DNBC Logo" />
   </header>
-
   <main>
-    <h1>OUR DJ ROOSTER SOON</h1>
+    <h1>DJ ROOSTER SOON</h1>
   </main>
 </body>
 </html>
