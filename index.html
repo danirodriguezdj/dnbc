@@ -7,28 +7,17 @@
   <meta name="description" content="DNBC — Die Nacht Brennt Club. Official page. Underground electronic music, DJ podcasts, and events." />
   <meta name="keywords" content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club" />
   <meta name="author" content="Die Nacht Brennt Club" />
-
-  <!-- Favicons -->
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="DNBC" />
-  <link rel="manifest" href="/site.webmanifest" />
-
-  <!-- Horizon Font -->
+  <link rel="preload" href="fonts/horizon.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     @font-face {
       font-family: 'Horizon';
-      src: url('fonts/horizon.woff2') format('woff2'),
-           url('fonts/horizon.woff') format('woff');
+      src: url('fonts/horizon.woff2') format('woff2');
       font-weight: normal;
       font-style: normal;
     }
-  </style>
 
-  <style>
     body {
+      margin: 0;
       background-color: #000;
       color: white;
       font-family: 'Horizon', sans-serif;
@@ -36,15 +25,65 @@
       padding: 100px 20px;
     }
 
-    img {
-      max-width: 200px;
-      margin-bottom: 30px;
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      z-index: 999;
+    }
+
+    header img {
+      max-height: 40px;
+    }
+
+    .menu-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: right 0.3s ease;
+    }
+
+    nav.open {
+      right: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 15px 0;
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+
+    main {
+      padding-top: 100px;
     }
 
     .social a {
       color: white;
       margin: 0 10px;
-      font-size: 18px;
+      font-size: 20px;
       text-decoration: none;
     }
 
@@ -62,22 +101,39 @@
   </style>
 </head>
 <body>
-  <img src="logo.png" alt="Logo" />
-  <h1>WEB UNDER CONSTRUCTION</h1>
-  <p>FOLLOW US:</p>
-  <div class="social">
-    <a href="https://instagram.com/dienachtbrenntclub" target="_blank">INSTAGRAM</a>
-    <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank">SOUNDCLOUD</a>
-  </div>
+  <header>
+    <img src="logo.png" alt="DNBC Logo">
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </header>
 
-  <div class="soundcloud-container">
-    <iframe scrolling="no" allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1754486535&color=%230b0806&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=true">
-    </iframe>
-    <div style="font-size: 10px; color: #cccccc; margin-top: 5px;">
-      <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank" style="color: #cccccc; text-decoration: none;">Die Nacht Brennt Club</a> · 
-      <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts" target="_blank" style="color: #cccccc; text-decoration: none;">DNBC PODCASTS</a>
+  <nav id="mobileMenu">
+    <a href="/">HOME</a>
+    <a href="/agency">AGENCY</a>
+  </nav>
+
+  <main>
+    <h1>WEB UNDER CONSTRUCTION</h1>
+    <p>FOLLOW US:</p>
+    <div class="social">
+      <a href="https://instagram.com/dienachtbrenntclub" target="_blank">Instagram</a>
+      <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank">SoundCloud</a>
     </div>
-  </div>
+
+    <div class="soundcloud-container">
+      <iframe scrolling="no" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1754486535&color=%230b0806&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=true">
+      </iframe>
+      <div style="font-size: 10px; color: #cccccc; margin-top: 5px;">
+        <a href="https://soundcloud.com/dienachtbrenntclub" title="Die Nacht Brennt Club" target="_blank" style="color: #cccccc; text-decoration: none;">Die Nacht Brennt Club</a> · 
+        <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts" title="DNBC PODCASTS" target="_blank" style="color: #cccccc; text-decoration: none;">DNBC PODCASTS</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+  </script>
 </body>
 </html>
