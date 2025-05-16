@@ -3,52 +3,134 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agency | Die Nacht Brennt Club</title>
-  <link rel="preload" href="../fonts/horizon.woff2" as="font" type="font/woff2" crossorigin>
+  <title>DNBC Agency</title>
+  <meta name="description" content="DNBC Agency - Underground DJs and artists." />
+  <meta name="author" content="DNBC Agency" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+  <!-- Fuente Horizon -->
+  <link rel="preload" href="/fonts/horizon.woff2" as="font" type="font/woff2" crossorigin />
   <style>
     @font-face {
       font-family: 'Horizon';
-      src: url('../fonts/horizon.woff2') format('woff2');
+      src: url('/fonts/horizon.woff2') format('woff2');
       font-weight: normal;
       font-style: normal;
+      font-display: swap;
     }
 
     body {
-      margin: 0;
       background-color: #000;
       color: white;
       font-family: 'Horizon', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      margin: 0;
+      padding: 0;
       text-align: center;
     }
 
-    header {
-      width: 100%;
-      padding: 20px 0;
-      text-align: center;
-    }
-
-    header img {
-      max-height: 50px;
+    /* Logo */
+    img {
+      max-width: 300px;
+      margin: 60px auto 30px;
+      display: block;
     }
 
     h1 {
-      margin-top: 50px;
-      font-size: 28px;
-      letter-spacing: 2px;
+      font-size: 32px;
+      margin: 60px 20px;
+    }
+
+    .instagram-link {
+      margin-top: 40px;
+      font-size: 16px;
+    }
+
+    .instagram-link a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      margin: 0 10px;
+    }
+
+    /* Hamburger Menu */
+    .menu-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .bar {
+      width: 30px;
+      height: 3px;
+      background-color: white;
+      margin: 6px 0;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #111;
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      padding: 20px;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-bottom: 1px solid #222;
+    }
+
+    .sidebar a:hover {
+      background-color: #222;
+    }
+
+    .sidebar.open {
+      left: 0;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="../logo.png" alt="DNBC Logo" />
-  </header>
-  <main>
-    <h1>DJ ROOSTER SOON</h1>
-  </main>
+  <!-- Menu Toggle Button -->
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <!-- Sidebar Navigation -->
+  <div id="sidebar" class="sidebar">
+    <a href="/">Home</a>
+    <a href="/agency">Agency</a>
+  </div>
+
+  <!-- Logo -->
+  <img src="/logo.png" alt="Logo" />
+
+  <!-- Main Content -->
+  <h1>DJ ROOSTER SOON</h1>
+
+  <!-- Instagram Link -->
+  <div class="instagram-link">
+    <a href="https://instagram.com/dnbcagency" target="_blank">@dnbcagency</a>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("open");
+    }
+  </script>
 </body>
 </html>
