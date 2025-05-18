@@ -77,9 +77,8 @@
       padding: 100px 20px;
     }
 
-    /*
+     /*
      * @brief Botón de menú tipo “hamburguesa”.
-     * @details Posición fija, tamaño y espaciado reproducidos del index.
      */
     .menu-toggle {
       position: fixed;
@@ -87,15 +86,16 @@
       left: 20px;
       cursor: pointer;
       z-index: 1001;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 30px;
     }
-    .menu-toggle .bar {
+
+    /*
+     * @brief Barras del botón de menú.
+     */
+    .bar {
       width: 30px;
       height: 3px;
       background-color: #fff;
+      margin: 6px 0;
     }
 
     /*
