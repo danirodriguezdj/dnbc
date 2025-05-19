@@ -6,6 +6,12 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+// Sonidos
+const jumpSound = new Audio("assets/jump.wav");
+const hitSound = new Audio("assets/hit.wav");
+const music = new Audio("assets/music.mp3");
+music.loop = true;
+
 // Variables del juego
 let player = {
   x: 50,
@@ -79,6 +85,8 @@ function checkCollisions() {
       player.y + player.height > obs.y
     ) {
       isPlaying = false;
+      hitSound.play();
+      music.pause();
       alert("¡Has perdido! Puntuación: " + score);
       location.reload();
     }
@@ -115,6 +123,7 @@ window.addEventListener("keydown", e => {
   if ((e.code === "Space" || e.code === "ArrowUp") && player.grounded) {
     player.velocityY = -player.jumpForce;
     player.grounded = false;
+    jumpSound.play();
   }
 });
 
@@ -122,6 +131,7 @@ window.addEventListener("click", () => {
   if (player.grounded) {
     player.velocityY = -player.jumpForce;
     player.grounded = false;
+    jumpSound.play();
   }
 });
 
@@ -159,6 +169,7 @@ function showNameInput() {
 
 function startGame() {
   isPlaying = true;
+  music.play();
   gameLoop();
 }
 
