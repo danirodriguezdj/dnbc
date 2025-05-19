@@ -1,1 +1,10 @@
-/* Estilos del HUD como el del juego del dinosaurio */
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+canvas {
+  display: block;
+}
