@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,16 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div id="nameFormContainer" class="overlay">
+    <form id="nameForm">
+      <label for="playerName">Introduce tu nombre:</label>
+      <input type="text" id="playerName" required maxlength="15" />
+      <button type="submit">Jugar</button>
+    </form>
+  </div>
+
   <canvas id="gameCanvas"></canvas>
+
   <script type="module" src="firebase.js"></script>
   <script type="module" src="game.js"></script>
 </body>
