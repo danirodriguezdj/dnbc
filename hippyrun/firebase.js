@@ -1,0 +1,1 @@
+// Configuración e integración con Firebase
