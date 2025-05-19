@@ -1,3 +1,0 @@
-# HIPPY RUN
-
-Instrucciones para desplegar en GitHub Pages...
