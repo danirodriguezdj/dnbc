@@ -175,3 +175,45 @@ function startGame() {
 
 // Iniciar
 askNameIfNeeded();
+
+// Pantalla de inicio
+function showStartScreen() {
+  const startScreen = document.createElement("div");
+  startScreen.id = "startScreen";
+  startScreen.style.position = "fixed";
+  startScreen.style.top = "0";
+  startScreen.style.left = "0";
+  startScreen.style.width = "100vw";
+  startScreen.style.height = "100vh";
+  startScreen.style.backgroundColor = "black";
+  startScreen.style.display = "flex";
+  startScreen.style.flexDirection = "column";
+  startScreen.style.justifyContent = "center";
+  startScreen.style.alignItems = "center";
+  startScreen.style.zIndex = "10";
+
+  const title = document.createElement("h1");
+  title.innerText = "🎧 HIPPY RUN 🎧";
+  title.style.color = "#00ffcc";
+  title.style.fontFamily = "'Courier New', monospace";
+  title.style.fontSize = "48px";
+  title.style.marginBottom = "20px";
+
+  const subtitle = document.createElement("p");
+  subtitle.innerText = "Pulsa para empezar";
+  subtitle.style.color = "#ffffff";
+  subtitle.style.fontFamily = "'Courier New', monospace";
+  subtitle.style.fontSize = "20px";
+
+  startScreen.appendChild(title);
+  startScreen.appendChild(subtitle);
+  document.body.appendChild(startScreen);
+
+  startScreen.addEventListener("click", () => {
+    startScreen.remove();
+    askNameIfNeeded();
+  });
+}
+
+// Mostrar pantalla de inicio
+showStartScreen();
