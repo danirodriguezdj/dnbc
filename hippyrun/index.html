@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HIPPY RUN</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div id="nameFormContainer" class="overlay">
-    <form id="nameForm">
-      <label for="playerName">Introduce tu nombre:</label>
-      <input type="text" id="playerName" required maxlength="15" />
-      <button type="submit">Jugar</button>
-    </form>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HIPPY RUN</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas id="gameCanvas"></canvas>
 
-  <canvas id="gameCanvas"></canvas>
+    <!-- Firebase App -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-app.js";
+      import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-firestore.js";
 
-  <script type="module" src="firebase.js"></script>
-  <script type="module" src="game.js"></script>
-</body>
+      const firebaseConfig = {
+        apiKey: "AIzaSyDvRbMWv4TUwDPZGXsCWDUxkD7cPcw9v98",
+        authDomain: "hippyrun.firebaseapp.com",
+        projectId: "hippyrun",
+        storageBucket: "hippyrun.appspot.com",
+        messagingSenderId: "1006542760096",
+        appId: "1:1006542760096:web:6f9616ca50c7de917a81c5"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      window.db = db;
+      window.firebaseReady = true;
+    </script>
+
+    <!-- Lógica del juego -->
+    <script type="module" src="game.js"></script>
+  </body>
 </html>
