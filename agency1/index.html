@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +43,21 @@
       overflow-x: hidden;
     }
 
-    /* Sidebar */
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      z-index: 1100;
+    }
+
+    .bar {
+      width: 30px;
+      height: 3px;
+      background-color: #fff;
+      margin: 6px 0;
+    }
+
     .sidebar {
       position: fixed;
       top: 0;
@@ -56,6 +69,11 @@
       transition: left 0.3s ease;
       z-index: 1000;
     }
+
+    .sidebar.open {
+      left: 0;
+    }
+
     .sidebar a {
       display: block;
       color: #fff;
@@ -64,14 +82,11 @@
       text-decoration: none;
       border-bottom: 1px solid #222;
     }
+
     .sidebar a:hover {
       background-color: #222;
     }
-    .sidebar.open {
-      left: 0;
-    }
 
-    /* Header base */
     header {
       position: fixed;
       top: 0;
@@ -80,45 +95,24 @@
       height: 75px;
       background-color: #000;
       display: flex;
-      align-items: center;
       justify-content: center;
-      padding: 0 20px;
+      align-items: center;
+      padding: 20px 0;
       z-index: 999;
       border-bottom: 2px solid #000;
     }
 
-    .menu-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    /*
-     * @brief Barras del botón de menú.
-     */
-    .bar {
-      width: 30px;
-      height: 3px;
-      background-color: #fff;
-      margin: 6px 0;
-    }
-
-    .logo-link {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    header a {
+      display: inline-block;
       height: 100%;
     }
 
-    .logo-link img {
-      height: 50px;
-      max-width: 100%;
-      object-fit: contain;
+    header img {
+      max-width: 400px;
+      width: 80vw;
+      height: auto;
     }
 
-    /* Artistas */
     .artist-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -173,57 +167,55 @@
       text-decoration: none;
     }
 
-    /* MÓVIL */
     @media (max-width: 768px) {
-      body {
-        padding: 90px 20px 50px 20px;
-      }
-
       .artist-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      body {
+        padding: 90px 20px 50px 20px;
       }
 
       .footer-link a {
         font-size: 12px;
       }
 
-       header {
-        justify-content: space-between;
-        padding: 0 10px;
+      header {
+        justify-content: flex-start;
+        padding-left: 70px;
+      }
+
+      header img {
+        max-width: none;
+        width: calc(100vw - 90px);
       }
 
       .menu-toggle {
-        position: relative;
-        left: 0;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1100;
       }
-
-  .logo-link {
-    margin-left: 0;
-    padding-right: 0;
-  }
-
-  .logo-link img {
-    height: 80px;
-    max-width: 200px;
-  }
-}
+    }
   </style>
 </head>
 <body>
+  <!-- Menú hamburguesa -->
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
   <!-- Sidebar de navegación -->
   <nav id="sidebar" class="sidebar">
     <a href="/">Home</a>
     <a href="/agency">Agency</a>
   </nav>
 
-  <!-- Header con logo y menú -->
+  <!-- Logo fijo -->
   <header>
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-    </div>
-    <a href="https://dienachtbrenntclub.com" class="logo-link">
+    <a href="https://dienachtbrenntclub.com">
       <img src="/logoletraslargo.png" alt="Logo DNBC Agency" />
     </a>
   </header>
