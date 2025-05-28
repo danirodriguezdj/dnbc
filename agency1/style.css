@@ -10,12 +10,10 @@
   padding: 0;
 }
 
+/* Ajustamos el padding del body para dejar espacio al logo fijo */
+
 body {
-  background: #000;
-  color: #fff;
-  font-family: 'horizon', sans-serif;
-  padding: 100px 20px;
-  text-align: center;
+  padding: 140px 20px 50px 20px;
 }
 
 .menu-toggle {
@@ -59,11 +57,22 @@ body {
   background-color: #222;
 }
 
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  z-index: 999;
+  border-bottom: 2px solid #111;
+}
+
 header img {
-  max-width: 300px;
+  max-width: 400px;
   width: 80vw;
   height: auto;
-  margin: 40px auto;
 }
 
 .gallery {
