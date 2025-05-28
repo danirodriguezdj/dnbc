@@ -48,7 +48,7 @@
       top: 20px;
       left: 20px;
       cursor: pointer;
-      z-index: 1002;
+      z-index: 1001;
     }
 
     .bar {
@@ -167,12 +167,12 @@
     }
 
     @media (max-width: 768px) {
-      body {
-        padding: 80px 10px 50px 10px;
-      }
-
       .artist-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      body {
+        padding: 80px 10px 50px 10px;
       }
 
       header {
@@ -185,37 +185,33 @@
       header img {
         max-width: none;
         width: calc(100vw - 90px);
-        margin-bottom: 5px;
+        margin-bottom: 17px;
       }
 
       .footer-link a {
-        font-size: 12px;
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Menú hamburguesa -->
   <div class="menu-toggle" onclick="toggleMenu()">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </div>
 
-  <!-- Sidebar -->
   <nav id="sidebar" class="sidebar">
     <a href="/">Home</a>
     <a href="/agency">Agency</a>
   </nav>
 
-  <!-- Logo fijo con enlace -->
   <header>
     <a href="https://dienachtbrenntclub.com">
       <img src="/logoletraslargo.png" alt="Logo DNBC Agency" />
     </a>
   </header>
 
-  <!-- Galería de artistas -->
   <div class="artist-grid">
     <a class="artist" href="https://dienachtbrenntclub.com/cokecortes">
       <img src="img/cokecortes.jpg" alt="Coke Cortés" />
@@ -251,12 +247,10 @@
     </a>
   </div>
 
-  <!-- Footer -->
   <div class="footer-link">
     <a href="https://instagram.com/dnbcagency" target="_blank">@dnbcagency</a>
   </div>
 
-  <!-- Script menú -->
   <script>
     function toggleMenu() {
       document.getElementById('sidebar').classList.toggle('open');
