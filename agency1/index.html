@@ -6,8 +6,6 @@
   <title>DNBC Agency</title>
   <meta name="description" content="DIE NACHT BRENNT AGENCY – Underground electronic music artist roster." />
   <meta name="author" content="DNBC Team" />
-
-  <!-- Íconos -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -15,7 +13,6 @@
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Estilos -->
   <style>
     @font-face {
       font-family: 'horizon';
@@ -39,11 +36,9 @@
       color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
-      padding: 140px 20px 50px 20px; /* Espacio para header fijo */
-      overflow-x: hidden;
+      padding: 100px 20px;
     }
 
-    /* Menú hamburguesa */
     .menu-toggle {
       position: fixed;
       top: 20px;
@@ -59,7 +54,6 @@
       margin: 6px 0;
     }
 
-    /* Sidebar */
     .sidebar {
       position: fixed;
       top: 0;
@@ -89,29 +83,24 @@
       background-color: #222;
     }
 
-    /* Logo fijo */
     header {
       position: fixed;
       top: 0;
-      left: 0;
       width: 100%;
-      height: 100px;
-      background-color: #000;
+      background-color: black;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px 0;
-      z-index: 1000;
-      border-bottom: 2px solid #111;
+      padding: 8px 0;
+      z-index: 999;
+      border-bottom: 1px solid #222;
     }
 
     header img {
-      max-width: 400px;
-      width: 80vw;
-      height: auto;
+      height: 40px;
+      width: auto;
     }
 
-    /* Galería artistas */
     .artist-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -172,7 +161,7 @@
       }
 
       body {
-        padding: 120px 10px 50px 10px;
+        padding: 70px 10px;
       }
 
       .footer-link a {
@@ -182,11 +171,7 @@
 
     @media (min-width: 1200px) {
       body {
-        padding: 140px 100px 50px 100px;
-      }
-
-      header img {
-        max-width: 300px;
+        padding: 100px 100px;
       }
 
       .footer-link a {
@@ -209,7 +194,7 @@
     <a href="/agency">Agency</a>
   </nav>
 
-  <!-- Logo fijo -->
+  <!-- Logo -->
   <header>
     <img src="/logoletraslargo.png" alt="Logo DNBC Agency" />
   </header>
@@ -255,7 +240,7 @@
     <a href="https://instagram.com/dnbcagency" target="_blank">@dnbcagency</a>
   </div>
 
-  <!-- Script menú -->
+  <!-- Script del menú hamburguesa -->
   <script>
     function toggleMenu() {
       document.getElementById('sidebar').classList.toggle('open');
