@@ -105,12 +105,12 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 75px;            
+      height: 75px;
       background: #000;
       display: flex;
       justify-content: center; /* logo centrado en PC */
-      align-items: center;     
-      padding: 0 20px;         
+      align-items: center;     /* centrado vertical */
+      padding: 0 20px;         /* margen lateral estándar */
       z-index: 999;
       border-bottom: 2px solid #000;
     }
@@ -171,7 +171,7 @@
       text-decoration: none;
     }
 
-    /* @brief Media Queries – MÓVIL: logo pegado a la derecha */
+    /* @brief Media Queries – MÓVIL: logo pegado a la derecha con margen */
     @media (max-width: 768px) {
       .artist-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -180,12 +180,12 @@
         padding: 80px 10px 50px;
       }
       header {
-        justify-content: space-between;
-        padding: 0;          /* quita padding lateral para pegar logo */
+        justify-content: space-between; /* menú y logo separados */
+        padding: 0 20px;               /* deja 20px margen lateral */
         height: 65px;
       }
       header a {
-        margin-left: auto;   /* logo pegado al borde derecho */
+        margin-left: auto;             /* empuja logo hacia la derecha */
       }
       header .logo {
         max-width: 200px;
