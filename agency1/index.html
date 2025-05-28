@@ -3,26 +3,19 @@
 <head>
   <!--
     Archivo: index.html
-    Propósito: Página principal de DNBC Agency con galería de artistas.
+    Propósito: Galería de artistas de DNBC Agency.
     Estándar de documentación: ISO/IEC/IEEE 26515.
   -->
 
-  <!-- Metadatos -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DNBC Agency</title>
-  <meta name="description" content="DIE NACHT BRENNT AGENCY – Underground electronic music artist roster." />
-  <meta name="author" content="DNBC Team" />
+  <meta name="description" content="Artistas representados por DNBC Agency - Underground electronic music talent.">
+  <meta name="author" content="Die Nacht Brennt Club">
 
-  <!-- Íconos -->
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="DNBC" />
-  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png">
+  <link rel="stylesheet" href="/fonts/horizon.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 
-  <!-- Estilos -->
   <style>
     @font-face {
       font-family: 'horizon';
@@ -39,78 +32,39 @@
     }
 
     body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       background-color: #000;
       color: #fff;
       font-family: 'horizon', sans-serif;
-      text-align: center;
-      padding: 100px 20px;
+      padding-top: 100px;
     }
 
-    .menu-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    .bar {
-      width: 30px;
-      height: 3px;
-      background-color: #fff;
-      margin: 6px 0;
-    }
-
-    .sidebar {
+    /* Logo fijo superior */
+    .fixed-logo {
       position: fixed;
       top: 0;
-      left: -250px;
-      width: 250px;
-      height: 100%;
-      background-color: #111;
-      padding-top: 60px;
-      transition: left 0.3s ease;
+      width: 100%;
+      background-color: #000;
+      padding: 10px 0;
+      text-align: center;
       z-index: 1000;
+      border-bottom: 1px solid #111;
     }
-
-    .sidebar.open {
-      left: 0;
-    }
-
-    .sidebar a {
-      display: block;
-      color: #fff;
-      padding: 20px;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-bottom: 1px solid #222;
-    }
-
-    .sidebar a:hover {
-      background-color: #222;
-    }
-
-    header {
-      margin-top: 40px;
-      margin-bottom: 40px;
-    }
-
-    header img {
+    .fixed-logo img {
       max-width: 300px;
-      width: 80vw;
       height: auto;
     }
+    .fixed-logo a {
+      display: inline-block;
+    }
 
-    .artist-grid {
+    /* Galería */
+    .gallery {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      width: 100%;
-      max-width: 1200px;
+      gap: 10px;
       padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .artist {
@@ -123,135 +77,86 @@
       width: 100%;
       height: auto;
       display: block;
-      transition: transform 0.3s ease, filter 0.3s ease;
     }
 
-    .artist:hover img {
-      filter: brightness(0.5);
-      transform: scale(1.05);
-    }
-
-    .artist-info {
+    .overlay {
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 100%;
-      padding: 10px;
-      background: rgba(0, 0, 0, 0.7);
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.6);
       color: #fff;
-      font-size: 1em;
+      padding: 10px;
       opacity: 0;
       transition: opacity 0.3s ease;
+      font-size: 0.9em;
     }
 
-    .artist:hover .artist-info {
-      opacity: 1;
+    /* Hover solo en dispositivos que permiten hover */
+    @media (hover: hover) {
+      .artist:hover .overlay {
+        opacity: 1;
+      }
     }
 
-    .footer-link {
-      margin-top: 40px;
-    }
-
-    .footer-link a {
-      color: #fff;
-      font-size: 14px;
-      text-decoration: none;
-    }
-
+    /* Responsive para pantallas pequeñas */
     @media (max-width: 768px) {
-      .artist-grid {
+      .gallery {
         grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 10px;
       }
-
-      body {
-        padding: 50px 10px;
+      .overlay {
+        display: none;
       }
-
-      .footer-link a {
-        font-size: 12px;
-      }
-    }
-
-    @media (min-width: 1200px) {
-      body {
-        padding: 100px 100px;
-      }
-
-      header img {
-        max-width: 250px;
-      }
-
-      .footer-link a {
-        font-size: 1rem;
+      .fixed-logo img {
+        max-width: 220px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Menú hamburguesa -->
-  <div class="menu-toggle" onclick="toggleMenu()">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
+  <!-- Logo fijo -->
+  <div class="fixed-logo">
+    <a href="/">
+      <img src="/img/logoletraslargo.png" alt="DNBC Agency Logo">
+    </a>
   </div>
-
-  <!-- Sidebar de navegación -->
-  <nav id="sidebar" class="sidebar">
-    <a href="/">Home</a>
-    <a href="/agency">Agency</a>
-  </nav>
-
-  <!-- Logo -->
-  <header>
-    <img src="/logo.png" alt="Logo DNBC Agency" />
-  </header>
 
   <!-- Galería de artistas -->
-  <div class="artist-grid">
-    <a class="artist" href="https://dienachtbrenntclub.com/cokecortes">
-      <img src="img/cokecortes.jpg" alt="Coke Cortés" />
-      <div class="artist-info">COKE CORTÉS – DJ & Producer</div>
+  <div class="gallery">
+    <a href="/cokecortes" class="artist">
+      <img src="/img/cokecortes.jpg" alt="Coke Cortés">
+      <div class="overlay">Productor groove e hipnótico desde Barcelona.</div>
     </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/danirodriguez">
-      <img src="img/danirodriguez.jpg" alt="Dani Rodriguez" />
-      <div class="artist-info">DANI RODRIGUEZ – Techno & Hardgroove</div>
+    <a href="/danirodriguez" class="artist">
+      <img src="/img/danirodriguez.jpg" alt="Dani Rodriguez">
+      <div class="overlay">DJ técnico y selector implacable.</div>
     </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/laveranotte">
-      <img src="img/laveranotte.jpg" alt="La Vera Notte" />
-      <div class="artist-info">LA VERA NOTTE – Dark Electro & Acid</div>
+    <a href="/laveranotte" class="artist">
+      <img src="/img/laveranotte.jpg" alt="La Vera Notte">
+      <div class="overlay">Elegancia techno en formato clubbing.</div>
     </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/mikes">
-      <img src="img/mikes.jpg" alt="Mikes" />
-      <div class="artist-info">MIKES – Raw & Rave Techno</div>
+    <a href="/mikes" class="artist">
+      <img src="/img/mikes.jpg" alt="Mikes">
+      <div class="overlay">Ritmos industriales y electrónica extrema.</div>
     </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/vitalgroove">
-      <img src="img/vitalgroove.jpg" alt="Vital Groove" />
-      <div class="artist-info">VITAL GROOVE – Groovy Tech</div>
+    <a href="/vitalgroove" class="artist">
+      <img src="/img/vitalgroove.jpg" alt="Vital Groove">
+      <div class="overlay">Groove techno con presencia escénica brutal.</div>
     </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/kb45">
-      <img src="img/kb45.jpg" alt="KB45" />
-      <div class="artist-info">KB45 – Bass & Breaks</div>
+    <a href="/kb45" class="artist">
+      <img src="/img/kb45.jpg" alt="KB45">
+      <div class="overlay">Raver oldschool con carácter oscuro.</div>
     </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/filo">
-      <img src="img/filo.jpg" alt="FILØ" />
-      <div class="artist-info">FILØ – Industrial & Experimental</div>
+    <a href="/filo" class="artist">
+      <img src="/img/filo.jpg" alt="FILØ">
+      <div class="overlay">Progresión melódica e hipnótica constante.</div>
     </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/deathwrap">
-      <img src="img/deathwrap.jpg" alt="DEATHWRAP" />
-      <div class="artist-info">DEATHWRAP – Hardcore & Noise</div>
+    <a href="/deathwrap" class="artist">
+      <img src="/img/deathwrap.jpg" alt="DEATHWRAP">
+      <div class="overlay">Ritmo salvaje con sonidos crudos y ruidosos.</div>
     </a>
   </div>
-
-  <!-- Footer -->
-  <div class="footer-link">
-    <a href="https://instagram.com/dnbcagency" target="_blank">@dnbcagency</a>
-  </div>
-
-  <!-- Script menú -->
-  <script>
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('open');
-    }
-  </script>
 </body>
 </html>
