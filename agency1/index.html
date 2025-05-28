@@ -107,7 +107,8 @@
     }
 
     header img {
-      width: clamp(150px, 60vw, 400px);
+      max-width: 400px;
+      width: 80vw;
       height: auto;
     }
 
@@ -175,15 +176,20 @@
       }
 
       header {
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
+        padding: 0 20px;
         height: 65px;
-        padding-left: 0;
+      }
+
+      header a {
+        margin-left: auto;
       }
 
       header img {
-        width: clamp(150px, 60vw, 400px);
-        margin: 0 auto;
+        max-width: none;
+        width: 150px;
+        margin: 0;
       }
 
       .footer-link a {
