@@ -152,6 +152,7 @@
       background: rgba(0,0,0,.7);
       opacity: 0;
       transition: opacity .3s ease;
+      color: #fff;
     }
     .artist:hover .artist-info {
       opacity: 1;
@@ -177,12 +178,17 @@
       }
       header {
         justify-content: space-between;
+        align-items: center;
         padding: 0 20px;
         height: 65px;
       }
       header .logo {
         max-width: 200px;
         width: 50vw;
+      }
+      /* Restaura el logo a la derecha en móvil */
+      header a {
+        margin-left: auto;
       }
       .footer-link a {
         font-size: 1rem;
@@ -215,7 +221,30 @@
       <img src="img/cokecortes.jpg" alt="Coke Cortés" />
       <div class="artist-info">DJ &amp; Producer</div>
     </a>
-    <!-- …otros artistas… -->
+    <a class="artist" href="https://dienachtbrenntclub.com/danirodriguez">
+      <img src="img/danirodriguez.jpg" alt="Dani Rodriguez" />
+      <div class="artist-info">Techno &amp; Hardgroove</div>
+    </a>
+    <a class="artist" href="https://dienachtbrenntclub.com/laveranotte">
+      <img src="img/laveranotte.jpg" alt="La Vera Notte" />
+      <div class="artist-info">Dark Electro &amp; Acid</div>
+    </a>
+    <a class="artist" href="https://dienachtbrenntclub.com/mikes">
+      <img src="img/mikes.jpg" alt="Mikes" />
+      <div class="artist-info">Raw &amp; Rave Techno</div>
+    </a>
+    <a class="artist" href="https://dienachtbrenntclub.com/vitalgroove">
+      <img src="img/vitalgroove.jpg" alt="Vital Groove" />
+      <div class="artist-info">Groovy Tech</div>
+    </a>
+    <a class="artist" href="https://dienachtbrenntclub.com/kb45">
+      <img src="img/kb45.jpg" alt="KB45" />
+      <div class="artist-info">Bass &amp; Breaks</div>
+    </a>
+    <a class="artist" href="https://dienachtbrenntclub.com/filo">
+      <img src="img/filo.jpg" alt="FILØ" />
+      <div class="artist-info">Industrial &amp; Experimental</div>
+    </a>
     <a class="artist" href="https://dienachtbrenntclub.com/deathwrap">
       <img src="img/deathwrap.jpg" alt="DEATHWRAP" />
       <div class="artist-info">Hardcore &amp; Noise</div>
