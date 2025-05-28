@@ -15,6 +15,7 @@
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
 
+  <!-- Estilos -->
   <style>
     @font-face {
       font-family: 'horizon';
@@ -46,8 +47,8 @@
       position: fixed;
       top: 20px;
       left: 20px;
-      z-index: 1001;
       cursor: pointer;
+      z-index: 1001;
     }
 
     .bar {
@@ -91,14 +92,21 @@
       top: 0;
       left: 0;
       width: 100%;
+      height: 75px;
       background-color: #000;
-      border-bottom: 2px solid #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0;
       z-index: 999;
-      padding: 10px 20px;
-      text-align: center;
+      border-bottom: 2px solid #000;
     }
 
-    header a img {
+    header a {
+      display: inline-block;
+    }
+
+    header img {
       max-width: 400px;
       width: 80vw;
       height: auto;
@@ -159,21 +167,24 @@
     }
 
     @media (max-width: 768px) {
-      body {
-        padding: 100px 10px 50px 10px;
-      }
-
       .artist-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      header a img {
-        width: calc(100vw - 90px);
-        max-width: none;
+      body {
+        padding: 80px 10px 50px 10px;
       }
 
-      .footer-link a {
-        font-size: 1rem;
+      header {
+        justify-content: center;
+        padding-left: 0;
+        height: 65px;
+      }
+
+      header img {
+        max-width: 100%;
+        width: calc(100vw - 100px);
+        height: auto;
       }
     }
   </style>
