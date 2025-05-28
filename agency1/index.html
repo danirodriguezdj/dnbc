@@ -15,7 +15,6 @@
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Estilos -->
   <style>
     @font-face {
       font-family: 'horizon';
@@ -44,8 +43,11 @@
     }
 
     .menu-toggle {
-      cursor: pointer;
+      position: fixed;
+      top: 20px;
+      left: 20px;
       z-index: 1001;
+      cursor: pointer;
     }
 
     .bar {
@@ -93,17 +95,10 @@
       border-bottom: 2px solid #000;
       z-index: 999;
       padding: 10px 20px;
+      text-align: center;
     }
 
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .header-content a img {
+    header a img {
       max-width: 400px;
       width: 80vw;
       height: auto;
@@ -172,16 +167,7 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .header-content {
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .menu-toggle {
-        position: relative;
-      }
-
-      .header-content a img {
+      header a img {
         width: calc(100vw - 90px);
         max-width: none;
       }
@@ -193,22 +179,21 @@
   </style>
 </head>
 <body>
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
   <nav id="sidebar" class="sidebar">
     <a href="/">Home</a>
     <a href="/agency">Agency</a>
   </nav>
 
   <header>
-    <div class="header-content">
-      <div class="menu-toggle" onclick="toggleMenu()">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-      <a href="https://dienachtbrenntclub.com">
-        <img src="/logoletraslargo.png" alt="Logo DNBC Agency" />
-      </a>
-    </div>
+    <a href="https://dienachtbrenntclub.com">
+      <img src="/logoletraslargo.png" alt="Logo DNBC Agency" />
+    </a>
   </header>
 
   <div class="artist-grid">
