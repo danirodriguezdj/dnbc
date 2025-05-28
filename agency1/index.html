@@ -91,23 +91,25 @@
 
     /* Logo fijo */
     header {
-     position: fixed;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 60px;
-     background-color: #000;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     z-index: 999;
-     border-bottom: 2px solid #000;
-     padding: 0 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 75px;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0;
+      z-index: 999;
+      border-bottom: 2px solid #000;
     }
 
     header a {
       display: block;
-   }
+      width: 100%;
+      height: 100%;
+    }
 
     header img {
       max-width: 400px;
@@ -176,23 +178,22 @@
       }
 
       body {
-        padding: 80px 20px 50px 20px;
+        padding: 70px 10px 50px 10px;
       }
 
-      .footer-link a {
-        font-size: 12px;
+      header {
+        justify-content: center;
+        padding: 10px 0;
       }
-    }
 
-    @media (max-width: 768px) {
-  header {
-    justify-content: flex-end;
-  }
-
-  header img {
-    max-width: 180px;
-  }
-}
+      header img {
+        width: 100%;
+        max-width: none;
+        max-height: 60px;
+        display: block;
+        margin: 0 auto;
+        object-fit: contain;
+      }
 
       .footer-link a {
         font-size: 1rem;
@@ -216,9 +217,9 @@
 
   <!-- Logo fijo -->
   <header>
-  <a href="https://dienachtbrenntclub.com">
-    <img src="/logoletraslargo.png" alt="Logo DNBC Agency" />
-  </a>
+    <a href="https://dienachtbrenntclub.com">
+      <img src="/logoletraslargo.png" alt="Logo DNBC Agency" />
+    </a>
   </header>
 
   <!-- Galería de artistas -->
