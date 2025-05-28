@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    Archivo: index.html
-    Propósito: Página principal de DNBC Agency con galería de artistas.
-    Estándar de documentación: ISO/IEC/IEEE 26515.
-  -->
-
-  <!-- Metadatos -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DNBC Agency</title>
@@ -46,7 +39,7 @@
       color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
-      padding: 100px 20px;
+      padding: 140px 20px 50px 20px;
     }
 
     .menu-toggle {
@@ -94,12 +87,19 @@
     }
 
     header {
-      margin-top: 40px;
-      margin-bottom: 40px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      z-index: 999;
+      border-bottom: 2px solid #111;
     }
 
     header img {
-      max-width: 300px;
+      max-width: 400px;
       width: 80vw;
       height: auto;
     }
@@ -107,10 +107,10 @@
     .artist-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      gap: 10px;
       width: 100%;
       max-width: 1200px;
-      padding: 20px;
+      padding: 10px;
     }
 
     .artist {
@@ -123,29 +123,16 @@
       width: 100%;
       height: auto;
       display: block;
-      transition: transform 0.3s ease, filter 0.3s ease;
+      transition: none;
     }
 
     .artist:hover img {
-      filter: brightness(0.5);
-      transform: scale(1.05);
+      filter: none;
+      transform: none;
     }
 
     .artist-info {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 10px;
-      background: rgba(0, 0, 0, 0.7);
-      color: #fff;
-      font-size: 1em;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .artist:hover .artist-info {
-      opacity: 1;
+      display: none !important;
     }
 
     .footer-link {
@@ -161,10 +148,11 @@
     @media (max-width: 768px) {
       .artist-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
       }
 
       body {
-        padding: 50px 10px;
+        padding: 140px 10px 30px 10px;
       }
 
       .footer-link a {
@@ -174,11 +162,11 @@
 
     @media (min-width: 1200px) {
       body {
-        padding: 100px 100px;
+        padding: 140px 100px 50px 100px;
       }
 
       header img {
-        max-width: 250px;
+        max-width: 400px;
       }
 
       .footer-link a {
@@ -203,7 +191,7 @@
 
   <!-- Logo -->
   <header>
-    <img src="/logo.png" alt="Logo DNBC Agency" />
+    <a href="/"><img src="/logoletraslargo.png" alt="Logo DNBC Agency" /></a>
   </header>
 
   <!-- Galería de artistas -->
