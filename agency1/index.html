@@ -91,7 +91,7 @@
       top: 20px;
       left: 20px;
       cursor: pointer;
-      z-index: 1001;
+      z-index: 1100;
     }
 
     /*
@@ -192,7 +192,8 @@
       }
 
       .menu-toggle {
-        position: relative;
+        position: fixed; /* Antes estaba en relative */
+        z-index: 1100;   /* Asegura que esté por encima del sidebar */
         left: 0;
       }
 
