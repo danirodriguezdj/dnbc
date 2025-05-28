@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    Archivo: agency.html
+    Propósito: Sección “Agency” de Die Nacht Brennt Club (DNBC).
+    Estándar de documentación: ISO/IEC/IEEE 26515.
+  -->
+
+  <!-- Metadatos generales -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DNBC Agency</title>
+  <meta name="description"
+        content="DNBC Agency – DJ Rooster coming soon. Underground electronic music talent." />
+  <meta name="author"
+        content="Die Nacht Brennt Club (Mateo Palmeiro & Daniel Rodríguez)" />
+
+  <!-- Íconos y PWA manifest -->
+  <link rel="icon"
+        type="image/png"
+        href="/favicon-96x96.png"
+        sizes="96x96" />
+  <link rel="icon"
+        type="image/svg+xml"
+        href="/favicon.svg" />
+  <link rel="shortcut icon"
+        href="/favicon.ico" />
+  <link rel="apple-touch-icon"
+        sizes="180x180"
+        href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="DNBC" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Preload fuente Horizon para evitar Flash Of Unstyled Text -->
+  <link rel="preload"
+        href="/fonts/horizon.woff2"
+        as="font"
+        type="font/woff2"
+        crossorigin="anonymous" />
+
+  <!-- Estilos globales y responsivos -->
+  <style>
+    /* 
+     * @brief Define la fuente personalizada 'horizon'.
+     * @source /fonts/horizon.woff2
+     */
+    @font-face {
+      font-family: 'horizon';
+      src: url('/fonts/horizon.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /*
+     * @brief Reinicio de box-model y márgenes.
+     */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /*
+     * @brief Estilos base del cuerpo.
+     * @details Flexbox vertical, fondo negro, texto blanco.
+     */
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #000;
+      color: #fff;
+      font-family: 'horizon', sans-serif;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+     /*
+     * @brief Botón de menú tipo “hamburguesa”.
+     */
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    /*
+     * @brief Barras del botón de menú.
+     */
+    .bar {
+      width: 30px;
+      height: 3px;
+      background-color: #fff;
+      margin: 6px 0;
+    }
+
+    /*
+     * @brief Sidebar de navegación.
+     * @details Oculto por defecto; aparece al añadir clase 'open'.
+     */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #111;
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+    .sidebar.open {
+      left: 0;
+    }
+    .sidebar a {
+      display: block;
+      color: #fff;
+      padding: 20px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid #222;
+    }
+    .sidebar a:hover {
+      background-color: #222;
+    }
+
+    /*
+     * @brief Encabezado con logo.
+     * @details Margen superior y tamaño adaptable.
+     */
+    header {
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+    header img {
+      max-width: 300px;
+      width: 80vw;
+      height: auto;
+    }
+
+    /*
+     * @brief Texto central anunciando DJ Rooster.
+     * @details Centrado vertical con flex y tamaño de fuente responsive.
+     */
+    .center-text {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      padding: 20px;
+    }
+
+    /*
+     * @brief Enlace de pie de página (@dnbcagency).
+     */
+    .footer-link {
+      margin-bottom: 20px;
+    }
+    .footer-link a {
+      color: #fff;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    /*
+     * @brief Media queries para dispositivos móviles.
+     * @details Reduce padding y fuentes para pantallas <=600px.
+     */
+    @media (max-width: 600px) {
+      body {
+        padding: 50px 10px;
+      }
+      .center-text {
+        font-size: 1.5em;
+        padding: 10px;
+      }
+      .footer-link a {
+        font-size: 12px;
+      }
+    }
+
+    /*
+     * @brief Media queries para pantallas grandes (>=1200px).
+     * @details Ajusta padding y tamaños para desktop.
+     */
+    @media (min-width: 1200px) {
+      body {
+        padding: 100px 100px;
+      }
+      header img {
+        max-width: 250px;
+      }
+      .center-text {
+        font-size: 3em;
+      }
+      .footer-link a {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!--
+    @brief Botón para alternar visibilidad del sidebar.
+    @event onclick -> toggleMenu()
+  -->
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <!--
+    @brief Navegación lateral (sidebar).
+  -->
+  <nav id="sidebar" class="sidebar">
+    <a href="/">Home</a>
+    <a href="/agency">Agency</a>
+  </nav>
+
+  <!-- Encabezado con logo DNBC -->
+  <header>
+    <img src="/logo.png" alt="Logo DNBC Agency" />
+  </header>
+
+  <!-- Mensaje central -->
+  <div class="center-text">
+    DJ ROOSTER SOON
+  </div>
+
+  <!-- Enlace de Instagram -->
+  <div class="footer-link">
+    <a href="https://instagram.com/dnbcagency" target="_blank">@dnbcagency</a>
+  </div>
+
+  <!--
+    @brief Función de JavaScript que alterna la clase 'open' del sidebar.
+    @pre Elemento con id="sidebar" existe en el DOM.
+    @post El sidebar se muestra u oculta.
+  -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
