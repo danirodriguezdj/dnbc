@@ -10,7 +10,7 @@
   padding: 0;
 }
 
-/* Ajustamos el padding del body para dejar espacio al logo fijo */
+/* Espacio para el logo fijo arriba */
 body {
   padding: 140px 20px 50px 20px;
 }
@@ -41,9 +41,11 @@ body {
   transition: left 0.3s ease;
   z-index: 1000;
 }
+
 .sidebar.open {
   left: 0;
 }
+
 .sidebar a {
   display: block;
   color: #fff;
@@ -52,10 +54,12 @@ body {
   text-decoration: none;
   text-transform: uppercase;
 }
+
 .sidebar a:hover {
   background-color: #222;
 }
 
+/* CABECERA LOGO FIJO CENTRADO */
 header {
   position: fixed;
   top: 0;
@@ -69,11 +73,13 @@ header {
 }
 
 header img {
+  content: url('/logoletraslargo.png'); /* Imagen solo para páginas no principales */
   max-width: 400px;
   width: 80vw;
   height: auto;
 }
 
+/* GALERÍA */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -97,7 +103,7 @@ header img {
   transform: scale(1.05);
 }
 
-/* Ocultamos el overlay completamente */
+/* Ocultamos el overlay en todos los dispositivos */
 .overlay {
   display: none;
 }
@@ -105,6 +111,7 @@ header img {
 .footer-link {
   margin-top: 30px;
 }
+
 .footer-link a {
   color: #fff;
   text-decoration: none;
