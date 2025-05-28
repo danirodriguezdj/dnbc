@@ -99,23 +99,23 @@
       background: #222;
     }
 
-    /* @brief Cabecera fija – PC: logo centrado */
+    /* @brief Cabecera fija – ESCRITORIO: logo centrado vertical y horizontal */
     header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 75px;
+      height: 75px;            
       background: #000;
       display: flex;
-      justify-content: center; /* ← logo centrado en escritorio */
-      align-items: center;
-      padding: 20px 0;
+      justify-content: center; /* logo centrado en PC */
+      align-items: center;     
+      padding: 0 20px;         
       z-index: 999;
       border-bottom: 2px solid #000;
     }
     header a {
-      margin: 0; /* sin desplazamiento lateral en PC */
+      margin: 0;
     }
     header .logo {
       max-width: 400px;
@@ -171,7 +171,7 @@
       text-decoration: none;
     }
 
-    /* @brief Media Queries – MÓVIL: logo a la derecha */
+    /* @brief Media Queries – MÓVIL: logo pegado a la derecha */
     @media (max-width: 768px) {
       .artist-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -180,12 +180,12 @@
         padding: 80px 10px 50px;
       }
       header {
-        justify-content: space-between; /* en móvil vuelve espacio entre */
-        padding: 0 20px;
+        justify-content: space-between;
+        padding: 0;          /* quita padding lateral para pegar logo */
         height: 65px;
       }
       header a {
-        margin-left: auto; /* logo a la derecha en móvil */
+        margin-left: auto;   /* logo pegado al borde derecho */
       }
       header .logo {
         max-width: 200px;
