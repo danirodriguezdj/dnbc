@@ -116,6 +116,9 @@
     }
     header a {
       margin: 0;
+      display: flex;           /* fuerza centrar su contenido */
+      align-items: center;
+      height: 100%;
     }
     header .logo {
       max-width: 400px;
@@ -171,7 +174,7 @@
       text-decoration: none;
     }
 
-    /* @brief Media Queries – MÓVIL: logo pegado a la derecha con margen */
+    /* @brief Media Queries – MÓVIL: logo pegado a la derecha con margen y centrado vertical */
     @media (max-width: 768px) {
       .artist-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -181,11 +184,16 @@
       }
       header {
         justify-content: space-between; /* menú y logo separados */
-        padding: 0 20px;               /* deja 20px margen lateral */
+        padding: 0 20px;               /* margen lateral */
         height: 65px;
       }
       header a {
-        margin-left: auto;             /* empuja logo hacia la derecha */
+        margin-left: auto;             /* empuja logo a la derecha */
+      }
+      header a, header .logo {
+        display: flex;
+        align-items: center;           /* centrado vertical */
+        height: 100%;
       }
       header .logo {
         max-width: 200px;
