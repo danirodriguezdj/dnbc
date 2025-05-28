@@ -107,8 +107,7 @@
     }
 
     header img {
-      max-width: 400px;
-      width: 80vw;
+      width: clamp(150px, 60vw, 400px);
       height: auto;
     }
 
@@ -177,14 +176,18 @@
 
       header {
         justify-content: center;
-        padding-left: 0;
+        align-items: center;
         height: 65px;
+        padding-left: 0;
       }
 
       header img {
-        max-width: 100%;
-        width: calc(100vw - 100px);
-        height: auto;
+        width: clamp(150px, 60vw, 400px);
+        margin: 0 auto;
+      }
+
+      .footer-link a {
+        font-size: 1rem;
       }
     }
   </style>
