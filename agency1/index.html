@@ -39,7 +39,7 @@
       color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
-      padding: 140px 10px 50px;
+      padding: 140px 20px 50px 20px; /* Espacio para header fijo */
       overflow-x: hidden;
     }
 
@@ -100,6 +100,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 20px 0;
       z-index: 1000;
       border-bottom: 2px solid #111;
     }
@@ -113,32 +114,46 @@
     /* Galería artistas */
     .artist-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
       width: 100%;
-      max-width: 1400px;
-      padding: 20px 0;
+      max-width: 1200px;
+      padding: 20px;
     }
 
     .artist {
       position: relative;
       overflow: hidden;
+      cursor: pointer;
     }
 
     .artist img {
       width: 100%;
       height: auto;
       display: block;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, filter 0.3s ease;
     }
 
     .artist:hover img {
+      filter: brightness(0.5);
       transform: scale(1.05);
     }
 
-    /* Ocultar info en hover en todas las plataformas */
     .artist-info {
-      display: none;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      font-size: 1em;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .artist:hover .artist-info {
+      opacity: 1;
     }
 
     .footer-link {
@@ -154,7 +169,10 @@
     @media (max-width: 768px) {
       .artist-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
+      }
+
+      body {
+        padding: 120px 10px 50px 10px;
       }
 
       .footer-link a {
@@ -164,7 +182,7 @@
 
     @media (min-width: 1200px) {
       body {
-        padding: 140px 80px 50px 80px;
+        padding: 140px 100px 50px 100px;
       }
 
       header img {
@@ -200,27 +218,35 @@
   <div class="artist-grid">
     <a class="artist" href="https://dienachtbrenntclub.com/cokecortes">
       <img src="img/cokecortes.jpg" alt="Coke Cortés" />
+      <div class="artist-info">COKE CORTÉS – DJ & Producer</div>
     </a>
     <a class="artist" href="https://dienachtbrenntclub.com/danirodriguez">
       <img src="img/danirodriguez.jpg" alt="Dani Rodriguez" />
+      <div class="artist-info">DANI RODRIGUEZ – Techno & Hardgroove</div>
     </a>
     <a class="artist" href="https://dienachtbrenntclub.com/laveranotte">
       <img src="img/laveranotte.jpg" alt="La Vera Notte" />
+      <div class="artist-info">LA VERA NOTTE – Dark Electro & Acid</div>
     </a>
     <a class="artist" href="https://dienachtbrenntclub.com/mikes">
       <img src="img/mikes.jpg" alt="Mikes" />
+      <div class="artist-info">MIKES – Raw & Rave Techno</div>
     </a>
     <a class="artist" href="https://dienachtbrenntclub.com/vitalgroove">
       <img src="img/vitalgroove.jpg" alt="Vital Groove" />
+      <div class="artist-info">VITAL GROOVE – Groovy Tech</div>
     </a>
     <a class="artist" href="https://dienachtbrenntclub.com/kb45">
       <img src="img/kb45.jpg" alt="KB45" />
+      <div class="artist-info">KB45 – Bass & Breaks</div>
     </a>
     <a class="artist" href="https://dienachtbrenntclub.com/filo">
       <img src="img/filo.jpg" alt="FILØ" />
+      <div class="artist-info">FILØ – Industrial & Experimental</div>
     </a>
     <a class="artist" href="https://dienachtbrenntclub.com/deathwrap">
       <img src="img/deathwrap.jpg" alt="DEATHWRAP" />
+      <div class="artist-info">DEATHWRAP – Hardcore & Noise</div>
     </a>
   </div>
 
