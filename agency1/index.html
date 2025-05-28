@@ -1,162 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <!--
-    Archivo: index.html
-    Propósito: Galería de artistas de DNBC Agency.
-    Estándar de documentación: ISO/IEC/IEEE 26515.
-  -->
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DNBC Agency</title>
-  <meta name="description" content="Artistas representados por DNBC Agency - Underground electronic music talent.">
-  <meta name="author" content="Die Nacht Brennt Club">
-
-  <link rel="icon" type="image/png" href="/favicon-96x96.png">
-  <link rel="stylesheet" href="/fonts/horizon.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGENCY — DIE NACHT BRENNT</title>
   <style>
-    @font-face {
-      font-family: 'horizon';
-      src: url('/fonts/horizon.woff2') format('woff2');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    *, *::before, *::after {
+    * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'horizon', sans-serif;
+      background-color: black;
+      color: white;
+      font-family: sans-serif;
       padding-top: 100px;
     }
 
-    /* Logo fijo superior */
-    .fixed-logo {
+    header {
       position: fixed;
       top: 0;
       width: 100%;
-      background-color: #000;
-      padding: 10px 0;
-      text-align: center;
+      background-color: black;
       z-index: 1000;
-      border-bottom: 1px solid #111;
-    }
-    .fixed-logo img {
-      max-width: 300px;
-      height: auto;
-    }
-    .fixed-logo a {
-      display: inline-block;
+      text-align: center;
+      padding: 10px 0;
+      border-bottom: 2px solid #111;
     }
 
-    /* Galería */
-    .gallery {
+    header img {
+      height: 40px;
+    }
+
+    .grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
       padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
     }
 
     .artist {
       position: relative;
       overflow: hidden;
-      cursor: pointer;
     }
 
     .artist img {
       width: 100%;
-      height: auto;
       display: block;
+      height: auto;
     }
 
     .overlay {
       position: absolute;
       bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: rgba(0, 0, 0, 0.6);
-      color: #fff;
-      padding: 10px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      width: 100%;
+      padding: 5px;
+      text-align: center;
       opacity: 0;
       transition: opacity 0.3s ease;
-      font-size: 0.9em;
+      font-size: 14px;
     }
 
-    /* Hover solo en dispositivos que permiten hover */
-    @media (hover: hover) {
+    @media (hover: hover) and (pointer: fine) {
       .artist:hover .overlay {
         opacity: 1;
       }
     }
 
-    /* Responsive para pantallas pequeñas */
-    @media (max-width: 768px) {
-      .gallery {
+    @media (max-width: 900px) {
+      .grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
         padding: 10px;
       }
+
       .overlay {
         display: none;
       }
-      .fixed-logo img {
-        max-width: 220px;
+
+      header img {
+        height: 30px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Logo fijo -->
-  <div class="fixed-logo">
+  <header>
     <a href="/">
-      <img src="/img/logoletraslargo.png" alt="DNBC Agency Logo">
+      <img src="logoletraslargo.png" alt="Die Nacht Brennt Logo" />
     </a>
-  </div>
+  </header>
 
-  <!-- Galería de artistas -->
-  <div class="gallery">
-    <a href="/cokecortes" class="artist">
-      <img src="/img/cokecortes.jpg" alt="Coke Cortés">
-      <div class="overlay">Productor groove e hipnótico desde Barcelona.</div>
-    </a>
-    <a href="/danirodriguez" class="artist">
-      <img src="/img/danirodriguez.jpg" alt="Dani Rodriguez">
-      <div class="overlay">DJ técnico y selector implacable.</div>
-    </a>
-    <a href="/laveranotte" class="artist">
-      <img src="/img/laveranotte.jpg" alt="La Vera Notte">
-      <div class="overlay">Elegancia techno en formato clubbing.</div>
-    </a>
-    <a href="/mikes" class="artist">
-      <img src="/img/mikes.jpg" alt="Mikes">
-      <div class="overlay">Ritmos industriales y electrónica extrema.</div>
-    </a>
-    <a href="/vitalgroove" class="artist">
-      <img src="/img/vitalgroove.jpg" alt="Vital Groove">
-      <div class="overlay">Groove techno con presencia escénica brutal.</div>
-    </a>
-    <a href="/kb45" class="artist">
-      <img src="/img/kb45.jpg" alt="KB45">
-      <div class="overlay">Raver oldschool con carácter oscuro.</div>
-    </a>
-    <a href="/filo" class="artist">
-      <img src="/img/filo.jpg" alt="FILØ">
-      <div class="overlay">Progresión melódica e hipnótica constante.</div>
-    </a>
-    <a href="/deathwrap" class="artist">
-      <img src="/img/deathwrap.jpg" alt="DEATHWRAP">
-      <div class="overlay">Ritmo salvaje con sonidos crudos y ruidosos.</div>
-    </a>
-  </div>
+  <main class="grid">
+    <div class="artist">
+      <img src="img/danirodriguez.jpg" alt="DANI RODRIGUEZ" />
+      <div class="overlay">Barcelona. Groove & Acid Techno.</div>
+    </div>
+    <div class="artist">
+      <img src="img/cokecortes.jpg" alt="COKE CORTÉS" />
+      <div class="overlay">Live Hybrid. Electrónica profunda y potente.</div>
+    </div>
+    <div class="artist">
+      <img src="img/laveranotte.jpg" alt="LA VERA NOTTE" />
+      <div class="overlay">Una mezcla de techno emocional con ambient.</div>
+    </div>
+    <div class="artist">
+      <img src="img/ohhmikes.jpg" alt="MIKES" />
+      <div class="overlay">Tech-house & electrónica experimental.</div>
+    </div>
+    <div class="artist">
+      <img src="img/vitalgroove.jpg" alt="VITAL GROOVE" />
+      <div class="overlay">House energético con toques funk y latinos.</div>
+    </div>
+    <div class="artist">
+      <img src="img/filo.jpg" alt="FILØ" />
+      <div class="overlay">Techno melódico con influencia rave.</div>
+    </div>
+    <div class="artist">
+      <img src="img/kb45.jpg" alt="KB45" />
+      <div class="overlay">UK Bass & Breaks. Sonido industrial callejero.</div>
+    </div>
+  </main>
 </body>
 </html>
