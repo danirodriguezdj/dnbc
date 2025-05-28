@@ -39,24 +39,8 @@
       color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
-      padding: 140px 20px 50px 20px; /* Espacio para header fijo */
+      padding: 140px 20px 50px 20px;
       overflow-x: hidden;
-    }
-
-    /* Menú hamburguesa */
-    .menu-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    .bar {
-      width: 30px;
-      height: 3px;
-      background-color: #fff;
-      margin: 6px 0;
     }
 
     /* Sidebar */
@@ -89,7 +73,7 @@
       background-color: #222;
     }
 
-    /* Logo fijo */
+    /* Header y logo fijo */
     header {
       position: fixed;
       top: 0;
@@ -98,23 +82,41 @@
       height: 75px;
       background-color: #000;
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 20px 0;
+      justify-content: space-between;
+      padding: 0 20px;
       z-index: 999;
       border-bottom: 2px solid #000;
     }
 
-    header a {
-      display: block;
-      width: 100%;
-      height: 100%;
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1001;
     }
 
-    header img {
-      max-width: 400px;
-      width: 80vw;
-      height: auto;
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      margin: 3px 0;
+    }
+
+    .logo-link {
+      flex: 1;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 100%;
+      padding-left: 20px;
+    }
+
+    .logo-link img {
+      height: 50px;
+      max-width: 100%;
+      object-fit: contain;
     }
 
     /* Galería artistas */
@@ -178,46 +180,34 @@
       }
 
       body {
-        padding: 70px 10px 50px 10px;
-      }
-
-      header {
-        justify-content: center;
-        padding: 10px 0;
-      }
-
-      header img {
-        width: 100%;
-        max-width: none;
-        max-height: 60px;
-        display: block;
-        margin: 0 auto;
-        object-fit: contain;
+        padding: 90px 20px 50px 20px;
       }
 
       .footer-link a {
-        font-size: 1rem;
+        font-size: 12px;
+      }
+
+      .logo-link img {
+        height: 45px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Menú hamburguesa -->
-  <div class="menu-toggle" onclick="toggleMenu()">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-  </div>
-
   <!-- Sidebar de navegación -->
   <nav id="sidebar" class="sidebar">
     <a href="/">Home</a>
     <a href="/agency">Agency</a>
   </nav>
 
-  <!-- Logo fijo -->
+  <!-- Header con logo y menú -->
   <header>
-    <a href="https://dienachtbrenntclub.com">
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <a href="https://dienachtbrenntclub.com" class="logo-link">
       <img src="/logoletraslargo.png" alt="Logo DNBC Agency" />
     </a>
   </header>
