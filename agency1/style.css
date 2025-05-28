@@ -10,11 +10,15 @@
   padding: 0;
 }
 
-/* Espacio para el logo fijo arriba */
+/* === GENERAL === */
 body {
-  padding: 140px 20px 50px 20px;
+  padding: 140px 20px 50px 20px; /* espacio por el header fijo */
+  background-color: black;
+  color: white;
+  font-family: 'horizon', sans-serif;
 }
 
+/* === MENU HAMBURGUESA === */
 .menu-toggle {
   position: fixed;
   top: 20px;
@@ -30,6 +34,7 @@ body {
   margin: 6px 0;
 }
 
+/* === SIDEBAR === */
 .sidebar {
   position: fixed;
   top: 0;
@@ -59,7 +64,7 @@ body {
   background-color: #222;
 }
 
-/* CABECERA LOGO FIJO CENTRADO */
+/* === HEADER CON LOGO FIJO CENTRADO === */
 header {
   position: fixed;
   top: 0;
@@ -67,19 +72,21 @@ header {
   background-color: black;
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 20px 0;
   z-index: 999;
   border-bottom: 2px solid #111;
 }
 
+/* Solo si estás en páginas como /agency y no en el index, usa .subpage */
 header img {
-  content: url('/logoletraslargo.png'); /* Imagen solo para páginas no principales */
+  content: url('/logoletraslargo.png'); 
   max-width: 400px;
   width: 80vw;
   height: auto;
 }
 
-/* GALERÍA */
+/* === GALERÍA DE ARTISTAS === */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -103,11 +110,24 @@ header img {
   transform: scale(1.05);
 }
 
-/* Ocultamos el overlay en todos los dispositivos */
+/* === OVERLAY CON INFORMACIÓN === */
 .overlay {
-  display: none;
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
+.artist:hover .overlay {
+  opacity: 1;
+}
+
+/* === FOOTER === */
 .footer-link {
   margin-top: 30px;
 }
