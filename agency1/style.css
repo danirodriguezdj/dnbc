@@ -97,20 +97,9 @@ header img {
   transform: scale(1.05);
 }
 
+/* Ocultamos el overlay completamente */
 .overlay {
-  position: absolute;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  width: 100%;
-  padding: 15px;
-  font-size: 1.1rem;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.artist:hover .overlay {
-  opacity: 1;
+  display: none;
 }
 
 .footer-link {
