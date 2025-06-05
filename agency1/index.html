@@ -176,38 +176,43 @@
 
     /* @brief Media Queries – MÓVIL: logo pegado a la derecha con margen y centrado vertical */
     @media (max-width: 768px) {
-      .artist-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      body {
-        padding: 80px 10px 50px;
-      }
-      header {
-        justify-content: space-between; /* menú y logo separados */
-        padding: 0 20px;               /* margen lateral */
-        height: 65px;
-      }
-      header a {
-        margin-left: auto;             /* empuja logo a la derecha */
-      }
-      header a, header .logo {
-        display: flex;
-        align-items: center;           /* centrado vertical */
-        height: 100%;
-      }
-      header .logo {
-        max-width: 200px;
-        width: 50vw;
-      }
-      .footer-link a {
-        font-size: 1rem;
-      }
-      .artist .artist-info {
-        opacity: 1;
-        position: static;
-        background: transparent;
-        padding: 10px 0 0;
-      }
+  .logo {
+    height: 40px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 1001;
+  }
+
+  .artist {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .artist img {
+    width: 100%;
+    height: auto;
+  }
+
+  .artist-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    opacity: 1 !important;
+    text-decoration: none !important;
+  }
+
+  .artist:hover .artist-info {
+    opacity: 1 !important;
+  }
+
+  .artist-info:hover {
+    display: none;
+  }
     }
   </style>
 </head>
