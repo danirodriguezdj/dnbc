@@ -18,11 +18,63 @@
       font-display: swap;
     }
 
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       background-color: #000;
       color: #fff;
       font-family: sans-serif;
+    }
+
+    /* HEADER Y MENÚ */
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .menu-toggle .bar {
+      display: block;
+      width: 30px;
+      height: 3px;
+      background: #fff;
+      margin: 6px 0;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #111;
+      padding-top: 60px;
+      transition: left .3s ease;
+      z-index: 1000;
+    }
+    .sidebar.open {
+      left: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+    }
+    .sidebar a {
+      display: block;
+      color: #fff;
+      padding: 20px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid #222;
+    }
+    .sidebar a:hover {
+      background: #222;
     }
 
     header {
@@ -54,8 +106,9 @@
 
     .hero-section {
       display: flex;
-      flex-direction: row;
+      flex-direction: row-reverse;
       height: 100vh;
+      margin-top: 75px;
     }
 
     .hero-img {
@@ -70,9 +123,9 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       padding: 40px;
-      text-align: center;
+      text-align: left;
     }
 
     .artist-name {
@@ -87,50 +140,32 @@
       letter-spacing: 2px;
     }
 
-    .bio, .description {
+    .description {
       font-size: 16px;
       line-height: 1.6;
       max-width: 600px;
-      margin: 0 auto 30px;
     }
 
-    .social-icons a {
-      margin: 0 10px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 20px;
-    }
-
-    .content-section {
-      padding: 60px 20px;
-      max-width: 1000px;
+    .biography-section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 80px 20px;
+      max-width: 1200px;
       margin: 0 auto;
+      gap: 40px;
     }
 
-    .responsive-img {
-      width: 100%;
-      max-width: 600px;
-      display: block;
-      margin: 40px auto;
+    .bio-img {
+      flex: 1;
+      max-width: 100%;
     }
 
-    a.button {
-      color: white;
-      border: 1px solid white;
-      padding: 10px 20px;
-      text-decoration: none;
-      display: inline-block;
-      margin: 10px;
-      text-transform: uppercase;
-    }
-
-    iframe {
-      width: 100%;
-      max-width: 560px;
-      height: 315px;
-      display: block;
-      margin: 40px auto;
-      border: none;
+    .bio-text {
+      flex: 1;
+      text-align: left;
+      font-size: 16px;
+      line-height: 1.6;
     }
 
     @media (max-width: 768px) {
@@ -140,22 +175,45 @@
       }
       .hero-img {
         height: 60vh;
+        background-image: url("img/daniplaying.png");
       }
       .hero-content {
         padding: 20px;
+        align-items: flex-start;
+      }
+      .biography-section {
+        flex-direction: column;
+        padding: 40px 20px;
+      }
+      .bio-text {
+        text-align: left;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Header personalizado -->
+  <!-- MENÚ HAMBURGUESA Y SIDEBAR -->
+  <button class="menu-toggle" aria-label="Toggle menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
+  <nav id="sidebar" class="sidebar" aria-label="Main navigation">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/agency1">Agency</a></li>
+    </ul>
+  </nav>
+
+  <!-- HEADER CON LOGO -->
   <header>
     <a href="https://dienachtbrenntclub.com">
       <img src="/logoletraslargo.png" alt="Logo DNBC Agency" class="logo" />
     </a>
   </header>
 
-  <!-- Hero: imagen izquierda, texto derecha -->
+  <!-- HERO: TEXTO IZQUIERDA, IMAGEN DERECHA -->
   <section class="hero-section">
     <div class="hero-img"></div>
     <div class="hero-content">
@@ -167,31 +225,25 @@
     </div>
   </section>
 
-  <!-- Biografía + imagen horizontal + redes + botones + vídeos -->
-  <section class="content-section">
-    <h3 style="text-transform: uppercase; letter-spacing: 1px;">Biography</h3>
-    <p class="bio">
-      Known for his harsh and dark sound, 6EJOU’s productions are infused with industrial murk, yet maintain a sophisticated sense of rhythm and dub-space. His sets blur the lines between DJ and live performances, using cutting-edge hardware and software solutions. With his multi-functional production skills and inventive DJ techniques, 6EJOU proves that hard techno can also be smart, sensuous, and danceable.
-    </p>
-
-    <img src="img/dani.png" alt="6EJOU promo" class="responsive-img" />
-
-    <div class="social-icons">
-      <a href="https://www.instagram.com/6ejou/">Instagram</a>
-      <a href="https://www.facebook.com/6ejou/">Facebook</a>
-      <a href="https://www.beatport.com/artist/6ejou/920765">Beatport</a>
-      <a href="https://ra.co/dj/6ejou">RA</a>
-      <a href="https://soundcloud.com/6ejou">SoundCloud</a>
-      <a href="https://open.spotify.com/artist/1k0U51DXyjFk4YnLZUIMP9">Spotify</a>
+  <!-- BIOGRAFÍA: IMAGEN IZQUIERDA, TEXTO DERECHA -->
+  <section class="biography-section">
+    <img src="img/dani.png" alt="6EJOU promo" class="bio-img" />
+    <div class="bio-text">
+      <h3>Biography</h3>
+      <p>
+        Known for his harsh and dark sound, 6EJOU’s productions are infused with industrial murk, yet maintain a sophisticated sense of rhythm and dub-space. His sets blur the lines between DJ and live performances, using cutting-edge hardware and software solutions. With his multi-functional production skills and inventive DJ techniques, 6EJOU proves that hard techno can also be smart, sensuous, and danceable.
+      </p>
     </div>
-
-    <p>
-      <a href="https://drive.google.com/drive/folders/1UYJmsWrd7e951nBf_POoC1bXSN7PZC7k?usp=sharing" target="_blank" class="button">Download Press Kit</a>
-      <a href="https://mach9agency.com/bookings" target="_blank" class="button">Booking Request</a>
-    </p>
-
-    <iframe src="https://www.youtube.com/embed/8uLgWiG36Rc" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/S0ck1OXtUEM" allowfullscreen></iframe>
   </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const btn = document.querySelector('.menu-toggle');
+      const nav = document.getElementById('sidebar');
+      btn.addEventListener('click', function () {
+        nav.classList.toggle('open');
+      });
+    });
+  </script>
 </body>
 </html>
