@@ -1,4 +1,4 @@
-<!-- ✅ ESTE ES TU ARCHIVO HTML COMPLETO CON HEADER + MÓVIL + SECCIONES -->
+<!-- ✅ ESTE ES TU ARCHIVO HTML COMPLETO CON HEADER + MÓVIL + SECCIONES + MENÚ FUNCIONAL -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>6EJOU – DNBC Agency</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-
   <style>
     @font-face {
       font-family: 'horizon_outlined';
@@ -22,13 +21,11 @@
            url('/fonts/horizon.ttf') format('truetype');
       font-display: swap;
     }
-
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-
     html, body {
       height: 100%;
       background: #000;
@@ -38,11 +35,9 @@
       scroll-snap-type: y mandatory;
       overflow-y: scroll;
     }
-
     section {
       scroll-snap-align: start;
     }
-
     .menu-toggle {
       position: fixed;
       top: 20px;
@@ -58,7 +53,6 @@
       background: #fff;
       margin: 6px 0;
     }
-
     .sidebar {
       position: fixed;
       top: 0;
@@ -90,7 +84,6 @@
     .sidebar a:hover {
       background: #222;
     }
-
     header {
       position: fixed;
       top: 0;
@@ -115,7 +108,6 @@
       width: 80vw;
       height: auto;
     }
-
     .hero-section {
       display: flex;
       flex-direction: row-reverse;
@@ -168,7 +160,6 @@
     .hero-socials a:hover img {
       transform: scale(1.1);
     }
-
     .bottom-section {
       min-height: 100vh;
       display: flex;
@@ -220,7 +211,6 @@
       margin: 10px;
       text-transform: uppercase;
     }
-
     @media (max-width: 768px) {
       .hero-section {
         flex-direction: column;
@@ -248,20 +238,17 @@
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
-
   <nav id="sidebar" class="sidebar" aria-label="Main navigation">
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/agency1">Agency</a></li>
     </ul>
   </nav>
-
   <header>
     <a href="https://dienachtbrenntclub.com">
       <img src="/logoletraslargo.png" alt="Logo DNBC Agency" class="logo" />
     </a>
   </header>
-
   <section class="hero-section">
     <div class="hero-img"></div>
     <div class="hero-content">
@@ -280,7 +267,6 @@
       </div>
     </div>
   </section>
-
   <section class="bottom-section">
     <div class="biography-section">
       <img src="img/dani.png" alt="6EJOU promo" class="bio-img" />
@@ -302,7 +288,6 @@
       </div>
     </div>
   </section>
-
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const btn = document.querySelector('.menu-toggle');
