@@ -1,4 +1,3 @@
-<!-- ✅ ESTE ES TU ARCHIVO HTML COMPLETO -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -250,13 +249,17 @@
       text-transform: uppercase;
     }
 
-    iframe {
-      width: 100%;
-      max-width: 560px;
+    .video-wrapper {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .video-wrapper iframe {
+      flex: 1 1 45%;
+      max-width: 500px;
       height: 315px;
-      display: block;
-      margin: 40px auto;
-      border: none;
     }
 
     @media (max-width: 768px) {
@@ -347,16 +350,16 @@
     </div>
   </section>
 
-  <!-- EXTRAS: REDES + BOTONES + VÍDEOS -->
+  <!-- EXTRAS: BOTONES + VÍDEOS -->
   <section class="extras-section">
-    
     <p>
       <a href="https://drive.google.com/drive/folders/1UYJmsWrd7e951nBf_POoC1bXSN7PZC7k?usp=sharing" target="_blank" class="button">Download Press Kit</a>
       <a href="https://mach9agency.com/bookings" target="_blank" class="button">Booking Request</a>
     </p>
-
-    <iframe src="https://www.youtube.com/embed/8uLgWiG36Rc" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/S0ck1OXtUEM" allowfullscreen></iframe>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/8uLgWiG36Rc" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/S0ck1OXtUEM" allowfullscreen></iframe>
+    </div>
   </section>
 
   <script>
