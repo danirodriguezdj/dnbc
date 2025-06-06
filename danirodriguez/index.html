@@ -285,6 +285,18 @@
     }
   </style>
 </head>
+  <style>
+  /* Oculta la barra de scroll visualmente pero permite hacer scroll */
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    scrollbar-width: none;       /* Firefox */
+    -ms-overflow-style: none;    /* IE/Edge antiguos */
+  }
+</style>
+  
 <body>
   <!-- MENÚ HAMBURGUESA Y SIDEBAR -->
   <button class="menu-toggle" aria-label="Toggle menu">
