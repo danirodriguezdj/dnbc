@@ -262,55 +262,63 @@
     }
 
     @media (max-width: 768px) {
-      .hero-section {
-        flex-direction: column;
-        height: auto;
-      }
+  html, body {
+    scroll-snap-type: none;
+  }
 
-      .hero-img {
-        height: 60vh;
-        background-image: url("img/daniplaying.png");
-      }
+  .hero-section {
+    flex-direction: column;
+    height: auto;
+  }
 
-      .hero-content {
-        padding: 20px;
-        align-items: center;
-      }
+  .hero-img {
+    height: 60vh; /* altura visible para la imagen */
+    background-image: url("img/daniplaying.png");
+    background-size: cover;
+    background-position: center;
+  }
 
-      .biography-section {
-        flex-direction: column;
-        padding: 0;
-      }
+  .hero-content {
+    padding: 20px;
+    align-items: center;
+  }
 
-      .bio-text {
-        text-align: left;
-      }
+  .biography-section {
+    flex-direction: column;
+    padding: 0;
+  }
 
-      body {
-        padding: 80px 10px 50px;
-      }
+  .bio-text {
+    text-align: left;
+  }
 
-      header {
-        justify-content: space-between;
-        padding: 0 20px;
-        height: 65px;
-      }
+  body {
+    padding: 80px 10px 50px;
+  }
 
-      header a {
-        margin-left: auto;
-      }
+  header {
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 65px;
+  }
 
-      header a, header .logo {
-        display: flex;
-        align-items: center;
-        height: 100%;
-      }
+  header a {
+    margin-left: auto;
+  }
 
-      header .logo {
-        max-width: 250px;
-        width: 60vw;
-        height: auto;
-      }
+  header a,
+  header .logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  header .logo {
+    max-width: 250px;
+    width: 60vw;
+    height: auto;
+  }
+}
 
       /* ORDEN PERSONALIZADO PARA MÓVIL */
       #mobile-order {
