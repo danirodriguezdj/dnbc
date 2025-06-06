@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dani Rodriguez | Die Nacht Brennt Agency</title>
+  <link rel="stylesheet" href="/styles.css"> <!-- tu CSS principal -->
+  
+  <!-- Fuente Horizon Outlined -->
+  <style>
+    @font-face {
+      font-family: 'HorizonOutlined';
+      src: url('/fonts/horizon_outlined.woff2') format('woff2'),
+           url('/fonts/horizon_outlined.woff') format('woff'),
+           url('/fonts/horizon_outlined.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      background-color: black;
+      color: white;
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .artist-name {
+      font-family: 'HorizonOutlined', sans-serif;
+      font-size: 3rem;
+      text-align: center;
+      margin: 2rem 0 1rem;
+      letter-spacing: 2px;
+    }
+
+    .vertical-img {
+      width: 100%;
+      max-width: 600px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .bio {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin: 2rem auto;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .horizontal-img {
+      width: 100%;
+      max-width: 800px;
+      display: block;
+      margin: 2rem auto;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .links a {
+      color: white;
+      text-decoration: none;
+      border: 1px solid white;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .links a:hover {
+      background-color: white;
+      color: black;
+    }
+
+    @media (max-width: 768px) {
+      .artist-name {
+        font-size: 2.2rem;
+      }
+
+      .bio {
+        font-size: 0.95rem;
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="/img/daniplaying.png" alt="Dani Rodriguez tocando" class="vertical-img">
+
+    <h1 class="artist-name">DANI RODRIGUEZ</h1>
+
+    <div class="bio">
+      <p>
+        Dani Rodriguez es un DJ y productor con base en Europa que combina texturas oscuras con ritmos contundentes. Su estilo transita entre el techno más hipnótico y el groove más industrial. Ha actuado en clubs clave de la escena y continúa expandiendo su sonido a nivel internacional.
+      </p>
+    </div>
+
+    <img src="/img/dani.png" alt="Dani Rodriguez retrato" class="horizontal-img">
+
+    <div class="links">
+      <a href="https://soundcloud.com/danirodriguezdj" target="_blank">SoundCloud</a>
+      <a href="https://www.instagram.com/danirodriguezdj" target="_blank">Instagram</a>
+    </div>
+  </div>
+</body>
+</html>
