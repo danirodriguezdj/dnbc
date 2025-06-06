@@ -1,147 +1,141 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dani Rodriguez | Die Nacht Brennt Agency</title>
-  <link rel="stylesheet" href="/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dani Rodriguez</title>
+  <meta name="description" content="Artist profile - Dani Rodriguez" />
+  <meta name="author" content="DNBC Team" />
 
-  <!-- Fuente Horizon Outlined -->
+  <!-- Fuente personalizada -->
+  <link rel="preload" href="/fonts/horizon_outlined.woff2" as="font" type="font/woff2" crossorigin />
   <style>
     @font-face {
-      font-family: 'HorizonOutlined';
+      font-family: 'horizon_outlined';
       src: url('/fonts/horizon_outlined.woff2') format('woff2'),
            url('/fonts/horizon_outlined.woff') format('woff'),
            url('/fonts/horizon_outlined.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
+      font-display: swap;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      background-color: black;
+      background: black;
       color: white;
-      margin: 0;
-      font-family: sans-serif;
+      font-family: 'horizon_outlined', sans-serif;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 75px;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      border-bottom: 2px solid #000;
+    }
+
+    header a {
+      display: flex;
+      align-items: center;
+    }
+
+    header .logo {
+      max-width: 400px;
+      width: 80vw;
+      height: auto;
     }
 
     main {
+      margin-top: 100px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2rem 1rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .artist-img-vertical {
-      width: 100%;
-      max-width: 650px;
-      margin: 0 auto;
-      display: block;
-    }
-
-    .artist-name {
-      font-family: 'HorizonOutlined', sans-serif;
-      font-size: 3.5rem;
-      letter-spacing: 2px;
-      margin-top: 2rem;
+      padding: 0 20px 80px;
       text-align: center;
+    }
+
+    .main-image {
+      width: 100%;
+      max-width: 600px;
     }
 
     .bio {
-      max-width: 800px;
-      text-align: center;
+      font-size: 18px;
       line-height: 1.6;
-      font-size: 1rem;
-      margin: 2rem auto;
-      padding: 0 1rem;
+      margin: 40px 0;
+      max-width: 800px;
     }
 
-    .artist-img-horizontal {
+    .secondary-image {
       width: 100%;
-      max-width: 900px;
-      margin: 2rem auto;
-      display: block;
+      max-width: 800px;
+      margin-top: 40px;
     }
 
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 2rem;
-      padding-bottom: 3rem;
+    .links {
+      margin-top: 30px;
     }
 
-    .social-links a {
-      border: 1px solid white;
+    .links a {
       color: white;
       text-decoration: none;
-      padding: 0.6rem 1.2rem;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
+      margin: 0 10px;
+      font-size: 16px;
+      border: 1px solid white;
+      padding: 10px 20px;
+      display: inline-block;
+      margin-top: 10px;
+      transition: background 0.3s;
     }
 
-    .social-links a:hover {
-      background-color: white;
+    .links a:hover {
+      background: white;
       color: black;
     }
 
     @media (max-width: 768px) {
-      .artist-name {
-        font-size: 2.2rem;
-      }
       .bio {
-        font-size: 0.95rem;
+        font-size: 16px;
+        padding: 0 10px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <body>
-  <button class="menu-toggle" aria-label="Toggle menu">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </button>
-
-  <nav id="sidebar" class="sidebar" aria-label="Main navigation">
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/agency1">Agency</a></li>
-    </ul>
-  </nav>
-
   <header>
-    <a href="https://dienachtbrenntclub.com" rel="noopener">
-      <img src="/logoletraslargo.png" alt="Logo DNBC Agency" class="logo" />
+    <a href="https://dienachtbrenntclub.com">
+      <img src="/logoletraslargo.png" alt="DNBC Logo" class="logo" />
     </a>
   </header>
 
   <main>
-    <img src="./img/daniplaying.png" alt="Dani Rodriguez tocando en directo" class="artist-img-vertical">
-
-    <h1 class="artist-name">DANI RODRIGUEZ</h1>
+    <img src="img/daniplaying.png" alt="Dani Rodriguez live" class="main-image" />
 
     <div class="bio">
-      <p>
-        Dani Rodriguez es un DJ y productor con base en Europa que combina texturas oscuras con ritmos contundentes. Su estilo transita entre el techno más hipnótico y el groove más industrial. Ha actuado en clubs clave de la escena y continúa expandiendo su sonido a nivel internacional.
-      </p>
+      <p>Dani Rodriguez is a techno artist focused on the exploration of hypnotic grooves and driving rhythms. His performances are a blend of intense energy and sonic depth, captivating audiences across underground dance floors.</p>
     </div>
 
-    <img src="./img/dani.png" alt="Dani Rodriguez retrato horizontal" class="artist-img-horizontal">
+    <img src="img/dani.png" alt="Dani Rodriguez portrait" class="secondary-image" />
 
-    <div class="social-links">
-      <a href="https://soundcloud.com/danirodriguezdj" target="_blank">SoundCloud</a>
-      <a href="https://www.instagram.com/danirodriguezdj" target="_blank">Instagram</a>
+    <div class="links">
+      <a href="https://soundcloud.com">SoundCloud</a>
+      <a href="https://instagram.com">Instagram</a>
+      <a href="https://ra.co">Resident Advisor</a>
     </div>
   </main>
-
-  <footer class="footer-link">
-    <a href="https://instagram.com/dnbcagency" target="_blank" rel="noopener">@dnbcagency</a>
-  </footer>
 
 </body>
 </html>
