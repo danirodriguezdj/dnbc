@@ -6,13 +6,23 @@
   <title>6EJOU – DNBC Agency</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
-  <!-- Fuente solo para el nombre del artista -->
+  <!-- Fuentes personalizadas -->
   <style>
     @font-face {
       font-family: 'horizon_outlined';
       src: url('/fonts/horizon_outlined.woff2') format('woff2'),
            url('/fonts/horizon_outlined.woff') format('woff'),
            url('/fonts/horizon_outlined.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'horizon';
+      src: url('/fonts/horizon.woff2') format('woff2'),
+           url('/fonts/horizon.woff') format('woff'),
+           url('/fonts/horizon.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
       font-display: swap;
@@ -72,6 +82,7 @@
       text-transform: uppercase;
       text-decoration: none;
       border-bottom: 1px solid #222;
+      font-family: 'horizon', sans-serif;
     }
     .sidebar a:hover {
       background: #222;
