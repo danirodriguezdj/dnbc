@@ -6,7 +6,7 @@
   <title>6EJOU – DNBC Agency</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
-  <!-- Fuente personalizada solo para el nombre del artista -->
+  <!-- Fuente solo para el nombre del artista -->
   <style>
     @font-face {
       font-family: 'horizon_outlined';
@@ -25,54 +25,173 @@
       font-family: sans-serif;
     }
 
-    h1.artist-name {
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 75px;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 999;
+      border-bottom: 2px solid #000;
+    }
+
+    header a {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    header .logo {
+      max-width: 400px;
+      width: 80vw;
+      height: auto;
+    }
+
+    .hero-section {
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+    }
+
+    .hero-img {
+      flex: 1;
+      background-image: url("img/daniplaying.png");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .artist-name {
       font-family: 'horizon_outlined', sans-serif;
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+    }
+
+    .bio, .description {
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 20px;
+    }
+
+    .content-section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .responsive-img {
+      width: 100%;
+      max-width: 600px;
+      display: block;
+      margin: 40px auto;
+    }
+
+    a.button {
+      color: white;
+      border: 1px solid white;
+      padding: 10px 20px;
+      text-decoration: none;
+      display: inline-block;
+      margin: 10px;
+      text-transform: uppercase;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+      display: block;
+      margin: 40px auto;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        flex-direction: column;
+        height: auto;
+      }
+      .hero-img {
+        height: 60vh;
+      }
+      .hero-content {
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Tu header personalizado -->
+  <!-- Header personalizado -->
   <header>
     <a href="https://dienachtbrenntclub.com">
-      <img src="/logoletraslargo.png" alt="Logo DNBC Agency" class="logo" style="max-width: 400px; width: 80vw; height: auto; display: block; margin: 0 auto; padding: 20px 0;" />
+      <img src="/logoletraslargo.png" alt="Logo DNBC Agency" class="logo" />
     </a>
   </header>
 
-  <!-- AQUI COMIENZA el contenido original copiado de la página de 6EJOU -->
-
-  <main class="vlt-main">
-    <div class="vlt-page-content" style="padding: 120px 20px 60px; max-width: 1000px; margin: auto;">
+  <!-- Hero: imagen izquierda, texto derecha -->
+  <section class="hero-section">
+    <div class="hero-img"></div>
+    <div class="hero-content">
       <h1 class="artist-name">6EJOU</h1>
-      <h2 style="font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 30px;">LIVE</h2>
-      <p style="margin-bottom: 30px; line-height: 1.6;">
+      <div class="subtitle">LIVE</div>
+      <div class="description">
         6EJOU burst onto the scene in 2019 with his hypnotic industrial techno productions, captivating many along the way. Today, he tours globally, delivering powerful all-hardware live sets. His own label, Industrial Violence, launched in 2020 to offer opportunities to talented artists struggling to share their sound with the world. Ready to obliterate your dancefloor, 6EJOU’s debut EP is regarded by many as seminal, launching his career and creating a ripple of excitement through the techno community.
-      </p>
-      <img src="img/daniplaying.png" alt="6EJOU live" style="width: 100%; max-width: 800px; margin: 40px 0; display: block;" />
-      <h3 style="text-transform: uppercase; letter-spacing: 1px; font-size: 1rem;">Biography</h3>
-      <p style="margin: 30px 0; line-height: 1.6;">
-        Known for his harsh and dark sound, 6EJOU’s productions are infused with industrial murk, yet maintain a sophisticated sense of rhythm and dub-space. His sets blur the lines between DJ and live performances, using cutting-edge hardware and software solutions. With his multi-functional production skills and inventive DJ techniques, 6EJOU proves that hard techno can also be smart, sensuous, and danceable.
-      </p>
-      <img src="img/dani.png" alt="6EJOU promo" style="width: 100%; max-width: 600px; margin: 40px 0; display: block;" />
-
-      <div class="social-icons" style="margin: 30px 0;">
-        <a href="https://www.instagram.com/6ejou/" style="color: white; margin: 0 10px; text-decoration: none;">Instagram</a>
-        <a href="https://www.facebook.com/6ejou/" style="color: white; margin: 0 10px; text-decoration: none;">Facebook</a>
-        <a href="https://www.beatport.com/artist/6ejou/920765" style="color: white; margin: 0 10px; text-decoration: none;">Beatport</a>
-        <a href="https://ra.co/dj/6ejou" style="color: white; margin: 0 10px; text-decoration: none;">RA</a>
-        <a href="https://soundcloud.com/6ejou" style="color: white; margin: 0 10px; text-decoration: none;">SoundCloud</a>
-        <a href="https://open.spotify.com/artist/1k0U51DXyjFk4YnLZUIMP9" style="color: white; margin: 0 10px; text-decoration: none;">Spotify</a>
       </div>
-
-      <p>
-        <a href="https://drive.google.com/drive/folders/1UYJmsWrd7e951nBf_POoC1bXSN7PZC7k?usp=sharing" target="_blank" style="color: white; border: 1px solid white; padding: 10px 20px; text-decoration: none; display: inline-block; margin: 10px 0;">Download Press Kit</a>
-      </p>
-      <p>
-        <a href="https://mach9agency.com/bookings" target="_blank" style="color: white; border: 1px solid white; padding: 10px 20px; text-decoration: none; display: inline-block; margin: 10px 0;">Booking Request</a>
-      </p>
-
-      <iframe src="https://www.youtube.com/embed/8uLgWiG36Rc" allowfullscreen style="width: 100%; max-width: 560px; height: 315px; display: block; margin: 40px auto;"></iframe>
-      <iframe src="https://www.youtube.com/embed/S0ck1OXtUEM" allowfullscreen style="width: 100%; max-width: 560px; height: 315px; display: block; margin: 20px auto;"></iframe>
     </div>
-  </main>
+  </section>
+
+  <!-- Biografía + imagen horizontal + redes + botones + vídeos -->
+  <section class="content-section">
+    <h3 style="text-transform: uppercase; letter-spacing: 1px;">Biography</h3>
+    <p class="bio">
+      Known for his harsh and dark sound, 6EJOU’s productions are infused with industrial murk, yet maintain a sophisticated sense of rhythm and dub-space. His sets blur the lines between DJ and live performances, using cutting-edge hardware and software solutions. With his multi-functional production skills and inventive DJ techniques, 6EJOU proves that hard techno can also be smart, sensuous, and danceable.
+    </p>
+
+    <img src="img/dani.png" alt="6EJOU promo" class="responsive-img" />
+
+    <div class="social-icons">
+      <a href="https://www.instagram.com/6ejou/">Instagram</a>
+      <a href="https://www.facebook.com/6ejou/">Facebook</a>
+      <a href="https://www.beatport.com/artist/6ejou/920765">Beatport</a>
+      <a href="https://ra.co/dj/6ejou">RA</a>
+      <a href="https://soundcloud.com/6ejou">SoundCloud</a>
+      <a href="https://open.spotify.com/artist/1k0U51DXyjFk4YnLZUIMP9">Spotify</a>
+    </div>
+
+    <p>
+      <a href="https://drive.google.com/drive/folders/1UYJmsWrd7e951nBf_POoC1bXSN7PZC7k?usp=sharing" target="_blank" class="button">Download Press Kit</a>
+      <a href="https://mach9agency.com/bookings" target="_blank" class="button">Booking Request</a>
+    </p>
+
+    <iframe src="https://www.youtube.com/embed/8uLgWiG36Rc" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/S0ck1OXtUEM" allowfullscreen></iframe>
+  </section>
 </body>
 </html>
