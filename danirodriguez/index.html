@@ -1,3 +1,4 @@
+<!-- ✅ ESTE ES TU ARCHIVO HTML COMPLETO CON 2 SECCIONES SNAP -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,10 +35,18 @@
       padding: 0;
     }
 
-    body {
+    html, body {
+      height: 100%;
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
       background-color: #000;
       color: #fff;
       font-family: sans-serif;
+    }
+
+    section {
+      scroll-snap-align: start;
     }
 
     /* HEADER Y MENÚ */
@@ -182,23 +191,21 @@
       transform: scale(1.1);
     }
 
-    .hero-socials a.instagram:hover img {
-      filter: invert(33%) sepia(77%) saturate(7475%) hue-rotate(316deg) brightness(98%) contrast(101%);
-    }
-    .hero-socials a.facebook:hover img {
-      filter: invert(33%) sepia(84%) saturate(2285%) hue-rotate(196deg) brightness(98%) contrast(104%);
-    }
-    .hero-socials a.beatport:hover img {
-      filter: invert(62%) sepia(48%) saturate(682%) hue-rotate(58deg) brightness(94%) contrast(94%);
-    }
-    .hero-socials a.ra:hover img {
-      filter: invert(90%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);
-    }
-    .hero-socials a.soundcloud:hover img {
-      filter: invert(59%) sepia(90%) saturate(2000%) hue-rotate(-12deg) brightness(99%) contrast(97%);
-    }
-    .hero-socials a.spotify:hover img {
-      filter: invert(52%) sepia(76%) saturate(686%) hue-rotate(89deg) brightness(92%) contrast(91%);
+    .hero-socials a.instagram:hover img { filter: invert(33%) sepia(77%) saturate(7475%) hue-rotate(316deg) brightness(98%) contrast(101%); }
+    .hero-socials a.facebook:hover img { filter: invert(33%) sepia(84%) saturate(2285%) hue-rotate(196deg) brightness(98%) contrast(104%); }
+    .hero-socials a.beatport:hover img { filter: invert(62%) sepia(48%) saturate(682%) hue-rotate(58deg) brightness(94%) contrast(94%); }
+    .hero-socials a.ra:hover img { filter: invert(90%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%); }
+    .hero-socials a.soundcloud:hover img { filter: invert(59%) sepia(90%) saturate(2000%) hue-rotate(-12deg) brightness(99%) contrast(97%); }
+    .hero-socials a.spotify:hover img { filter: invert(52%) sepia(76%) saturate(686%) hue-rotate(89deg) brightness(92%) contrast(91%); }
+
+    .bottom-section {
+      min-height: 100vh;
+      padding: 80px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
     }
 
     .biography-section {
@@ -206,9 +213,8 @@
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      padding: 80px 20px;
       max-width: 1200px;
-      margin: 0 auto;
+      width: 100%;
       gap: 40px;
     }
 
@@ -226,17 +232,9 @@
     }
 
     .extras-section {
-      padding: 60px 20px;
       max-width: 1000px;
-      margin: 0 auto;
+      width: 100%;
       text-align: center;
-    }
-
-    .social-icons a {
-      margin: 0 10px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 20px;
     }
 
     a.button {
@@ -254,12 +252,14 @@
       gap: 20px;
       justify-content: center;
       flex-wrap: wrap;
+      margin-top: 40px;
     }
 
     .video-wrapper iframe {
       flex: 1 1 45%;
       max-width: 500px;
       height: 315px;
+      border: none;
     }
 
     @media (max-width: 768px) {
@@ -277,7 +277,7 @@
       }
       .biography-section {
         flex-direction: column;
-        padding: 40px 20px;
+        padding: 0;
       }
       .bio-text {
         text-align: left;
@@ -307,7 +307,7 @@
     </a>
   </header>
 
-  <!-- HERO: TEXTO IZQUIERDA, IMAGEN DERECHA -->
+  <!-- HERO SECTION (TOP) -->
   <section class="hero-section">
     <div class="hero-img"></div>
     <div class="hero-content">
@@ -339,26 +339,27 @@
     </div>
   </section>
 
-  <!-- BIOGRAFÍA: IMAGEN IZQUIERDA, TEXTO DERECHA -->
-  <section class="biography-section">
-    <img src="img/dani.png" alt="6EJOU promo" class="bio-img" />
-    <div class="bio-text">
-      <h3>Biography</h3>
-      <p>
-        Known for his harsh and dark sound, 6EJOU’s productions are infused with industrial murk, yet maintain a sophisticated sense of rhythm and dub-space. His sets blur the lines between DJ and live performances, using cutting-edge hardware and software solutions. With his multi-functional production skills and inventive DJ techniques, 6EJOU proves that hard techno can also be smart, sensuous, and danceable.
-      </p>
+  <!-- BOTTOM SECTION: BIO + EXTRAS -->
+  <section class="bottom-section">
+    <div class="biography-section">
+      <img src="img/dani.png" alt="6EJOU promo" class="bio-img" />
+      <div class="bio-text">
+        <h3>Biography</h3>
+        <p>
+          Known for his harsh and dark sound, 6EJOU’s productions are infused with industrial murk, yet maintain a sophisticated sense of rhythm and dub-space. His sets blur the lines between DJ and live performances, using cutting-edge hardware and software solutions. With his multi-functional production skills and inventive DJ techniques, 6EJOU proves that hard techno can also be smart, sensuous, and danceable.
+        </p>
+      </div>
     </div>
-  </section>
 
-  <!-- EXTRAS: BOTONES + VÍDEOS -->
-  <section class="extras-section">
-    <p>
-      <a href="https://drive.google.com/drive/folders/1UYJmsWrd7e951nBf_POoC1bXSN7PZC7k?usp=sharing" target="_blank" class="button">Download Press Kit</a>
-      <a href="https://mach9agency.com/bookings" target="_blank" class="button">Booking Request</a>
-    </p>
-    <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/8uLgWiG36Rc" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/S0ck1OXtUEM" allowfullscreen></iframe>
+    <div class="extras-section">
+      <p>
+        <a href="https://drive.google.com/drive/folders/1UYJmsWrd7e951nBf_POoC1bXSN7PZC7k?usp=sharing" target="_blank" class="button">Download Press Kit</a>
+        <a href="https://mach9agency.com/bookings" target="_blank" class="button">Booking Request</a>
+      </p>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/8uLgWiG36Rc" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/S0ck1OXtUEM" allowfullscreen></iframe>
+      </div>
     </div>
   </section>
 
