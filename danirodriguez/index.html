@@ -1,3 +1,4 @@
+<!-- ✅ ESTE ES TU ARCHIVO HTML COMPLETO -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -163,6 +164,44 @@
       line-height: 1.6;
     }
 
+    .hero-socials {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-socials img {
+      width: 28px;
+      height: 28px;
+      transition: filter 0.2s ease, transform 0.2s ease;
+      filter: brightness(0) invert(1);
+    }
+
+    .hero-socials a:hover img {
+      transform: scale(1.1);
+    }
+
+    .hero-socials a.instagram:hover img {
+      filter: invert(33%) sepia(77%) saturate(7475%) hue-rotate(316deg) brightness(98%) contrast(101%);
+    }
+    .hero-socials a.facebook:hover img {
+      filter: invert(33%) sepia(84%) saturate(2285%) hue-rotate(196deg) brightness(98%) contrast(104%);
+    }
+    .hero-socials a.beatport:hover img {
+      filter: invert(62%) sepia(48%) saturate(682%) hue-rotate(58deg) brightness(94%) contrast(94%);
+    }
+    .hero-socials a.ra:hover img {
+      filter: invert(90%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);
+    }
+    .hero-socials a.soundcloud:hover img {
+      filter: invert(59%) sepia(90%) saturate(2000%) hue-rotate(-12deg) brightness(99%) contrast(97%);
+    }
+    .hero-socials a.spotify:hover img {
+      filter: invert(52%) sepia(76%) saturate(686%) hue-rotate(89deg) brightness(92%) contrast(91%);
+    }
+
     .biography-section {
       display: flex;
       flex-direction: row;
@@ -273,6 +312,26 @@
       <div class="subtitle">LIVE</div>
       <div class="description">
         6EJOU burst onto the scene in 2019 with his hypnotic industrial techno productions, captivating many along the way. Today, he tours globally, delivering powerful all-hardware live sets. His own label, Industrial Violence, launched in 2020 to offer opportunities to talented artists struggling to share their sound with the world. Ready to obliterate your dancefloor, 6EJOU’s debut EP is regarded by many as seminal, launching his career and creating a ripple of excitement through the techno community.
+      </div>
+      <div class="hero-socials">
+        <a href="https://www.instagram.com/6ejou/" target="_blank" rel="noopener" class="icon instagram">
+          <img src="img/icons/instagram.svg" alt="Instagram" />
+        </a>
+        <a href="https://www.facebook.com/6ejou/" target="_blank" rel="noopener" class="icon facebook">
+          <img src="img/icons/facebook.svg" alt="Facebook" />
+        </a>
+        <a href="https://www.beatport.com/artist/6ejou/920765" target="_blank" rel="noopener" class="icon beatport">
+          <img src="img/icons/beatport.svg" alt="Beatport" />
+        </a>
+        <a href="https://ra.co/dj/6ejou" target="_blank" rel="noopener" class="icon ra">
+          <img src="img/icons/ra.svg" alt="Resident Advisor" />
+        </a>
+        <a href="https://soundcloud.com/6ejou" target="_blank" rel="noopener" class="icon soundcloud">
+          <img src="img/icons/soundcloud.svg" alt="SoundCloud" />
+        </a>
+        <a href="https://open.spotify.com/artist/1k0U51DXyjFk4YnLZUIMP9" target="_blank" rel="noopener" class="icon spotify">
+          <img src="img/icons/spotify.svg" alt="Spotify" />
+        </a>
       </div>
     </div>
   </section>
