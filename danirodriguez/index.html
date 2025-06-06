@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dani Rodriguez | Die Nacht Brennt Agency</title>
-  <link rel="stylesheet" href="/styles.css"> <!-- tu CSS principal -->
-  
+  <link rel="stylesheet" href="/styles.css">
+
   <!-- Fuente Horizon Outlined -->
   <style>
     @font-face {
@@ -24,59 +24,65 @@
       font-family: sans-serif;
     }
 
-    .container {
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
       max-width: 1200px;
-      margin: auto;
-      padding: 2rem;
+      margin: 0 auto;
+    }
+
+    .artist-img-vertical {
+      width: 100%;
+      max-width: 650px;
+      margin: 0 auto;
+      display: block;
     }
 
     .artist-name {
       font-family: 'HorizonOutlined', sans-serif;
-      font-size: 3rem;
-      text-align: center;
-      margin: 2rem 0 1rem;
+      font-size: 3.5rem;
       letter-spacing: 2px;
-    }
-
-    .vertical-img {
-      width: 100%;
-      max-width: 600px;
-      display: block;
-      margin: 0 auto;
+      margin-top: 2rem;
+      text-align: center;
     }
 
     .bio {
-      font-size: 1rem;
-      line-height: 1.7;
-      margin: 2rem auto;
       max-width: 800px;
       text-align: center;
-    }
-
-    .horizontal-img {
-      width: 100%;
-      max-width: 800px;
-      display: block;
+      line-height: 1.6;
+      font-size: 1rem;
       margin: 2rem auto;
+      padding: 0 1rem;
     }
 
-    .links {
+    .artist-img-horizontal {
+      width: 100%;
+      max-width: 900px;
+      margin: 2rem auto;
+      display: block;
+    }
+
+    .social-links {
       display: flex;
-      justify-content: center;
       gap: 1rem;
+      justify-content: center;
       flex-wrap: wrap;
       margin-top: 2rem;
+      padding-bottom: 3rem;
     }
 
-    .links a {
+    .social-links a {
+      border: 1px solid white;
       color: white;
       text-decoration: none;
-      border: 1px solid white;
-      padding: 0.5rem 1rem;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
       transition: all 0.3s ease;
     }
 
-    .links a:hover {
+    .social-links a:hover {
       background-color: white;
       color: black;
     }
@@ -85,17 +91,37 @@
       .artist-name {
         font-size: 2.2rem;
       }
-
       .bio {
         font-size: 0.95rem;
-        padding: 0 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="/img/daniplaying.png" alt="Dani Rodriguez tocando" class="vertical-img">
+
+  <!-- HEADER -->
+  <body>
+  <button class="menu-toggle" aria-label="Toggle menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
+  <nav id="sidebar" class="sidebar" aria-label="Main navigation">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/agency1">Agency</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <a href="https://dienachtbrenntclub.com" rel="noopener">
+      <img src="/logoletraslargo.png" alt="Logo DNBC Agency" class="logo" />
+    </a>
+  </header>
+
+  <main>
+    <img src="./img/daniplaying.png" alt="Dani Rodriguez tocando en directo" class="artist-img-vertical">
 
     <h1 class="artist-name">DANI RODRIGUEZ</h1>
 
@@ -105,12 +131,17 @@
       </p>
     </div>
 
-    <img src="/img/dani.png" alt="Dani Rodriguez retrato" class="horizontal-img">
+    <img src="./img/dani.png" alt="Dani Rodriguez retrato horizontal" class="artist-img-horizontal">
 
-    <div class="links">
+    <div class="social-links">
       <a href="https://soundcloud.com/danirodriguezdj" target="_blank">SoundCloud</a>
       <a href="https://www.instagram.com/danirodriguezdj" target="_blank">Instagram</a>
     </div>
-  </div>
+  </main>
+
+  <footer class="footer-link">
+    <a href="https://instagram.com/dnbcagency" target="_blank" rel="noopener">@dnbcagency</a>
+  </footer>
+
 </body>
 </html>
