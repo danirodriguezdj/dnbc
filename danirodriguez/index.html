@@ -35,6 +35,7 @@
     }
 
     html, body {
+      padding-top: 75px; /* Ajuste para header fijo */
       height: 100%;
       scroll-behavior: smooth;
       scroll-snap-type: y mandatory;
@@ -129,7 +130,7 @@
       display: flex;
       flex-direction: row-reverse;
       height: 100vh;
-      margin-top: 75px;
+      /* margin-top: 75px; eliminado para que la imagen pegue al header */
     }
 
     .hero-img {
@@ -272,12 +273,10 @@
       }
 
       .hero-img {
-        flex: none; /* Evita que se estire */
         height: 60vh; /* altura visible para la imagen */
         background-image: url("img/daniplaying.png");
         background-size: cover;
         background-position: center;
-        background-repeat: no-repeat;
       }
 
       .hero-content {
@@ -438,22 +437,24 @@
     </div>
 
     <div class="extras-section">
-      <p><a href="https://open.spotify.com/artist/1k0U51DXyjFk4YnLZUIMP9" target="_blank" rel="noopener" class="button">Spotify</a></p>
-      <p><a href="https://www.residentadvisor.net/dj/6ejou" target="_blank" rel="noopener" class="button">Resident Advisor</a></p>
-
+      <p>
+        <a href="https://drive.google.com/drive/folders/1UYJmsWrd7e951nBf_POoC1bXSN7PZC7k?usp=sharing" target="_blank" class="button">Download Press Kit</a>
+        <a href="https://mach9agency.com/bookings" target="_blank" class="button">Booking Request</a>
+      </p>
       <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/fc4fBt0q8Qk" allowfullscreen title="6EJOU Live Performance"></iframe>
-        <iframe src="https://www.youtube.com/embed/QhVNp8Rh_Wk" allowfullscreen title="6EJOU Interview"></iframe>
+        <iframe src="https://www.youtube.com/embed/8uLgWiG36Rc" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/S0ck1OXtUEM" allowfullscreen></iframe>
       </div>
     </div>
   </section>
 
   <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-
-    menuToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
+    document.addEventListener('DOMContentLoaded', function () {
+      const btn = document.querySelector('.menu-toggle');
+      const nav = document.getElementById('sidebar');
+      btn.addEventListener('click', () => {
+        nav.classList.toggle('open');
+      });
     });
   </script>
 </body>
