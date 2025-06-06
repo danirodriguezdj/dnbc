@@ -1,4 +1,3 @@
-<!-- ✅ ESTE ES TU ARCHIVO HTML COMPLETO CON 2 SECCIONES SNAP -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -267,57 +266,104 @@
         flex-direction: column;
         height: auto;
       }
+
       .hero-img {
         height: 60vh;
         background-image: url("img/daniplaying.png");
       }
+
       .hero-content {
         padding: 20px;
         align-items: center;
       }
+
       .biography-section {
         flex-direction: column;
         padding: 0;
       }
+
       .bio-text {
         text-align: left;
       }
-  body {
-    padding: 80px 10px 50px;
-  }
-  header {
-    justify-content: space-between; /* menú y logo separados */
-    padding: 0 20px;               /* margen lateral */
-    height: 65px;
-  }
-  header a {
-    margin-left: auto;             /* empuja logo a la derecha */
-  }
-  header a, header .logo {
-    display: flex;
-    align-items: center;           /* centrado vertical */
-    height: 100%;
-  }
-  header .logo {
-    max-width: 250px;
-    width: 60vw;
-    height: auto;
-  }
-    
+
+      body {
+        padding: 80px 10px 50px;
+      }
+
+      header {
+        justify-content: space-between;
+        padding: 0 20px;
+        height: 65px;
+      }
+
+      header a {
+        margin-left: auto;
+      }
+
+      header a, header .logo {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+
+      header .logo {
+        max-width: 250px;
+        width: 60vw;
+        height: auto;
+      }
+
+      /* ORDEN PERSONALIZADO PARA MÓVIL */
+      #mobile-order {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #mobile-order .biography-section {
+        display: flex;
+        flex-direction: column;
+        order: 3;
+      }
+
+      #mobile-order .biography-section .bio-img {
+        order: 3;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      #mobile-order .biography-section .bio-text {
+        order: 4;
+      }
+
+      #mobile-order .extras-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        order: 5;
+      }
+
+      #mobile-order .extras-section p {
+        order: 5;
+      }
+
+      #mobile-order .extras-section .video-wrapper {
+        order: 6;
+      }
+    }
+  </style>
+
+  <style>
+    /* Oculta la barra de scroll visualmente pero permite hacer scroll */
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
   </style>
 </head>
-  <style>
-  /* Oculta la barra de scroll visualmente pero permite hacer scroll */
-  body::-webkit-scrollbar {
-    display: none;
-  }
 
-  body {
-    scrollbar-width: none;       /* Firefox */
-    -ms-overflow-style: none;    /* IE/Edge antiguos */
-  }
-</style>
-  
 <body>
   <!-- MENÚ HAMBURGUESA Y SIDEBAR -->
   <button class="menu-toggle" aria-label="Toggle menu">
@@ -373,7 +419,7 @@
   </section>
 
   <!-- BOTTOM SECTION: BIO + EXTRAS -->
-  <section class="bottom-section">
+  <section class="bottom-section" id="mobile-order">
     <div class="biography-section">
       <img src="img/dani.png" alt="6EJOU promo" class="bio-img" />
       <div class="bio-text">
