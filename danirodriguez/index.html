@@ -2,13 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dani Rodriguez</title>
-  <meta name="description" content="Artist profile - Dani Rodriguez" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DNBC Artist Page</title>
+  <meta name="description" content="DIE NACHT BRENNT AGENCY – Artist profile." />
   <meta name="author" content="DNBC Team" />
 
-  <!-- Fuente personalizada -->
-  <link rel="preload" href="/fonts/horizon_outlined.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- Íconos y manifest -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Fuentes y estilos -->
   <style>
     @font-face {
       font-family: 'horizon_outlined';
@@ -20,28 +26,26 @@
       font-display: swap;
     }
 
-    * {
-      box-sizing: border-box;
+    body {
       margin: 0;
       padding: 0;
-    }
-
-    body {
-      background: black;
-      color: white;
-      font-family: 'horizon_outlined', sans-serif;
-      overflow-x: hidden;
+      background: #000;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
     }
 
     header {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
       height: 75px;
-      background: black;
+      background: #000;
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 0 20px;
       z-index: 999;
       border-bottom: 2px solid #000;
     }
@@ -49,6 +53,7 @@
     header a {
       display: flex;
       align-items: center;
+      height: 100%;
     }
 
     header .logo {
@@ -57,85 +62,112 @@
       height: auto;
     }
 
-    main {
-      margin-top: 100px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 20px 80px;
-      text-align: center;
+    .container {
+      padding: 100px 20px 50px;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
-    .main-image {
+    .artist-name {
+      font-family: 'horizon_outlined', sans-serif;
+      font-size: 64px;
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+    }
+
+    .bio, .description {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .presskit-button, .booking-button {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      color: #fff;
+      background: transparent;
+      border: 1px solid #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+
+    .presskit-button:hover, .booking-button:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .artist-img-main {
+      width: 100%;
+      max-width: 800px;
+      margin-bottom: 40px;
+    }
+
+    .artist-img-secondary {
       width: 100%;
       max-width: 600px;
+      margin-bottom: 40px;
     }
 
-    .bio {
-      font-size: 18px;
-      line-height: 1.6;
-      margin: 40px 0;
-      max-width: 800px;
-    }
-
-    .secondary-image {
-      width: 100%;
-      max-width: 800px;
-      margin-top: 40px;
-    }
-
-    .links {
-      margin-top: 30px;
-    }
-
-    .links a {
-      color: white;
-      text-decoration: none;
+    .social-icons a {
       margin: 0 10px;
-      font-size: 16px;
-      border: 1px solid white;
-      padding: 10px 20px;
-      display: inline-block;
-      margin-top: 10px;
-      transition: background 0.3s;
+      color: #fff;
+      text-decoration: none;
+      font-size: 24px;
     }
 
-    .links a:hover {
-      background: white;
-      color: black;
-    }
-
-    @media (max-width: 768px) {
-      .bio {
-        font-size: 16px;
-        padding: 0 10px;
-      }
+    iframe {
+      margin: 30px 0;
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+      border: none;
     }
   </style>
 </head>
 <body>
-
   <header>
     <a href="https://dienachtbrenntclub.com">
-      <img src="/logoletraslargo.png" alt="DNBC Logo" class="logo" />
+      <img src="/logoletraslargo.png" alt="Logo DNBC Agency" class="logo">
     </a>
   </header>
 
-  <main>
-    <img src="img/daniplaying.png" alt="Dani Rodriguez live" class="main-image" />
+  <div class="container">
+    <h1 class="artist-name">DANI RODRIGUEZ</h1>
+    <div class="subtitle">LIVE</div>
+
+    <img src="img/daniplaying.png" alt="Dani Rodriguez live" class="artist-img-main">
+
+    <div class="description">
+      <!-- Descripción breve aquí -->
+      Aquí va una descripción breve del artista que puedes editar.
+    </div>
 
     <div class="bio">
-      <p>Dani Rodriguez is a techno artist focused on the exploration of hypnotic grooves and driving rhythms. His performances are a blend of intense energy and sonic depth, captivating audiences across underground dance floors.</p>
+      <!-- Biografía aquí -->
+      Aquí va la biografía extendida del artista que puedes personalizar.
     </div>
 
-    <img src="img/dani.png" alt="Dani Rodriguez portrait" class="secondary-image" />
-
-    <div class="links">
-      <a href="https://soundcloud.com">SoundCloud</a>
-      <a href="https://instagram.com">Instagram</a>
-      <a href="https://ra.co">Resident Advisor</a>
+    <div class="social-icons">
+      <a href="#">Instagram</a>
+      <a href="#">SoundCloud</a>
+      <a href="#">Spotify</a>
+      <a href="#">RA</a>
     </div>
-  </main>
 
+    <a href="#" class="presskit-button">Download Press Kit</a>
+    <a href="/bookings" class="booking-button">Booking Request</a>
+
+    <img src="img/dani.png" alt="Dani Rodriguez promo" class="artist-img-secondary">
+
+    <iframe src="https://www.youtube.com/embed/8uLgWiG36Rc" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/S0ck1OXtUEM" allowfullscreen></iframe>
+  </div>
 </body>
 </html>
