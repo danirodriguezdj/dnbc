@@ -282,7 +282,28 @@
       .bio-text {
         text-align: left;
       }
-    }
+  body {
+    padding: 80px 10px 50px;
+  }
+  header {
+    justify-content: space-between; /* menú y logo separados */
+    padding: 0 20px;               /* margen lateral */
+    height: 65px;
+  }
+  header a {
+    margin-left: auto;             /* empuja logo a la derecha */
+  }
+  header a, header .logo {
+    display: flex;
+    align-items: center;           /* centrado vertical */
+    height: 100%;
+  }
+  header .logo {
+    max-width: 250px;
+    width: 60vw;
+    height: auto;
+  }
+    
   </style>
 </head>
   <style>
