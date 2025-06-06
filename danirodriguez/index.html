@@ -267,29 +267,21 @@
         scroll-snap-type: none;
       }
 
-      /* Ajustes para hero para móvil */
       .hero-section {
         flex-direction: column;
-        height: auto; /* que crezca según contenido */
-        margin-top: 0; /* para que pegue al header */
+        height: auto;
       }
 
       .hero-img {
-        width: 100%;
-        height: 300px; /* altura fija razonable para móvil */
-        min-height: unset;
-        background-size: contain; /* para no recortar la imagen */
-        background-repeat: no-repeat;
-        background-position: center center;
-        flex: none;
+        height: 60vh; /* altura visible para la imagen */
+        background-image: url("img/daniplaying.png");
+        background-size: cover;
+        background-position: center;
       }
 
       .hero-content {
-        flex: none;
-        width: 100%;
         padding: 20px;
-        box-sizing: border-box;
-        text-align: center;
+        align-items: center;
       }
 
       .biography-section {
@@ -302,11 +294,7 @@
       }
 
       body {
-        padding-top: 75px;
-        background-color: #000;
-        color: #fff;
-        font-family: sans-serif;
-        margin: 0;
+        padding: 80px 10px 50px;
       }
 
       header {
@@ -441,27 +429,32 @@
     <div class="biography-section">
       <img src="img/dani.png" alt="6EJOU promo" class="bio-img" />
       <div class="bio-text">
-        <p>6EJOU started producing music in 2019, quickly gaining recognition for his unique industrial techno style. His live sets are hardware-based and dynamic, engaging audiences worldwide.</p>
-        <p>His label, Industrial Violence, supports emerging artists with innovative sounds in the techno genre.</p>
+        <h3>Biography</h3>
+        <p>
+          Known for his harsh and dark sound, 6EJOU’s productions are infused with industrial murk, yet maintain a sophisticated sense of rhythm and dub-space. His sets blur the lines between DJ and live performances, using cutting-edge hardware and software solutions. With his multi-functional production skills and inventive DJ techniques, 6EJOU proves that hard techno can also be smart, sensuous, and danceable.
+        </p>
       </div>
     </div>
 
     <div class="extras-section">
-      <p>Watch some of 6EJOU's live performances below:</p>
+      <p>
+        <a href="https://drive.google.com/drive/folders/1UYJmsWrd7e951nBf_POoC1bXSN7PZC7k?usp=sharing" target="_blank" class="button">Download Press Kit</a>
+        <a href="https://mach9agency.com/bookings" target="_blank" class="button">Booking Request</a>
+      </p>
       <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/3iP8TGh2Wb4" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/8DfYRU3qXjI" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/8uLgWiG36Rc" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/S0ck1OXtUEM" allowfullscreen></iframe>
       </div>
     </div>
   </section>
 
   <script>
-    // Toggle sidebar menu
-    const menuToggle = document.querySelector('.menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-
-    menuToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
+    document.addEventListener('DOMContentLoaded', function () {
+      const btn = document.querySelector('.menu-toggle');
+      const nav = document.getElementById('sidebar');
+      btn.addEventListener('click', () => {
+        nav.classList.toggle('open');
+      });
     });
   </script>
 </body>
