@@ -270,13 +270,16 @@
       .hero-section {
         flex-direction: column;
         height: auto;
+        height: calc(100vh - 75px); /* Altura viewport menos header */
+        margin-top: 0; /* para que pegue al header */
       }
 
       .hero-img {
-        height: 60vh; /* altura visible para la imagen */
+        flex: 1;
         background-image: url("img/daniplaying.png");
         background-size: cover;
         background-position: center;
+        min-height: 100%; /* asegurar que la altura ocupe todo */
       }
 
       .hero-content {
@@ -294,7 +297,11 @@
       }
 
       body {
-        padding: 80px 10px 50px;
+        padding-top: 75px;
+        background-color: #000;
+        color: #fff;
+        font-family: sans-serif;
+        margin: 0;
       }
 
       header {
