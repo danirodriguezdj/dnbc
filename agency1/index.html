@@ -3,8 +3,8 @@
 <head>
   <!--
     Archivo: agency1/index.html
-    Propósito: Página de la agencia DNBC.
-    Estándar de documentación: ISO/IEC/IEEE 26515.
+    Propósito: Página principal de DNBC Agency con listado de artistas.
+    Estándar de documentación: ISO/IEC/IEEE 26515
   -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,7 @@
   <meta name="description" content="DIE NACHT BRENNT AGENCY – Underground electronic music artist roster." />
   <meta name="author" content="DNBC Team" />
 
-  <!-- Íconos y PWA manifest -->
+  <!-- Íconos y manifest para PWA -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -20,9 +20,9 @@
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Estilos globales -->
+  <!-- Estilos en línea (se sugiere mover a archivo CSS separado en producción) -->
   <style>
-    /* @brief Fuente Horizon */
+    /* Definición de fuente Horizon, con carga de WOFF2 */
     @font-face {
       font-family: 'horizon';
       src: url('/fonts/horizon.woff2') format('woff2');
@@ -31,14 +31,14 @@
       font-display: swap;
     }
 
-    /* @brief Reset y box-sizing */
+    /* Reset de márgenes y box-sizing global */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    /* @brief Estilos base */
+    /* Estilos base del documento */
     body {
       display: flex;
       flex-direction: column;
@@ -47,11 +47,11 @@
       color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
-      padding: 140px 20px 50px;
-      overflow-x: hidden;
+      padding: 140px 20px 50px; /* espacio superior para header fijo */
+      overflow-x: hidden;       /* evita scroll horizontal */
     }
 
-    /* @brief Botón hamburguesa */
+    /* Botón hamburguesa para mobile/desktop */
     .menu-toggle {
       position: fixed;
       top: 20px;
@@ -59,7 +59,7 @@
       background: none;
       border: none;
       cursor: pointer;
-      z-index: 1001;
+      z-index: 1001;  /* encima de sidebar */
     }
     .menu-toggle .bar {
       display: block;
@@ -69,20 +69,20 @@
       margin: 6px 0;
     }
 
-    /* @brief Sidebar */
+    /* Sidebar oculto por defecto, aparece al clicar */
     .sidebar {
       position: fixed;
       top: 0;
-      left: -250px;
+      left: -250px;       /* fuera de pantalla */
       width: 250px;
       height: 100%;
       background: #111;
-      padding-top: 60px;
+      padding-top: 60px;  /* espacio para no solaparse con header */
       transition: left .3s ease;
       z-index: 1000;
     }
     .sidebar.open {
-      left: 0;
+      left: 0;            /* visible */
     }
     .sidebar ul {
       list-style: none;
@@ -99,7 +99,7 @@
       background: #222;
     }
 
-    /* @brief Cabecera fija – ESCRITORIO: logo centrado vertical y horizontal */
+    /* Header fijo con logo centrado */
     header {
       position: fixed;
       top: 0;
@@ -115,7 +115,6 @@
       border-bottom: 2px solid #000;
     }
     header a {
-      margin: 0;
       display: flex;
       align-items: center;
       height: 100%;
@@ -126,7 +125,7 @@
       height: auto;
     }
 
-    /* @brief Grid de artistas */
+    /* Grid de artistas: 4 columnas en escritorio */
     .artist-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -136,29 +135,27 @@
       padding: 20px;
     }
 
-    /* Swap de imágenes al hacer hover */
+    /* Cada artista ocupa su celda, con swap de imágenes al hover */
     .artist {
       position: relative;
       overflow: hidden;
       cursor: pointer;
     }
     .artist img.base {
-      display: block;
       width: 100%;
-      transition: opacity .3s ease, transform .3s ease, filter .3s ease;
-      position: relative;
+      display: block;
+      transition: opacity .3s, transform .3s, filter .3s;
       z-index: 1;
     }
     .artist img.playing {
-      display: block;
-      width: 100%;
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
+      width: 100%;
       opacity: 0;
-      transition: opacity .3s ease, transform .3s ease, filter .3s ease;
+      transition: opacity .3s, transform .3s, filter .3s;
       z-index: 2;
     }
+    /* Al pasar el ratón en desktop, intercambio de imágenes y efecto */
     .artist:hover img.base {
       opacity: 0;
       filter: brightness(.5);
@@ -170,24 +167,23 @@
       transform: scale(1.05);
     }
 
-    /* Conserva tu info overlay */
+    /* Overlay con nombre o lema del artista */
     .artist-info {
       position: absolute;
-      bottom: 0;
-      left: 0;
+      bottom: 0; left: 0;
       width: 100%;
       padding: 10px;
       background: rgba(0,0,0,.7);
       opacity: 0;
-      transition: opacity .3s ease;
+      transition: opacity .3s;
       color: #fff;
-      z-index: 3; /* Asegura que el texto esté siempre encima */
+      z-index: 3; /* siempre encima de las imágenes */
     }
     .artist:hover .artist-info {
       opacity: 1;
     }
 
-    /* @brief Enlace Instagram */
+    /* Enlace a Instagram al pie */
     .footer-link {
       margin-top: 40px;
     }
@@ -197,13 +193,13 @@
       text-decoration: none;
     }
 
-    /* @brief Media Queries – MÓVIL: ajustes y texto siempre visible */
+    /* Ajustes para móviles (≤768px) */
     @media (max-width: 768px) {
       .artist-grid {
         grid-template-columns: repeat(2, 1fr);
       }
       body {
-        padding: 80px 10px 50px;
+        padding: 80px 10px 50px; /* menos espacio arriba en móvil */
       }
       header {
         justify-content: space-between;
@@ -213,21 +209,15 @@
       header a {
         margin-left: auto;
       }
-      header a, header .logo {
-        display: flex;
-        align-items: center;
-        height: 100%;
-      }
       header .logo {
         max-width: 250px;
         width: 60vw;
-        height: auto;
       }
       .footer-link a {
         font-size: 1rem;
       }
 
-      /* Cambios pedidos: texto siempre visible y sin subrayado */
+      /* Forzamos el texto visible y sin subrayado en móvil */
       .artist-info {
         opacity: 1 !important;
         text-decoration: none !important;
@@ -239,12 +229,14 @@
   </style>
 </head>
 <body>
+  <!-- Botón para abrir/cerrar menú lateral -->
   <button class="menu-toggle" aria-label="Toggle menu">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
 
+  <!-- Navegación lateral -->
   <nav id="sidebar" class="sidebar" aria-label="Main navigation">
     <ul>
       <li><a href="/">Home</a></li>
@@ -252,64 +244,67 @@
     </ul>
   </nav>
 
+  <!-- Header fijo con logo -->
   <header>
     <a href="https://dienachtbrenntclub.com" rel="noopener">
-      <img src="/logoletraslargo.png" alt="Logo DNBC Agency" class="logo" />
+      <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
     </a>
   </header>
 
+  <!-- Listado de artistas con dos imágenes para efecto swap -->
   <main class="artist-grid">
     <a class="artist" href="https://dienachtbrenntclub.com/cokecortes">
-      <img class="base"    src="img/cokecortes.jpg"            alt="Coke Cortés" />
-      <img class="playing" src="img/cokecortesplaying.jpg"     alt="Coke Cortés pinchando" />
+      <img class="base"    src="img/cokecortes.jpg"        alt="Coke Cortés" />
+      <img class="playing" src="img/cokecortesplaying.jpg" alt="Coke Cortés pinchando" />
       <div class="artist-info">Sacred Violence</div>
     </a>
     <a class="artist" href="https://dienachtbrenntclub.com/danirodriguez">
-      <img class="base"    src="img/danirodriguez.jpg"         alt="Dani Rodriguez" />
-      <img class="playing" src="img/danirodriguezplaying.jpg"  alt="Dani Rodriguez pinchando" />
+      <img class="base"    src="img/danirodriguez.jpg"        alt="Dani Rodriguez" />
+      <img class="playing" src="img/danirodriguezplaying.jpg" alt="Dani Rodriguez pinchando" />
       <div class="artist-info">Fast soul</div>
     </a>
     <a class="artist" href="https://dienachtbrenntclub.com/laveranotte">
-      <img class="base"    src="img/laveranotte.jpg"           alt="La Vera Notte" />
-      <img class="playing" src="img/laveranotteplaying.jpg"    alt="La Vera Notte pinchando" />
+      <img class="base"    src="img/laveranotte.jpg"      alt="La Vera Notte" />
+      <img class="playing" src="img/laveranotteplaying.jpg" alt="La Vera Notte pinchando" />
       <div class="artist-info">Dance Authority</div>
     </a>
     <a class="artist" href="https://dienachtbrenntclub.com/mikes">
-      <img class="base"    src="img/mikes.jpg"                 alt="Mikes" />
-      <img class="playing" src="img/mikesplaying.jpg"         alt="Mikes pinchando" />
+      <img class="base"    src="img/mikes.jpg"            alt="Mikes" />
+      <img class="playing" src="img/mikesplaying.jpg"     alt="Mikes pinchando" />
       <div class="artist-info">Oldschool Rage</div>
     </a>
     <a class="artist" href="https://dienachtbrenntclub.com/vitalgroove">
-      <img class="base"    src="img/vitalgroove.jpg"          alt="Vital Groove" />
-      <img class="playing" src="img/vitalgrooveplaying.jpg"   alt="Vital Groove pinchando" />
+      <img class="base"    src="img/vitalgroove.jpg"       alt="Vital Groove" />
+      <img class="playing" src="img/vitalgrooveplaying.jpg" alt="Vital Groove pinchando" />
       <div class="artist-info">Groove Commander</div>
     </a>
     <a class="artist" href="https://dienachtbrenntclub.com/kb45">
-      <img class="base"    src="img/kb45.jpg"                 alt="KB45" />
-      <img class="playing" src="img/kb45playing.jpg"         alt="KB45 pinchando" />
+      <img class="base"    src="img/kb45.jpg"            alt="KB45" />
+      <img class="playing" src="img/kb45playing.jpg"     alt="KB45 pinchando" />
       <div class="artist-info">Trance Driver</div>
     </a>
     <a class="artist" href="https://dienachtbrenntclub.com/filo">
-      <img class="base"    src="img/filo.jpg"                 alt="FILØ" />
-      <img class="playing" src="img/filoplaying.jpg"         alt="FILØ pinchando" />
+      <img class="base"    src="img/filo.jpg"            alt="FILØ" />
+      <img class="playing" src="img/filoplaying.jpg"     alt="FILØ pinchando" />
       <div class="artist-info">Power Surgeon</div>
     </a>
     <a class="artist" href="https://dienachtbrenntclub.com/deathwrap">
-      <img class="base"    src="img/deathwrap.jpg"            alt="DEATHWRAP" />
-      <img class="playing" src="img/deathwrapplaying.jpg"     alt="DEATHWRAP pinchando" />
+      <img class="base"    src="img/deathwrap.jpg"       alt="DEATHWRAP" />
+      <img class="playing" src="img/deathwrapplaying.jpg" alt="DEATHWRAP pinchando" />
       <div class="artist-info">Bounce Fury</div>
     </a>
   </main>
 
+  <!-- Enlace final a Instagram -->
   <footer class="footer-link">
     <a href="https://instagram.com/dnbcagency" target="_blank" rel="noopener">@dnbcagency</a>
   </footer>
 
+  <!-- Script para alternar la clase 'open' del sidebar -->
   <script>
     /**
-     * @file agency1/index.html
-     * @brief Lógica de alternancia del menú lateral.
-     * @estándar ISO/IEC/IEEE 26515.
+     * Lógica de apertura/cierre del menú lateral.
+     * Conforme ISO/IEC/IEEE 26515
      */
     (function() {
       'use strict';
