@@ -216,7 +216,7 @@
       justify-content: center;
       max-width: 1200px;
       width: 100%;
-      gap: 40px;
+      gap: clamp(16px, 4vw, 40px); /* Espacio fluido: mínimo 16px, ideal 4vw, máximo 40px */
     }
 
     .bio-img {
@@ -226,6 +226,8 @@
       height: auto;
       flex: 1 1 400px; /* permite que la imagen ocupe su espacio pero pueda desplazarse abajo */
       object-fit: contain; /* asegura que la imagen nunca se deforme ni salga de su caja */
+      margin: 0;
+      display: block;
     }
 
     .bio-text {
@@ -233,13 +235,15 @@
       text-align: left;
       font-size: 16px;
       line-height: 1.6;
+      margin: 0;
+      padding: 0;
     }
 
    .bio-text h3 {
      border-bottom: 2px solid #fff;
-     padding-bottom: 8px;
-     margin-bottom: 16px;
-     margin-top: 0;
+      padding: 0 0 8px 0;
+      margin: 0;
+      line-height: 1.1;
    }
 
     .extras-section {
@@ -306,32 +310,28 @@
 
       .biography-section {
         flex-direction: column;
-        gap: 0px;
+        gap: clamp(12px, 4vw, 24px);
         padding: 0 10px;
       }
       .bio-img {
         width: 80vw;
+        max-width: 100%;
         min-width: 0;
-        margin-top: 0;
-        margin-bottom: -10px;
-        order: 2;
+        margin: 0;
         display: block;
       }
-      .bio-text h3 {
-        margin-top: 0;
-        padding-top: 0;
-        margin-bottom: 8px;
-        padding-bottom: 4px;
-        line-height: 1.1;
-      }
-
       .bio-text {
         text-align: left;
-        padding-bottom: 30px;
-        order: 1;
-        margin-top: 0 !important;
-        padding-top: 0 !important;
+        margin: 0;
+        padding: 0;
       }
+      .bio-text h3 {
+        margin: 0;
+        padding: 0 0 8px 0;
+        border-bottom: 2px solid #fff;
+        line-height: 1.1;
+      }
+    
       .bottom-section {
         padding-top: 40px;
         margin-top: 120px;
