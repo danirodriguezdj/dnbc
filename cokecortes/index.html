@@ -257,6 +257,18 @@
       gap: 20px;
       flex-wrap: wrap;
     }
+  
+    .button-row-centered-gap {
+      justify-content: space-between;
+      max-width: 440px; /* Ajusta este valor si lo necesitas más ancho o más estrecho */
+      margin: 0 auto;
+      width: 100%;
+    }
+    
+.button-row-centered-gap .button {
+  flex: 0 1 200px; /* Asegura que ambos botones tengan el mismo ancho máximo */
+  text-align: center;
+}
 
     a.button {
       color: white;
@@ -495,7 +507,7 @@
     </div>
 
     <div class="extras-section">
-      <div class="button-row">
+      <div class="button-row button-row-centered-gap">
         <a href="https://drive.google.com/drive/folders/1Z0Fek_702k9qwzuRcARzhiuSTjPssC13?usp=drive_link" target="_blank" class="button">Download Press Kit</a>
         <a href="mailto:agency@dienachtbrenntclub.com?subject=Booking%20Request%20Coke%20Cortés" target="_blank" class="button">Booking Request</a>
     </div>
