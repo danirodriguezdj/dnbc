@@ -255,15 +255,19 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 40px;              /* El hueco visual entre los botones, ajústalo a tu gusto */
-      max-width: 500px;       /* Suma el ancho de dos botones + el gap. Sube o baja según tus botones */
+      gap: 20px;              /* El hueco visual entre los botones, ajústalo a tu gusto */
+      max-width: 540px;       /* Suma el ancho de dos botones + el gap. Sube o baja según tus botones */
       margin: 0 auto;         /* Centrado en el contenedor padre */
       width: 100%;
     }
     
     .button-row-centered-gap .button {
-      flex: 0 0 200px; /* Asegura que ambos botones tengan el mismo ancho máximo */
+      flex: 0 0 240px;    /* ancho fijo más grande (ajústalo a tu gusto) */
+      min-width: 200px;   /* ancho mínimo */
+      font-size: 1.1rem;  /* texto un poco más grande si quieres */
+      padding: 14px 30px; /* más padding horizontal y vertical */
       text-align: center;
+      white-space: nowrap; /* fuerza el texto en una línea */
     }
 
     a.button {
