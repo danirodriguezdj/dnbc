@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coke Cortés – DNBC Agency</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+  <!-- Fuentes personalizadas -->
+  <style>
+    @font-face {
+      font-family: 'horizon_outlined';
+      src: url('/fonts/horizon_outlined.woff2') format('woff2'),
+           url('/fonts/horizon_outlined.woff') format('woff'),
+           url('/fonts/horizon_outlined.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'horizon';
+      src: url('/fonts/horizon.woff2') format('woff2'),
+           url('/fonts/horizon.woff') format('woff'),
+           url('/fonts/horizon.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      padding-top: 75px; /* Ajuste para header fijo */
+      height: 100%;
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      background-color: #000;
+      color: #fff;
+      font-family: sans-serif;
+    }
+
+    section {
+      scroll-snap-align: start;
+    }
+
+    /* HEADER Y MENÚ */
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .menu-toggle .bar {
+      display: block;
+      width: 30px;
+      height: 3px;
+      background: #fff;
+      margin: 6px 0;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #111;
+      padding-top: 60px;
+      transition: left .3s ease;
+      z-index: 1000;
+    }
+    .sidebar.open {
+      left: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+    }
+    .sidebar a {
+      display: block;
+      color: #fff;
+      padding: 20px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid #222;
+      font-family: 'horizon', sans-serif;
+    }
+    .sidebar a:hover {
+      background: #222;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 75px;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 999;
+      border-bottom: 2px solid #000;
+    }
+
+    header a {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    header .logo {
+      max-width: 400px;
+      width: 80vw;
+      height: auto;
+    }
+
+    .hero-section {
+      display: flex;
+      flex-direction: row-reverse;
+      height: 100vh;
+      /* margin-top: 75px; eliminado para que la imagen pegue al header */
+    }
+
+    .hero-img {
+      flex: 1;
+      background-image: url("img/cokeplaying.png");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      text-align: left;
+    }
+
+    .hero-content > * {
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .artist-name {
+      font-family: 'horizon_outlined', sans-serif;
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+    }
+
+    .description {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .hero-socials {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-socials img {
+      width: 28px;
+      height: 28px;
+      transition: filter 0.2s ease, transform 0.2s ease;
+      filter: brightness(0) invert(1);
+    }
+
+    .hero-socials a:hover img {
+      transform: scale(1.1);
+    }
+
+    .hero-socials a.instagram:hover img { filter: invert(33%) sepia(77%) saturate(7475%) hue-rotate(316deg) brightness(98%) contrast(101%); }
+    .hero-socials a.facebook:hover img { filter: invert(33%) sepia(84%) saturate(2285%) hue-rotate(196deg) brightness(98%) contrast(104%); }
+    .hero-socials a.beatport:hover img { filter: invert(62%) sepia(48%) saturate(682%) hue-rotate(58deg) brightness(94%) contrast(94%); }
+    .hero-socials a.ra:hover img { filter: invert(90%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%); }
+    .hero-socials a.soundcloud:hover img { filter: invert(59%) sepia(90%) saturate(2000%) hue-rotate(-12deg) brightness(99%) contrast(97%); }
+    .hero-socials a.spotify:hover img { filter: invert(52%) sepia(76%) saturate(686%) hue-rotate(89deg) brightness(92%) contrast(91%); }
+
+    .bottom-section {
+      min-height: 100vh;
+      padding: 80px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+    }
+
+    .biography-section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      max-width: 1200px;
+      width: 100%;
+      gap: 40px;
+    }
+
+    .bio-img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+    }
+
+    .bio-text {
+      flex: 1;
+      text-align: left;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .extras-section {
+      max-width: 1000px;
+      width: 100%;
+      text-align: center;
+    }
+
+    a.button {
+      color: white;
+      border: 1px solid white;
+      padding: 10px 20px;
+      text-decoration: none;
+      display: inline-block;
+      margin: 10px;
+      text-transform: uppercase;
+    }
+
+    .video-wrapper {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .video-wrapper iframe {
+      flex: 1 1 45%;
+      max-width: 500px;
+      height: 315px;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .artist-name {
+       font-size: clamp(24px, 10vw, 48px); /* mínimo 24px, ideal 10vw, máximo 48px */
+       text-align: left;
+       align-self: flex-start;
+      }
+      html, body {
+        scroll-snap-type: none;
+      }
+
+      .hero-section {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .hero-img {
+        height: 100vh; /* altura visible para la imagen */
+        background-image: url("img/cokeplaying.png");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .hero-content {
+        padding: 20px;
+        align-items: center;
+      }
+
+      .biography-section {
+        flex-direction: column;
+        padding: 0;
+      }
+
+      .bio-text {
+        text-align: left;
+      }
+
+      body {
+        padding: 80px 10px 50px;
+      }
+
+      header {
+        justify-content: space-between;
+        padding: 0 20px;
+        height: 65px;
+      }
+
+      header a {
+        margin-left: auto;
+      }
+
+      header a,
+      header .logo {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+
+      header .logo {
+        max-width: 250px;
+        width: 60vw;
+        height: auto;
+      }
+
+      /* ORDEN PERSONALIZADO PARA MÓVIL */
+      #mobile-order {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #mobile-order .biography-section {
+        display: flex;
+        flex-direction: column;
+        order: 3;
+      }
+
+      #mobile-order .biography-section .bio-img {
+        order: 3;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      #mobile-order .biography-section .bio-text {
+        order: 4;
+      }
+
+      #mobile-order .extras-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        order: 5;
+      }
+
+      #mobile-order .extras-section p {
+        order: 5;
+      }
+
+      #mobile-order .extras-section .video-wrapper {
+        order: 6;
+      }
+    }
+
+    /* Oculta la barra de scroll visualmente pero permite hacer scroll */
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- MENÚ HAMBURGUESA Y SIDEBAR -->
+  <button class="menu-toggle" aria-label="Toggle menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
+  <nav id="sidebar" class="sidebar" aria-label="Main navigation">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/agency1">Agency</a></li>
+    </ul>
+  </nav>
+
+  <!-- HEADER CON LOGO -->
+  <header>
+    <a href="https://dienachtbrenntclub.com">
+      <img src="/logoletraslargo.png" alt="Logo DNBC Agency" class="logo" />
+    </a>
+  </header>
+
+  <!-- HERO SECTION (TOP) -->
+  <section class="hero-section">
+    <div class="hero-img"></div>
+    <div class="hero-content">
+      <h1 class="artist-name">COKE CORTÉS</h1>
+      <div class="subtitle">DJ SET</div>
+      <div class="description">
+        <p>
+          Emerging from Galicia’s vibrant underground scene, Coke Cortés launched his career in 2021, quickly gaining recognition for his powerful and uncompromising sound. His early performances in some of Galicia’s most emblematic underground clubs laid the foundation for what would become a rapidly ascending trajectory in the European techno circuit.
+      </p>
+        <p>
+          Drawing influence from Dungeon Synth and ambient music, his sets are more than just performances—they are hypnotic journeys through bleak, post-industrial soundscapes. With a signature blend of relentless energy, textural complexity, and emotional weight, [Tu Nombre Artístico] continues to shape and challenge the sound of contemporary underground techno.
+     </p>
+      </div>
+      <div class="hero-socials">
+        <a href="https://www.instagram.com/cokecortes/" target="_blank" rel="noopener" class="icon instagram">
+          <img src="img/icons/instagram.svg" alt="Instagram" />
+        </a>
+        <a href="https://www.beatport.com/es/artist/coke-corts/1129363" target="_blank" rel="noopener" class="icon beatport">
+          <img src="img/icons/beatport.svg" alt="Beatport" />
+        </a>
+        <a href="https://es.ra.co/dj/cokecortes" target="_blank" rel="noopener" class="icon ra">
+          <img src="img/icons/ra.svg" alt="Resident Advisor" />
+        </a>
+        <a href="https://soundcloud.com/cokecortes" target="_blank" rel="noopener" class="icon soundcloud">
+          <img src="img/icons/soundcloud.svg" alt="SoundCloud" />
+        </a>
+        <a href="https://open.spotify.com/intl-es/artist/0OjFOMVKwH07sjm0GwZoAe?si=T8gUaLJhTk-bD7awu2LETA" target="_blank" rel="noopener" class="icon spotify">
+          <img src="img/icons/spotify.svg" alt="Spotify" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM SECTION: BIO + EXTRAS -->
+  <section class="bottom-section" id="mobile-order">
+    <div class="biography-section">
+      <img src="img/coke.png" alt="6EJOU promo" class="bio-img" />
+      <div class="bio-text">
+        <h3>Biography</h3>
+        <p>
+          By 2022, his distinctive style—rooted in raw industrial techno and driven by heavy, distorted kicks—captured the attention of audiences beyond Spain. He soon found himself performing at some of Europe’s most respected venues and events, including Mantra in Italy; Riktus, Estação, and Disturb in Portugal; Impulz in Germany; Nexus in France; and HostilleTakeOver in England. Each set solidified his reputation as a selector who delivers dark, immersive, and high-energy experiences on the dancefloor.
+      </p>
+        <p>
+          In 2024, Coke Cortés expanded his artistic reach by venturing into music production. His releases began circulating within the underground techno community, affirming his role as not only a skilled DJ but also a forward-thinking producer contributing to the evolution of the genre.
+     </p>
+        <p>
+          He is also the co-founder of Die Nacht Brennt Club, a collective based in Vigo that is dedicated to pushing the boundaries of techno and hard sound. Through this platform, he has helped foster a space for innovation, community, and uncompromising musical intensity in the local scene.
+     </p>
+      </div>
+    </div>
+
+    <div class="extras-section">
+      <p>
+        <a href="https://drive.google.com/drive/folders/1Z0Fek_702k9qwzuRcARzhiuSTjPssC13?usp=drive_link" target="_blank" class="button">Download Press Kit</a>
+        <a href="mailto:agency@dienachtbrenntclub.com?subject=Booking%20Request%20Coke%20Cortés" target="_blank" class="button">Booking Request</a>
+      </p>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/QtK-vrn0_FU?si=sY5f6syc3mwij1c5" allowfullscreen></iframe>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C0w7Mc1sfgj/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#000000; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(255,255,255,0.5),0 1px 10px 0 rgba(255,255,255,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+          <div style="padding:16px;">
+            <a href="https://www.instagram.com/p/C0w7Mc1sfgj/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#000000; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
+          <div style=" display: flex; flex-direction: row; align-items: center;">
+          <div style="background-color: #0B0B0B; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div>
+          <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;">
+          <div style=" background-color: #0B0B0B; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div>
+          <div style=" background-color: #0B0B0B; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div>
+       </div>
+      </div>
+          <div style="padding: 19% 0;"></div>
+          <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
+          <svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g transform="translate(-511.000000, -20.000000)" fill="#FFFFFF">
+              <g>
+                <path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path>
+              </g>
+             </g>
+           </g>
+         </svg>
+       </div>
+         <div style="padding-top: 8px;">
+        <div style=" color:#1E90FF; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Ver esta publicación en Instagram</div>
+      </div>
+      <div style="padding: 12.5% 0;"></div>
+      <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;">
+        <div>
+          <div style="background-color: #0B0B0B; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div>
+          <div style="background-color: #0B0B0B; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div>
+          <div style="background-color: #0B0B0B; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div>
+        </div>
+        <div style="margin-left: 8px;">
+          <div style=" background-color: #0B0B0B; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div>
+          <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #0b0b0b; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div>
+        </div>
+        <div style="margin-left: auto;">
+          <div style=" width: 0px; border-top: 8px solid #0B0B0B; border-right: 8px solid transparent; transform: translateY(16px);"></div>
+          <div style=" background-color: #0B0B0B; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div>
+          <div style=" width: 0; height: 0; border-top: 8px solid #0B0B0B; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;">
+        <div style=" background-color: #0B0B0B; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div>
+        <div style=" background-color: #0B0B0B; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div>
+      </div>
+    </a>
+    <p style=" color:#363737; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
+      <a href="https://www.instagram.com/p/C0w7Mc1sfgj/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#363737; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Una publicación compartida de Coke Cortés (@cokecortes)</a>
+    </p>
+  </div>
+</blockquote>
+<script async src="//www.instagram.com/embed.js"></script>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const btn = document.querySelector('.menu-toggle');
+      const nav = document.getElementById('sidebar');
+      btn.addEventListener('click', () => {
+        nav.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>
