@@ -262,41 +262,43 @@
     }
     
     .button-row-centered-gap .button,
-    a.button {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      flex: 0 0 240px;
-      min-width: 200px;
-      font-size: 1.1rem;
-      padding: 14px 30px;
-      text-align: center;
-      white-space: nowrap;
-      margin: 0 0;
-      height: 48px;
-      box-sizing: border-box;
-      border: 1px solid white;
-      color: white;
-      text-decoration: none;
-      text-transform: uppercase;
-      background: none;
-      cursor: pointer;
-      font-family: 'horizon', sans-serif;   /* <-- Fuente horizon */
-      transition: 
-      background 0.2s,
-      color 0.2s,
-      border-color 0.2s,
-      box-shadow 0.2s;
-    }
+a.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 260px;          /* Ajusta el ancho según lo que necesites */
+  min-width: 200px;
+  max-width: 300px;         /* Ajusta según el espacio disponible */
+  font-family: 'horizon', sans-serif;
+  font-size: 1rem;          /* Tamaño más pequeño para que todo quepa */
+  padding: 14px 18px;
+  text-align: center;
+  margin: 0;
+  height: 48px;
+  box-sizing: border-box;
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  background: none;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+  overflow: hidden;         /* Oculta cualquier exceso si aún así se pasa */
+  white-space: nowrap;      /* ¡Esto es clave! */
+}
 
-    .button-row-centered-gap .button:hover,
-    a.button:hover {
-      background: white;
-      color: #111;                    /* Texto oscuro */
-      border-color: white;
-      box-shadow: 0 2px 16px 0 #fff2; /* Sombra suave opcional */
-      text-decoration: none;
-    }
+.button-row-centered-gap .button:hover,
+a.button:hover {
+  background: white;
+  color: #111;
+  border-color: white;
+  box-shadow: 0 2px 16px 0 #fff2;
+  text-decoration: none;
+}
 
     .video-wrapper {
       display: flex;
