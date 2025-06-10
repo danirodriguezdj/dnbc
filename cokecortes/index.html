@@ -372,8 +372,20 @@ a.button:hover {
      
       .button-row-centered-gap {
         flex-direction: column;
-        gap: 14px;  /* Puedes ajustar el espacio vertical entre botones en móvil aquí */
-        max-width: 340px; /* Opcional: controla el ancho máximo en móvil */
+        gap: 14px;
+        max-width: 340px; /* O pon 100% si quieres que ocupe todo el ancho disponible */
+        margin: 0 auto;
+        width: 100%;
+      }
+      .button-row-centered-gap .button,
+      a.button {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        height: 48px;           /* O ajusta la altura a tu preferencia (48-56px suele ir bien) */
+        padding: 0 18px;        /* Padding lateral, no vertical */
+        font-size: 0.85rem;
+        box-sizing: border-box;
       }
     
       .bottom-section {
