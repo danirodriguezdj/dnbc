@@ -262,13 +262,17 @@
     }
     
     .button-row-centered-gap .button {
+      display: flex;
+      align-items: center;         /* Centra verticalmente */
       flex: 0 0 240px;    /* ancho fijo más grande (ajústalo a tu gusto) */
       min-width: 200px;   /* ancho mínimo */
       font-size: 1.1rem;  /* texto un poco más grande si quieres */
       padding: 14px 30px; /* más padding horizontal y vertical */
       text-align: center;
       white-space: nowrap; /* fuerza el texto en una línea */
+      height: 48px;                /* Opcional: fuerza misma altura para todos */
       margin: 0;
+      box-sizing: border-box;
     }
 
     a.button {
