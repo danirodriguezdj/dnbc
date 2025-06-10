@@ -251,24 +251,20 @@
       width: 100%;
       text-align: center;
     }
-    .button-row {
+    .button-row-centered-gap {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-  
-    .button-row-centered-gap {
-      justify-content: space-between;
-      max-width: 440px; /* Ajusta este valor si lo necesitas más ancho o más estrecho */
-      margin: 0 auto;
+      align-items: center;
+      gap: 40px;              /* El hueco visual entre los botones, ajústalo a tu gusto */
+      max-width: 500px;       /* Suma el ancho de dos botones + el gap. Sube o baja según tus botones */
+      margin: 0 auto;         /* Centrado en el contenedor padre */
       width: 100%;
     }
     
-.button-row-centered-gap .button {
-  flex: 0 1 200px; /* Asegura que ambos botones tengan el mismo ancho máximo */
-  text-align: center;
-}
+    .button-row-centered-gap .button {
+      flex: 0 1 200px; /* Asegura que ambos botones tengan el mismo ancho máximo */
+      text-align: center;
+    }
 
     a.button {
       color: white;
