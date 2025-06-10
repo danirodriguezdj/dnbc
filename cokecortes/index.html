@@ -261,28 +261,27 @@
       width: 100%;
     }
     
-    .button-row-centered-gap .button {
-      display: flex;
-      align-items: center;         /* Centra verticalmente */
-      flex: 0 0 240px;    /* ancho fijo más grande (ajústalo a tu gusto) */
-      min-width: 200px;   /* ancho mínimo */
-      font-size: 1.1rem;  /* texto un poco más grande si quieres */
-      padding: 14px 30px; /* más padding horizontal y vertical */
-      text-align: center;
-      white-space: nowrap; /* fuerza el texto en una línea */
-      height: 48px;                /* Opcional: fuerza misma altura para todos */
-      margin: 0;
-      box-sizing: border-box;
-    }
-
+    .button-row-centered-gap .button,
     a.button {
-      color: white;
+      display: flex !important;              /* Fuerza todos los botones a flex */
+      align-items: center !important;        /* Centra verticalmente */
+      justify-content: center !important;    /* Centra horizontalmente */
+      flex: 0 0 240px;
+      min-width: 200px;
+      font-size: 1.1rem;
+      padding: 14px 30px;
+      text-align: center;
+      white-space: nowrap;
+      margin: 0 0;                           /* Elimina margen lateral extra */
+      height: 48px;
+      box-sizing: border-box;
       border: 1px solid white;
-      padding: 10px 20px;
+      color: white;
       text-decoration: none;
-      display: inline-block;
-      margin: 10px;
       text-transform: uppercase;
+      background: none;
+      cursor: pointer;
+      /* Si quieres efecto hover, agrégalo aquí */
     }
 
     .video-wrapper {
