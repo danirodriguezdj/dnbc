@@ -380,12 +380,11 @@ a.button:hover {
       .button-row-centered-gap .button,
       a.button {
         width: 100%;
-        aspect-ratio: 5 / 1;      /* Proporción de escritorio (ancho:alto), ajusta a tu gusto */
         min-width: 0;
         max-width: 100%;
-        height: auto;             /* Deja que aspect-ratio lo controle */
-        padding: 0 20px;          /* Mismo padding lateral que en escritorio */
-        font-size: 0.85rem;
+        height: 48px;             
+        padding: 0 18px;          /* Mismo padding lateral que en escritorio */
+        font-size: 0.85rem;       /* MISMA ALTURA que en desktop: ¡esto da la proporción! */
         box-sizing: border-box;
         display: flex;
         align-items: center;
