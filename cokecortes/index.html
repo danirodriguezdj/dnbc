@@ -263,16 +263,16 @@
     
     .button-row-centered-gap .button,
     a.button {
-      display: flex !important;              /* Fuerza todos los botones a flex */
-      align-items: center !important;        /* Centra verticalmente */
-      justify-content: center !important;    /* Centra horizontalmente */
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
       flex: 0 0 240px;
       min-width: 200px;
       font-size: 1.1rem;
       padding: 14px 30px;
       text-align: center;
       white-space: nowrap;
-      margin: 0 0;                           /* Elimina margen lateral extra */
+      margin: 0 0;
       height: 48px;
       box-sizing: border-box;
       border: 1px solid white;
@@ -281,7 +281,21 @@
       text-transform: uppercase;
       background: none;
       cursor: pointer;
-      /* Si quieres efecto hover, agrégalo aquí */
+      font-family: 'horizon', sans-serif;   /* <-- Fuente horizon */
+      transition: 
+      background 0.2s,
+      color 0.2s,
+      border-color 0.2s,
+      box-shadow 0.2s;
+    }
+
+    .button-row-centered-gap .button:hover,
+    a.button:hover {
+      background: white;
+      color: #111;                    /* Texto oscuro */
+      border-color: white;
+      box-shadow: 0 2px 16px 0 #fff2; /* Sombra suave opcional */
+      text-decoration: none;
     }
 
     .video-wrapper {
