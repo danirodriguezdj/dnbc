@@ -211,6 +211,7 @@
     .biography-section {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap; /* <-- permite que la imagen baje si no cabe */
       align-items: center;
       justify-content: center;
       max-width: 1200px;
@@ -221,8 +222,11 @@
     .bio-img {
       width: 100%;
       max-width: 400px;
+      min-width: 200px; /* evita que sea demasiado pequeña */
       height: auto;
       margin-top: 60px;
+      flex: 1 1 400px; /* permite que la imagen ocupe su espacio pero pueda desplazarse abajo */
+      object-fit: contain; /* asegura que la imagen nunca se deforme ni salga de su caja */
     }
 
     .bio-text {
@@ -300,13 +304,17 @@
         padding: 0 10px;
       }
       .bio-img {
-        width: 100%;
-        height: auto;
+        width: 80vw;
+        min-width: 0;
+        margin-top: 0;
+        margin-bottom: 20px;
+        order: 2;
       }
 
       .bio-text {
         text-align: left;
         padding-bottom: 30px;
+        order: 1;
       }
       .bottom-section {
         padding-top: 40px;
