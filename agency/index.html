@@ -2,49 +2,27 @@
 <html lang="en">
 <head>
   <!--
-    Archivo: agency.html
-    Propósito: Sección “Agency” de Die Nacht Brennt Club (DNBC).
-    Estándar de documentación: ISO/IEC/IEEE 26515.
+    Archivo: agency1/index.html
+    Propósito: Página principal de DNBC Agency con listado de artistas.
+    Estándar de documentación: ISO/IEC/IEEE 26515
   -->
-
-  <!-- Metadatos generales -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DNBC Agency</title>
-  <meta name="description"
-        content="DNBC Agency – DJ Rooster coming soon. Underground electronic music talent." />
-  <meta name="author"
-        content="Die Nacht Brennt Club (Mateo Palmeiro & Daniel Rodríguez)" />
+  <meta name="description" content="DIE NACHT BRENNT AGENCY – Underground electronic music artist roster." />
+  <meta name="author" content="DNBC Team" />
 
-  <!-- Íconos y PWA manifest -->
-  <link rel="icon"
-        type="image/png"
-        href="/favicon-96x96.png"
-        sizes="96x96" />
-  <link rel="icon"
-        type="image/svg+xml"
-        href="/favicon.svg" />
-  <link rel="shortcut icon"
-        href="/favicon.ico" />
-  <link rel="apple-touch-icon"
-        sizes="180x180"
-        href="/apple-touch-icon.png" />
+  <!-- Íconos y manifest para PWA -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Preload fuente Horizon para evitar Flash Of Unstyled Text -->
-  <link rel="preload"
-        href="/fonts/horizon.woff2"
-        as="font"
-        type="font/woff2"
-        crossorigin="anonymous" />
-
-  <!-- Estilos globales y responsivos -->
+  <!-- Estilos en línea (se sugiere mover a archivo CSS separado en producción) -->
   <style>
-    /* 
-     * @brief Define la fuente personalizada 'horizon'.
-     * @source /fonts/horizon.woff2
-     */
+    /* Definición de fuente Horizon, con carga de WOFF2 */
     @font-face {
       font-family: 'horizon';
       src: url('/fonts/horizon.woff2') format('woff2');
@@ -53,68 +31,61 @@
       font-display: swap;
     }
 
-    /*
-     * @brief Reinicio de box-model y márgenes.
-     */
+    /* Reset de márgenes y box-sizing global */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    /*
-     * @brief Estilos base del cuerpo.
-     * @details Flexbox vertical, fondo negro, texto blanco.
-     */
+    /* Estilos base del documento */
     body {
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color: #000;
+      background: #000;
       color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
-      padding: 100px 20px;
+      padding: 140px 20px 50px; /* espacio superior para header fijo */
+      overflow-x: hidden;       /* evita scroll horizontal */
     }
 
-     /*
-     * @brief Botón de menú tipo “hamburguesa”.
-     */
+    /* Botón hamburguesa para mobile/desktop */
     .menu-toggle {
       position: fixed;
       top: 20px;
       left: 20px;
+      background: none;
+      border: none;
       cursor: pointer;
-      z-index: 1001;
+      z-index: 1001;  /* encima de sidebar */
     }
-
-    /*
-     * @brief Barras del botón de menú.
-     */
-    .bar {
+    .menu-toggle .bar {
+      display: block;
       width: 30px;
       height: 3px;
-      background-color: #fff;
+      background: #fff;
       margin: 6px 0;
     }
 
-    /*
-     * @brief Sidebar de navegación.
-     * @details Oculto por defecto; aparece al añadir clase 'open'.
-     */
+    /* Sidebar oculto por defecto, aparece al clicar */
     .sidebar {
       position: fixed;
       top: 0;
-      left: -250px;
+      left: -250px;       /* fuera de pantalla */
       width: 250px;
       height: 100%;
-      background-color: #111;
-      padding-top: 60px;
-      transition: left 0.3s ease;
+      background: #111;
+      padding-top: 60px;  /* espacio para no solaparse con header */
+      transition: left .3s ease;
       z-index: 1000;
     }
     .sidebar.open {
-      left: 0;
+      left: 0;            /* visible */
+    }
+    .sidebar ul {
+      list-style: none;
     }
     .sidebar a {
       display: block;
@@ -125,41 +96,96 @@
       border-bottom: 1px solid #222;
     }
     .sidebar a:hover {
-      background-color: #222;
+      background: #222;
     }
 
-    /*
-     * @brief Encabezado con logo.
-     * @details Margen superior y tamaño adaptable.
-     */
+    /* Header fijo con logo centrado */
     header {
-      margin-top: 40px;
-      margin-bottom: 40px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 75px;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 999;
+      border-bottom: 2px solid #000;
     }
-    header img {
-      max-width: 300px;
+    header a {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+    header .logo {
+      max-width: 400px;
       width: 80vw;
       height: auto;
     }
 
-    /*
-     * @brief Texto central anunciando DJ Rooster.
-     * @details Centrado vertical con flex y tamaño de fuente responsive.
-     */
-    .center-text {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2em;
+    /* Grid de artistas: 4 columnas en escritorio */
+    .artist-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px;
       padding: 20px;
     }
 
-    /*
-     * @brief Enlace de pie de página (@dnbcagency).
-     */
+    /* Cada artista ocupa su celda, con swap de imágenes al hover */
+    .artist {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .artist img.base {
+      width: 100%;
+      display: block;
+      transition: opacity .3s, transform .3s, filter .3s;
+      z-index: 1;
+    }
+    .artist img.playing {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      opacity: 0;
+      transition: opacity .3s, transform .3s, filter .3s;
+      z-index: 2;
+    }
+    /* Al pasar el ratón en desktop, intercambio de imágenes y efecto */
+    .artist:hover img.base {
+      opacity: 0;
+      filter: brightness(.5);
+      transform: scale(1.05);
+    }
+    .artist:hover img.playing {
+      opacity: 1;
+      filter: brightness(.5);
+      transform: scale(1.05);
+    }
+
+    /* Overlay con nombre o lema del artista */
+    .artist-info {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      padding: 10px;
+      background: rgba(0,0,0,.7);
+      opacity: 0;
+      transition: opacity .3s;
+      color: #fff;
+      z-index: 3; /* siempre encima de las imágenes */
+    }
+    .artist:hover .artist-info {
+      opacity: 1;
+    }
+
+    /* Enlace a Instagram al pie */
     .footer-link {
-      margin-bottom: 20px;
+      margin-top: 40px;
     }
     .footer-link a {
       color: #fff;
@@ -167,86 +193,129 @@
       text-decoration: none;
     }
 
-    /*
-     * @brief Media queries para dispositivos móviles.
-     * @details Reduce padding y fuentes para pantallas <=600px.
-     */
-    @media (max-width: 600px) {
+    /* Ajustes para móviles (≤768px) */
+    @media (max-width: 768px) {
+      .artist-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
       body {
-        padding: 50px 10px;
+        padding: 80px 10px 50px; /* menos espacio arriba en móvil */
       }
-      .center-text {
-        font-size: 1.5em;
-        padding: 10px;
+      header {
+        justify-content: space-between;
+        padding: 0 20px;
+        height: 65px;
       }
-      .footer-link a {
-        font-size: 12px;
+      header a {
+        margin-left: auto;
       }
-    }
-
-    /*
-     * @brief Media queries para pantallas grandes (>=1200px).
-     * @details Ajusta padding y tamaños para desktop.
-     */
-    @media (min-width: 1200px) {
-      body {
-        padding: 100px 100px;
-      }
-      header img {
+      header .logo {
         max-width: 250px;
-      }
-      .center-text {
-        font-size: 3em;
+        width: 60vw;
       }
       .footer-link a {
         font-size: 1rem;
+      }
+
+      /* Forzamos el texto visible y sin subrayado en móvil */
+      .artist-info {
+        opacity: 1 !important;
+        text-decoration: none !important;
+        pointer-events: none;
+        font-size: 13px;
+        line-height: 1.2;
       }
     }
   </style>
 </head>
 <body>
-  <!--
-    @brief Botón para alternar visibilidad del sidebar.
-    @event onclick -> toggleMenu()
-  -->
-  <div class="menu-toggle" onclick="toggleMenu()">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-  </div>
+  <!-- Botón para abrir/cerrar menú lateral -->
+  <button class="menu-toggle" aria-label="Toggle menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
 
-  <!--
-    @brief Navegación lateral (sidebar).
-  -->
-  <nav id="sidebar" class="sidebar">
-    <a href="/">Home</a>
-    <a href="/agency">Agency</a>
+  <!-- Navegación lateral -->
+  <nav id="sidebar" class="sidebar" aria-label="Main navigation">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/agency1">Agency</a></li>
+    </ul>
   </nav>
 
-  <!-- Encabezado con logo DNBC -->
+  <!-- Header fijo con logo -->
   <header>
-    <img src="/logo.png" alt="Logo DNBC Agency" />
+    <a href="https://dienachtbrenntclub.com" rel="noopener">
+      <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
+    </a>
   </header>
 
-  <!-- Mensaje central -->
-  <div class="center-text">
-    DJ ROOSTER SOON
-  </div>
+  <!-- Listado de artistas con dos imágenes para efecto swap -->
+  <main class="artist-grid">
+    <a class="artist" href="https://dienachtbrenntclub.com/cokecortes">
+      <img class="base"    src="img/cokecortes.jpg"        alt="Coke Cortés" />
+      <img class="playing" src="img/cokecortesplaying.jpg" alt="Coke Cortés pinchando" />
+      <div class="artist-info">Sacred Violence</div>
+    </a>
+    <a class="artist" href="https://dienachtbrenntclub.com/danirodriguez">
+      <img class="base"    src="img/danirodriguez.jpg"        alt="Dani Rodriguez" />
+      <img class="playing" src="img/danirodriguezplaying.jpg" alt="Dani Rodriguez pinchando" />
+      <div class="artist-info">Fast soul</div>
+    </a>
+    <a class="artist" href="https://dienachtbrenntclub.com/laveranotte">
+      <img class="base"    src="img/laveranotte.jpg"      alt="La Vera Notte" />
+      <img class="playing" src="img/laveranotteplaying.jpg" alt="La Vera Notte pinchando" />
+      <div class="artist-info">Dance Authority</div>
+    </a>
+    <a class="artist" href="https://dienachtbrenntclub.com/mikes">
+      <img class="base"    src="img/mikes.jpg"            alt="Mikes" />
+      <img class="playing" src="img/mikesplaying.jpg"     alt="Mikes pinchando" />
+      <div class="artist-info">Oldschool Rage</div>
+    </a>
+    <a class="artist" href="https://dienachtbrenntclub.com/vitalgroove">
+      <img class="base"    src="img/vitalgroove.jpg"       alt="Vital Groove" />
+      <img class="playing" src="img/vitalgrooveplaying.jpg" alt="Vital Groove pinchando" />
+      <div class="artist-info">Groove Commander</div>
+    </a>
+    <a class="artist" href="https://dienachtbrenntclub.com/kb45">
+      <img class="base"    src="img/kb45.jpg"            alt="KB45" />
+      <img class="playing" src="img/kb45playing.jpg"     alt="KB45 pinchando" />
+      <div class="artist-info">Trance Driver</div>
+    </a>
+    <a class="artist" href="https://dienachtbrenntclub.com/filo">
+      <img class="base"    src="img/filo.jpg"            alt="FILØ" />
+      <img class="playing" src="img/filoplaying.jpg"     alt="FILØ pinchando" />
+      <div class="artist-info">Power Surgeon</div>
+    </a>
+    <a class="artist" href="https://dienachtbrenntclub.com/deathwrap">
+      <img class="base"    src="img/deathwrap.jpg"       alt="DEATHWRAP" />
+      <img class="playing" src="img/deathwrapplaying.jpg" alt="DEATHWRAP pinchando" />
+      <div class="artist-info">Bounce Fury</div>
+    </a>
+  </main>
 
-  <!-- Enlace de Instagram -->
-  <div class="footer-link">
-    <a href="https://instagram.com/dnbcagency" target="_blank">@dnbcagency</a>
-  </div>
+  <!-- Enlace final a Instagram -->
+  <footer class="footer-link">
+    <a href="https://instagram.com/dnbcagency" target="_blank" rel="noopener">@dnbcagency</a>
+  </footer>
 
-  <!--
-    @brief Función de JavaScript que alterna la clase 'open' del sidebar.
-    @pre Elemento con id="sidebar" existe en el DOM.
-    @post El sidebar se muestra u oculta.
-  -->
+  <!-- Script para alternar la clase 'open' del sidebar -->
   <script>
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('open');
-    }
+    /**
+     * Lógica de apertura/cierre del menú lateral.
+     * Conforme ISO/IEC/IEEE 26515
+     */
+    (function() {
+      'use strict';
+      document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.querySelector('.menu-toggle');
+        var nav = document.getElementById('sidebar');
+        btn.addEventListener('click', function() {
+          nav.classList.toggle('open');
+        });
+      });
+    })();
   </script>
 </body>
 </html>
