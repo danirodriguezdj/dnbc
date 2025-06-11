@@ -162,7 +162,6 @@
         width: 100vw;
         max-width: 100vw;
         margin-bottom: 16px;
-        /* Sin overflow hidden */
         position: relative;
         left: 0;
         right: 0;
@@ -170,15 +169,16 @@
         transition: width 0.2s;
       }
       .artist-name {
-        font-size: 10vw;
+        font-size: clamp(28px, 16vw, 60px);
         text-align: center;
         width: 100%;
         margin-bottom: 0;
-        /* Elimina white-space, overflow, ellipsis */
         font-family: 'horizon_outlined', sans-serif;
         letter-spacing: 1px;
         line-height: 1.1;
-        /* Siempre visible */
+        white-space: normal;
+        overflow-wrap: break-word;
+        word-break: break-word;
       }
       html, body {
         scroll-snap-type: none;
@@ -527,10 +527,7 @@
 
   <!-- HERO SECTION (TOP) -->
   <section class="hero-section">
-    <!-- Imagen oculta para medir ancho real en móvil -->
-    <div class="hero-img">
-      <img src="img/deathwrapplaying.png" alt="Deathwrap playing" id="deathwrap-img-metric" style="display:none; width:100%;" />
-    </div>
+    <div class="hero-img"></div>
     <div class="hero-content">
       <div class="artist-name-wrapper">
         <h1 class="artist-name">Deathwrap</h1>
@@ -598,7 +595,6 @@
       btn.addEventListener('click', () => {
         nav.classList.toggle('open');
       });
-      // No JS para el ajuste de ancho, todo es 100vw y el texto no se corta.
     });
   </script>
 </body>
