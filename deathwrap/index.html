@@ -153,162 +153,6 @@
       width: 100%;
     }
 
-    /* --- INICIO MODIFICACIÓN SOLO MOBILE --- */
-    @media (max-width: 768px) {
-      .artist-name-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100vw;
-        max-width: 100vw;
-        margin-bottom: 16px;
-        position: relative;
-        left: 0;
-        right: 0;
-        padding: 0;
-      }
-      .artist-name {
-        font-size: clamp(24px, 12vw, 60px); /* se ajusta automáticamente */
-        width: 100%;
-        text-align: center;
-        margin-bottom: 0;
-        font-family: 'horizon_outlined', sans-serif;
-        letter-spacing: 1px;
-        line-height: 1.1;
-        white-space: normal;
-        overflow-wrap: break-word;
-        word-break: break-word;
-      }
-      html, body {
-        scroll-snap-type: none;
-        padding-top: 75px;
-      }
-      .hero-section {
-        flex-direction: column;
-        height: auto;
-        min-height: unset;
-        margin-top: -75px;
-      }
-      .hero-img {
-        height: 100%;
-        flex: 1;
-        background-image: url("img/deathwrapplaying.png");
-        background-size: cover;
-        background-position: center;
-        min-height: 50vh;
-        position: relative;
-      }
-      .hero-content {
-        padding: 20px;
-        align-items: center;
-      }
-      .biography-section {
-        flex-direction: column;
-        gap: clamp(12px, 4vw, 24px);
-        padding: 0 10px;
-        margin-top: 0;
-      }
-      .bio-img {
-        width: 80vw;
-        max-width: 100%;
-        min-width: 0;
-        margin: 0;
-        display: block;
-      }
-      .bio-text {
-        text-align: left;
-        margin: 0;
-        padding: 0;
-      }
-      .bio-text h3 {
-        margin: 0;
-        padding: 0 0 8px 0;
-        border-bottom: 2px solid #fff;
-        line-height: 1.1;
-      }
-      .button-row-centered-gap {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-      }
-      .button-row-centered-gap .button,
-      a.button {
-        min-width: 0;
-        width: 260px;
-        max-width: 260px;
-        box-sizing: border-box;
-        max-height: 48px;
-        padding: 14px 18px;
-        font-size: 0.85rem;
-        margin: 0;
-        justify-content: center;
-        align-items: center;
-        white-space: nowrap;
-        overflow: hidden;
-        display: flex;
-      }
-      .bottom-section {
-        padding-top: 0;
-        margin-top: 10px;
-        min-height: auto;
-      }
-      body {
-        padding: 80px 10px 50px;
-      }
-      header {
-        justify-content: space-between;
-        padding: 0 20px;
-        height: 65px;
-      }
-      header a {
-        margin-left: auto;
-      }
-      header a,
-      header .logo {
-        display: flex;
-        align-items: center;
-        height: 100%;
-      }
-      header .logo {
-        max-width: 250px;
-        width: 60vw;
-        height: auto;
-      }
-      #mobile-order {
-        display: flex;
-        flex-direction: column;
-      }
-      #mobile-order .biography-section {
-        display: flex;
-        flex-direction: column;
-        order: 3;
-      }
-      #mobile-order .biography-section .bio-img {
-        order: 3;
-        width: 100%;
-        max-width: 100%;
-      }
-      #mobile-order .biography-section .bio-text {
-        order: 4;
-      }
-      #mobile-order .extras-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        order: 5;
-      }
-      #mobile-order .extras-section p {
-        order: 5;
-      }
-      #mobile-order .extras-section .video-wrapper {
-        order: 6;
-      }
-    }
-    /* --- FIN MODIFICACIÓN SOLO MOBILE --- */
-
     .artist-name-wrapper {
       max-width: 600px;
       width: 100%;
@@ -481,6 +325,164 @@
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
+
+    /* --- INICIO MODIFICACIÓN SOLO MOBILE --- */
+    @media (max-width: 768px) {
+      .artist-name-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        max-width: 100vw;
+        margin-bottom: 16px;
+        position: relative;
+        left: 0;
+        right: 0;
+        padding: 0;
+      }
+      .artist-name {
+        font-family: 'horizon_outlined', sans-serif;
+        font-size: 12vw; /* valor inicial, JS lo ajusta */
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0;
+        letter-spacing: 1px;
+        line-height: 1.1;
+        white-space: nowrap;
+        overflow: visible;
+        text-overflow: unset;
+        transition: font-size 0.1s;
+        padding: 0 3vw;
+      }
+      html, body {
+        scroll-snap-type: none;
+        padding-top: 75px;
+      }
+      .hero-section {
+        flex-direction: column;
+        height: auto;
+        min-height: unset;
+        margin-top: -75px;
+      }
+      .hero-img {
+        height: 100%;
+        flex: 1;
+        background-image: url("img/deathwrapplaying.png");
+        background-size: cover;
+        background-position: center;
+        min-height: 50vh;
+        position: relative;
+      }
+      .hero-content {
+        padding: 20px;
+        align-items: center;
+      }
+      .biography-section {
+        flex-direction: column;
+        gap: clamp(12px, 4vw, 24px);
+        padding: 0 10px;
+        margin-top: 0;
+      }
+      .bio-img {
+        width: 80vw;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0;
+        display: block;
+      }
+      .bio-text {
+        text-align: left;
+        margin: 0;
+        padding: 0;
+      }
+      .bio-text h3 {
+        margin: 0;
+        padding: 0 0 8px 0;
+        border-bottom: 2px solid #fff;
+        line-height: 1.1;
+      }
+      .button-row-centered-gap {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+      .button-row-centered-gap .button,
+      a.button {
+        min-width: 0;
+        width: 260px;
+        max-width: 260px;
+        box-sizing: border-box;
+        max-height: 48px;
+        padding: 14px 18px;
+        font-size: 0.85rem;
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap;
+        overflow: hidden;
+        display: flex;
+      }
+      .bottom-section {
+        padding-top: 0;
+        margin-top: 10px;
+        min-height: auto;
+      }
+      body {
+        padding: 80px 10px 50px;
+      }
+      header {
+        justify-content: space-between;
+        padding: 0 20px;
+        height: 65px;
+      }
+      header a {
+        margin-left: auto;
+      }
+      header a,
+      header .logo {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+      header .logo {
+        max-width: 250px;
+        width: 60vw;
+        height: auto;
+      }
+      #mobile-order {
+        display: flex;
+        flex-direction: column;
+      }
+      #mobile-order .biography-section {
+        display: flex;
+        flex-direction: column;
+        order: 3;
+      }
+      #mobile-order .biography-section .bio-img {
+        order: 3;
+        width: 100%;
+        max-width: 100%;
+      }
+      #mobile-order .biography-section .bio-text {
+        order: 4;
+      }
+      #mobile-order .extras-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        order: 5;
+      }
+      #mobile-order .extras-section p {
+        order: 5;
+      }
+      #mobile-order .extras-section .video-wrapper {
+        order: 6;
+      }
+    }
+    /* --- FIN MODIFICACIÓN SOLO MOBILE --- */
   </style>
 </head>
 <body>
@@ -575,6 +577,38 @@
       btn.addEventListener('click', () => {
         nav.classList.toggle('open');
       });
+
+      // --- INICIO: font-size AUTOFIT para móvil, siempre una línea y visible ---
+      function fitTextToParent(selector, minFontPx = 12, maxFontPx = 80) {
+        const el = document.querySelector(selector);
+        if (!el) return;
+        // Reset font size to max to measure
+        el.style.fontSize = maxFontPx + 'px';
+        // Get parent width
+        const parent = el.parentNode;
+        const parentWidth = parent.offsetWidth - 10; // Padding safety
+        // Reduce font size until fits in one line
+        let fontSize = maxFontPx;
+        el.style.whiteSpace = 'nowrap';
+        while (el.scrollWidth > parentWidth && fontSize > minFontPx) {
+          fontSize -= 1;
+          el.style.fontSize = fontSize + 'px';
+        }
+      }
+
+      function fitArtistName() {
+        if (window.innerWidth <= 768) {
+          fitTextToParent('.artist-name', 12, 80);
+        } else {
+          // Desktop: restaurar tamaño original
+          const el = document.querySelector('.artist-name');
+          if (el) el.style.fontSize = '';
+        }
+      }
+      window.addEventListener('DOMContentLoaded', fitArtistName);
+      window.addEventListener('resize', fitArtistName);
+      window.addEventListener('orientationchange', fitArtistName);
+      // --- FIN: font-size AUTOFIT para móvil ---
     });
   </script>
 </body>
