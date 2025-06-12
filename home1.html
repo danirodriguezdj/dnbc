@@ -17,13 +17,24 @@
       font-style: normal;
       font-display: swap;
     }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
       background: #000;
       color: #fff;
       font-family: 'horizon', sans-serif;
+      text-align: center;
       margin: 0;
-      padding: 0;
+      padding: 80px 20px 50px;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+    /* Botón hamburguesa */
     .menu-toggle {
       position: fixed;
       top: 20px;
@@ -40,6 +51,7 @@
       background: #fff;
       margin: 6px 0;
     }
+    /* Sidebar */
     .sidebar {
       position: fixed;
       top: 0;
@@ -56,8 +68,6 @@
     }
     .sidebar ul {
       list-style: none;
-      margin: 0;
-      padding: 0;
     }
     .sidebar a {
       display: block;
@@ -70,6 +80,7 @@
     .sidebar a:hover {
       background: #222;
     }
+    /* Header fijo */
     header {
       position: fixed;
       top: 0;
@@ -95,7 +106,11 @@
       height: auto;
     }
     @media (max-width: 768px) {
+      body {
+        padding: 60px 10px 50px;
+      }
       header {
+        justify-content: space-between;
         padding: 0 20px;
         height: 65px;
       }
@@ -107,17 +122,20 @@
   </style>
 </head>
 <body>
+  <!-- Botón hamburguesa -->
   <button class="menu-toggle" aria-label="Toggle menu">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
+  <!-- Menú lateral -->
   <nav id="sidebar" class="sidebar" aria-label="Main navigation">
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/agency">Agency</a></li>
     </ul>
   </nav>
+  <!-- Header con logo -->
   <header>
     <a href="https://dienachtbrenntclub.com" rel="noopener">
       <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
