@@ -344,23 +344,32 @@
         align-items: center;
       }
 
+      /* REDUCE COMPLETAMENTE EL HUECO ENTRE IMG Y BIO EN MOVIL */
+      .bottom-section {
+        padding: 8px 0 8px 0 !important;
+        margin-top: 0 !important;
+        gap: 12px !important;
+        min-height: auto !important;
+      }
       .biography-section {
         flex-direction: column;
-        gap: clamp(12px, 4vw, 24px);
-        padding: 0 10px;
-        margin-top: 0;
+        gap: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
       }
       .bio-img {
         width: 80vw;
         max-width: 100%;
         min-width: 0;
-        margin: 0;
+        margin: 0 !important;
         display: block;
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
       }
       .bio-text {
         text-align: left;
-        margin: 0;
-        padding: 0;
+        margin: 0 !important;
+        padding: 0 !important;
       }
       .bio-text h3 {
         margin: 0;
