@@ -168,26 +168,24 @@
     .dock-socials a:hover {
       background: rgba(255,255,255,0.06);
     }
-    /* LOGOS: Todos blancos por defecto usando filter: invert(1) brightness(2) */
     .dock-socials img {
       width: 28px;
       height: 28px;
       object-fit: contain;
-      filter: invert(1) brightness(2); /* blanco puro */
-      transition: transform 0.18s, filter 0.18s;
-    }
-    /* Hover: color principal por red social */
-    .dock-socials a.sc:hover img {
-      filter: brightness(1) sepia(1) saturate(10) hue-rotate(-15deg) drop-shadow(0 0 8px #ff5500cc); /* soundcloud naranja */
-    }
-    .dock-socials a.ig:hover img {
-      filter: brightness(1) sepia(1) saturate(13) hue-rotate(-55deg) drop-shadow(0 0 8px #e1306ccc); /* instagram rosa */
-    }
-    .dock-socials a.sp:hover img {
-      filter: brightness(0.7) sepia(1) saturate(8) hue-rotate(95deg) drop-shadow(0 0 8px #1ed760cc); /* spotify verde */
+      filter: brightness(0) invert(1);
+      transition: filter 0.2s ease, transform 0.2s ease;
     }
     .dock-socials a:hover img {
-      transform: scale(1.12);
+      transform: scale(1.1);
+    }
+    .dock-socials a.instagram:hover img {
+      filter: invert(33%) sepia(77%) saturate(7475%) hue-rotate(316deg) brightness(98%) contrast(101%);
+    }
+    .dock-socials a.soundcloud:hover img {
+      filter: invert(59%) sepia(90%) saturate(2000%) hue-rotate(-12deg) brightness(99%) contrast(97%);
+    }
+    .dock-socials a.spotify:hover img {
+      filter: invert(52%) sepia(76%) saturate(686%) hue-rotate(89deg) brightness(92%) contrast(91%);
     }
     @media (max-width: 768px) {
       body {
@@ -251,13 +249,13 @@
   </header>
   <!-- Dock social fijo abajo -->
   <div class="dock-socials">
-    <a class="sc" href="https://soundcloud.com/dienachtbrenntclub" target="_blank" rel="noopener" title="SoundCloud">
+    <a href="https://soundcloud.com/dienachtbrenntclub" class="soundcloud" target="_blank" rel="noopener" title="SoundCloud">
       <img src="/img/icons/soundcloud.svg" alt="SoundCloud" />
     </a>
-    <a class="ig" href="https://instagram.com/dienachtbrenntclub" target="_blank" rel="noopener" title="Instagram">
+    <a href="https://instagram.com/dienachtbrenntclub" class="instagram" target="_blank" rel="noopener" title="Instagram">
       <img src="/img/icons/instagram.svg" alt="Instagram" />
     </a>
-    <a class="sp" href="https://open.spotify.com/playlist/3dAUufff9G37F3r1NHhWhI?si=a4uTV6mjS7mVpcWcBuur6w" target="_blank" rel="noopener" title="Spotify">
+    <a href="https://open.spotify.com/playlist/3dAUufff9G37F3r1NHhWhI?si=a4uTV6mjS7mVpcWcBuur6w" class="spotify" target="_blank" rel="noopener" title="Spotify">
       <img src="/img/icons/spotify.svg" alt="Spotify" />
     </a>
   </div>
