@@ -33,6 +33,28 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      /* El fondo no se mueve al hacer scroll, el contenido sí */
+    }
+    /* Fondo GIF centrado y fijo */
+    .gif-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 0;
+      pointer-events: none;
+      background: transparent;
+    }
+    .gif-bg img {
+      display: block;
+      max-width: 60vw;
+      max-height: 80vh;
+      width: auto;
+      height: auto;
+      margin: auto;
+      /* El GIF permanece centrado incluso si la ventana se redimensiona */
     }
     /* Botón hamburguesa */
     .menu-toggle {
@@ -105,6 +127,11 @@
       width: 80vw;
       height: auto;
     }
+    /* Ajuste de stacking para que el gif esté detrás de todo */
+    header, .menu-toggle, .sidebar {
+      position: relative;
+      z-index: 1;
+    }
     @media (max-width: 768px) {
       body {
         padding: 60px 10px 50px;
@@ -118,10 +145,18 @@
         max-width: 250px;
         width: 60vw;
       }
+      .gif-bg img {
+        max-width: 95vw;
+        max-height: 60vh;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Fondo GIF centrado y fijo detrás de todo -->
+  <div class="gif-bg" aria-hidden="true">
+    <img src="dnbc.gif" alt="Fondo DNBC animado" />
+  </div>
   <!-- Botón hamburguesa -->
   <button class="menu-toggle" aria-label="Toggle menu">
     <span class="bar"></span>
