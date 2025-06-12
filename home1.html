@@ -22,18 +22,14 @@
       margin: 0;
       padding: 0;
     }
-    body {
+    html, body {
+      height: 100%;
+      width: 100%;
       background: #000;
       color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
-      margin: 0;
-      padding: 80px 20px 50px;
       overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      /* El fondo no se mueve al hacer scroll, el contenido sí */
     }
     /* Fondo GIF centrado y fijo */
     .gif-bg {
@@ -54,7 +50,6 @@
       width: auto;
       height: auto;
       margin: auto;
-      /* El GIF permanece centrado incluso si la ventana se redimensiona */
     }
     /* Botón hamburguesa */
     .menu-toggle {
@@ -127,15 +122,7 @@
       width: 80vw;
       height: auto;
     }
-    /* Ajuste de stacking para que el gif esté detrás de todo */
-    header, .menu-toggle, .sidebar {
-      position: relative;
-      z-index: 1;
-    }
     @media (max-width: 768px) {
-      body {
-        padding: 60px 10px 50px;
-      }
       header {
         justify-content: space-between;
         padding: 0 20px;
@@ -150,10 +137,16 @@
         max-height: 60vh;
       }
     }
+    /* El contenido debajo del header irá aquí... */
+    main, .contenido {
+      margin-top: 90px;
+      z-index: 2;
+      position: relative;
+    }
   </style>
 </head>
 <body>
-  <!-- Fondo GIF centrado y fijo detrás de todo -->
+  <!-- Fondo GIF fijo y centrado -->
   <div class="gif-bg" aria-hidden="true">
     <img src="dnbc.gif" alt="Fondo DNBC animado" />
   </div>
@@ -176,6 +169,7 @@
       <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
     </a>
   </header>
+  <!-- Aquí tu contenido futuro -->
   <script>
     (function() {
       'use strict';
