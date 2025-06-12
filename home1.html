@@ -20,7 +20,6 @@
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Estilos en línea (se sugiere mover a archivo CSS separado en producción) -->
   <style>
     @font-face {
       font-family: 'horizon';
@@ -45,6 +44,7 @@
       padding: 80px 20px 50px;
       overflow-x: hidden;
       position: relative;
+      min-height: 100vh;
     }
     /* Fondo GIF centrado y fijo */
     .gif-bg {
@@ -60,8 +60,8 @@
     }
     .gif-bg img {
       display: block;
-      max-width: 48vw;   /* 60vw * 0.8 = 48vw, es decir, 20% más pequeño */
-      max-height: 64vh;  /* 80vh * 0.8 = 64vh */
+      max-width: 48vw;
+      max-height: 64vh;
       width: auto;
       height: auto;
       margin: auto;
@@ -137,6 +137,48 @@
       width: 80vw;
       height: auto;
     }
+    /* --- DOCK SOCIALS --- */
+    .dock-socials {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 30px;
+      background: rgba(20, 20, 20, 0.75);
+      border-radius: 32px;
+      padding: 10px 32px 10px 32px;
+      box-shadow: 0 6px 24px 4px rgba(0,0,0,0.35);
+      z-index: 2000;
+      align-items: center;
+      border: 1.5px solid #333;
+      backdrop-filter: blur(2px);
+      transition: background 0.2s;
+    }
+    .dock-socials a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      transition: background 0.1s;
+      text-decoration: none;
+    }
+    .dock-socials a:hover {
+      background: rgba(255,255,255,0.06);
+    }
+    .dock-socials img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      filter: brightness(1.1) drop-shadow(0 0 6px #000);
+      transition: transform 0.18s;
+    }
+    .dock-socials a:hover img {
+      transform: scale(1.12);
+      filter: brightness(1.3) drop-shadow(0 0 10px #fff3);
+    }
     @media (max-width: 768px) {
       body {
         padding: 60px 10px 50px;
@@ -156,6 +198,19 @@
       .gif-bg img {
         max-width: 95vw;
         max-height: 60vh;
+      }
+      .dock-socials {
+        gap: 18px;
+        padding: 8px 18px;
+        bottom: 12px;
+      }
+      .dock-socials a {
+        width: 36px;
+        height: 36px;
+      }
+      .dock-socials img {
+        width: 22px;
+        height: 22px;
       }
     }
   </style>
@@ -184,6 +239,18 @@
       <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
     </a>
   </header>
+  <!-- Dock social fijo abajo -->
+  <div class="dock-socials">
+    <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank" rel="noopener" title="SoundCloud">
+      <img src="/img/icons/soundcloud.svg" alt="SoundCloud" />
+    </a>
+    <a href="https://instagram.com/dienachtbrenntclub" target="_blank" rel="noopener" title="Instagram">
+      <img src="/img/icons/instagram.svg" alt="Instagram" />
+    </a>
+    <a href="https://open.spotify.com/playlist/3dAUufff9G37F3r1NHhWhI?si=a4uTV6mjS7mVpcWcBuur6w" target="_blank" rel="noopener" title="Spotify">
+      <img src="/img/icons/spotify.svg" alt="Spotify" />
+    </a>
+  </div>
   <script>
     (function() {
       'use strict';
