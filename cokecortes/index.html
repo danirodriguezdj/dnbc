@@ -255,9 +255,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 20px;              /* El hueco visual entre los botones, ajústalo a tu gusto */
-      max-width: 540px;       /* Suma el ancho de dos botones + el gap. Sube o baja según tus botones */
-      margin: 0 auto;         /* Centrado en el contenedor padre */
+      gap: 20px;              
+      max-width: 540px;       
+      margin: 0 auto;         
       width: 100%;
     }
     
@@ -266,11 +266,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        flex: 0 0 260px;          /* Ajusta el ancho según lo que necesites */
+        flex: 0 0 260px;          
         min-width: 200px;
-        max-width: 300px;         /* Ajusta según el espacio disponible */
+        max-width: 300px;         
         font-family: 'horizon', sans-serif;
-        font-size: 0.85rem;          /* Tamaño más pequeño para que todo quepa */
+        font-size: 0.85rem;          
         padding: 14px 18px;
         text-align: center;
         margin: 0;
@@ -287,8 +287,8 @@
         color 0.2s,
         border-color 0.2s,
         box-shadow 0.2s;
-        overflow: hidden;         /* Oculta cualquier exceso si aún así se pasa */
-        white-space: nowrap;      /* ¡Esto es clave! */
+        overflow: hidden;         
+        white-space: nowrap;      
       }
 
       .button-row-centered-gap .button:hover,
@@ -315,15 +315,16 @@
       border: none;
     }
 
+    /* CAMBIOS PARA MÓVIL */
     @media (max-width: 768px) {
       .artist-name {
-       font-size: clamp(24px, 10vw, 48px); /* mínimo 24px, ideal 10vw, máximo 48px */
+       font-size: clamp(24px, 10vw, 48px); 
        text-align: left;
        align-self: flex-start;
       }
       html, body {
         scroll-snap-type: none;
-        padding-top: 75px; /* Ajuste para header fijo */
+        padding-top: 75px; 
       }
 
       .hero-section {
@@ -334,12 +335,12 @@
       }
 
       .hero-img {
-        height: 100%; /* altura visible para la imagen */
+        height: 100%; 
         flex: 1;
         background-image: url("img/cokeplaying.png");
         background-size: cover;
         background-position: center;
-        min-height: 50vh; /* asegura una altura mínima visible */
+        min-height: 50vh; 
       }
 
       .hero-content {
@@ -347,23 +348,32 @@
         align-items: center;
       }
 
+      /* REDUCE COMPLETAMENTE EL HUECO ENTRE IMG Y BIO EN MOVIL */
+      .bottom-section {
+        padding: 8px 0 8px 0 !important;
+        margin-top: 0 !important;
+        gap: 12px !important;
+        min-height: auto !important;
+      }
       .biography-section {
         flex-direction: column;
-        gap: clamp(12px, 4vw, 24px);
-        padding: 0 10px;
-        margin-top: 0;
+        gap: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
       }
       .bio-img {
         width: 80vw;
         max-width: 100%;
         min-width: 0;
-        margin: 0;
+        margin: 0 !important;
         display: block;
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
       }
       .bio-text {
         text-align: left;
-        margin: 0;
-        padding: 0;
+        margin: 0 !important;
+        padding: 0 !important;
       }
       .bio-text h3 {
         margin: 0;
@@ -377,17 +387,17 @@
         align-items: center;
         gap: 20px;
         width: 100%;
-        max-width: 300px; /* igual o un poco más que el ancho del botón */
+        max-width: 300px; 
         margin: 0 auto;
       }
 
       .button-row-centered-gap .button,
       a.button {
         min-width: 0;
-        width: 260px;         /* MISMO ancho fijo que desktop */
+        width: 260px;         
         max-width: 260px;
         box-sizing: border-box;
-        max-height: 48px;         /* MISMA altura que desktop */
+        max-height: 48px;         
         padding: 14px 18px;
         font-size: 0.85rem;
         margin: 0;
@@ -398,12 +408,6 @@
         display: flex;
       }
     
-      .bottom-section {
-        padding-top: 0px;
-        margin-top: 10px;
-        min-height: auto;
-      }
-
       body {
         padding: 80px 10px 50px;
       }
