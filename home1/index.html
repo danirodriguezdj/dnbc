@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Die Nacht Brennt Club | DNBC</title>
-  <!-- Corregido: rutas relativas para favicon e iconos si están en /home1/ -->
+  <title>DNBC Agency</title>
+  <!-- Rutas relativas a /home1 para favicons e íconos -->
   <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="shortcut icon" href="favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
-  <!-- Usa rutas relativas para la fuente (si existe) -->
-  <link rel="preload" href="fonts/horizon.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
   <style>
     @font-face {
       font-family: 'horizon';
@@ -20,64 +18,27 @@
       font-style: normal;
       font-display: swap;
     }
-    html, body {
-      height: 100%;
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'horizon', sans-serif;
       margin: 0;
       padding: 0;
-      background: transparent !important;
-      box-sizing: border-box;
-    }
-    #background-embed {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      z-index: 0;
-      background: #000;
-      overflow: hidden;
-    }
-    #background-embed iframe {
-      width: 100vw; height: 100vh;
-      border: none;
-      display: block;
-      pointer-events: none;
-      background: #000;
-    }
-    .main-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 100px 20px;
-    }
-    img {
-      max-width: 300px;
-      margin-bottom: 30px;
-    }
-    .social a {
-      color: #fff;
-      margin: 0 10px;
-      font-size: 20px;
-      text-decoration: none;
-    }
-    .soundcloud-container {
-      margin: 40px auto 0;
-      max-width: 600px;
-      padding: 0 20px;
-    }
-    .soundcloud-container iframe {
-      width: 100%;
-      height: 450px;
-      border: none;
     }
     .menu-toggle {
       position: fixed;
       top: 20px;
       left: 20px;
+      background: none;
+      border: none;
       cursor: pointer;
       z-index: 1001;
     }
-    .bar {
+    .menu-toggle .bar {
+      display: block;
       width: 30px;
       height: 3px;
-      background-color: #fff;
+      background: #fff;
       margin: 6px 0;
     }
     .sidebar {
@@ -86,10 +47,18 @@
       left: -250px;
       width: 250px;
       height: 100%;
-      background-color: #111;
+      background: #111;
       padding-top: 60px;
-      transition: left 0.3s ease;
+      transition: left .3s ease;
       z-index: 1000;
+    }
+    .sidebar.open {
+      left: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
     }
     .sidebar a {
       display: block;
@@ -100,74 +69,72 @@
       border-bottom: 1px solid #222;
     }
     .sidebar a:hover {
-      background-color: #222;
+      background: #222;
     }
-    .sidebar.open {
+    header {
+      position: fixed;
+      top: 0;
       left: 0;
+      width: 100%;
+      height: 75px;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 999;
+      border-bottom: 2px solid #000;
     }
-    @media (max-width: 600px) {
-      .main-content {
-        padding: 50px 10px;
+    header a {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+    header .logo {
+      max-width: 400px;
+      width: 80vw;
+      height: auto;
+    }
+    @media (max-width: 768px) {
+      header {
+        padding: 0 20px;
+        height: 65px;
       }
-      .soundcloud-container {
-        padding: 0 10px;
-      }
-      img {
-        max-width: 200px;
+      header .logo {
+        max-width: 250px;
+        width: 60vw;
       }
     }
   </style>
 </head>
 <body>
-  <!-- FONDO CANVA -->
-  <div id="background-embed" aria-hidden="true">
-    <!-- Si esto sigue en blanco, el problema es de permisos de Canva: SOLUCIÓN ABAJO -->
-    <iframe loading="lazy"
-      src="https://www.canva.com/design/DAGqGj7pvoE/CQ-8-WF2300o-jRKs7p7mg/view?embed"
-      allowfullscreen="allowfullscreen"
-      allow="fullscreen">
-    </iframe>
-  </div>
-
-  <!-- MENÚ Y CONTENIDO -->
-  <div class="menu-toggle" onclick="toggleMenu()">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-  </div>
-  <nav id="sidebar" class="sidebar">
-    <a href="index.html">Home</a>
-    <a href="agency">Agency</a>
+  <button class="menu-toggle" aria-label="Toggle menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+  <nav id="sidebar" class="sidebar" aria-label="Main navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="agency1">Agency</a></li>
+    </ul>
   </nav>
-  <div class="main-content">
-    <!-- RUTA RELATIVA AL LOGO -->
-    <img src="logo.png" alt="Logo DNBC" />
-    <h1>WEB UNDER CONSTRUCTION</h1>
-    <p>FOLLOW US:</p>
-    <div class="social">
-      <a href="https://instagram.com/dienachtbrenntclub" target="_blank">Instagram</a>
-      <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank">SoundCloud</a>
-    </div>
-    <div class="soundcloud-container">
-      <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay"
-        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1754486535&color=%23918f8d&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=true">
-      </iframe>
-      <div style="background-color: #000000; font-size: 10px; color: #ffffff; line-break: anywhere; word-break: normal; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif; font-weight: 100;">
-        <a href="https://soundcloud.com/dienachtbrenntclub" title="Die Nacht Brennt Club" target="_blank" style="color: #ffffff; text-decoration: none;">Die Nacht Brennt Club</a> · 
-        <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts" title="DNBC PODCASTS" target="_blank" style="color: #ffffff; text-decoration: none;">DNBC PODCASTS</a>
-      </div>
-    </div>
-    <div style="font-size:11px; color:#888; margin-top:10px;">
-      <a href="https://www.canva.com/design/DAGqGj7pvoE/CQ-8-WF2300o-jRKs7p7mg/watch?utm_content=DAGqGj7pvoE&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener" style="color: #888;">
-        Diseño de Daniel Rodríguez Davila
-      </a>
-    </div>
-  </div>
+  <header>
+    <a href="https://dienachtbrenntclub.com" rel="noopener">
+      <img src="logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
+    </a>
+  </header>
   <script>
-    function toggleMenu() {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('open');
-    }
+    (function() {
+      'use strict';
+      document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.querySelector('.menu-toggle');
+        var nav = document.getElementById('sidebar');
+        btn.addEventListener('click', function() {
+          nav.classList.toggle('open');
+        });
+      });
+    })();
   </script>
 </body>
 </html>
