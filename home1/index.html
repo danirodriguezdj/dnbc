@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    Archivo: index.html
-    Propósito: Página principal de Die Nacht Brennt Club (DNBC).
-    Estándar de documentación: ISO/IEC/IEEE 26515.
-  -->
-
-  <!-- Metadatos generales -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Die Nacht Brennt Club | DNBC</title>
@@ -16,19 +9,13 @@
   <meta name="keywords"
         content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club" />
   <meta name="author" content="Die Nacht Brennt Club (Mateo Palmeiro & Daniel Rodríguez)" />
-
-  <!-- Íconos y PWA manifest -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
-
-  <!-- Preload fuente Horizon para evitar Flash Of Unstyled Text -->
   <link rel="preload" href="/fonts/horizon.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-
-  <!-- Datos estructurados JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -42,13 +29,7 @@
     ]
   }
   </script>
-  
-  <!-- Estilos globales -->
   <style>
-    /* 
-     * @brief Define la fuente personalizada 'horizon'.
-     * @source /fonts/horizon.woff2
-     */
     @font-face {
       font-family: 'horizon';
       src: url('/fonts/horizon.woff2') format('woff2');
@@ -56,98 +37,62 @@
       font-style: normal;
       font-display: swap;
     }
-
-    /*
-     * @brief Estilos globales de la página.
-     * @details Aplica fondo negro, tipografía, alineación y espaciado.
-     */
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
-      padding: 100px 20px;
-      background-color: #000;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      background: transparent !important;
       color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
       position: relative;
       overflow-x: hidden;
-      /* el fondo se gestiona con el #background-embed */
     }
-
-    /* Fondo Canva embed fijo y detrás de todo */
     #background-embed-container {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
       z-index: 0;
-      pointer-events: none; /* El fondo no bloquea la interacción */
+      pointer-events: none;
       overflow: hidden;
+      background: #000; /* fallback negro si Canva no carga */
     }
     #background-embed-container iframe {
-      width: 100vw !important;
-      height: 100vh !important;
-      min-width: 100vw;
-      min-height: 100vh;
-      max-width: none;
-      max-height: none;
-      position: absolute;
-      top: 0;
-      left: 0;
+      width: 100vw;
+      height: 100vh;
       border: none;
-      padding: 0;
-      margin: 0;
       pointer-events: none;
+      display: block;
+      background: #000;
     }
-
-    /* El resto del contenido debe ir sobre el fondo */
     .main-content {
       position: relative;
       z-index: 1;
+      padding: 100px 20px;
     }
-
-    /*
-     * @brief Estilo para la imagen del logo.
-     * @details Limita anchura y margen inferior.
-     */
     img {
       max-width: 300px;
       margin-bottom: 30px;
     }
-
-    /*
-     * @brief Estilos para los enlaces de redes sociales.
-     * @details Define color, tamaño y espaciado.
-     */
     .social a {
       color: #fff;
       margin: 0 10px;
       font-size: 20px;
       text-decoration: none;
     }
-
-    /*
-     * @brief Contenedor del reproductor de SoundCloud.
-     * @details Centrado, con margen lateral para dejar “borde” a cada lado.
-     */
     .soundcloud-container {
       margin: 40px auto 0;
       max-width: 600px;
       padding: 0 20px;
     }
-
-    /*
-     * @brief Estilos del iframe de SoundCloud.
-     */
     .soundcloud-container iframe {
       width: 100%;
       height: 450px;
       border: none;
     }
-
-    /*
-     * @brief Botón de menú tipo “hamburguesa”.
-     */
     .menu-toggle {
       position: fixed;
       top: 20px;
@@ -155,20 +100,12 @@
       cursor: pointer;
       z-index: 1001;
     }
-
-    /*
-     * @brief Barras del botón de menú.
-     */
     .bar {
       width: 30px;
       height: 3px;
       background-color: #fff;
       margin: 6px 0;
     }
-
-    /*
-     * @brief Barra lateral (sidebar) oculta por defecto.
-     */
     .sidebar {
       position: fixed;
       top: 0;
@@ -194,17 +131,12 @@
     .sidebar.open {
       left: 0;
     }
-
-    /*
-     * @brief Media queries para dispositivos móviles.
-     * @details Reduce padding y márgenes para aprovechar mejor el espacio.
-     */
     @media (max-width: 600px) {
-      body {
-        padding: 50px 10px;    /* reduce espaciado general */
+      .main-content {
+        padding: 50px 10px;
       }
       .soundcloud-container {
-        padding: 0 10px;       /* reduce márgenes laterales */
+        padding: 0 10px;
       }
       img {
         max-width: 200px;
@@ -213,72 +145,44 @@
   </style>
 </head>
 <body>
-  <!-- Fondo Canva embed (no bloquea interacción, fondo visual animado) -->
   <div id="background-embed-container" aria-hidden="true">
     <iframe loading="lazy"
-      style="pointer-events: none;"
       src="https://www.canva.com/design/DAGqGj7pvoE/CQ-8-WF2300o-jRKs7p7mg/watch?embed"
       allowfullscreen="allowfullscreen" allow="fullscreen">
     </iframe>
   </div>
-
-  <!-- 
-    @brief Botón para alternar visibilidad del menú lateral.
-    @event onclick -> toggleMenu()
-  -->
   <div class="menu-toggle" onclick="toggleMenu()">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </div>
-
-  <!--
-    @brief Navegación principal en sidebar.
-    @details Contiene enlaces a secciones internas.
-  -->
   <nav id="sidebar" class="sidebar">
     <a href="/">Home</a>
     <a href="/agency">Agency</a>
   </nav>
-
-  <!-- Contenido principal por encima del fondo -->
   <div class="main-content">
-    <!-- Logo y mensaje principal -->
     <img src="logo.png" alt="Logo DNBC" />
     <h1>WEB UNDER CONSTRUCTION</h1>
     <p>FOLLOW US:</p>
-
-    <!-- Enlaces de redes sociales -->
     <div class="social">
       <a href="https://instagram.com/dienachtbrenntclub" target="_blank">Instagram</a>
       <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank">SoundCloud</a>
     </div>
-
-    <!-- Contenedor del reproductor de SoundCloud -->
     <div class="soundcloud-container">
       <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay"
         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1754486535&color=%23918f8d&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=true">
       </iframe>
-
       <div style="background-color: #000000; font-size: 10px; color: #ffffff; line-break: anywhere; word-break: normal; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif; font-weight: 100;">
         <a href="https://soundcloud.com/dienachtbrenntclub" title="Die Nacht Brennt Club" target="_blank" style="color: #ffffff; text-decoration: none;">Die Nacht Brennt Club</a> · 
         <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts" title="DNBC PODCASTS" target="_blank" style="color: #ffffff; text-decoration: none;">DNBC PODCASTS</a>
       </div>
     </div>
-
-    <!-- Attribution Canva (opcional, puedes moverlo o hacerlo discreto) -->
     <div style="font-size:11px; color:#888; margin-top:10px;">
       <a href="https://www.canva.com/design/DAGqGj7pvoE/CQ-8-WF2300o-jRKs7p7mg/watch?utm_content=DAGqGj7pvoE&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener" style="color: #888;">
         Diseño de Daniel Rodríguez Davila
       </a>
     </div>
   </div>
-
-  <!--
-    @brief Función para alternar la clase 'open' en el sidebar.
-    @pre El elemento con id="sidebar" existe en el DOM.
-    @post El sidebar se muestra u oculta según la clase.
-  -->
   <script>
     function toggleMenu() {
       const sidebar = document.getElementById('sidebar');
