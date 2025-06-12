@@ -4,8 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Die Nacht Brennt Club | DNBC</title>
-  <link rel="preload" href="/fonts/horizon.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <!-- Corregido: rutas relativas para favicon e iconos si están en /home1/ -->
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <!-- Usa rutas relativas para la fuente (si existe) -->
+  <link rel="preload" href="fonts/horizon.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
   <style>
+    @font-face {
+      font-family: 'horizon';
+      src: url('fonts/horizon.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
     html, body {
       height: 100%;
       margin: 0;
@@ -105,21 +119,28 @@
   </style>
 </head>
 <body>
+  <!-- FONDO CANVA -->
   <div id="background-embed" aria-hidden="true">
+    <!-- Si esto sigue en blanco, el problema es de permisos de Canva: SOLUCIÓN ABAJO -->
     <iframe loading="lazy"
-      src="https://www.canva.com/design/DAGqGj7pvoE/CQ-8-WF2300o-jRKs7p7mg/watch?embed"
-      allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+      src="https://www.canva.com/design/DAGqGj7pvoE/CQ-8-WF2300o-jRKs7p7mg/view?embed"
+      allowfullscreen="allowfullscreen"
+      allow="fullscreen">
+    </iframe>
   </div>
+
+  <!-- MENÚ Y CONTENIDO -->
   <div class="menu-toggle" onclick="toggleMenu()">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </div>
   <nav id="sidebar" class="sidebar">
-    <a href="/">Home</a>
-    <a href="/agency">Agency</a>
+    <a href="index.html">Home</a>
+    <a href="agency">Agency</a>
   </nav>
   <div class="main-content">
+    <!-- RUTA RELATIVA AL LOGO -->
     <img src="logo.png" alt="Logo DNBC" />
     <h1>WEB UNDER CONSTRUCTION</h1>
     <p>FOLLOW US:</p>
