@@ -60,8 +60,8 @@
     }
     .gif-bg img {
       display: block;
-      max-width: 60vw;
-      max-height: 80vh;
+      max-width: 48vw;   /* 60vw * 0.8 = 48vw, es decir, 20% más pequeño */
+      max-height: 64vh;  /* 80vh * 0.8 = 64vh */
       width: auto;
       height: auto;
       margin: auto;
@@ -152,6 +152,10 @@
       header .logo {
         max-width: 250px;
         width: 60vw;
+      }
+      .gif-bg img {
+        max-width: 95vw;
+        max-height: 60vh;
       }
     }
   </style>
