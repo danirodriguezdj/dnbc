@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!--
+    Archivo: agency1/index.html
+    Propósito: Página principal de DNBC Agency con listado de artistas.
+    Estándar de documentación: ISO/IEC/IEEE 26515
+  -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Die Nacht Brennt Club</title>
+  <title>DNBC Agency</title>
+  <meta name="description" content="DIE NACHT BRENNT AGENCY – Underground electronic music artist roster." />
+  <meta name="author" content="DNBC Team" />
+
+  <!-- Íconos y manifest para PWA -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Estilos en línea (se sugiere mover a archivo CSS separado en producción) -->
   <style>
     @font-face {
       font-family: 'horizon';
@@ -22,14 +34,17 @@
       margin: 0;
       padding: 0;
     }
-    html, body {
-      height: 100%;
-      width: 100%;
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       background: #000;
       color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
+      padding: 80px 20px 50px;
       overflow-x: hidden;
+      position: relative;
     }
     /* Fondo GIF centrado y fijo */
     .gif-bg {
@@ -51,7 +66,7 @@
       height: auto;
       margin: auto;
     }
-    /* Botón hamburguesa */
+    /* Botón hamburguesa para mobile/desktop */
     .menu-toggle {
       position: fixed;
       top: 20px;
@@ -68,7 +83,7 @@
       background: #fff;
       margin: 6px 0;
     }
-    /* Sidebar */
+    /* Sidebar oculto por defecto, aparece al clicar */
     .sidebar {
       position: fixed;
       top: 0;
@@ -97,7 +112,7 @@
     .sidebar a:hover {
       background: #222;
     }
-    /* Header fijo */
+    /* Header fijo con logo centrado */
     header {
       position: fixed;
       top: 0;
@@ -123,41 +138,43 @@
       height: auto;
     }
     @media (max-width: 768px) {
+      body {
+        padding: 60px 10px 50px;
+      }
       header {
         justify-content: space-between;
         padding: 0 20px;
         height: 65px;
       }
+      header a {
+        margin-left: auto;
+      }
       header .logo {
         max-width: 250px;
         width: 60vw;
-      }
-      .gif-bg img {
-        max-width: 95vw;
-        max-height: 60vh;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Fondo GIF fijo y centrado -->
+  <!-- Fondo GIF fijo y centrado detrás de todo -->
   <div class="gif-bg" aria-hidden="true">
-    <img src="img/dnbc.gif" alt="Fondo DNBC animado" />
+    <img src="/img/dnbc.gif" alt="Fondo DNBC animado" />
   </div>
-  <!-- Botón hamburguesa -->
+  <!-- Botón para abrir/cerrar menú lateral -->
   <button class="menu-toggle" aria-label="Toggle menu">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
-  <!-- Menú lateral -->
+  <!-- Navegación lateral -->
   <nav id="sidebar" class="sidebar" aria-label="Main navigation">
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/agency">Agency</a></li>
     </ul>
   </nav>
-  <!-- Header con logo -->
+  <!-- Header fijo con logo -->
   <header>
     <a href="https://dienachtbrenntclub.com" rel="noopener">
       <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
