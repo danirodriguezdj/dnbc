@@ -4,73 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Die Nacht Brennt Club | DNBC</title>
-  <meta name="description"
-        content="DNBC — Die Nacht Brennt Club. Official page. Underground electronic music, DJ podcasts, and events." />
-  <meta name="keywords"
-        content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club" />
-  <meta name="author" content="Die Nacht Brennt Club (Mateo Palmeiro & Daniel Rodríguez)" />
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="DNBC" />
-  <link rel="manifest" href="/site.webmanifest" />
   <link rel="preload" href="/fonts/horizon.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Die Nacht Brennt Club",
-    "url": "https://dienachtbrenntclub.com",
-    "logo": "https://dienachtbrenntclub.com/logo.png",
-    "sameAs": [
-      "https://instagram.com/dienachtbrenntclub",
-      "https://soundcloud.com/dienachtbrenntclub"
-    ]
-  }
-  </script>
   <style>
-    @font-face {
-      font-family: 'horizon';
-      src: url('/fonts/horizon.woff2') format('woff2');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
-    }
-    body {
-      min-height: 100vh;
       background: transparent !important;
-      color: #fff;
-      font-family: 'horizon', sans-serif;
-      text-align: center;
-      position: relative;
-      overflow-x: hidden;
+      box-sizing: border-box;
     }
-    #background-embed-container {
+    #background-embed {
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      top: 0; left: 0; width: 100vw; height: 100vh;
       z-index: 0;
-      pointer-events: none;
+      background: #000;
       overflow: hidden;
-      background: #000; /* fallback negro si Canva no carga */
     }
-    #background-embed-container iframe {
-      width: 100vw;
-      height: 100vh;
+    #background-embed iframe {
+      width: 100vw; height: 100vh;
       border: none;
-      pointer-events: none;
       display: block;
+      pointer-events: none;
       background: #000;
     }
     .main-content {
       position: relative;
       z-index: 1;
+      text-align: center;
       padding: 100px 20px;
     }
     img {
@@ -145,11 +105,10 @@
   </style>
 </head>
 <body>
-  <div id="background-embed-container" aria-hidden="true">
+  <div id="background-embed" aria-hidden="true">
     <iframe loading="lazy"
       src="https://www.canva.com/design/DAGqGj7pvoE/CQ-8-WF2300o-jRKs7p7mg/watch?embed"
-      allowfullscreen="allowfullscreen" allow="fullscreen">
-    </iframe>
+      allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
   </div>
   <div class="menu-toggle" onclick="toggleMenu()">
     <div class="bar"></div>
