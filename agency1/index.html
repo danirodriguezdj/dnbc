@@ -184,6 +184,34 @@
       opacity: 1;
     }
 
+    /* NUEVO: Título arriba del banner manager */
+    .manager-name-title {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 4;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      pointer-events: none;
+      /* Para no bloquear clics en el enlace */
+    }
+    .manager-name-title span {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-family: 'horizon', sans-serif;
+      color: #fff;
+      text-shadow: 0 2px 14px #000, 0 0 6px #222;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: normal;
+      letter-spacing: 2px;
+      margin: 18px 0 0 0;
+      line-height: 1.1;
+      user-select: none;
+    }
+
     .artist {
       position: relative;
       overflow: hidden;
@@ -281,6 +309,10 @@
         font-size: 1.1rem;
         padding: 8px 5px;
       }
+      .manager-name-title span {
+        font-size: clamp(1.3rem, 6vw, 2.3rem);
+        margin-top: 8px;
+      }
     }
     @media (max-width: 500px) {
       .artist-grid {
@@ -296,6 +328,10 @@
       .artist.manager-banner .artist-info {
         font-size: 1rem;
         padding: 6px 2px;
+      }
+      .manager-name-title span {
+        font-size: clamp(1rem, 8vw, 1.7rem);
+        margin-top: 4px;
       }
     }
     @media (max-width: 768px) {
@@ -319,7 +355,6 @@
         padding: 8px 16px;
         bottom: 12px;
       }
-      /* Cambia a 2 columnas en pantallas móviles */
       .artist-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -378,6 +413,9 @@
   <main class="artist-grid">
     <!-- Banner manager ocupa toda la fila -->
     <a class="artist manager-banner" href="https://dienachtbrenntclub.com/giulianigro">
+      <div class="manager-name-title">
+        <span>GIULIA NIGRO</span>
+      </div>
       <img class="base"    src="img/giulianigro.jpg"         alt="Giuliani Gro" />
       <img class="playing" src="img/giulianigroplaying.jpg"  alt="Giuliani Gro en acción" />
       <div class="artist-info">Management Mama</div>
