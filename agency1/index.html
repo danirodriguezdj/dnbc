@@ -21,7 +21,6 @@
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Estilos en línea (se sugiere mover a archivo CSS separado en producción) -->
   <style>
     @font-face {
       font-family: 'horizon';
@@ -129,7 +128,6 @@
       padding: 20px;
     }
 
-    /* Banner manager ocupa la fila completa, se comporta igual que una tarjeta artist pero con más tamaño y grid-column */
     .artist.manager-banner {
       grid-column: 1 / -1;
       min-height: 220px;
@@ -184,7 +182,6 @@
       opacity: 1;
     }
 
-    /* NUEVO: Título arriba del banner manager */
     .manager-name-title {
       position: absolute;
       top: 0;
@@ -195,7 +192,6 @@
       align-items: flex-start;
       justify-content: center;
       pointer-events: none;
-      /* Para no bloquear clics en el enlace */
     }
     .manager-name-title span {
       display: block;
@@ -210,6 +206,11 @@
       margin: 18px 0 0 0;
       line-height: 1.1;
       user-select: none;
+      transition: font-size .13s linear, transform .13s linear;
+    }
+    .artist.manager-banner:hover .manager-name-title span {
+      transform: scale(1.22);
+      transition: transform .13s linear;
     }
 
     .artist {
@@ -252,6 +253,7 @@
       transition: opacity .3s;
       color: #fff;
       z-index: 3;
+      font-size: 1rem;
     }
     .artist:hover .artist-info {
       opacity: 1;
@@ -326,12 +328,16 @@
         border-radius: 7px;
       }
       .artist.manager-banner .artist-info {
-        font-size: 1rem;
+        font-size: 13px;
         padding: 6px 2px;
       }
       .manager-name-title span {
-        font-size: clamp(1rem, 8vw, 1.7rem);
-        margin-top: 4px;
+        font-size: 13px;
+        margin-top: 2px;
+        /* Elimina clamp, fuerza tamaño igual que artist-info en móvil */
+      }
+      .artist-info {
+        font-size: 13px;
       }
     }
     @media (max-width: 768px) {
@@ -367,34 +373,14 @@
       }
     }
   </style>
-    <!-- Meta Pixel Code -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1234694877952614');
-    fbq('track', 'PageView');
-  </script>
-   <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1234694877952614&ev=PageView&noscript=1"
- /></noscript>
-  <!-- End Meta Pixel Code -->
-  
 </head>
 <body>
-  <!-- Botón para abrir/cerrar menú lateral -->
   <button class="menu-toggle" aria-label="Toggle menu">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
 
-  <!-- Navegación lateral -->
   <nav id="sidebar" class="sidebar" aria-label="Main navigation">
     <ul>
       <li><a href="/">Home</a></li>
@@ -402,16 +388,13 @@
     </ul>
   </nav>
 
-  <!-- Header fijo con logo -->
   <header>
     <a href="https://dienachtbrenntclub.com" rel="noopener">
       <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
     </a>
   </header>
 
-  <!-- Listado de artistas con dos imágenes para efecto swap, ahora con el banner del manager encima -->
   <main class="artist-grid">
-    <!-- Banner manager ocupa toda la fila -->
     <a class="artist manager-banner" href="https://dienachtbrenntclub.com/giulianigro">
       <div class="manager-name-title">
         <span>GIULIA NIGRO</span>
@@ -462,12 +445,10 @@
     </a>
   </main>
 
-  <!-- Dock Instagram @dnbcagency fijo abajo, solo texto -->
   <div class="footer-link-dock">
     <a href="https://instagram.com/dnbcagency" target="_blank" rel="noopener">@dnbcagency</a>
   </div>
 
-  <!-- Script para alternar la clase 'open' del sidebar -->
   <script>
     (function() {
       'use strict';
