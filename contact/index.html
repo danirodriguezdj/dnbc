@@ -143,17 +143,20 @@
       font-size: 1.07em;
       margin-top: 2px;
     }
-    .contact-list a {
-      color: #e1306c;
+    .contact-list a,
+    .contact-list .contact-red {
+      color: #ff0033 !important;
       text-decoration: none;
       word-break: normal;
       font-family: inherit;
       font-size: 1.08em;
       margin-top: 2px;
       white-space: nowrap;
+      transition: color 0.2s;
     }
     .contact-list a:hover {
       text-decoration: underline;
+      color: #ff3355 !important;
     }
     @media (max-width: 700px) {
       header {
@@ -204,8 +207,9 @@
         font-size: 1rem;
         margin: 22px 0 0 0;
       }
-      .contact-list a {
-        font-size: 1.04em;
+      .contact-list a,
+      .contact-list .contact-red {
+        font-size: 0.89em !important;
       }
     }
   </style>
@@ -233,12 +237,12 @@ contact us
       <ul class="contact-list">
         <li>
           <strong>e-mail</strong>
-          <a href="mailto:agency@dienachtbrenntclub.com" style="white-space:nowrap;">agency@dienachtbrenntclub.com</a>
+          <a href="mailto:agency@dienachtbrenntclub.com" class="contact-red" style="white-space:nowrap;">agency@dienachtbrenntclub.com</a>
         </li>
         <li>
           <strong>artist manager</strong>
           <span class="plain">(Giulia Nigro)</span>
-          <a href="tel:+351930666328">+351 930 666 328</a>
+          <a href="tel:+351930666328" class="contact-red">+351 930 666 328</a>
         </li>
       </ul>
     </div>
@@ -250,12 +254,14 @@ contact us
         .then(res => res.text())
         .then(html => {
           document.getElementById('menu-container').innerHTML = html;
-          // Activa el menú hamburguesa después de cargar el menú
+          // Ahora que el menú está insertado, selecciona el sidebar
           const btn = document.querySelector('.menu-toggle');
           const nav = document.getElementById('sidebar');
-          btn.addEventListener('click', () => {
-            nav.classList.toggle('open');
-          });
+          if (btn && nav) {
+            btn.addEventListener('click', () => {
+              nav.classList.toggle('open');
+            });
+          }
         });
     });
   </script>
