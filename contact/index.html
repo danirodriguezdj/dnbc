@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!--
+    Archivo: contact.html
+    Propósito: Página de contacto de DNBC Agency.
+    Estándar de documentación: ISO/IEC/IEEE 26515
+  -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#000" />
@@ -40,6 +45,7 @@
       position: relative;
       min-height: 100vh;
     }
+    /* Botón hamburguesa para mobile/desktop */
     .menu-toggle {
       position: fixed;
       top: 20px;
@@ -56,6 +62,7 @@
       background: #fff;
       margin: 6px 0;
     }
+    /* Sidebar oculto por defecto, aparece al clicar */
     .sidebar {
       position: fixed;
       top: 0;
@@ -84,6 +91,7 @@
     .sidebar a:hover {
       background: #222;
     }
+    /* Header fijo con logo centrado */
     header {
       position: fixed;
       top: 0;
@@ -175,7 +183,7 @@
     .contact-list .contact-red {
       color: #ff0033 !important;
       text-decoration: none;
-      word-break: normal;
+      word-break: break-all;
       font-family: inherit;
       font-size: 1.08em;
       margin-top: 2px;
@@ -213,12 +221,6 @@
       }
     }
     @media (max-width: 500px) {
-      body, html {
-        height: 100vh;
-        max-height: 100vh;
-        min-height: 100vh;
-        overflow: hidden;
-      }
       main.contact-main {
         min-height: 100vh;
         height: 100vh;
@@ -245,23 +247,31 @@
       }
       .contact-list a,
       .contact-list .contact-red {
-        font-size: 0.74em !important;
+        font-size: 0.77em !important;
+        word-break: break-all;
+        white-space: normal;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Botón para abrir/cerrar menú lateral -->
   <button class="menu-toggle" aria-label="Toggle menu">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
+  
+  <!-- Navegación lateral -->
   <div id="menu-container"></div>
+  
+  <!-- Header fijo con logo -->
   <header>
     <a href="https://dienachtbrenntclub.com" rel="noopener">
       <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
     </a>
   </header>
+  
   <main class="contact-main">
     <div class="contact-card">
       <h1>Need Something?</h1>
@@ -273,7 +283,7 @@ contact us
       <ul class="contact-list">
         <li>
           <strong>e-mail</strong>
-          <a href="mailto:agency@dienachtbrenntclub.com" class="contact-red" style="white-space:nowrap;">agency@dienachtbrenntclub.com</a>
+          <a href="mailto:agency@dienachtbrenntclub.com" class="contact-red">agency@dienachtbrenntclub.com</a>
         </li>
         <li>
           <strong>artist manager</strong>
