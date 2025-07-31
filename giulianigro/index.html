@@ -193,10 +193,7 @@
 
     .hero-socials a.instagram:hover img { filter: invert(33%) sepia(77%) saturate(7475%) hue-rotate(316deg) brightness(98%) contrast(101%); }
     .hero-socials a.facebook:hover img { filter: invert(33%) sepia(84%) saturate(2285%) hue-rotate(196deg) brightness(98%) contrast(104%); }
-    .hero-socials a.beatport:hover img { filter: invert(62%) sepia(48%) saturate(682%) hue-rotate(58deg) brightness(94%) contrast(94%); }
-    .hero-socials a.ra:hover img { filter: invert(90%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%); }
-    .hero-socials a.soundcloud:hover img { filter: invert(59%) sepia(90%) saturate(2000%) hue-rotate(-12deg) brightness(99%) contrast(97%); }
-    .hero-socials a.spotify:hover img { filter: invert(52%) sepia(76%) saturate(686%) hue-rotate(89deg) brightness(92%) contrast(91%); }
+    .hero-socials a.linktree:hover img { filter: invert(60%) sepia(80%) saturate(400%) hue-rotate(90deg) brightness(98%) contrast(102%); }
 
     .bottom-section {
       min-height: 100vh;
@@ -300,19 +297,66 @@
         text-decoration: none;
       }
 
-    .video-wrapper {
-      display: flex;
-      gap: 20px;
+    /* MODAL STYLES */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.7);
       justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 40px;
+      align-items: center;
     }
-
-    .video-wrapper iframe {
-      flex: 1 1 45%;
-      max-width: 500px;
-      height: 315px;
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal {
+      background: #111;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.7);
+      color: #fff;
+      min-width: 270px;
+      max-width: 90vw;
+      text-align: center;
+      font-size: 1.1rem;
+      position: relative;
+    }
+    .modal h2 {
+      font-family: 'horizon', sans-serif;
+      margin-bottom: 18px;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .modal .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
       border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: color 0.2s;
+    }
+    .modal .close-btn:hover {
+      color: #eee;
+    }
+    .modal .contact-info {
+      margin-top: 10px;
+      font-size: 1.05rem;
+      color: #fff;
+      white-space: pre-line;
+    }
+    .modal .contact-info strong {
+      color: #fff;
+      font-family: 'horizon', sans-serif;
     }
 
     /* CAMBIOS PARA MÓVIL */
@@ -465,10 +509,6 @@
       #mobile-order .extras-section p {
         order: 5;
       }
-
-      #mobile-order .extras-section .video-wrapper {
-        order: 6;
-      }
     }
 
     body::-webkit-scrollbar {
@@ -529,24 +569,21 @@
       <div class="subtitle">ARTIST MANAGEMENT</div>
       <div class="description">
         <p>
-          Giulia Nigro began her journey in the underground music scene as a dedicated raver, deeply immersed in the trance and psytrance world. Her passion for music and community soon led her to take an active role behind the scenes, working in public relations and artist care for techno and tech house events. Even at a young age, she stood out for her professionalism, responsibility, and natural ability to connect with artists and promoters alike.
+          Giulia Nigro began her journey in the underground music scene as a dedicated raver, deeply immersed in the trance and psytrance world. Her passion for music and community soon led her to tak[...]
         </p>
         <p>
-          Her deep understanding of underground culture, combined with a strong work ethic and a genuine love for what she does, makes her a respected figure in the scene. Giulia isn’t just part of the industry, she’s emotionally invested in every project she joins, driven by authenticity, consistency, and a clear vision of how to support and grow the culture she believes in.
+          Her deep understanding of underground culture, combined with a strong work ethic and a genuine love for what she does, makes her a respected figure in the scene. Giulia isn’t just part of [...]
         </p>
       </div>
       <div class="hero-socials">
         <a href="https://www.instagram.com/gnpublicrelations/" target="_blank" rel="noopener" class="icon instagram">
           <img src="img/icons/instagram.svg" alt="Instagram" />
         </a>
-        <a href="https://www.facebook.com/giulianigro.dj" target="_blank" rel="noopener" class="icon facebook">
+        <a href="https://www.facebook.com/profile.php?id=100010215975159" target="_blank" rel="noopener" class="icon facebook">
           <img src="img/icons/facebook.svg" alt="Facebook" />
         </a>
-        <a href="https://soundcloud.com/giulianigro" target="_blank" rel="noopener" class="icon soundcloud">
-          <img src="img/icons/soundcloud.svg" alt="SoundCloud" />
-        </a>
-        <a href="https://open.spotify.com/artist/2UZ3u7D7nqWKt4uNwXQwJt" target="_blank" rel="noopener" class="icon spotify">
-          <img src="img/icons/spotify.svg" alt="Spotify" />
+        <a href="https://linktr.ee/giuliani_" target="_blank" rel="noopener" class="icon linktree">
+          <img src="img/icons/linktree.svg" alt="Linktree" />
         </a>
       </div>
     </div>
@@ -559,7 +596,7 @@
       <div class="bio-text">
         <h3>Biography</h3>
         <p>
-         In 2023, she found her true place in the Hard Techno scene. Her role quickly evolved from PR to a more strategic and impactful position, handling bookings, artist logistics, and long-term career support. 
+         In 2023, she found her true place in the Hard Techno scene. Her role quickly evolved from PR to a more strategic and impactful position, handling bookings, artist logistics, and long-term car[...]
         <p>
         By 2024, Giulia was recognized as a key player in the ecosystem, known for building strong, trust-based relationships and always advocating for the artists she works with.
         </p>
@@ -568,22 +605,82 @@
 
     <div class="extras-section">
       <div class="button-row button-row-centered-gap">
-        <a href="https://drive.google.com/drive/folders/1AeRk3FfZkZ8Z1hV6rUf5M7wq2hJj-GiF?usp=drive_link" target="_blank" class="button">Download Press Kit</a>
-        <a href="mailto:agency@dienachtbrenntclub.com?subject=Booking%20Request%20Giulia%20Nigro" target="_blank" class="button">Booking Request</a>
-      </div>
-      <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/3F6h7VqZ9jM" allowfullscreen></iframe>
-        <!-- Puedes añadir aquí un embed de Instagram u otro vídeo si lo deseas -->
+        <button class="button" id="mailContactBtn" type="button">Mail Contact</button>
+        <button class="button" id="phoneContactBtn" type="button">Phone Contact</button>
       </div>
     </div>
   </section>
 
+  <!-- MODAL -->
+  <div class="modal-overlay" id="contactModalOverlay" tabindex="-1">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+      <button class="close-btn" id="closeModalBtn" aria-label="Close modal">&times;</button>
+      <h2 id="contactModalTitle"></h2>
+      <div class="contact-info" id="contactModalContent"></div>
+    </div>
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      // Hamburger menu
       const btn = document.querySelector('.menu-toggle');
       const nav = document.getElementById('sidebar');
       btn.addEventListener('click', () => {
         nav.classList.toggle('open');
+      });
+
+      // Modal functionality
+      const mailBtn = document.getElementById('mailContactBtn');
+      const phoneBtn = document.getElementById('phoneContactBtn');
+      const modalOverlay = document.getElementById('contactModalOverlay');
+      const modalTitle = document.getElementById('contactModalTitle');
+      const modalContent = document.getElementById('contactModalContent');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+
+      // Modal data
+      const contacts = {
+        mail: {
+          title: "Mail Contact",
+          content: `<strong>Giulia Nigro</strong><br>agency@dienachtbrenntclub.com`
+        },
+        phone: {
+          title: "Phone Contact",
+          content: `<strong>Giulia Nigro</strong><br>+351 930 666 328`
+        }
+      };
+
+      function openModal(type) {
+        modalTitle.textContent = contacts[type].title;
+        modalContent.innerHTML = contacts[type].content;
+        modalOverlay.classList.add('active');
+        // Accessibility: focus trap
+        setTimeout(() => closeModalBtn.focus(), 100);
+      }
+
+      function closeModal() {
+        modalOverlay.classList.remove('active');
+      }
+
+      mailBtn.addEventListener('click', function () {
+        openModal('mail');
+      });
+
+      phoneBtn.addEventListener('click', function () {
+        openModal('phone');
+      });
+
+      closeModalBtn.addEventListener('click', closeModal);
+
+      // Close modal on overlay click
+      modalOverlay.addEventListener('click', function (e) {
+        if (e.target === modalOverlay) closeModal();
+      });
+
+      // Close modal on Escape key
+      document.addEventListener('keydown', function (e) {
+        if (modalOverlay.classList.contains('active') && e.key === 'Escape') {
+          closeModal();
+        }
       });
     });
   </script>
