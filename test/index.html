@@ -11,20 +11,13 @@
     @font-face {
       font-family: 'horizon_outlined';
       src: url('/fonts/horizon_outlined.woff2') format('woff2'),
-           url('/fonts/horizon_outlined.woff') format('woff'),
-           url('/fonts/horizon_outlined.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
+           url('/fonts/horizon_outlined.woff') format('woff');
       font-display: swap;
     }
-
     @font-face {
       font-family: 'horizon';
       src: url('/fonts/horizon.woff2') format('woff2'),
-           url('/fonts/horizon.woff') format('woff'),
-           url('/fonts/horizon.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
+           url('/fonts/horizon.woff') format('woff');
       font-display: swap;
     }
 
@@ -35,16 +28,20 @@
     }
 
     html, body {
-      padding-top: 75px;
-      min-height: 100%;
-      background-color: #000;
+      scroll-behavior: smooth;
+      background: linear-gradient(180deg, #000, #0a0a0a);
+      background-size: 400% 400%;
+      animation: bgScroll 40s ease infinite;
       color: #fff;
       font-family: sans-serif;
-      scroll-behavior: smooth;
+      min-height: 100%;
+      padding-top: 75px;
     }
 
-    section {
-      scroll-snap-align: start;
+    @keyframes bgScroll {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .menu-toggle {
@@ -58,11 +55,8 @@
       display: flex;
       flex-direction: column;
       gap: 4px;
-      justify-content: center;
-      align-items: flex-start;
     }
     .menu-toggle .bar {
-      display: block;
       width: 30px;
       height: 3px;
       background: #fff;
@@ -77,17 +71,11 @@
       height: 100%;
       background: #111;
       padding-top: 60px;
-      transition: left .3s ease;
+      transition: left 0.3s;
       z-index: 1000;
     }
-    .sidebar.open {
-      left: 0;
-    }
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-      text-align: center;
-    }
+    .sidebar.open { left: 0; }
+    .sidebar ul { list-style: none; text-align: center; }
     .sidebar a {
       display: block;
       color: #fff;
@@ -95,10 +83,10 @@
       text-transform: uppercase;
       text-decoration: none;
       border-bottom: 1px solid #222;
-      font-family: 'horizon', sans-serif;
+      font-family: 'horizon';
       letter-spacing: 1px;
-      font-size: 1.12rem;
-      transition: background 0.16s;
+      font-size: 1.1rem;
+      transition: background 0.2s, color 0.2s;
     }
     .sidebar a:hover, .sidebar a.active {
       background: #222;
@@ -115,16 +103,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 0 20px;
       z-index: 999;
       border-bottom: 2px solid #000;
-    }
-
-    header a {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      text-decoration: none;
     }
 
     header .logo {
@@ -135,273 +115,147 @@
 
     main {
       max-width: 1280px;
-      margin: 0 auto;
+      margin: auto;
       padding: 0 18px;
     }
 
-    /* HERO CLUB HISTORY SECTION */
-    .club-hero {
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
-      gap: 0;
-      margin: 60px 0 0 0;
-      background: #0a0a0a;
-      border-radius: 32px;
-      overflow: hidden;
-      box-shadow: 0 4px 36px #0006;
-      min-height: 380px;
+    h1, h2, h3 {
+      animation: fadeUp 1.2s ease both;
     }
-    .club-hero-img {
-      flex: 1.05;
-      min-width: 320px;
-      background: #191919;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    .club-hero-img .rect {
-      width: 86%;
-      height: 320px;
-      max-width: 540px;
-      min-width: 210px;
-      background: #232323;
-      border-radius: 32px;
-      border: 3px dashed #ff003355;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ff0033cc;
-      font-family: 'horizon', Arial, sans-serif;
-      font-size: 2.2rem;
-      text-align: center;
-      letter-spacing: 2px;
-      user-select: none;
-      box-shadow: 0 2px 32px #0005;
-    }
-    .club-hero-content {
-      flex: 1.22;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 46px 42px 38px 42px;
-      min-width: 270px;
-      max-width: 650px;
-    }
-    .club-hero-content h1 {
-      font-family: 'horizon_outlined', sans-serif;
-      font-size: 2.5rem;
-      color: #ff0033;
-      margin-bottom: 18px;
-      letter-spacing: 2px;
-    }
-    .club-hero-content p {
-      font-size: 1.12rem;
-      color: #ededed;
-      line-height: 1.7;
-      margin-bottom: 0;
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    /* MID SECTION */
-    .mid-section {
+    .club-hero, .mid-section, .creative-section {
+      margin-top: 60px;
       display: flex;
-      gap: 3vw;
-      margin: 48px 0 0 0;
-      align-items: flex-start;
       flex-wrap: wrap;
-      justify-content: center;
-    }
-    .mid-imgs-row {
-      display: flex;
-      gap: 16px;
-      flex-direction: column;
-    }
-    .mid-img {
-      background: #191919;
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 180px;
-      min-height: 160px;
-      max-width: 320px;
-      width: 30vw;
-      height: 180px;
-      border: 2.5px dashed #ff003355;
-      color: #ff0033bb;
-      font-family: 'horizon', Arial, sans-serif;
-      font-size: 1.1rem;
-      margin: 0 0 16px 0;
-      user-select: none;
-      box-shadow: 0 2px 16px #0004;
-    }
-    .mid-img-sm {
-      background: #232323;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 100px;
-      min-height: 90px;
-      max-width: 150px;
-      width: 18vw;
-      height: 90px;
-      border: 2px dashed #ff003345;
-      color: #ff0033a5;
-      font-family: 'horizon', Arial, sans-serif;
-      font-size: 0.98rem;
-      margin: 0 0 10px 0;
-      user-select: none;
-      box-shadow: 0 1px 8px #0003;
-    }
-    .mid-section-content {
-      flex: 2;
-      min-width: 230px;
-      font-size: 1.04rem;
-      color: #e1e1e1;
-      line-height: 1.7;
-      margin: 0 0 0 0;
-      padding: 0 0 0 10px;
-    }
-    .mid-section-content h2 {
-      font-family: 'horizon', Arial, sans-serif;
-      color: #ff0033;
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-    }
-
-    /* CREATIVE SECTION */
-    .creative-section {
-      display: flex;
-      gap: 3vw;
-      margin: 38px 0 0 0;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .creative-img {
-      background: #181818;
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 180px;
-      min-height: 160px;
-      max-width: 320px;
-      width: 30vw;
-      height: 180px;
-      border: 2.5px dashed #ff003355;
-      color: #ff0033bb;
-      font-family: 'horizon', Arial, sans-serif;
-      font-size: 1.1rem;
-      margin: 0 0 16px 0;
-      user-select: none;
-      box-shadow: 0 2px 16px #0004;
-    }
-    .creative-section-content {
-      flex: 2;
-      min-width: 230px;
-      font-size: 1.04rem;
-      color: #e1e1e1;
-      line-height: 1.7;
-      margin: 0 0 0 0;
-      padding: 0 0 0 10px;
-    }
-    .creative-section-content h2 {
-      font-family: 'horizon', Arial, sans-serif;
-      color: #ff0033;
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-    }
-
-    /* EVENTS & MERCH PANELS */
-    .bottom-panels {
-      width: 100%;
-      display: flex;
       gap: 2vw;
-      margin: 62px 0 0 0;
       justify-content: center;
+    }
+
+    .club-hero-img, .mid-img, .creative-img {
+      background: #191919;
+      border: 3px dashed #ff003355;
+      border-radius: 24px;
+      box-shadow: 0 2px 20px #0004;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 200px;
+      max-width: 420px;
+      width: 100%;
+      height: 200px;
+      font-family: 'horizon';
+      font-size: 1.2rem;
+      color: #ff0033bb;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .club-hero-img:hover, .mid-img:hover, .creative-img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 36px #ff003322;
+    }
+
+    .club-hero-content, .mid-section-content, .creative-section-content {
+      max-width: 600px;
+      padding: 24px;
+      line-height: 1.7;
+      color: #e1e1e1;
+      font-size: 1.05rem;
+    }
+    .club-hero-content h1, .mid-section-content h2, .creative-section-content h2 {
+      font-family: 'horizon_outlined';
+      color: #ff0033;
+      margin-bottom: 14px;
+    }
+
+    .bottom-panels {
+      margin-top: 64px;
+      display: flex;
       flex-wrap: wrap;
+      justify-content: center;
+      gap: 2vw;
     }
     .panel {
       background: #131313;
       border-radius: 16px;
       box-shadow: 0 2px 18px #0005;
-      flex: 1 1 320px;
-      min-width: 280px;
-      max-width: 420px;
-      margin-bottom: 10px;
-      padding: 44px 22px 38px 22px;
+      padding: 40px 20px;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      max-width: 400px;
+      width: 100%;
     }
     .panel h3 {
-      font-family: 'horizon_outlined', Arial, sans-serif;
+      font-family: 'horizon_outlined';
       color: #ff0033;
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       margin-bottom: 16px;
-      letter-spacing: 2px;
     }
-    .panel .coming-soon {
+    .coming-soon {
       color: #ff0033;
-      font-family: 'horizon', Arial, sans-serif;
-      font-size: 1.1rem;
-      margin-top: 10px;
-      letter-spacing: 1px;
       background: #1a1a1a;
+      border: 2px dashed #ff003355;
+      padding: 10px 20px;
       border-radius: 8px;
-      padding: 7px 18px;
       display: inline-block;
-      margin-bottom: 0;
-      border: 1.5px dashed #ff003355;
     }
 
-    /* FOOTER */
     footer {
+      margin-top: 60px;
       text-align: center;
       color: #aaa;
-      font-size: 1em;
-      padding: 38px 0 26px 0;
-      letter-spacing: 1px;
-      background: #0a0a0a;
-      margin-top: 60px;
+      padding: 36px 0;
+      font-size: 0.95rem;
       border-top: 2px solid #181818;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 1100px) {
-      .club-hero-content { padding: 38px 14px 32px 14px; }
+    .scroll-top {
+      position: fixed;
+      bottom: 32px;
+      right: 22px;
+      font-size: 1.6rem;
+      background: #ff0033;
+      color: #000;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      text-align: center;
+      line-height: 42px;
+      font-weight: bold;
+      text-decoration: none;
+      z-index: 1000;
+      box-shadow: 0 2px 12px #0006;
+      transition: background 0.3s;
     }
-    @media (max-width: 900px) {
-      .club-hero { flex-direction: column; border-radius: 24px; }
-      .club-hero-img { min-width: 0; }
-      .club-hero-img .rect { height: 160px; font-size: 1.2rem;}
-      .club-hero-content { max-width: 100%; }
-      .mid-section, .creative-section { flex-direction: column; gap: 0;}
-      .mid-img, .mid-img-sm, .creative-img { min-width: 0; width: 85vw; max-width: 99vw;}
-      .panel { min-width: 70vw; }
+    .scroll-top:hover {
+      background: #fff;
+      color: #ff0033;
     }
-    @media (max-width: 650px) {
-      .club-hero { margin-top: 20px; border-radius: 12px;}
-      .panel { padding: 22px 6vw 18px 6vw; }
-      .club-hero-content h1 { font-size: 1.6rem;}
+
+    @media (max-width: 768px) {
+      .club-hero-content, .mid-section-content, .creative-section-content {
+        padding: 16px;
+      }
+      .club-hero-img, .mid-img, .creative-img {
+        height: 160px;
+      }
     }
   </style>
 </head>
-<body>
-  <!-- MENU TOGGLE -->
+<body id="top">
   <button class="menu-toggle" aria-label="Toggle menu">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
+    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
   </button>
-  <!-- SIDEBAR MENU -->
   <nav class="sidebar" id="sidebar">
     <ul>
-      <li><a href="/" >Home</a></li>
+      <li><a href="/">Home</a></li>
       <li><a href="/club-history.html" class="active">Club History</a></li>
       <li><a href="/artists.html">Artists</a></li>
       <li><a href="/events.html">Events</a></li>
@@ -409,54 +263,44 @@
       <li><a href="/contact.html">Contact</a></li>
     </ul>
   </nav>
-  <!-- HEADER -->
   <header>
-    <a href="/" class="logo-link">
+    <a href="/">
       <img src="/logoletraslargo.png" alt="Logo DNBC Club" class="logo" />
     </a>
   </header>
   <main>
-    <!-- HERO SECTION: Big image (placeholder) with text at side -->
     <section class="club-hero">
-      <div class="club-hero-img">
-        <div class="rect">[ Club main image ]</div>
-      </div>
+      <div class="club-hero-img">[ Club main image ]</div>
       <div class="club-hero-content">
         <h1>Club History</h1>
         <p>
-          Die Nacht Brennt Club was born from the urge to create an authentic space for underground techno in Galicia. Since its inception, the club has united artists, ravers, and minds who crave something different. Always moving forward, always pushing the boundaries, DNBC is a community and a movement as much as a club.<br><br>
-          From clandestine warehouse nights to open-air raves, our story is one of passion, rebellion, and a relentless love for the music that brings us together.
+          Die Nacht Brennt Club was born from the urge to create an authentic space for underground techno in Galicia. Since its inception, the club has united artists, ravers, and minds who crave something different.<br><br>
+          From warehouse nights to open-air raves, our story is one of rebellion and relentless love for music.
         </p>
       </div>
     </section>
-    <!-- MID SECTION: one large and one small image, text -->
+
     <section class="mid-section">
-      <div class="mid-imgs-row">
-        <div class="mid-img">[ Old flyer ]</div>
-        <div class="mid-img-sm">[ Crowd ]</div>
-      </div>
+      <div class="mid-img">[ Old flyer ]</div>
+      <div class="mid-img">[ Crowd ]</div>
       <div class="mid-section-content">
         <h2>Evolution & Values</h2>
         <p>
-          DNBC stands for community, freedom, and the raw energy of the dancefloor. We believe in inclusivity, self-expression, and breaking down barriers between artist and crowd.<br><br>
-          Over the years, the club has grown into an agency, label, and platform for new generations of electronic music lovers. Our mission is to keep the flame burning for underground culture—one night, one track, one memory at a time.
+          DNBC stands for community, freedom, and raw energy. We believe in inclusivity, self-expression, and breaking down barriers. Over the years, the club has grown into an agency, label, and platform for new generations of electronic music lovers.
         </p>
       </div>
     </section>
-    <!-- CREATIVE SECTION: another image, text -->
+
     <section class="creative-section">
-      <div class="creative-img">
-        [ Resident DJ ]
-      </div>
+      <div class="creative-img">[ Resident DJ ]</div>
       <div class="creative-section-content">
         <h2>People Make the Club</h2>
         <p>
-          Our residents, guest DJs, and the crowd are all part of the same experience. Every event is a collaboration between everyone in the room. <br><br>
-          DNBC is not just a place—it's a feeling that stays with you long after the lights come up.
+          Our residents, guest DJs, and the crowd form one experience. Every event is a collective ritual. DNBC is not just a place—it’s a feeling.
         </p>
       </div>
     </section>
-    <!-- EVENTS & MERCHANDISE PANELS -->
+
     <section class="bottom-panels">
       <div class="panel">
         <h3>Events</h3>
@@ -471,26 +315,21 @@
   <footer>
     &copy; 2025 Die Nacht Brennt Club. All rights reserved.
   </footer>
+  <a href="#top" class="scroll-top">↑</a>
+
   <script>
-    // Sidebar toggle
-    document.querySelector('.menu-toggle').addEventListener('click', function() {
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
       document.getElementById('sidebar').classList.toggle('open');
     });
-    // Close sidebar when clicking outside on mobile
-    document.addEventListener('click', function(event) {
-      var sidebar = document.getElementById('sidebar');
-      var toggle = document.querySelector('.menu-toggle');
-      if (
-        sidebar.classList.contains('open') &&
-        !sidebar.contains(event.target) &&
-        !toggle.contains(event.target)
-      ) {
+    document.addEventListener('click', (event) => {
+      const sidebar = document.getElementById('sidebar');
+      const toggle = document.querySelector('.menu-toggle');
+      if (sidebar.classList.contains('open') && !sidebar.contains(event.target) && !toggle.contains(event.target)) {
         sidebar.classList.remove('open');
       }
     });
-    // Optional: close sidebar when clicking a link (for smooth UX on mobile)
-    document.querySelectorAll('.sidebar a').forEach(function(link) {
-      link.addEventListener('click', function() {
+    document.querySelectorAll('.sidebar a').forEach(link => {
+      link.addEventListener('click', () => {
         document.getElementById('sidebar').classList.remove('open');
       });
     });
