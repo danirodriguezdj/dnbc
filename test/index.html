@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DNBC Club – Main Page</title>
+  <link rel="icon" href="/favicon.ico" />
+  <!-- tsParticles for background animation -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+  <!-- Glide.js for image carousel -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'horizon', sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+    #tsparticles {
+      position: fixed;
+      z-index: 0;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+    }
+    .main-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding-top: 100px;
+      padding-bottom: 60px;
+    }
+    .club-history {
+      background: rgba(0,0,0,0.7);
+      border-radius: 14px;
+      max-width: 600px;
+      margin-bottom: 48px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.3);
+      text-align: center;
+      font-size: 1.22rem;
+      line-height: 1.7;
+      letter-spacing: 1px;
+    }
+    .club-history h1 {
+      font-size: 2.1rem;
+      margin-bottom: 1.3rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+      color: #ff0033;
+    }
+    /* Carrusel */
+    .carousel-container {
+      width: 92vw;
+      max-width: 680px;
+      margin: 0 auto;
+      background: rgba(10,10,10,0.8);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+      padding: 1.5rem 0 2.5rem 0;
+    }
+    .glide__slide img {
+      width: 100%;
+      max-height: 360px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    }
+    @media (max-width: 600px) {
+      .main-content { padding-top: 70px; }
+      .club-history { font-size: 1.02rem; padding: 1.2rem 0.7rem; }
+      .carousel-container { max-width: 100vw; }
+      .glide__slide img { max-height: 220px; }
+    }
+    /* Glide controls minimal */
+    .glide__bullet { background: #fff3; }
+    .glide__bullet--active { background: #ff0033; }
+    .glide__arrow {
+      background: #111b;
+      color: #fff;
+      border: none;
+      font-size: 2rem;
+      border-radius: 50%;
+      width: 44px; height: 44px;
+      margin: 0 10px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .glide__arrow:hover { background: #222d; }
+  </style>
+</head>
+<body>
+  <div id="tsparticles"></div>
+
+  <!-- Menú hamburguesa y menú lateral como siempre -->
+  <button class="menu-toggle" aria-label="Toggle menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+  <div id="menu-container"></div>
+  <header>
+    <a href="/" rel="noopener">
+      <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
+    </a>
+  </header>
+
+  <main class="main-content">
+    <section class="club-history">
+      <h1>Historia del Club</h1>
+      <p>
+        DNBC nació de la pasión por la música y la cultura underground.<br>
+        Todo comenzó en 2017, en un pequeño local donde unos cuantos soñadores se reunían para compartir sets, arte y amistad.<br><br>
+        Lo que era solo un refugio para inadaptados pronto se transformó en el corazón de la noche: cada evento, cada colaboración y cada nuevo miembro fue escribiendo la historia que hoy seguimos viviendo.<br><br>
+        Desde entonces, hemos acogido a artistas de todo el mundo y celebrado juntos decenas de noches legendarias. Y esto... solo es el principio.
+      </p>
+    </section>
+
+    <section class="carousel-container">
+      <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            <!-- Reemplaza las rutas de ejemplo por tus fotos reales -->
+            <li class="glide__slide"><img src="/eventos/1.jpg" alt="Evento 1"></li>
+            <li class="glide__slide"><img src="/eventos/2.jpg" alt="Evento 2"></li>
+            <li class="glide__slide"><img src="/eventos/3.jpg" alt="Evento 3"></li>
+            <li class="glide__slide"><img src="/eventos/4.jpg" alt="Evento 4"></li>
+            <li class="glide__slide"><img src="/eventos/5.jpg" alt="Evento 5"></li>
+            <!-- ...añade más imágenes -->
+          </ul>
+        </div>
+        <!-- Controles -->
+        <div class="glide__bullets" data-glide-el="controls[nav]"></div>
+        <div data-glide-el="controls">
+          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">&#8592;</button>
+          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">&#8594;</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // tsParticles background config (minimal white dots)
+    tsParticles.load("tsparticles", {
+      fpsLimit: 60,
+      background: { color: "#000" },
+      particles: {
+        number: { value: 40, density: { enable: true, area: 800 } },
+        color: { value: "#fff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.23, random: true },
+        size: { value: 2.6, random: true },
+        move: { enable: true, speed: 0.7, direction: "none", outModes: "out" },
+        links: { enable: false }
+      },
+      detectRetina: true
+    });
+
+    // Glide.js carousel init
+    document.addEventListener('DOMContentLoaded', function() {
+      new Glide('.glide', {
+        type: 'carousel',
+        autoplay: 2500,
+        perView: 1,
+        animationDuration: 800,
+        hoverpause: true,
+        gap: 0,
+        rewind: true
+      }).mount();
+    });
+  </script>
+  <!-- Aquí enlaza tu script de menú si usas uno externo -->
+  <script src="/menu.js"></script>
+</body>
+</html>
