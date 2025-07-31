@@ -44,7 +44,7 @@
       color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
-      padding: 80px 20px 50px;
+      padding: 20px 20px 50px; /* Reducción del padding superior */
       overflow-x: hidden;
     }
 
@@ -99,7 +99,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 75px;
+      height: 60px; /* Altura reducida */
       background: #000;
       display: flex;
       justify-content: center;
@@ -114,18 +114,19 @@
       height: 100%;
     }
     header .logo {
-      max-width: 400px;
-      width: 80vw;
+      max-width: 300px; /* Más pequeño para reducir el espacio */
+      width: 60vw;
       height: auto;
     }
 
-    .artist-grid {
+    main.artist-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
       width: 100%;
       max-width: 1200px;
       padding: 20px;
+      margin-top: 70px; /* Espacio justo para el header */
     }
 
     .artist.manager-banner {
@@ -297,7 +298,7 @@
     }
 
     @media (max-width: 900px) {
-      .artist-grid {
+      main.artist-grid {
         grid-template-columns: repeat(2, 1fr);
       }
       .artist.manager-banner,
@@ -317,7 +318,7 @@
       }
     }
     @media (max-width: 500px) {
-      .artist-grid {
+      main.artist-grid {
         grid-template-columns: 1fr;
       }
       .artist.manager-banner,
@@ -342,27 +343,28 @@
     }
     @media (max-width: 768px) {
       body {
-        padding: 60px 10px 50px;
+        padding: 10px 10px 50px;
       }
       header {
         justify-content: space-between;
         padding: 0 20px;
-        height: 65px;
+        height: 50px;
       }
       header a {
         margin-left: auto;
       }
       header .logo {
-        max-width: 250px;
-        width: 60vw;
+        max-width: 180px;
+        width: 45vw;
       }
       .footer-link-dock {
         font-size: 1rem;
         padding: 8px 16px;
         bottom: 12px;
       }
-      .artist-grid {
+      main.artist-grid {
         grid-template-columns: repeat(2, 1fr);
+        margin-top: 56px;
       }
       .artist-info {
         opacity: 1 !important;
