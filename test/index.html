@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#000" />
-  <title>DNBC Club – Página Principal</title>
+  <title>Club History – Die Nacht Brennt Club</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
-  <!-- Fuentes personalizadas -->
+  <!-- Custom Fonts -->
   <style>
     @font-face {
       font-family: 'horizon_outlined';
@@ -40,7 +40,7 @@
       color: #fff;
       font-family: sans-serif;
     }
-    /* Menú hamburguesa y sidebar */
+    /* Menu hamburger and sidebar */
     .menu-toggle {
       position: fixed;
       top: 20px;
@@ -83,116 +83,22 @@
       width: 80vw;
       height: auto;
     }
-    /* Hero Section */
-    .hero-section {
-      display: flex;
-      flex-direction: row-reverse;
-      height: 100vh;
-      min-height: 440px;
-    }
-    .hero-img {
-      flex: 1;
-      background: #191919;
-      background-image: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      min-width: 200px;
-    }
-    .hero-img .img-destacada-placeholder {
-      width: 80%;
-      max-width: 420px;
-      height: 320px;
-      background: #222;
-      border: 3px dashed #ff003370;
-      border-radius: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ff0033b0;
-      font-family: 'horizon', Arial, sans-serif;
-      font-size: 2.1rem;
-      letter-spacing: 2px;
-      text-align: center;
-      margin: 0 auto;
-      user-select: none;
-      box-shadow: 0 2px 32px 0 #0005;
-    }
-    .hero-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 40px;
-      max-width: 530px;
-      min-width: 260px;
-    }
-    .hero-content > * {
-      max-width: 600px;
+    /* Section history */
+    .history-section {
+      max-width: 1000px;
       width: 100%;
-    }
-    .club-title {
-      font-family: 'horizon_outlined', sans-serif;
-      font-size: 54px;
-      margin-bottom: 18px;
-      color: #ff0033;
-      letter-spacing: 3px;
-    }
-    .subtitle {
-      font-size: 22px;
-      margin-bottom: 32px;
-      letter-spacing: 2px;
-      color: #fff;
-      font-family: 'horizon', Arial, sans-serif;
-    }
-    .description {
-      font-size: 17px;
-      line-height: 1.6;
-      margin-bottom: 18px;
-      color: #f3f3f3;
-    }
-    .hero-socials {
-      display: flex;
-      gap: 16px;
-      margin-top: 25px;
-      flex-wrap: wrap;
-    }
-    .hero-socials img {
-      width: 30px;
-      height: 30px;
-      filter: brightness(0) invert(1);
-      transition: filter 0.2s, transform 0.2s;
-    }
-    .hero-socials a:hover img {
-      transform: scale(1.13);
-    }
-    .hero-socials a.instagram:hover img { filter: invert(33%) sepia(77%) saturate(7475%) hue-rotate(316deg) brightness(98%) contrast(101%); }
-    .hero-socials a.facebook:hover img { filter: invert(33%) sepia(84%) saturate(2285%) hue-rotate(196deg) brightness(98%) contrast(104%); }
-    .hero-socials a.youtube:hover img { filter: invert(32%) sepia(99%) saturate(7489%) hue-rotate(356deg) brightness(97%) contrast(108%); }
-    .hero-socials a.soundcloud:hover img { filter: invert(59%) sepia(90%) saturate(2000%) hue-rotate(-12deg) brightness(99%) contrast(97%); }
-    /* Secciones */
-    .main-section {
-      min-height: 100vh;
-      padding: 80px 20px 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 60px;
-      background: #000;
-      width: 100%;
-    }
-    .info-section {
+      margin: 100px auto 60px auto;
+      background: #161616;
+      border-radius: 18px;
+      box-shadow: 0 2px 32px #0009;
+      padding: 44px 28px 36px 28px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
-      max-width: 1200px;
-      width: 100%;
-      gap: clamp(16px, 4vw, 40px);
+      gap: clamp(16px, 4vw, 44px);
     }
-    .img-secondary-placeholder {
+    .img-history-placeholder {
+      min-width: 230px;
       width: 340px;
       height: 170px;
       background: #232323;
@@ -203,93 +109,42 @@
       justify-content: center;
       color: #ff0033b0;
       font-family: 'horizon', Arial, sans-serif;
-      font-size: 1.25rem;
+      font-size: 1.22rem;
       letter-spacing: 2px;
-      margin: 0 auto 20px auto;
+      margin: 0 auto 18px auto;
       user-select: none;
       box-shadow: 0 2px 20px 0 #0004;
     }
-    .info-text {
+    .history-content {
       flex: 1;
       text-align: left;
       font-size: 16px;
-      line-height: 1.6;
+      line-height: 1.7;
       color: #eaeaea;
       margin: 0;
       padding: 0;
     }
-    .gallery-section {
-      max-width: 1000px;
-      width: 100%;
-      text-align: center;
-      margin: 0 auto 30px auto;
-    }
-    .gallery-row {
-      display: flex;
-      gap: 2.5%;
-      flex-wrap: wrap;
-      margin-top: 20px;
-      margin-bottom: 18px;
-      justify-content: flex-start;
-      align-items: flex-end;
-    }
-    .img-gallery-placeholder {
-      width: 120px;
-      height: 90px;
-      background: #232323;
-      border: 2px dashed #ff003345;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ff0033b0;
-      font-family: 'horizon', Arial, sans-serif;
-      font-size: 1.1rem;
-      user-select: none;
-      margin-bottom: 8px;
-    }
-    .gallery-section p {
-      color: #bdbdbd;
-      font-size: 0.97rem;
-      margin-bottom: 0;
-    }
-    .contact-section {
-      max-width: 700px;
-      width: 100%;
-      margin: 0 auto;
-      text-align: center;
-      background: #161616;
-      border-radius: 14px;
-      box-shadow: 0 2px 18px #0005;
-      padding: 34px 18px 30px 18px;
-      margin-top: 40px;
-    }
-    .contact-section h3 {
-      font-family: 'horizon', Arial, sans-serif;
+    .history-content h1, .history-content h2 {
+      font-family: 'horizon_outlined', sans-serif;
       color: #ff0033;
       margin-bottom: 18px;
-      font-size: 1.23rem;
+      font-size: 2rem;
+      letter-spacing: 2px;
     }
-    .contact-section p {
-      color: #e4e4e4;
-      font-size: 1rem;
-      margin-bottom: 0;
+    .history-content h2 {
+      font-size: 1.2rem;
+      color: #ff0033;
+      margin-top: 36px;
+      margin-bottom: 10px;
+      font-family: 'horizon', Arial, sans-serif;
     }
     /* Responsive */
     @media (max-width: 900px) {
-      .hero-section { flex-direction: column; height: auto; min-height: unset; }
-      .hero-img, .hero-content { min-width: 0; width: 100%; }
-      .hero-img { justify-content: center; }
-      .hero-img .img-destacada-placeholder { height: 190px; font-size: 1.3rem; }
-      .hero-content { padding: 25px 8vw 20px 8vw; align-items: center; text-align: center;}
-      .club-title { font-size: 2.1rem;}
-      .subtitle { font-size: 1.1rem;}
+      .history-section { flex-direction: column; gap: 0 !important; padding: 24px 5vw 18px 5vw;}
+      .img-history-placeholder { width: 98vw; max-width: 97vw; height: 90px; font-size: 0.95rem;}
     }
     @media (max-width: 650px) {
-      .img-secondary-placeholder { width: 98vw; max-width: 97vw; height: 90px; font-size: 0.95rem;}
-      .img-gallery-placeholder { width: 45vw; min-width: 90px; height: 48px; font-size: 0.8rem;}
-      .main-section { padding: 8px 0 8px 0 !important; }
-      .info-section { gap: 0 !important; }
+      .history-section { margin: 80px 0 40px 0; }
     }
     footer {
       text-align: center;
@@ -304,93 +159,52 @@
   </style>
 </head>
 <body>
-  <!-- MENÚ HAMBURGUESA Y SIDEBAR -->
+  <!-- MENU HAMBURGER AND SIDEBAR -->
   <button class="menu-toggle" aria-label="Toggle menu">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
   <div id="menu-container"></div>
-  <!-- HEADER CON LOGO -->
+  <!-- HEADER WITH LOGO -->
   <header>
     <a href="https://dienachtbrenntclub.com">
       <img src="/logoletraslargo.png" alt="Logo DNBC Club" class="logo" />
     </a>
   </header>
-  <!-- HERO SECTION (TOP) -->
-  <section class="hero-section">
-    <div class="hero-img">
-      <div class="img-destacada-placeholder">
-        [ Imagen principal del club aquí ]
-      </div>
+  <!-- HISTORY SECTION -->
+  <section class="history-section">
+    <div class="img-history-placeholder">
+      [ Club historic image here ]
     </div>
-    <div class="hero-content">
-      <h1 class="club-title">DIE NACHT BRENNNT CLUB</h1>
-      <div class="subtitle">Underground Techno Community</div>
-      <div class="description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin imperdiet, tortor id dictum sodales, justo mauris tempus purus, id cursus sapien nibh ac leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-      </div>
-      <div class="hero-socials">
-        <a href="https://www.instagram.com/dienachtbrenntclub/" target="_blank" rel="noopener" class="icon instagram">
-          <img src="img/icons/instagram.svg" alt="Instagram" />
-        </a>
-        <a href="https://www.facebook.com/dienachtbrenntclub/" target="_blank" rel="noopener" class="icon facebook">
-          <img src="img/icons/facebook.svg" alt="Facebook" />
-        </a>
-        <a href="https://www.youtube.com/@dienachtbrenntclub" target="_blank" rel="noopener" class="icon youtube">
-          <img src="img/icons/youtube.svg" alt="YouTube" />
-        </a>
-        <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank" rel="noopener" class="icon soundcloud">
-          <img src="img/icons/soundcloud.svg" alt="SoundCloud" />
-        </a>
-      </div>
-    </div>
-  </section>
-  <!-- MAIN SECTION -->
-  <section class="main-section">
-    <div class="info-section">
-      <div class="img-secondary-placeholder">[ Imagen secundaria / historia ]</div>
-      <div class="info-text">
-        <h2 style="font-family:'horizon',sans-serif;color:#ff0033;font-size:1.35rem;margin-bottom:9px;">Sobre el Club</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam id scelerisque risus. Mauris gravida, ex ac viverra gravida, erat eros gravida dui, nec porta quam eros non nisl. Quisque nec facilisis mauris. Fusce euismod, lorem at ullamcorper cursus, enim nulla luctus enim, sed cursus risus purus in sem.
-        </p>
-      </div>
-    </div>
-    <div class="gallery-section">
-      <h2 style="font-family:'horizon',sans-serif;color:#ff0033;font-size:1.23rem;margin-bottom:10px;">Galería de Eventos</h2>
-      <div class="gallery-row">
-        <div class="img-gallery-placeholder">[ Evento 1 ]</div>
-        <div class="img-gallery-placeholder">[ Evento 2 ]</div>
-        <div class="img-gallery-placeholder">[ Evento 3 ]</div>
-        <div class="img-gallery-placeholder">[ Evento 4 ]</div>
-      </div>
-      <p>Aquí irá la galería o carrusel de imágenes de eventos.</p>
-    </div>
-    <div class="contact-section">
-      <h3>Contacto</h3>
+    <div class="history-content">
+      <h1>Club History</h1>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.  
-        <br/><br/>
-        <b>Email:</b> contacto@ejemplo.com  
-        <br/>
-        <b>Instagram:</b> @dienachtbrenntclub  
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Die Nacht Brennt Club was born from the desire to create a unique space for underground techno lovers in Galicia. Since its foundation, the club has been a meeting point for artists, ravers, and creative minds, always striving to push the local scene forward and to bring new experiences to the dance floor.
+      </p>
+      <h2>Our Values</h2>
+      <p>
+        The club is founded on principles of authenticity, inclusivity, and relentless passion for music. Our mission is to foster a community where everyone is welcome, and where the power of techno connects, transforms, and empowers.
+      </p>
+      <h2>Evolution</h2>
+      <p>
+        From intimate underground gatherings to large-scale events, Die Nacht Brennt Club continues to evolve. Today, the project extends beyond club nights, becoming an agency, a record label, and a platform for the next generation of electronic music creators and fans.
       </p>
     </div>
   </section>
   <footer>
-    &copy; 2025 Die Nacht Brennt Club. Todos los derechos reservados.
+    &copy; 2025 Die Nacht Brennt Club. All rights reserved.
   </footer>
   <script>
   (function() {
     'use strict';
     document.addEventListener('DOMContentLoaded', function() {
-      // 1. Carga el menú desde menu.html
+      // 1. Load the menu from menu.html
       fetch('/menu.html')
         .then(res => res.text())
         .then(html => {
           document.getElementById('menu-container').innerHTML = html;
-          // 2. Después de insertar el menú, añade el evento al botón hamburguesa
+          // 2. After inserting the menu, add event to hamburger button
           var btn = document.querySelector('.menu-toggle');
           var nav = document.getElementById('sidebar');
           if (btn && nav) {
