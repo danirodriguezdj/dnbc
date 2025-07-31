@@ -547,12 +547,7 @@
     <span class="bar"></span>
   </button>
 
-  <nav id="sidebar" class="sidebar" aria-label="Main navigation">
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/agency">Agency</a></li>
-    </ul>
-  </nav>
+  <div id="menu-container"></div>
 
   <!-- HEADER CON LOGO -->
   <header>
@@ -621,68 +616,74 @@
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Hamburger menu
-      const btn = document.querySelector('.menu-toggle');
-      const nav = document.getElementById('sidebar');
-      btn.addEventListener('click', () => {
-        nav.classList.toggle('open');
+  document.addEventListener('DOMContentLoaded', function () {
+    // 1. Cargar el menú hamburguesa desde menu.html
+    fetch('/menu.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('menu-container').innerHTML = html;
+        // Ahora que el menú está en el DOM, añade el evento al botón hamburguesa
+        const btn = document.querySelector('.menu-toggle');
+        const nav = document.getElementById('sidebar');
+        btn.addEventListener('click', () => {
+          nav.classList.toggle('open');
+        });
       });
 
-      // Modal functionality
-      const mailBtn = document.getElementById('mailContactBtn');
-      const phoneBtn = document.getElementById('phoneContactBtn');
-      const modalOverlay = document.getElementById('contactModalOverlay');
-      const modalTitle = document.getElementById('contactModalTitle');
-      const modalContent = document.getElementById('contactModalContent');
-      const closeModalBtn = document.getElementById('closeModalBtn');
+    // 2. Modal functionality (esto puede quedarse fuera porque esos elementos siempre están en el DOM)
+    const mailBtn = document.getElementById('mailContactBtn');
+    const phoneBtn = document.getElementById('phoneContactBtn');
+    const modalOverlay = document.getElementById('contactModalOverlay');
+    const modalTitle = document.getElementById('contactModalTitle');
+    const modalContent = document.getElementById('contactModalContent');
+    const closeModalBtn = document.getElementById('closeModalBtn');
 
-      // Modal data
-      const contacts = {
-        mail: {
-          title: "Mail Contact",
-          content: `<strong>Giulia Nigro</strong><br>agency@dienachtbrenntclub.com`
-        },
-        phone: {
-          title: "Phone Contact",
-          content: `<strong>Giulia Nigro</strong><br>+351 930 666 328`
-        }
-      };
-
-      function openModal(type) {
-        modalTitle.textContent = contacts[type].title;
-        modalContent.innerHTML = contacts[type].content;
-        modalOverlay.classList.add('active');
-        // Accessibility: focus trap
-        setTimeout(() => closeModalBtn.focus(), 100);
+    // Modal data
+    const contacts = {
+      mail: {
+        title: "Mail Contact",
+        content: `<strong>Giulia Nigro</strong><br>agency@dienachtbrenntclub.com`
+      },
+      phone: {
+        title: "Phone Contact",
+        content: `<strong>Giulia Nigro</strong><br>+351 930 666 328`
       }
+    };
 
-      function closeModal() {
-        modalOverlay.classList.remove('active');
-      }
+    function openModal(type) {
+      modalTitle.textContent = contacts[type].title;
+      modalContent.innerHTML = contacts[type].content;
+      modalOverlay.classList.add('active');
+      // Accessibility: focus trap
+      setTimeout(() => closeModalBtn.focus(), 100);
+    }
 
-      mailBtn.addEventListener('click', function () {
-        openModal('mail');
-      });
+    function closeModal() {
+      modalOverlay.classList.remove('active');
+    }
 
-      phoneBtn.addEventListener('click', function () {
-        openModal('phone');
-      });
-
-      closeModalBtn.addEventListener('click', closeModal);
-
-      // Close modal on overlay click
-      modalOverlay.addEventListener('click', function (e) {
-        if (e.target === modalOverlay) closeModal();
-      });
-
-      // Close modal on Escape key
-      document.addEventListener('keydown', function (e) {
-        if (modalOverlay.classList.contains('active') && e.key === 'Escape') {
-          closeModal();
-        }
-      });
+    mailBtn.addEventListener('click', function () {
+      openModal('mail');
     });
-  </script>
+
+    phoneBtn.addEventListener('click', function () {
+      openModal('phone');
+    });
+
+    closeModalBtn.addEventListener('click', closeModal);
+
+    // Close modal on overlay click
+    modalOverlay.addEventListener('click', function (e) {
+      if (e.target === modalOverlay) closeModal();
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (modalOverlay.classList.contains('active') && e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  });
+</script>
 </body>
 </html>
