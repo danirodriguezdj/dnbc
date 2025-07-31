@@ -272,12 +272,7 @@
   </button>
 
   <!-- Navegación lateral -->
-  <nav id="sidebar" class="sidebar" aria-label="Main navigation">
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/agency">Agency</a></li>
-    </ul>
-  </nav>
+  <div id="menu-container"></div>
 
   <!-- Header fijo con logo -->
   <header>
@@ -337,16 +332,23 @@
 
   <!-- Script para alternar la clase 'open' del sidebar -->
   <script>
-    (function() {
-      'use strict';
-      document.addEventListener('DOMContentLoaded', function() {
-        var btn = document.querySelector('.menu-toggle');
-        var nav = document.getElementById('sidebar');
-        btn.addEventListener('click', function() {
-          nav.classList.toggle('open');
+  (function() {
+    'use strict';
+    document.addEventListener('DOMContentLoaded', function() {
+      // 1. Carga el menú desde menu.html
+      fetch('/menu.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('menu-container').innerHTML = html;
+          // 2. Después de insertar el menú, añade el evento al botón hamburguesa
+          var btn = document.querySelector('.menu-toggle');
+          var nav = document.getElementById('sidebar');
+          btn.addEventListener('click', function() {
+            nav.classList.toggle('open');
+          });
         });
-      });
-    })();
-  </script>
+    });
+  })();
+</script>
 </body>
 </html>
