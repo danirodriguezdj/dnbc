@@ -44,7 +44,8 @@
       color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
-      padding: 20px 20px 50px; /* Reducción del padding superior */
+      /* padding superior reducido para minimizar el hueco */
+      padding: 0 20px 50px 20px;
       overflow-x: hidden;
     }
 
@@ -99,7 +100,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 60px; /* Altura reducida */
+      height: 75px;
       background: #000;
       display: flex;
       justify-content: center;
@@ -114,8 +115,8 @@
       height: 100%;
     }
     header .logo {
-      max-width: 300px; /* Más pequeño para reducir el espacio */
-      width: 60vw;
+      max-width: 400px;
+      width: 80vw;
       height: auto;
     }
 
@@ -126,7 +127,8 @@
       width: 100%;
       max-width: 1200px;
       padding: 20px;
-      margin-top: 70px; /* Espacio justo para el header */
+      /* margen superior reducido para pegar los artistas al logo */
+      margin-top: 80px;
     }
 
     .artist.manager-banner {
@@ -343,19 +345,19 @@
     }
     @media (max-width: 768px) {
       body {
-        padding: 10px 10px 50px;
+        padding: 0 10px 50px 10px;
       }
       header {
         justify-content: space-between;
         padding: 0 20px;
-        height: 50px;
+        height: 65px;
       }
       header a {
         margin-left: auto;
       }
       header .logo {
-        max-width: 180px;
-        width: 45vw;
+        max-width: 250px;
+        width: 60vw;
       }
       .footer-link-dock {
         font-size: 1rem;
@@ -364,7 +366,7 @@
       }
       main.artist-grid {
         grid-template-columns: repeat(2, 1fr);
-        margin-top: 56px;
+        margin-top: 70px;
       }
       .artist-info {
         opacity: 1 !important;
