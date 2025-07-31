@@ -1,173 +1,176 @@
 <!DOCTYPE html>
 <html lang="en" id="top">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Club History – Die Nacht Brennt</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Club History – Die Nacht Brennt Club</title>
   <style>
+    @font-face {
+      font-family: 'horizon_outlined';
+      src: url('/fonts/horizon_outlined.woff2') format('woff2'),
+           url('/fonts/horizon_outlined.woff') format('woff'),
+           url('/fonts/horizon_outlined.ttf') format('truetype');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'horizon';
+      src: url('/fonts/horizon.woff2') format('woff2'),
+           url('/fonts/horizon.woff') format('woff'),
+           url('/fonts/horizon.ttf') format('truetype');
+      font-display: swap;
+    }
+    * { box-sizing: border-box; margin:0; padding:0; }
     body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(180deg, #000, #0a0a0a);
-      background-size: 400% 400%;
-      animation: bgScroll 60s ease infinite;
-      color: white;
+      padding-top: 75px;
+      font-family: sans-serif;
+      background: #000;
+      color: #fff;
       scroll-behavior: smooth;
     }
-
-    @keyframes bgScroll {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
     header {
-      text-align: center;
-      padding: 4rem 2rem 2rem;
-      text-transform: uppercase;
-      animation: fadeUp 1s ease forwards;
+      position: fixed; top:0; left:0;
+      width:100%; height:75px;
+      background:#000; z-index:999;
+      display:flex; justify-content:center;
+      align-items:center; padding:0 20px;
+      border-bottom:2px solid #000;
     }
-
-    h1 {
-      font-size: 3rem;
-      letter-spacing: 0.1em;
-      margin-bottom: 1rem;
+    header .logo { max-width:400px; width:80vw; height:auto; }
+    .menu-toggle { position:fixed; top:20px; left:20px;
+      background:none; border:none; cursor:pointer; z-index:1001;
+      display:flex; flex-direction:column; gap:4px; align-items:flex-start;
     }
-
-    h2 {
-      font-size: 1.5rem;
-      font-weight: normal;
-      color: #aaa;
+    .menu-toggle .bar {
+      width:30px; height:3px; background:#fff; border-radius:2px;
     }
-
-    .club-hero-img {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding: 2rem;
+    .sidebar {
+      position:fixed; top:0; left:-250px; width:250px; height:100%;
+      background:#111; padding-top:60px; transition:left .3s ease; z‑index:1000;
     }
-
-    .rect {
-      width: 300px;
-      height: 200px;
-      background-color: #111;
-      border: 1px solid #fff;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .sidebar.open { left:0; }
+    .sidebar ul { list-style:none; text-align:center; padding:0; }
+    .sidebar a {
+      display:block; color:#fff; padding:20px;
+      text-transform:uppercase; text-decoration:none;
+      border-bottom:1px solid #222;
+      font-family:'horizon',sans-serif; letter-spacing:1px; font-size:1.12rem;
+      transition:background .16s;
     }
-
-    .rect:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 16px #ff003322;
+    .sidebar a:hover, .sidebar a.active { background:#222; color:#ff0033; }
+    main { max-width:1280px; margin:0 auto; padding:0 18px; }
+    section { padding:60px 0; text-align:center; position:relative; }
+    section h1, h2 {
+      display:inline-block;
+      animation:fadeUp 1s ease forwards;
     }
-
-    .section {
-      padding: 3rem 2rem;
-      text-align: center;
+    section h1 { font-family:'horizon_outlined',sans-serif; font-size:2.5rem; color:#ff0033; letter-spacing:2px; margin-bottom:18px;}
+    section h2 { font-family:'horizon',sans-serif; font-size:1.3rem; color:#ff0033; margin-bottom:10px;}
+    .carousel {
+      position:relative; overflow:hidden; max-width:800px; margin: 40px auto;
     }
-
-    .section h3 {
-      font-size: 1.2rem;
-      color: #ff0033;
-      margin-bottom: 1rem;
+    .slides {
+      display:flex; transition:transform 0.5s ease;
+      width:100%;
     }
-
-    .section p {
-      max-width: 800px;
-      margin: 0 auto;
-      color: #ccc;
-      line-height: 1.6;
+    .slide {
+      flex:0 0 100%; min-height: 300px;
+      background:#191919; border-radius:18px;
+      display:flex; align-items:center; justify-content:center;
+      color:#ff0033bb; font-family:'horizon',Arial,sans-serif;
+      font-size:1.3rem; user-select:none;
+      transition:transform .3s ease;
     }
-
-    .mid-img, .creative-img {
-      width: 80%;
-      max-width: 600px;
-      height: 250px;
-      margin: 2rem auto;
-      background-color: #111;
-      border: 1px solid #fff;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .slide:hover { transform:scale(1.02); box-shadow:0 4px 36px #0005; }
+    .nav-btn {
+      position:absolute; top:50%; transform:translateY(-50%);
+      background:rgba(0,0,0,0.5); color:#fff; border:none;
+      font-size:1.8rem; width:40px; height:40px; line-height:40px;
+      text-align:center; cursor:pointer; z‑index:2;
     }
-
-    .mid-img:hover, .creative-img:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 20px #ff003322;
-    }
-
-    .coming-soon {
-      opacity: 0.2;
-      pointer-events: none;
-      user-select: none;
-    }
-
+    .nav-btn.prev { left:10px; }
+    .nav-btn.next { right:10px; }
+    @keyframes fadeUp { 0%{opacity:0;transform:translateY(20px);} 100%{opacity:1;transform:translateY(0);} }
     .scroll-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #ff0033;
-      color: #000;
-      font-weight: bold;
-      font-size: 1.2rem;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 42px;
-      text-decoration: none;
-      z-index: 1000;
-      box-shadow: 0 0 12px #000;
-      transition: background 0.3s;
+      position:fixed; bottom:30px; right:30px;
+      background:#ff0033; color:#000; width:42px; height:42px;
+      border-radius:50%; text-align:center; line-height:42px;
+      font-size:1.2rem; font-weight:bold; text-decoration:none;
+      box-shadow:0 2px 12px #0006; transition:background .3s; z‑index:1000;
     }
-
-    .scroll-top:hover {
-      background: #fff;
-      color: #ff0033;
-    }
-
-    @keyframes fadeUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 768px) {
-      .rect, .mid-img, .creative-img {
-        width: 90%;
-        height: 180px;
-      }
+    .scroll-top:hover { background:#fff; color:#ff0033; }
+    @media (max-width:768px){
+      .slide { font-size:1.1rem; }
     }
   </style>
 </head>
 <body>
-
+  <button class="menu-toggle" aria-label="Toggle menu">
+    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+  </button>
+  <div id="menu-container"></div>
   <header>
-    <h1>Club History</h1>
-    <h2>Reliving the night that burned</h2>
+    <a href="https://dienachtbrenntclub.com">
+      <img src="/logoletraslargo.png" alt="Logo DNBC" class="logo"/>
+    </a>
   </header>
-
-  <section class="club-hero-img">
-    <div class="rect"></div>
-    <div class="rect"></div>
-    <div class="rect"></div>
-  </section>
-
-  <section class="section">
-    <h3>From Berlin to Everywhere</h3>
-    <p>Die Nacht Brennt was born in the underground scene of Berlin and quickly expanded into a full-blown international community of ravers, DJs and creators.</p>
-    <div class="mid-img"></div>
-  </section>
-
-  <section class="section">
-    <h3>Creative Chaos</h3>
-    <p>What began as a DIY rave became a movement. From the dancefloors of industrial spaces to digital platforms, we’ve curated nights of intensity, freedom and expression.</p>
-    <div class="creative-img"></div>
-  </section>
-
-  <section class="section coming-soon">
-    <h3>What’s Next?</h3>
-    <p>We're not done. This page will evolve — just like the club.</p>
-  </section>
+  <main>
+    <section>
+      <h1>Club History</h1>
+      <p>From underground warehouse nights to international techno experiences.</p>
+    </section>
+    <section>
+      <h2>Carrerasic Visual</h2>
+      <div class="carousel">
+        <button class="nav-btn prev" aria-label="Anterior">&#10094;</button>
+        <div class="slides">
+          <div class="slide">[ Imagen 1 ]</div>
+          <div class="slide">[ Imagen 2 ]</div>
+          <div class="slide">[ Imagen 3 ]</div>
+        </div>
+        <button class="nav-btn next" aria-label="Siguiente">&#10095;</button>
+      </div>
+    </section>
+    <section>
+      <h2>Values & Evolution</h2>
+      <p>Inclusivity, freedom, and the raw energy of the dancefloor define our journey.</p>
+    </section>
+    <section>
+      <h2>People Make the Club</h2>
+      <p>Residents, guests, crowd: everyone collaborates in the same experience.</p>
+    </section>
+    <section class="coming-soon">
+      <h2>Events & Merch Coming Soon</h2>
+    </section>
+  </main>
 
   <a href="#top" class="scroll-top" aria-label="Back to top">↑</a>
 
+  <script>
+    // menú dinámico
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('/menu.html')
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById('menu-container').innerHTML = html;
+          const btn = document.querySelector('.menu-toggle');
+          const nav = document.getElementById('sidebar');
+          btn.addEventListener('click', () => nav.classList.toggle('open'));
+        });
+    });
+    // carrusel funcional
+    (function(){
+      const slides = document.querySelector('.slides');
+      const total = slides.children.length;
+      let idx = 0;
+      document.querySelector('.prev').onclick = () => {
+        idx = (idx - 1 + total) % total;
+        slides.style.transform = `translateX(-${idx*100}%)`;
+      };
+      document.querySelector('.next').onclick = () => {
+        idx = (idx + 1) % total;
+        slides.style.transform = `translateX(-${idx*100}%)`;
+      };
+    })();
+  </script>
 </body>
 </html>
