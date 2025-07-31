@@ -237,42 +237,46 @@
       }
     }
     @media (max-width: 500px) {
-      html, body, main.contact-main {
-        min-height: 100vh !important;
-        height: 100vh !important;
-        max-height: 100vh !important;
-        overflow: hidden !important;
-        width: 100vw !important;
-        max-width: 100vw !important;
-        min-width: 100vw !important;
-        padding: 0 !important;
-        margin: 0 !important;
-      }
-      .contact-card {
-        padding: 0 7vw;
-      }
-      .contact-card h1 {
-        font-size: 1.1rem;
-      }
-      .contact-card .intro {
-        font-size: 0.95rem;
-      }
-      .contact-list {
-        font-size: 1rem;
-        max-width: 100vw;
-        padding: 0 2vw;
-      }
-      .contact-list li {
-        font-size: 1rem;
-        margin: 22px 0 0 0;
-      }
-      .contact-list a,
-      .contact-list .contact-red {
-        font-size: 0.57em !important;
-        word-break: break-all;
-        white-space: normal;
-      }
-    }
+  html, body, main.contact-main {
+    min-height: 100vh !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    overflow: hidden !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .contact-card {
+    padding: 0 7vw;
+  }
+  .contact-card h1 {
+    font-size: 1.1rem;
+  }
+  .contact-card .intro {
+    font-size: 0.95rem;
+  }
+  .contact-list {
+    font-size: 1rem;
+    max-width: 100vw;
+    padding: 0 2vw;
+  }
+  .contact-list li {
+    font-size: 1rem;
+    margin: 22px 0 0 0;
+  }
+  .contact-list a,
+  .contact-list .contact-red {
+    font-size: 0.53em !important;         /* ¡Reduce este valor hasta que quepa! */
+    white-space: nowrap !important;       /* No permite saltos de línea */
+    word-break: normal !important;        /* No parte la palabra */
+    overflow: hidden !important;          /* Opcional: oculta el exceso */
+    text-overflow: ellipsis !important;   /* Opcional: muestra "..." si no cabe */
+    max-width: 96vw;                      /* Limita el ancho máximo */
+    display: inline-block;
+  }
+}
   </style>
 </head>
 <body>
