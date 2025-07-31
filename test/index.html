@@ -34,31 +34,15 @@
     }
     html, body {
       padding-top: 75px;
-      min-height: 100%;
-      scroll-behavior: smooth;
-      background-color: #000;
+      background: #000;
       color: #fff;
       font-family: sans-serif;
+      min-height: 100vh;
     }
-    /* Menu hamburger and sidebar */
-    .menu-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 1001;
+    body {
+      overflow-x: hidden;
     }
-    .menu-toggle .bar {
-      display: block;
-      width: 30px;
-      height: 3px;
-      background: #fff;
-      margin: 6px 0;
-    }
-    #menu-container {}
-    /* Header */
+    /* HEADER */
     header {
       position: fixed;
       top: 0;
@@ -66,86 +50,263 @@
       width: 100%;
       height: 75px;
       background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 20px;
-      z-index: 999;
       border-bottom: 2px solid #000;
+      display: flex;
+      align-items: center;
+      z-index: 999;
+      padding: 0 20px;
     }
-    header a {
+    .logo-link {
       display: flex;
       align-items: center;
       height: 100%;
+      text-decoration: none;
     }
-    header .logo {
+    .logo {
       max-width: 400px;
       width: 80vw;
       height: auto;
+      display: block;
     }
-    /* Section history */
-    .history-section {
-      max-width: 1000px;
-      width: 100%;
-      margin: 100px auto 60px auto;
-      background: #161616;
-      border-radius: 18px;
-      box-shadow: 0 2px 32px #0009;
-      padding: 44px 28px 36px 28px;
+    /* MENU */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #111;
+      padding-top: 60px;
+      transition: left .3s cubic-bezier(.77,0,.175,1);
+      z-index: 1000;
+    }
+    .sidebar.open {
+      left: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+    }
+    .sidebar a {
+      display: block;
+      color: #fff;
+      padding: 20px 0;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid #222;
+      font-family: 'horizon', sans-serif;
+      letter-spacing: 1px;
+      font-size: 1.12rem;
+      transition: background 0.16s;
+    }
+    .sidebar a:hover, .sidebar a.active {
+      background: #222;
+      color: #ff0033;
+    }
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1100;
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: clamp(16px, 4vw, 44px);
+      flex-direction: column;
+      gap: 4px;
+      justify-content: center;
+      align-items: flex-start;
     }
-    .img-history-placeholder {
-      min-width: 230px;
-      width: 340px;
-      height: 170px;
+    .menu-toggle .bar {
+      display: block;
+      width: 30px;
+      height: 3px;
+      background: #fff;
+      margin: 0;
+      border-radius: 2px;
+      transition: background .15s;
+    }
+    /* MAIN LAYOUT */
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+    /* HERO SECTION */
+    .hero-history {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 0;
+      margin-top: 60px;
+      background: #0a0a0a;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 4px 36px #0006;
+      min-height: 370px;
+    }
+    .hero-img-placeholder {
+      flex: 1.05;
+      min-width: 320px;
+      background: #191919;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .hero-img-placeholder .rect {
+      width: 86%;
+      height: 320px;
+      max-width: 540px;
+      min-width: 210px;
       background: #232323;
-      border: 2.5px dashed #ff003370;
+      border-radius: 32px;
+      border: 3px dashed #ff003355;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ff0033cc;
+      font-family: 'horizon', Arial, sans-serif;
+      font-size: 2.2rem;
+      text-align: center;
+      letter-spacing: 2px;
+      user-select: none;
+      box-shadow: 0 2px 32px #0005;
+    }
+    .hero-history-content {
+      flex: 1.22;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 46px 42px 38px 42px;
+      min-width: 270px;
+      max-width: 650px;
+    }
+    .hero-history-content h1 {
+      font-family: 'horizon_outlined', sans-serif;
+      font-size: 2.5rem;
+      color: #ff0033;
+      margin-bottom: 18px;
+      letter-spacing: 2px;
+    }
+    .hero-history-content p {
+      font-size: 1.12rem;
+      color: #ededed;
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+    /* SECOND SECTION */
+    .sub-section {
+      display: flex;
+      gap: 3vw;
+      margin: 48px 0 0 0;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .sub-img {
+      background: #191919;
       border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #ff0033b0;
+      min-width: 180px;
+      min-height: 160px;
+      max-width: 320px;
+      width: 30vw;
+      height: 180px;
+      border: 2.5px dashed #ff003355;
+      color: #ff0033bb;
       font-family: 'horizon', Arial, sans-serif;
-      font-size: 1.22rem;
-      letter-spacing: 2px;
-      margin: 0 auto 18px auto;
+      font-size: 1.1rem;
+      margin: 0 0 16px 0;
       user-select: none;
-      box-shadow: 0 2px 20px 0 #0004;
+      box-shadow: 0 2px 16px #0004;
     }
-    .history-content {
-      flex: 1;
-      text-align: left;
-      font-size: 16px;
+    .sub-section-content {
+      flex: 2;
+      min-width: 230px;
+      font-size: 1.04rem;
+      color: #e1e1e1;
       line-height: 1.7;
-      color: #eaeaea;
-      margin: 0;
-      padding: 0;
+      margin: 0 0 0 0;
+      padding: 0 0 0 10px;
     }
-    .history-content h1, .history-content h2 {
-      font-family: 'horizon_outlined', sans-serif;
+    .sub-section-content h2 {
+      font-family: 'horizon', Arial, sans-serif;
       color: #ff0033;
-      margin-bottom: 18px;
-      font-size: 2rem;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+    /* TWO SUB IMAGES FOR VARIETY */
+    .sub-imgs-row {
+      display: flex;
+      gap: 16px;
+    }
+    .sub-img-sm {
+      background: #232323;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 100px;
+      min-height: 90px;
+      max-width: 150px;
+      width: 18vw;
+      height: 90px;
+      border: 2px dashed #ff003345;
+      color: #ff0033a5;
+      font-family: 'horizon', Arial, sans-serif;
+      font-size: 0.98rem;
+      margin: 0 0 10px 0;
+      user-select: none;
+      box-shadow: 0 1px 8px #0003;
+    }
+    /* BOTTOM SECTIONS */
+    .bottom-panels {
+      width: 100%;
+      display: flex;
+      gap: 2vw;
+      margin: 62px 0 0 0;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .panel {
+      background: #131313;
+      border-radius: 16px;
+      box-shadow: 0 2px 18px #0005;
+      flex: 1 1 320px;
+      min-width: 280px;
+      max-width: 420px;
+      margin-bottom: 10px;
+      padding: 44px 22px 38px 22px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .panel h3 {
+      font-family: 'horizon_outlined', Arial, sans-serif;
+      color: #ff0033;
+      font-size: 1.35rem;
+      margin-bottom: 16px;
       letter-spacing: 2px;
     }
-    .history-content h2 {
-      font-size: 1.2rem;
+    .panel .coming-soon {
       color: #ff0033;
-      margin-top: 36px;
-      margin-bottom: 10px;
       font-family: 'horizon', Arial, sans-serif;
+      font-size: 1.1rem;
+      margin-top: 10px;
+      letter-spacing: 1px;
+      background: #1a1a1a;
+      border-radius: 8px;
+      padding: 7px 18px;
+      display: inline-block;
+      margin-bottom: 0;
+      border: 1.5px dashed #ff003355;
     }
-    /* Responsive */
-    @media (max-width: 900px) {
-      .history-section { flex-direction: column; gap: 0 !important; padding: 24px 5vw 18px 5vw;}
-      .img-history-placeholder { width: 98vw; max-width: 97vw; height: 90px; font-size: 0.95rem;}
-    }
-    @media (max-width: 650px) {
-      .history-section { margin: 80px 0 40px 0; }
-    }
+    /* FOOTER */
     footer {
       text-align: center;
       color: #aaa;
@@ -156,65 +317,129 @@
       margin-top: 60px;
       border-top: 2px solid #181818;
     }
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .hero-history-content { padding: 38px 14px 32px 14px; }
+    }
+    @media (max-width: 900px) {
+      .hero-history { flex-direction: column; border-radius: 24px; }
+      .hero-img-placeholder { min-width: 0; }
+      .hero-img-placeholder .rect { height: 160px; font-size: 1.2rem;}
+      .hero-history-content { max-width: 100%; }
+      .sub-section { flex-direction: column; gap: 0;}
+      .sub-img, .sub-img-sm { min-width: 0; width: 85vw; max-width: 99vw;}
+      .panel { min-width: 70vw; }
+    }
+    @media (max-width: 650px) {
+      .hero-history { margin-top: 20px; border-radius: 12px;}
+      .panel { padding: 22px 6vw 18px 6vw; }
+      .hero-history-content h1 { font-size: 1.6rem;}
+    }
   </style>
 </head>
 <body>
-  <!-- MENU HAMBURGER AND SIDEBAR -->
+  <!-- MENU TOGGLE -->
   <button class="menu-toggle" aria-label="Toggle menu">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
-  <div id="menu-container"></div>
-  <!-- HEADER WITH LOGO -->
+  <!-- SIDEBAR MENU (copied exactly as in your provided page) -->
+  <nav class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="/" >Home</a></li>
+      <li><a href="/club-history.html" class="active">Club History</a></li>
+      <li><a href="/artists.html">Artists</a></li>
+      <li><a href="/events.html">Events</a></li>
+      <li><a href="/merch.html">Merch</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <!-- HEADER -->
   <header>
-    <a href="https://dienachtbrenntclub.com">
+    <a href="/" class="logo-link">
       <img src="/logoletraslargo.png" alt="Logo DNBC Club" class="logo" />
     </a>
   </header>
-  <!-- HISTORY SECTION -->
-  <section class="history-section">
-    <div class="img-history-placeholder">
-      [ Club historic image here ]
-    </div>
-    <div class="history-content">
-      <h1>Club History</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Die Nacht Brennt Club was born from the desire to create a unique space for underground techno lovers in Galicia. Since its foundation, the club has been a meeting point for artists, ravers, and creative minds, always striving to push the local scene forward and to bring new experiences to the dance floor.
-      </p>
-      <h2>Our Values</h2>
-      <p>
-        The club is founded on principles of authenticity, inclusivity, and relentless passion for music. Our mission is to foster a community where everyone is welcome, and where the power of techno connects, transforms, and empowers.
-      </p>
-      <h2>Evolution</h2>
-      <p>
-        From intimate underground gatherings to large-scale events, Die Nacht Brennt Club continues to evolve. Today, the project extends beyond club nights, becoming an agency, a record label, and a platform for the next generation of electronic music creators and fans.
-      </p>
-    </div>
-  </section>
+  <main>
+    <!-- HERO SECTION: Big image (placeholder) with text at side -->
+    <section class="hero-history">
+      <div class="hero-img-placeholder">
+        <div class="rect">[ Club main image ]</div>
+      </div>
+      <div class="hero-history-content">
+        <h1>Club History</h1>
+        <p>
+          Die Nacht Brennt Club was born from the urge to create an authentic space for underground techno in Galicia. Since its inception, the club has united artists, ravers, and minds who crave something different. Always moving forward, always pushing the boundaries, DNBC is a community and a movement as much as a club.<br><br>
+          From clandestine warehouse nights to open-air raves, our story is one of passion, rebellion, and a relentless love for the music that brings us together.
+        </p>
+      </div>
+    </section>
+    <!-- SUB SECTION: 1 large or 2 medium images, text at side or below -->
+    <section class="sub-section">
+      <div class="sub-imgs-row">
+        <div class="sub-img">[ Old flyer ]</div>
+        <div class="sub-img-sm">[ Crowd ]</div>
+      </div>
+      <div class="sub-section-content">
+        <h2>Evolution & Values</h2>
+        <p>
+          DNBC stands for community, freedom, and the raw energy of the dancefloor. We believe in inclusivity, self-expression, and breaking down barriers between artist and crowd.<br><br>
+          Over the years, the club has grown into an agency, label, and platform for new generations of electronic music lovers. Our mission is to keep the flame burning for underground culture—one night, one track, one memory at a time.
+        </p>
+      </div>
+    </section>
+    <!-- CREATIVE MIDDLE SECTION -->
+    <section class="sub-section" style="margin-top:34px;">
+      <div class="sub-img" style="background:#191919;">
+        [ Resident DJ ]
+      </div>
+      <div class="sub-section-content">
+        <h2>People Make the Club</h2>
+        <p>
+          Our residents, guest DJs, and the crowd are all part of the same experience. Every event is a collaboration between everyone in the room. <br><br>
+          DNBC is not just a place—it's a feeling that stays with you long after the lights come up.
+        </p>
+      </div>
+    </section>
+    <!-- EVENTS & MERCHANDISE PANELS -->
+    <section class="bottom-panels">
+      <div class="panel">
+        <h3>Events</h3>
+        <div class="coming-soon">Coming Soon</div>
+      </div>
+      <div class="panel">
+        <h3>Merchandise</h3>
+        <div class="coming-soon">Coming Soon</div>
+      </div>
+    </section>
+  </main>
   <footer>
     &copy; 2025 Die Nacht Brennt Club. All rights reserved.
   </footer>
   <script>
-  (function() {
-    'use strict';
-    document.addEventListener('DOMContentLoaded', function() {
-      // 1. Load the menu from menu.html
-      fetch('/menu.html')
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById('menu-container').innerHTML = html;
-          // 2. After inserting the menu, add event to hamburger button
-          var btn = document.querySelector('.menu-toggle');
-          var nav = document.getElementById('sidebar');
-          if (btn && nav) {
-            btn.addEventListener('click', function() {
-              nav.classList.toggle('open');
-            });
-          }
-        });
+    // Sidebar toggle
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+      document.getElementById('sidebar').classList.toggle('open');
     });
-  })();
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', function(event) {
+      var sidebar = document.getElementById('sidebar');
+      var toggle = document.querySelector('.menu-toggle');
+      if (
+        sidebar.classList.contains('open') &&
+        !sidebar.contains(event.target) &&
+        !toggle.contains(event.target)
+      ) {
+        sidebar.classList.remove('open');
+      }
+    });
+    // Optional: close sidebar when clicking a link (for smooth UX on mobile)
+    document.querySelectorAll('.sidebar a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        document.getElementById('sidebar').classList.remove('open');
+      });
+    });
   </script>
 </body>
 </html>
