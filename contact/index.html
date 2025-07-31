@@ -13,6 +13,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
+
   <style>
     @font-face {
       font-family: 'horizon';
@@ -21,24 +22,23 @@
       font-style: normal;
       font-display: swap;
     }
-    html, body {
-      height: 100%;
+    *, *::before, *::after {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
     body {
-      min-height: 100vh;
-      background: #000;
-      color: #fff;
-      font-family: 'horizon', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      background: #000;
+      color: #fff;
+      font-family: 'horizon', sans-serif;
       text-align: center;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
+      padding: 80px 20px 50px;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
     }
     .menu-toggle {
       position: fixed;
@@ -55,6 +55,34 @@
       height: 3px;
       background: #fff;
       margin: 6px 0;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #111;
+      padding-top: 60px;
+      transition: left .3s ease;
+      z-index: 1000;
+    }
+    .sidebar.open {
+      left: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+    }
+    .sidebar a {
+      display: block;
+      color: #fff;
+      padding: 20px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid #222;
+    }
+    .sidebar a:hover {
+      background: #222;
     }
     header {
       position: fixed;
@@ -159,8 +187,16 @@
       color: #ff3355 !important;
     }
     @media (max-width: 700px) {
+      body {
+        padding: 60px 10px 50px;
+      }
       header {
-        height: 60px;
+        justify-content: space-between;
+        padding: 0 20px;
+        height: 65px;
+      }
+      header a {
+        margin-left: auto;
       }
       header .logo {
         max-width: 250px;
@@ -209,7 +245,7 @@
       }
       .contact-list a,
       .contact-list .contact-red {
-        font-size: 0.89em !important;
+        font-size: 0.74em !important;
       }
     }
   </style>
@@ -248,22 +284,23 @@ contact us
     </div>
   </main>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Carga el menú hamburguesa desde menu.html
+  (function() {
+    'use strict';
+    document.addEventListener('DOMContentLoaded', function() {
+      // 1. Carga el menú desde menu.html
       fetch('/menu.html')
         .then(res => res.text())
         .then(html => {
           document.getElementById('menu-container').innerHTML = html;
-          // Ahora que el menú está insertado, selecciona el sidebar
-          const btn = document.querySelector('.menu-toggle');
-          const nav = document.getElementById('sidebar');
-          if (btn && nav) {
-            btn.addEventListener('click', () => {
-              nav.classList.toggle('open');
-            });
-          }
+          // 2. Después de insertar el menú, añade el evento al botón hamburguesa
+          var btn = document.querySelector('.menu-toggle');
+          var nav = document.getElementById('sidebar');
+          btn.addEventListener('click', function() {
+            nav.classList.toggle('open');
+          });
         });
     });
+  })();
   </script>
 </body>
 </html>
