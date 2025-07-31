@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DNBC Podcasts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #0b0806;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+    }
+    h2 {
+      text-align: center;
+      color: white;
+      margin-top: 3rem;
+    }
+    iframe {
+      border: none;
+      border-radius: 8px;
+    }
+    .soundcloud-credit {
+      text-align: center;
+      font-size: 12px;
+      color: white;
+      margin-top: 0.5rem;
+    }
+    .form-section {
+      margin-top: 3rem;
+      padding: 2rem;
+      background-color: #1a1816;
+      border-radius: 10px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input, textarea {
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #0b0b0b;
+      color: white;
+    }
+    input::placeholder, textarea::placeholder {
+      color: #888;
+    }
+    button {
+      background-color: white;
+      color: black;
+      padding: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #cccccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- SoundCloud embed -->
+    <iframe width="100%" height="450" scrolling="no" allow="autoplay" 
+      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1754486535&color=%23ffffff&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+    </iframe>
+    <div class="soundcloud-credit">
+      <a href="https://soundcloud.com/dienachtbrenntclub" target="_blank" style="color: white; text-decoration: none;">Die Nacht Brennt Club</a> · 
+      <a href="https://soundcloud.com/dienachtbrenntclub/sets/dnbc-podcasts" target="_blank" style="color: white; text-decoration: none;">DNBC PODCASTS</a>
+    </div>
+
+    <!-- Submit Form -->
+    <div class="form-section">
+      <h2>Submit your podcast</h2>
+      <form action="https://formspree.io/f/xovllnbb" method="POST">
+        <input type="text" name="name" placeholder="Your Name or Artist Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="4" placeholder="SoundCloud link + any info you'd like to share" required></textarea>
+        <button type="submit">Send Podcast</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
