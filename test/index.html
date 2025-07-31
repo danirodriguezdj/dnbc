@@ -7,7 +7,6 @@
   <title>Club History – Die Nacht Brennt Club</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
-  <!-- Custom Fonts -->
   <style>
     @font-face {
       font-family: 'horizon_outlined';
@@ -18,6 +17,7 @@
       font-style: normal;
       font-display: swap;
     }
+
     @font-face {
       font-family: 'horizon';
       src: url('/fonts/horizon.woff2') format('woff2'),
@@ -27,48 +27,48 @@
       font-style: normal;
       font-display: swap;
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     html, body {
       padding-top: 75px;
-      background: #000;
+      min-height: 100%;
+      background-color: #000;
       color: #fff;
       font-family: sans-serif;
-      min-height: 100vh;
+      scroll-behavior: smooth;
     }
-    body {
-      overflow-x: hidden;
+
+    section {
+      scroll-snap-align: start;
     }
-    /* HEADER */
-    header {
+
+    .menu-toggle {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 75px;
-      background: #000;
-      border-bottom: 2px solid #000;
+      top: 20px;
+      left: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
       display: flex;
-      align-items: center;
-      z-index: 999;
-      padding: 0 20px;
+      flex-direction: column;
+      gap: 4px;
+      justify-content: center;
+      align-items: flex-start;
     }
-    .logo-link {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      text-decoration: none;
-    }
-    .logo {
-      max-width: 400px;
-      width: 80vw;
-      height: auto;
+    .menu-toggle .bar {
       display: block;
+      width: 30px;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
     }
-    /* MENU */
+
     .sidebar {
       position: fixed;
       top: 0;
@@ -77,7 +77,7 @@
       height: 100%;
       background: #111;
       padding-top: 60px;
-      transition: left .3s cubic-bezier(.77,0,.175,1);
+      transition: left .3s ease;
       z-index: 1000;
     }
     .sidebar.open {
@@ -91,7 +91,7 @@
     .sidebar a {
       display: block;
       color: #fff;
-      padding: 20px 0;
+      padding: 20px;
       text-transform: uppercase;
       text-decoration: none;
       border-bottom: 1px solid #222;
@@ -104,49 +104,55 @@
       background: #222;
       color: #ff0033;
     }
-    .menu-toggle {
+
+    header {
       position: fixed;
-      top: 20px;
-      left: 20px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 1100;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 75px;
+      background: #000;
       display: flex;
-      flex-direction: column;
-      gap: 4px;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 999;
+      border-bottom: 2px solid #000;
     }
-    .menu-toggle .bar {
-      display: block;
-      width: 30px;
-      height: 3px;
-      background: #fff;
-      margin: 0;
-      border-radius: 2px;
-      transition: background .15s;
+
+    header a {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      text-decoration: none;
     }
-    /* MAIN LAYOUT */
+
+    header .logo {
+      max-width: 400px;
+      width: 80vw;
+      height: auto;
+    }
+
     main {
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 18px;
     }
-    /* HERO SECTION */
-    .hero-history {
+
+    /* HERO CLUB HISTORY SECTION */
+    .club-hero {
       display: flex;
       align-items: stretch;
       justify-content: center;
       gap: 0;
-      margin-top: 60px;
+      margin: 60px 0 0 0;
       background: #0a0a0a;
       border-radius: 32px;
       overflow: hidden;
       box-shadow: 0 4px 36px #0006;
-      min-height: 370px;
+      min-height: 380px;
     }
-    .hero-img-placeholder {
+    .club-hero-img {
       flex: 1.05;
       min-width: 320px;
       background: #191919;
@@ -155,7 +161,7 @@
       justify-content: center;
       position: relative;
     }
-    .hero-img-placeholder .rect {
+    .club-hero-img .rect {
       width: 86%;
       height: 320px;
       max-width: 540px;
@@ -174,7 +180,7 @@
       user-select: none;
       box-shadow: 0 2px 32px #0005;
     }
-    .hero-history-content {
+    .club-hero-content {
       flex: 1.22;
       display: flex;
       flex-direction: column;
@@ -183,21 +189,22 @@
       min-width: 270px;
       max-width: 650px;
     }
-    .hero-history-content h1 {
+    .club-hero-content h1 {
       font-family: 'horizon_outlined', sans-serif;
       font-size: 2.5rem;
       color: #ff0033;
       margin-bottom: 18px;
       letter-spacing: 2px;
     }
-    .hero-history-content p {
+    .club-hero-content p {
       font-size: 1.12rem;
       color: #ededed;
       line-height: 1.7;
       margin-bottom: 0;
     }
-    /* SECOND SECTION */
-    .sub-section {
+
+    /* MID SECTION */
+    .mid-section {
       display: flex;
       gap: 3vw;
       margin: 48px 0 0 0;
@@ -205,7 +212,12 @@
       flex-wrap: wrap;
       justify-content: center;
     }
-    .sub-img {
+    .mid-imgs-row {
+      display: flex;
+      gap: 16px;
+      flex-direction: column;
+    }
+    .mid-img {
       background: #191919;
       border-radius: 18px;
       display: flex;
@@ -224,27 +236,7 @@
       user-select: none;
       box-shadow: 0 2px 16px #0004;
     }
-    .sub-section-content {
-      flex: 2;
-      min-width: 230px;
-      font-size: 1.04rem;
-      color: #e1e1e1;
-      line-height: 1.7;
-      margin: 0 0 0 0;
-      padding: 0 0 0 10px;
-    }
-    .sub-section-content h2 {
-      font-family: 'horizon', Arial, sans-serif;
-      color: #ff0033;
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-    }
-    /* TWO SUB IMAGES FOR VARIETY */
-    .sub-imgs-row {
-      display: flex;
-      gap: 16px;
-    }
-    .sub-img-sm {
+    .mid-img-sm {
       background: #232323;
       border-radius: 14px;
       display: flex;
@@ -263,7 +255,67 @@
       user-select: none;
       box-shadow: 0 1px 8px #0003;
     }
-    /* BOTTOM SECTIONS */
+    .mid-section-content {
+      flex: 2;
+      min-width: 230px;
+      font-size: 1.04rem;
+      color: #e1e1e1;
+      line-height: 1.7;
+      margin: 0 0 0 0;
+      padding: 0 0 0 10px;
+    }
+    .mid-section-content h2 {
+      font-family: 'horizon', Arial, sans-serif;
+      color: #ff0033;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    /* CREATIVE SECTION */
+    .creative-section {
+      display: flex;
+      gap: 3vw;
+      margin: 38px 0 0 0;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .creative-img {
+      background: #181818;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+      min-height: 160px;
+      max-width: 320px;
+      width: 30vw;
+      height: 180px;
+      border: 2.5px dashed #ff003355;
+      color: #ff0033bb;
+      font-family: 'horizon', Arial, sans-serif;
+      font-size: 1.1rem;
+      margin: 0 0 16px 0;
+      user-select: none;
+      box-shadow: 0 2px 16px #0004;
+    }
+    .creative-section-content {
+      flex: 2;
+      min-width: 230px;
+      font-size: 1.04rem;
+      color: #e1e1e1;
+      line-height: 1.7;
+      margin: 0 0 0 0;
+      padding: 0 0 0 10px;
+    }
+    .creative-section-content h2 {
+      font-family: 'horizon', Arial, sans-serif;
+      color: #ff0033;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    /* EVENTS & MERCH PANELS */
     .bottom-panels {
       width: 100%;
       display: flex;
@@ -306,6 +358,7 @@
       margin-bottom: 0;
       border: 1.5px dashed #ff003355;
     }
+
     /* FOOTER */
     footer {
       text-align: center;
@@ -317,23 +370,24 @@
       margin-top: 60px;
       border-top: 2px solid #181818;
     }
+
     /* RESPONSIVE */
     @media (max-width: 1100px) {
-      .hero-history-content { padding: 38px 14px 32px 14px; }
+      .club-hero-content { padding: 38px 14px 32px 14px; }
     }
     @media (max-width: 900px) {
-      .hero-history { flex-direction: column; border-radius: 24px; }
-      .hero-img-placeholder { min-width: 0; }
-      .hero-img-placeholder .rect { height: 160px; font-size: 1.2rem;}
-      .hero-history-content { max-width: 100%; }
-      .sub-section { flex-direction: column; gap: 0;}
-      .sub-img, .sub-img-sm { min-width: 0; width: 85vw; max-width: 99vw;}
+      .club-hero { flex-direction: column; border-radius: 24px; }
+      .club-hero-img { min-width: 0; }
+      .club-hero-img .rect { height: 160px; font-size: 1.2rem;}
+      .club-hero-content { max-width: 100%; }
+      .mid-section, .creative-section { flex-direction: column; gap: 0;}
+      .mid-img, .mid-img-sm, .creative-img { min-width: 0; width: 85vw; max-width: 99vw;}
       .panel { min-width: 70vw; }
     }
     @media (max-width: 650px) {
-      .hero-history { margin-top: 20px; border-radius: 12px;}
+      .club-hero { margin-top: 20px; border-radius: 12px;}
       .panel { padding: 22px 6vw 18px 6vw; }
-      .hero-history-content h1 { font-size: 1.6rem;}
+      .club-hero-content h1 { font-size: 1.6rem;}
     }
   </style>
 </head>
@@ -344,7 +398,7 @@
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
-  <!-- SIDEBAR MENU (copied exactly as in your provided page) -->
+  <!-- SIDEBAR MENU -->
   <nav class="sidebar" id="sidebar">
     <ul>
       <li><a href="/" >Home</a></li>
@@ -363,11 +417,11 @@
   </header>
   <main>
     <!-- HERO SECTION: Big image (placeholder) with text at side -->
-    <section class="hero-history">
-      <div class="hero-img-placeholder">
+    <section class="club-hero">
+      <div class="club-hero-img">
         <div class="rect">[ Club main image ]</div>
       </div>
-      <div class="hero-history-content">
+      <div class="club-hero-content">
         <h1>Club History</h1>
         <p>
           Die Nacht Brennt Club was born from the urge to create an authentic space for underground techno in Galicia. Since its inception, the club has united artists, ravers, and minds who crave something different. Always moving forward, always pushing the boundaries, DNBC is a community and a movement as much as a club.<br><br>
@@ -375,13 +429,13 @@
         </p>
       </div>
     </section>
-    <!-- SUB SECTION: 1 large or 2 medium images, text at side or below -->
-    <section class="sub-section">
-      <div class="sub-imgs-row">
-        <div class="sub-img">[ Old flyer ]</div>
-        <div class="sub-img-sm">[ Crowd ]</div>
+    <!-- MID SECTION: one large and one small image, text -->
+    <section class="mid-section">
+      <div class="mid-imgs-row">
+        <div class="mid-img">[ Old flyer ]</div>
+        <div class="mid-img-sm">[ Crowd ]</div>
       </div>
-      <div class="sub-section-content">
+      <div class="mid-section-content">
         <h2>Evolution & Values</h2>
         <p>
           DNBC stands for community, freedom, and the raw energy of the dancefloor. We believe in inclusivity, self-expression, and breaking down barriers between artist and crowd.<br><br>
@@ -389,12 +443,12 @@
         </p>
       </div>
     </section>
-    <!-- CREATIVE MIDDLE SECTION -->
-    <section class="sub-section" style="margin-top:34px;">
-      <div class="sub-img" style="background:#191919;">
+    <!-- CREATIVE SECTION: another image, text -->
+    <section class="creative-section">
+      <div class="creative-img">
         [ Resident DJ ]
       </div>
-      <div class="sub-section-content">
+      <div class="creative-section-content">
         <h2>People Make the Club</h2>
         <p>
           Our residents, guest DJs, and the crowd are all part of the same experience. Every event is a collaboration between everyone in the room. <br><br>
