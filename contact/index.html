@@ -109,24 +109,25 @@
       margin-bottom: 16px;
       margin-top: 0;
     }
-    .contact-card p {
+    .contact-card .intro {
       font-size: 1.15rem;
       margin-bottom: 32px;
       color: #ccc;
       letter-spacing: 1px;
+      white-space: pre-line;
     }
     .contact-list {
       width: 100%;
-      max-width: 340px;
+      max-width: 380px;
       text-align: center;
       margin: 0 auto;
       padding: 0;
     }
     .contact-list li {
       font-size: 1.05rem;
-      margin: 22px 0 0 0;
+      margin: 24px 0 0 0;
       list-style: none;
-      line-height: 1.5;
+      line-height: 1.7;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -137,13 +138,19 @@
       font-weight: bold;
       font-size: 1.07em;
     }
-    .contact-list a, .contact-list .plain {
+    .contact-list .plain {
+      color: #fff;
+      font-size: 1.07em;
+      margin-top: 2px;
+    }
+    .contact-list a {
       color: #e1306c;
       text-decoration: none;
-      word-break: break-all;
+      word-break: normal;
       font-family: inherit;
       font-size: 1.08em;
       margin-top: 2px;
+      white-space: nowrap;
     }
     .contact-list a:hover {
       text-decoration: underline;
@@ -159,11 +166,11 @@
       .contact-card h1 {
         font-size: 1.3rem;
       }
-      .contact-card p {
+      .contact-card .intro {
         font-size: 1rem;
       }
       .contact-list {
-        max-width: 95vw;
+        max-width: 98vw;
       }
     }
     @media (max-width: 500px) {
@@ -180,20 +187,25 @@
         padding: 0;
       }
       .contact-card {
-        padding: 0 2vw;
+        padding: 0 7vw;
       }
       .contact-card h1 {
         font-size: 1.1rem;
       }
-      .contact-card p {
+      .contact-card .intro {
         font-size: 0.95rem;
       }
       .contact-list {
         font-size: 1rem;
+        max-width: 100vw;
+        padding: 0 2vw;
       }
       .contact-list li {
         font-size: 1rem;
-        margin: 20px 0 0 0;
+        margin: 22px 0 0 0;
+      }
+      .contact-list a {
+        font-size: 1.04em;
       }
     }
   </style>
@@ -213,20 +225,20 @@
   <main class="contact-main">
     <div class="contact-card">
       <h1>Need Something?</h1>
-      <p>We're here to help you.<br>
-      For bookings, collaborations or any questions, contact us:</p>
+      <div class="intro">
+we´re here to help you.
+for bookings, collaborations or any questions,
+contact us
+      </div>
       <ul class="contact-list">
         <li>
-          <strong>E-mail</strong>
-          <a href="mailto:agency@dienachtbrenntclub.com">agency@dienachtbrenntclub.com</a>
+          <strong>e-mail</strong>
+          <a href="mailto:agency@dienachtbrenntclub.com" style="white-space:nowrap;">agency@dienachtbrenntclub.com</a>
         </li>
         <li>
-          <strong>Artist Manager (Giulia Nigro)</strong>
+          <strong>artist manager</strong>
+          <span class="plain">(Giulia Nigro)</span>
           <a href="tel:+351930666328">+351 930 666 328</a>
-        </li>
-        <li>
-          <strong>DNBC Contact</strong>
-          <a href="tel:+34634765795">+34 634 76 57 95</a>
         </li>
       </ul>
     </div>
