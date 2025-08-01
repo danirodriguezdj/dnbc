@@ -1,88 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    Archivo: main/index.html
-    Propósito: Página principal de Die Nacht Brennt Club.
-    Estándar de documentación: ISO/IEC/IEEE 26515
-  -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Die Nacht Brennt Club</title>
   <link rel="stylesheet" href="/style.css" />
-  <script src="/scripts/carousel.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 </head>
 <body>
-  <header>
-    <a href="/" rel="noopener">
-      <img src="/logoletraslargo.png" alt="DNBC Logo" class="logo" />
-    </a>
-    <button class="menu-toggle" aria-label="Toggle menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+  <header class="main-header">
+    <div class="logo-container">
+      <a href="/"><img src="/logoletraslargo.png" alt="Die Nacht Brennt Club Logo" class="logo" /></a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
+    <nav id="mobileMenu" class="mobile-menu">
+      <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/agency1/index.html">Agency</a></li>
+        <li><a href="/podcast.html">Podcast</a></li>
+        <li><a href="/history.html">History</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <section id="hero">
-    <div class="hero-img">
-      <img src="/img/mainpage/dnbc1.png" alt="Main DNBC Image"/>
-    </div>
+  <section class="hero">
+    <img src="/img/mainpage/dnbc1.png" alt="Crowd and Lights" class="hero-img">
     <div class="hero-text">
       <h1>Die Nacht Brennt Club</h1>
       <p>Fueling the underground with relentless beats and unforgettable nights, DNBC ignites the dancefloor like no other.</p>
     </div>
   </section>
 
-  <section id="carousel" class="carousel-container">
-    <button class="carousel-button left">&#10094;</button>
-    <div class="carousel-track">
-      <img src="/img/mainpage/crowd1.jpg" alt="Crowd 1" />
-      <img src="/img/mainpage/dj1.jpg" alt="DJ 1" />
-      <img src="/img/mainpage/crowd2.jpg" alt="Crowd 2" />
-      <img src="/img/mainpage/dj2.jpg" alt="DJ 2" />
-    </div>
-    <button class="carousel-button right">&#10095;</button>
-  </section>
-
-  <section id="origins">
+  <section class="history-section">
     <h2>Origins</h2>
     <p>Die Nacht Brennt Club (DNBC) was born in early 2022 from a shared frustration: southern Galicia’s electronic music scene lay dormant in the wake of the pandemic. Dani Rodríguez, who had long been fascinated by dance music icons, and Coke Cortés, whose early taste for bass-heavy tunes evolved into a passion for industrial-hard techno, found each other while studying at a local music school. There, both honed their skills behind the decks and discovered the raw power of uncompromising techno. In 2021, during one of the first parties organized by the Vigo-based promoter Wildlife, Coke and Dani crossed paths—and their creative chemistry became undeniable.</p>
-  </section>
 
-  <section id="birth">
     <h2>The Birth of “The Night Is Burning”</h2>
     <p>With venues across the region reluctant or ill-equipped to host true techno events, Dani decided to take matters into his own hands. He coined the name Die Nacht Brennt, German for “the night is burning,” and on March 11, 2022, staged the project’s first party in Lolita, a tiny 45-person bar in his hometown of Redondela. Armed with their own sound system—ensuring every beat would hit hard—they sold out the evening instantly. A second night followed with the same result, proving that there was a hunger for authentic, high-energy techno. A subsequent attempt at a larger club in Vigo drew just a few dozen people, but rather than defeat, it fueled their resolve to find a space they could call their own.</p>
-  </section>
 
-  <section id="the-gary">
     <h2>The Gary: From Abandoned Hotel to Rave Cathedral</h2>
     <p>Opportunity arrived through Rober Stark, the charismatic occupant of an old hotel within the derelict Massó fish-canning factory in Cangas. Constructed in 1942 and shuttered decades later, the complex—complete with cold-storage rooms and forgotten workshops—offered a unique canvas for DNBC’s vision. On July 8, 2022, the collective transformed the dusty halls of the “Gary” into a makeshift cathedral of sound, welcoming almost 400 strangers who danced from dusk until sunrise. That night crystallized DNBC’s identity: more than event promoters, they were the spark for a genuine community united by a love of pure techno.</p>
-  </section>
 
-  <section id="lineup">
     <h2>Today’s Lineup and Recent Triumphs</h2>
     <p>Today, the core of Die Nacht Brennt Club consists of Dani Rodríguez overseeing creative direction, Coke Cortés shaping the musical programming, and La Vera Notte bringing fresh artistic insight. Alongside them, Giulia Nigro—Calabrian by birth and now based in Lisbon—manages bookings and forges key collaborations. While early contributors like Pestdokter, Manu Losada and José Díaz have moved on to their own artistic and professional pursuits, they remain fondly connected to DNBC. Most recently, the collective made its international debut in London, teaming up with Hostile Takeover for a landmark event at Fire London. Meanwhile, their SoundCloud channel pulses with podcast mixes, and behind the scenes they’re laying the groundwork for a record label that will echo the same uncompromising spirit of their live shows.</p>
-  </section>
 
-  <section id="philosophy">
     <h2>Philosophy and Legacy</h2>
     <p>At its heart, Die Nacht Brennt Club stands for authenticity, inclusion, sonic excellence and community. Every party is conceived from a place of honest passion rather than commercial formulae, inviting anyone with an open mind and a love for heavy, unfiltered beats. It’s this genuine energy—far more than towering speaker stacks or marathon sets—that has allowed a small idea in Galicia to spark a movement reaching beyond local borders. As DNBC continues to light up new venues around the world, its founders remain committed to nurturing emerging talent, fostering connections, and ensuring that as long as the night burns, the dancefloor will never go dark.</p>
   </section>
 
-  <div id="menu-container"></div>
+  <section class="carousel-section">
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="/img/mainpage/slide1.jpg" alt="Slide 1" /></div>
+        <div class="swiper-slide"><img src="/img/mainpage/slide2.jpg" alt="Slide 2" /></div>
+        <div class="swiper-slide"><img src="/img/mainpage/slide3.jpg" alt="Slide 3" /></div>
+        <!-- Añade más slides si lo necesitas -->
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </section>
+
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      fetch('/menu.html')
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById('menu-container').innerHTML = html;
-          const btn = document.querySelector('.menu-toggle');
-          const nav = document.getElementById('sidebar');
-          btn.addEventListener('click', () => {
-            nav.classList.toggle('open');
-          });
-        });
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('open');
+    }
+
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      autoplay: { delay: 4000 },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
     });
   </script>
 </body>
