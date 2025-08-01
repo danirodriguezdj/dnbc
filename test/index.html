@@ -151,7 +151,23 @@
       animation: fadeUp 1.2s ease forwards;
       animation-delay: 0.3s;
     }
-    @media (max-width: 800px) {
+    @media (max-width: 768px) {
+      body {
+        padding: 0 10px 50px 10px;
+      }
+      header {
+        justify-content: space-between;
+        padding: 0 20px;
+        height: 65px;
+      }
+      header a {
+        margin-left: auto;
+      }
+      header .logo {
+        max-width: 250px;
+        width: 60vw;
+      }
+      
       #hero { flex-direction: column; }
       #hero .hero-text { text-align: center; }
     }
