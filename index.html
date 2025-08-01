@@ -2,30 +2,23 @@
 <html lang="en">
 <head>
   <!--
-    File: /index.html
-    Purpose: Main page of DNBC.
-    Documentation Standard: ISO/IEC/IEEE 26515
+    File: index.html
+    Purpose: DNBC homepage with full layout and consistent header/menu.
   -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#000" />
-
-  <!-- SEO Meta -->
   <title>DNBC — Die Nacht Brennt Club | Techno Agency & Events</title>
   <meta name="description" content="DNBC — Die Nacht Brennt Club: underground electronic music, artist agency, events, DJs and rave culture. Based in Spain, open to the world." />
   <meta name="keywords" content="DNBC, Die Nacht Brennt Club, techno, hard techno, Schranz, underground club, DJ agency, rave events, Spain, podcasts, electronic music" />
   <meta name="author" content="DNBC Team" />
   <link rel="canonical" href="https://dienachtbrenntclub.com/" />
-
-  <!-- Open Graph / Social Sharing -->
   <meta property="og:title" content="DNBC — Die Nacht Brennt Club" />
   <meta property="og:description" content="Underground techno club and agency. Discover our DJs, podcasts, and international events." />
   <meta property="og:image" content="https://dienachtbrenntclub.com/img/og.jpg" />
   <meta property="og:url" content="https://dienachtbrenntclub.com/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- Icons & PWA -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -195,6 +188,12 @@
     .dock-socials a.spotify:hover img {
       filter: invert(52%) sepia(76%) saturate(686%) hue-rotate(89deg) brightness(92%) contrast(91%);
     }
+    .hero-text {
+      margin-top: 20vh;
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      max-width: 800px;
+    }
     @media (max-width: 768px) {
       body {
         padding: 60px 10px 50px;
@@ -228,6 +227,9 @@
         width: 22px;
         height: 22px;
       }
+      .hero-text {
+        font-size: 1.5rem;
+      }
     }
   </style>
 
@@ -249,32 +251,30 @@
   /></noscript>
 </head>
 <body>
-  <!-- Hidden H1 for SEO -->
   <h1 style="position:absolute;left:-9999px;">DNBC — Die Nacht Brennt Club: underground techno agency, events and rave culture</h1>
 
-  <!-- Background GIF -->
   <div class="gif-bg" aria-hidden="true">
     <img src="/img/dnbc.gif" alt="Animated DNBC background" />
   </div>
 
-  <!-- Hamburger Button -->
   <button class="menu-toggle" aria-label="Toggle menu">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
 
-  <!-- Sidebar Menu -->
   <div id="menu-container"></div>
 
-  <!-- Header -->
   <header>
     <a href="https://dienachtbrenntclub.com" rel="noopener">
       <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
     </a>
   </header>
 
-  <!-- Social Dock -->
+  <div class="hero-text">
+    Underground techno, loud energy. Discover our DJs, listen to our sound, and feel the fire.
+  </div>
+
   <div class="dock-socials">
     <a href="https://soundcloud.com/dienachtbrenntclub" class="soundcloud" target="_blank" rel="noopener" title="SoundCloud">
       <img src="/img/icons/soundcloud.svg" alt="SoundCloud" />
