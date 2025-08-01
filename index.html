@@ -1,24 +1,25 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <!--
-    File: index.html
-    Purpose: DNBC homepage with full layout and consistent header/menu.
+    Archivo: agency1/index.html
+    Propósito: Página principal de DNBC Agency con listado de artistas.
+    Estándar de documentación: ISO/IEC/IEEE 26515
   -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" 
+        content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#000" />
-  <title>DNBC — Die Nacht Brennt Club | Techno Agency & Events</title>
-  <meta name="description" content="DNBC — Die Nacht Brennt Club: underground electronic music, artist agency, events, DJs and rave culture. Based in Spain, open to the world." />
-  <meta name="keywords" content="DNBC, Die Nacht Brennt Club, techno, hard techno, Schranz, underground club, DJ agency, rave events, Spain, podcasts, electronic music" />
+  <title>DIE NACHT BRENNT CLUB</title>
+  <meta name="description" 
+        content="DNBC — Die Nacht Brennt Club. Official page. Underground electronic music, DJ podcasts, and events." />
+  <meta name="keywords"
+        content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club, spain, clubbing, dnbc" />
+
   <meta name="author" content="DNBC Team" />
-  <link rel="canonical" href="https://dienachtbrenntclub.com/" />
-  <meta property="og:title" content="DNBC — Die Nacht Brennt Club" />
-  <meta property="og:description" content="Underground techno club and agency. Discover our DJs, podcasts, and international events." />
-  <meta property="og:image" content="https://dienachtbrenntclub.com/img/og.jpg" />
-  <meta property="og:url" content="https://dienachtbrenntclub.com/" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Íconos y manifest para PWA -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -52,6 +53,7 @@
       position: relative;
       min-height: 100vh;
     }
+    /* Fondo GIF centrado y fijo */
     .gif-bg {
       position: fixed;
       top: 0; left: 0;
@@ -71,6 +73,7 @@
       height: auto;
       margin: auto;
     }
+    /* Botón hamburguesa para mobile/desktop */
     .menu-toggle {
       position: fixed;
       top: 20px;
@@ -87,6 +90,7 @@
       background: #fff;
       margin: 6px 0;
     }
+    /* Sidebar oculto por defecto, aparece al clicar */
     .sidebar {
       position: fixed;
       top: 0;
@@ -115,6 +119,7 @@
     .sidebar a:hover {
       background: #222;
     }
+    /* Header fijo con logo centrado */
     header {
       position: fixed;
       top: 0;
@@ -139,6 +144,7 @@
       width: 80vw;
       height: auto;
     }
+    /* --- DOCK SOCIALS --- */
     .dock-socials {
       position: fixed;
       left: 50%;
@@ -148,7 +154,7 @@
       gap: 30px;
       background: rgba(20, 20, 20, 0.75);
       border-radius: 32px;
-      padding: 10px 32px;
+      padding: 10px 32px 10px 32px;
       box-shadow: 0 6px 24px 4px rgba(0,0,0,0.35);
       z-index: 2000;
       align-items: center;
@@ -188,12 +194,6 @@
     .dock-socials a.spotify:hover img {
       filter: invert(52%) sepia(76%) saturate(686%) hue-rotate(89deg) brightness(92%) contrast(91%);
     }
-    .hero-text {
-      margin-top: 20vh;
-      font-size: 2.2rem;
-      text-transform: uppercase;
-      max-width: 800px;
-    }
     @media (max-width: 768px) {
       body {
         padding: 60px 10px 50px;
@@ -227,12 +227,8 @@
         width: 22px;
         height: 22px;
       }
-      .hero-text {
-        font-size: 1.5rem;
-      }
     }
   </style>
-
   <!-- Meta Pixel Code -->
   <script>
     !function(f,b,e,v,n,t,s)
@@ -246,35 +242,34 @@
     fbq('init', '1234694877952614');
     fbq('track', 'PageView');
   </script>
-  <noscript><img height="1" width="1" style="display:none"
+   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1234694877952614&ev=PageView&noscript=1"
-  /></noscript>
+ /></noscript>
+  <!-- End Meta Pixel Code -->
+  
 </head>
 <body>
-  <h1 style="position:absolute;left:-9999px;">DNBC — Die Nacht Brennt Club: underground techno agency, events and rave culture</h1>
-
+  <!-- Fondo GIF fijo y centrado detrás de todo -->
   <div class="gif-bg" aria-hidden="true">
-    <img src="/img/dnbc.gif" alt="Animated DNBC background" />
+    <img src="/img/dnbc.gif" alt="Fondo DNBC animado" />
   </div>
-
+  <!-- Botón para abrir/cerrar menú lateral -->
   <button class="menu-toggle" aria-label="Toggle menu">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
-
+  
+  <!-- Navegación lateral -->
   <div id="menu-container"></div>
-
+  
+  <!-- Header fijo con logo -->
   <header>
     <a href="https://dienachtbrenntclub.com" rel="noopener">
       <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
     </a>
   </header>
-
-  <div class="hero-text">
-    Underground techno, loud energy. Discover our DJs, listen to our sound, and feel the fire.
-  </div>
-
+  <!-- Dock social fijo abajo -->
   <div class="dock-socials">
     <a href="https://soundcloud.com/dienachtbrenntclub" class="soundcloud" target="_blank" rel="noopener" title="SoundCloud">
       <img src="/img/icons/soundcloud.svg" alt="SoundCloud" />
@@ -286,23 +281,24 @@
       <img src="/img/icons/spotify.svg" alt="Spotify" />
     </a>
   </div>
-
   <script>
-    (function() {
-      'use strict';
-      document.addEventListener('DOMContentLoaded', function() {
-        fetch('/menu.html')
-          .then(res => res.text())
-          .then(html => {
-            document.getElementById('menu-container').innerHTML = html;
-            var btn = document.querySelector('.menu-toggle');
-            var nav = document.getElementById('sidebar');
-            btn.addEventListener('click', function() {
-              nav.classList.toggle('open');
-            });
+  (function() {
+    'use strict';
+    document.addEventListener('DOMContentLoaded', function() {
+      // 1. Carga el menú desde menu.html
+      fetch('/menu.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('menu-container').innerHTML = html;
+          // 2. Después de insertar el menú, añade el evento al botón hamburguesa
+          var btn = document.querySelector('.menu-toggle');
+          var nav = document.getElementById('sidebar');
+          btn.addEventListener('click', function() {
+            nav.classList.toggle('open');
           });
-      });
-    })();
-  </script>
+        });
+    });
+  })();
+</script>
 </body>
 </html>
