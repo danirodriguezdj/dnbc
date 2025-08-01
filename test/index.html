@@ -1,558 +1,277 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="top">
 <head>
-  <!--
-    Archivo: agency1/index.html
-    Propósito: Página principal de DNBC Agency con listado de artistas.
-    Estándar de documentación: ISO/IEC/IEEE 26515
-  -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" 
-        content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#000" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DIE NACHT BRENNT CLUB</title>
-  <meta name="description" 
-        content="DNBC — Die Nacht Brennt Club. Official page. Underground electronic music, DJ podcasts, and events." />
-  <meta name="keywords"
-        content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club, spain, clubbing, dnbc" />
+  <meta name="description" content="DNBC — Die Nacht Brennt Club. Official page. Underground electronic music, DJ sets, and events."/>
+  <meta name="keywords" content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club, spain, clubbing, dnbc"/>
+  <meta name="author" content="DNBC Team"/>
 
-  <meta name="author" content="DNBC Team" />
-
-  <!-- Íconos y manifest para PWA -->
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="DNBC" />
-  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="shortcut icon" href="/favicon.ico"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <meta name="apple-mobile-web-app-title" content="DNBC"/>
+  <link rel="manifest" href="/site.webmanifest"/>
 
   <style>
     @font-face {
+      font-family: 'horizon_outlined';
+      src: url('/fonts/horizon_outlined.woff2') format('woff2'),
+           url('/fonts/horizon_outlined.woff') format('woff'),
+           url('/fonts/horizon_outlined.ttf') format('truetype');
+      font-display: swap;
+    }
+    @font-face {
       font-family: 'horizon';
-      src: url('/fonts/horizon.woff2') format('woff2');
-      font-weight: normal;
-      font-style: normal;
+      src: url('/fonts/horizon.woff2') format('woff2'),
+           url('/fonts/horizon.woff') format('woff'),
+           url('/fonts/horizon.ttf') format('truetype');
       font-display: swap;
     }
     *, *::before, *::after {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
     }
     body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       background: #000;
       color: #fff;
       font-family: 'horizon', sans-serif;
-      text-align: center;
-      padding: 80px 20px 50px;
-      overflow-x: hidden;
+      padding-top: 75px;
+      scroll-behavior: smooth;
       position: relative;
-      min-height: 100vh;
     }
-    /* Fondo GIF centrado y fijo */
-    .gif-bg {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 0;
-      pointer-events: none;
-      background: transparent;
-    }
-    .gif-bg img {
-      display: block;
-      max-width: 48vw;
-      max-height: 64vh;
-      width: auto;
-      height: auto;
-      margin: auto;
-    }
-    /* Botón hamburguesa para mobile/desktop */
+    /* menú hamburguesa */
     .menu-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 1001;
+      position: fixed; top: 20px; left: 20px;
+      background: none; border: none; cursor: pointer;
+      z-index: 1001; display: flex; flex-direction: column; gap: 4px;
     }
     .menu-toggle .bar {
-      display: block;
-      width: 30px;
-      height: 3px;
-      background: #fff;
-      margin: 6px 0;
+      width: 30px; height: 3px; background: #fff; border-radius: 2px;
     }
-    /* Sidebar oculto por defecto, aparece al clicar */
     .sidebar {
-      position: fixed;
-      top: 0;
-      left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #111;
-      padding-top: 60px;
-      transition: left .3s ease;
-      z-index: 1000;
+      position: fixed; top: 0; left: -250px;
+      width: 250px; height: 100%; background: #111;
+      padding-top: 60px; transition: left .3s ease; z-index: 1000;
     }
-    .sidebar.open {
-      left: 0;
-    }
-    .sidebar ul {
-      list-style: none;
-    }
+    .sidebar.open { left: 0; }
+    .sidebar ul { list-style: none; text-align: center; }
     .sidebar a {
-      display: block;
-      color: #fff;
-      padding: 20px;
-      text-transform: uppercase;
-      text-decoration: none;
+      display: block; color: #fff; padding: 20px;
+      text-transform: uppercase; text-decoration: none;
       border-bottom: 1px solid #222;
+      font-family: 'horizon', sans-serif; letter-spacing: 1px; font-size: 1.12rem;
+      transition: background .16s;
     }
-    .sidebar a:hover {
-      background: #222;
+    .sidebar a:hover, .sidebar a.active {
+      background: #222; color: #ff0033;
     }
-    /* Header fijo con logo centrado */
+    /* header / logo */
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 75px;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 20px;
-      z-index: 999;
-      border-bottom: 2px solid #000;
-    }
-    header a {
-      display: flex;
-      align-items: center;
-      height: 100%;
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 75px; background: #000;
+      display: flex; justify-content: center; align-items: center;
+      padding: 0 20px; z-index: 999; border-bottom: 2px solid #000;
     }
     header .logo {
-      max-width: 400px;
-      width: 80vw;
-      height: auto;
+      max-width: 400px; width: 80vw; height: auto;
     }
-    /* --- DOCK SOCIALS --- */
-    .dock-socials {
-      position: fixed;
-      left: 50%;
-      bottom: 22px;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 30px;
-      background: rgba(20, 20, 20, 0.75);
-      border-radius: 32px;
-      padding: 10px 32px 10px 32px;
-      box-shadow: 0 6px 24px 4px rgba(0,0,0,0.35);
-      z-index: 2000;
-      align-items: center;
-      border: 1.5px solid #333;
-      backdrop-filter: blur(2px);
-      transition: background 0.2s;
-    }
-    .dock-socials a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      transition: background 0.1s;
-      text-decoration: none;
-    }
-    .dock-socials a:hover {
-      background: rgba(255,255,255,0.06);
-    }
-    .dock-socials img {
-      width: 28px;
-      height: 28px;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-      transition: filter 0.2s ease, transform 0.2s ease;
-    }
-    .dock-socials a:hover img {
-      transform: scale(1.1);
-    }
-    .dock-socials a.instagram:hover img {
-      filter: invert(33%) sepia(77%) saturate(7475%) hue-rotate(316deg) brightness(98%) contrast(101%);
-    }
-    .dock-socials a.soundcloud:hover img {
-      filter: invert(59%) sepia(90%) saturate(2000%) hue-rotate(-12deg) brightness(99%) contrast(97%);
-    }
-    .dock-socials a.spotify:hover img {
-      filter: invert(52%) sepia(76%) saturate(686%) hue-rotate(89deg) brightness(92%) contrast(91%);
-    }
-    /* MAIN CONTENT */
     main {
-      max-width: 1200px;
-      width: 100%;
-      margin-top: 100px;
-      padding: 0 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 60px;
-      scroll-behavior: smooth;
+      max-width: 1280px; margin: 0 auto; padding: 18px;
+      display: flex; flex-direction: column; gap: 60px;
     }
-    /* Section titles */
-    main section h2 {
-      font-size: 2.2rem;
-      color: #ff0033;
-      font-weight: 700;
-      margin-bottom: 24px;
-      font-family: 'horizon', sans-serif;
-      letter-spacing: 2px;
+    section {
+      text-align: center; position: relative; padding: 60px 0;
+    }
+    section h1, section h2 {
+      display: inline-block;
       animation: fadeUp 1s ease forwards;
-      opacity: 0;
-      transform: translateY(20px);
+      opacity: 0; transform: translateY(20px);
     }
-    main section p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: #ddd;
+    section h1 {
+      font-family: 'horizon_outlined', sans-serif;
+      font-size: 2.5rem; color: #ff0033; letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+    section h2 {
       font-family: 'horizon', sans-serif;
-      max-width: 900px;
-      margin: 0 auto;
+      font-size: 1.3rem; color: #ff0033; margin-bottom: 10px;
+    }
+    section p {
+      max-width: 900px; margin: 0 auto;
+      font-size: 1.1rem; line-height: 1.7; color: #ddd;
       animation: fadeUp 1.3s ease forwards;
-      opacity: 0;
-      transform: translateY(20px);
+      opacity: 0; transform: translateY(20px);
+      animation-delay: 0.4s;
     }
-    /* Animations fadeUp */
     @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    /* Delay for staggered text fade */
-    section:nth-of-type(1) h2 { animation-delay: 0.2s; }
-    section:nth-of-type(1) p { animation-delay: 0.4s; }
-    section:nth-of-type(2) h2 { animation-delay: 0.6s; }
-    section:nth-of-type(2) p { animation-delay: 0.8s; }
-    section:nth-of-type(3) h2 { animation-delay: 1s; }
-    section:nth-of-type(3) p { animation-delay: 1.2s; }
-
-    /* --- CAROUSEL --- */
-    .carousel-container {
-      position: relative;
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 20px;
-      box-shadow: 0 6px 24px #ff003333;
-      user-select: none;
-    }
-    .carousel-track {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-      will-change: transform;
-    }
-    .carousel-item {
-      flex: 0 0 220px; /* ancho fijo por item */
-      margin: 12px;
-      border-radius: 14px;
-      background: #191919;
-      box-shadow: 0 4px 18px #000;
-      color: #ff0033aa;
-      font-family: 'horizon', sans-serif;
-      font-size: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      user-select: none;
-      aspect-ratio: 4 / 5;
-      position: relative;
-    }
-    .carousel-item div.placeholder {
-      width: 100%;
-      height: 100%;
-      background: #222;
-      border-radius: 14px;
-      border: 2px dashed #ff003355;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #ff0033bb;
-      font-weight: 600;
-      letter-spacing: 1.2px;
-      user-select: none;
-      padding: 10px;
-      text-align: center;
-      font-size: 1rem;
-    }
-    /* Flechas */
-    .carousel-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 44px;
-      height: 44px;
-      background: #ff0033cc;
-      border-radius: 50%;
-      color: #000;
-      font-size: 2.4rem;
-      line-height: 44px;
-      text-align: center;
-      font-weight: 900;
-      cursor: pointer;
-      user-select: none;
-      z-index: 10;
-      transition: background 0.3s ease;
-    }
-    .carousel-arrow:hover {
-      background: #fff;
-      color: #ff0033;
-    }
-    .carousel-arrow.left {
-      left: 10px;
-    }
-    .carousel-arrow.right {
-      right: 10px;
-    }
-    /* Responsive adjustments */
-    @media (max-width: 720px) {
-      .carousel-item {
-        flex: 0 0 180px;
-        margin: 10px;
-      }
-    }
-    @media (max-width: 460px) {
-      .carousel-item {
-        flex: 0 0 140px;
-        margin: 6px;
-      }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* COMING SOON PANELS */
-    .coming-panels {
-      display: flex;
-      gap: 3vw;
-      justify-content: center;
-      flex-wrap: wrap;
-      max-width: 900px;
-      margin: 0 auto;
+    /* CARRUSEL */
+    .carousel {
+      position: relative; overflow: hidden;
+      max-width: 800px; margin: 40px auto;
     }
-    .coming-panel {
-      background: #111;
-      flex: 1 1 300px;
-      border-radius: 16px;
-      padding: 42px 24px;
-      box-shadow: 0 4px 18px #0007;
-      color: #ff0033;
-      font-family: 'horizon', sans-serif;
-      font-size: 1.3rem;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      user-select: none;
-      position: relative;
+    .slides {
+      display: flex; transition: transform 0.5s ease;
+    }
+    .slide {
+      flex: 0 0 100%;
+      border-radius: 18px;
       overflow: hidden;
-      text-align: center;
-      transition: box-shadow 0.3s ease;
+      position: relative;
     }
-    .coming-panel:hover {
-      box-shadow: 0 6px 28px #ff0033aa;
+    .slide img {
+      width: 100%; height: auto; display: block;
+      object-fit: cover;
     }
-    .coming-panel::after {
-      content: 'Coming Soon';
-      position: absolute;
-      bottom: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-weight: 700;
-      font-size: 1.8rem;
-      opacity: 0.15;
-      letter-spacing: 6px;
-      user-select: none;
+    .nav-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.5); color: #fff;
+      border: none; font-size: 1.8rem;
+      width: 40px; height: 40px; line-height: 40px;
+      text-align: center; cursor: pointer; z-index: 2;
+      transition: background .3s;
+    }
+    .nav-btn:hover { background: rgba(255,255,255,0.2); }
+    .nav-btn.prev { left: 10px; }
+    .nav-btn.next { right: 10px; }
+
+    /* Coming Soon */
+    .coming-soon {
+      font-family: 'horizon', sans-serif;
+      font-size: 1.3rem; color: #ff0033;
+      letter-spacing: 1px; text-transform: uppercase;
+      margin-top: 24px;
+    }
+
+    /* Scroll to top */
+    .scroll-top {
+      position: fixed; bottom: 30px; right: 30px;
+      background: #ff0033; color: #000;
+      width: 42px; height: 42px; border-radius: 50%;
+      text-align: center; line-height: 42px;
+      font-size: 1.2rem; font-weight: bold;
+      text-decoration: none; z-index: 1000;
+      box-shadow: 0 2px 12px #0006;
+      transition: background .3s;
+    }
+    .scroll-top:hover { background: #fff; color: #ff0033; }
+
+    @media (max-width: 768px) {
+      section p { animation-delay: 0.6s; }
+      .nav-btn { font-size: 1.4rem; width: 36px; height: 36px; line-height: 36px; }
     }
   </style>
 </head>
 <body>
-  <!-- Fondo GIF fijo y centrado detrás de todo -->
-  <div class="gif-bg" aria-hidden="true">
-    <img src="/img/dnbc.gif" alt="Fondo DNBC animado" />
-  </div>
-  <!-- Botón para abrir/cerrar menú lateral -->
+  <!-- Botón menú -->
   <button class="menu-toggle" aria-label="Toggle menu">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
+    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
   </button>
-  
-  <!-- Navegación lateral -->
+  <!-- Menú lateral -->
   <div id="menu-container"></div>
-  
-  <!-- Header fijo con logo -->
+  <!-- Header con logo -->
   <header>
     <a href="https://dienachtbrenntclub.com" rel="noopener">
-      <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
+      <img src="/logoletraslargo.png" alt="Logo DNBC" class="logo"/>
     </a>
   </header>
 
   <main>
-    <section id="history" aria-label="History of Die Nacht Brennt Club">
-      <h2>Our Story</h2>
+    <section id="history">
+      <h1>Club History</h1>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed erat et elit dictum malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Fusce nec dolor nec urna pretium pulvinar. Integer posuere magna eu ligula dapibus, at condimentum lectus blandit.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed erat et elit dictum malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.
       </p>
     </section>
 
-    <section id="values" aria-label="Values and evolution of the club">
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div class="carousel" tabindex="0">
+        <button class="nav-btn prev" aria-label="Anterior">&#10094;</button>
+        <div class="slides">
+          <div class="slide">
+            <img src="/img/placeholder1.jpg" alt="Crowd Photo 1"/>
+          </div>
+          <div class="slide">
+            <img src="/img/placeholder2.jpg" alt="DJ Photo 2"/>
+          </div>
+          <div class="slide">
+            <img src="/img/placeholder3.jpg" alt="Crowd Photo 3"/>
+          </div>
+        </div>
+        <button class="nav-btn next" aria-label="Siguiente">&#10095;</button>
+      </div>
+    </section>
+
+    <section id="values">
       <h2>Evolution & Values</h2>
       <p>
-        Curabitur vulputate, sem at consectetur pulvinar, nulla justo dictum purus, sed luctus magna eros nec justo. Quisque vel enim sit amet metus porttitor pulvinar a nec dui. Nullam a bibendum eros. Nullam a urna at lectus tincidunt ullamcorper.
+        Curabitur vulputate, sem at consectetur pulvinar, nulla justo dictum purus, sed luctus magna eros nec justo. Quisque vel enim sit amet metus porttitor pulvinar a nec dui.
       </p>
     </section>
 
-    <section id="people" aria-label="The people behind the club">
+    <section id="people">
       <h2>People Make the Club</h2>
       <p>
-        Donec sed velit fringilla, vulputate metus nec, tempus odio. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris efficitur lorem at nisl condimentum, nec accumsan nulla dictum.
+        Donec sed velit fringilla, vulputate metus nec, tempus odio. Mauris efficitur lorem at nisl condimentum, nec accumsan nulla dictum.
       </p>
     </section>
 
-    <section id="carousel" aria-label="Gallery of DNBC crowd and DJs">
-      <h2>Gallery</h2>
-      <div class="carousel-container" tabindex="0">
-        <button class="carousel-arrow left" aria-label="Previous slide">&#8249;</button>
-        <div class="carousel-track">
-          <div class="carousel-item"><div class="placeholder">Crowd Photo 1</div></div>
-          <div class="carousel-item"><div class="placeholder">DJ Photo 2</div></div>
-          <div class="carousel-item"><div class="placeholder">Crowd Photo 3</div></div>
-          <div class="carousel-item"><div class="placeholder">DJ Photo 4</div></div>
-          <div class="carousel-item"><div class="placeholder">Crowd Photo 5</div></div>
-          <div class="carousel-item"><div class="placeholder">DJ Photo 6</div></div>
-        </div>
-        <button class="carousel-arrow right" aria-label="Next slide">&#8250;</button>
-      </div>
-    </section>
-
-    <section id="events" aria-label="Upcoming events">
+    <section id="events">
       <h2>Upcoming Events</h2>
-      <div class="coming-panels">
-        <div class="coming-panel">Events</div>
-      </div>
+      <div class="coming-soon">Coming Soon</div>
     </section>
 
-    <section id="merch" aria-label="Merchandise">
+    <section id="merch">
       <h2>Merchandise</h2>
-      <div class="coming-panels">
-        <div class="coming-panel">Merchandise</div>
-      </div>
+      <div class="coming-soon">Coming Soon</div>
     </section>
   </main>
 
-  <!-- Dock social fijo abajo -->
-  <div class="dock-socials">
-    <a href="https://soundcloud.com/dienachtbrenntclub" class="soundcloud" target="_blank" rel="noopener" title="SoundCloud">
-      <img src="/img/icons/soundcloud.svg" alt="SoundCloud" />
-    </a>
-    <a href="https://instagram.com/dienachtbrenntclub" class="instagram" target="_blank" rel="noopener" title="Instagram">
-      <img src="/img/icons/instagram.svg" alt="Instagram" />
-    </a>
-    <a href="https://open.spotify.com/playlist/3dAUufff9G37F3r1NHhWhI?si=a4uTV6mjS7mVpcWcBuur6w" class="spotify" target="_blank" rel="noopener" title="Spotify">
-      <img src="/img/icons/spotify.svg" alt="Spotify" />
-    </a>
-  </div>
+  <a href="#top" class="scroll-top" aria-label="Back to top">↑</a>
 
   <script>
-    (function(){
-      const track = document.querySelector('.carousel-track');
-      const items = Array.from(track.children);
-      const btnLeft = document.querySelector('.carousel-arrow.left');
-      const btnRight = document.querySelector('.carousel-arrow.right');
-      const itemWidth = items[0].getBoundingClientRect().width + 24; // width + margin both sides (12px each)
-      let currentIndex = 0;
-      const maxIndex = items.length - Math.floor(track.parentElement.offsetWidth / itemWidth);
-
-      // Set initial position of items
-      function moveToIndex(index) {
-        if(index < 0) index = maxIndex;
-        if(index > maxIndex) index = 0;
-        currentIndex = index;
-        track.style.transform = `translateX(${-itemWidth * currentIndex}px)`;
-      }
-
-      btnLeft.addEventListener('click', () => {
-        moveToIndex(currentIndex - 1);
-      });
-      btnRight.addEventListener('click', () => {
-        moveToIndex(currentIndex + 1);
-      });
-
-      // Autoplay every 4.5 seconds
-      let autoplay = setInterval(() => {
-        moveToIndex(currentIndex + 1);
-      }, 4500);
-
-      // Pause on mouse enter/focus
-      const carouselContainer = document.querySelector('.carousel-container');
-      carouselContainer.addEventListener('mouseenter', () => clearInterval(autoplay));
-      carouselContainer.addEventListener('mouseleave', () => {
-        autoplay = setInterval(() => moveToIndex(currentIndex + 1), 4500);
-      });
-      carouselContainer.addEventListener('focusin', () => clearInterval(autoplay));
-      carouselContainer.addEventListener('focusout', () => {
-        autoplay = setInterval(() => moveToIndex(currentIndex + 1), 4500);
-      });
-
-      // Initial position
-      moveToIndex(0);
-
-      // Accessibility: keyboard arrows for carousel
-      carouselContainer.addEventListener('keydown', e => {
-        if(e.key === 'ArrowLeft') {
-          e.preventDefault();
-          moveToIndex(currentIndex - 1);
-        }
-        if(e.key === 'ArrowRight') {
-          e.preventDefault();
-          moveToIndex(currentIndex + 1);
-        }
-      });
-
-      // Responsive recalculation on resize
-      window.addEventListener('resize', () => {
-        // Recalculate maxIndex on resize
-        const visibleItems = Math.floor(track.parentElement.offsetWidth / itemWidth);
-        if(currentIndex > items.length - visibleItems){
-          moveToIndex(items.length - visibleItems);
-        } else {
-          moveToIndex(currentIndex);
-        }
-      });
-    })();
-  </script>
-
-  <script>
-  (function() {
-    'use strict';
-    document.addEventListener('DOMContentLoaded', function() {
-      // 1. Carga el menú desde menu.html
+    // Carga dinámica del menú
+    document.addEventListener('DOMContentLoaded', () => {
       fetch('/menu.html')
-        .then(res => res.text())
+        .then(r => r.text())
         .then(html => {
           document.getElementById('menu-container').innerHTML = html;
-          // 2. Después de insertar el menú, añade el evento al botón hamburguesa
-          var btn = document.querySelector('.menu-toggle');
-          var nav = document.getElementById('sidebar');
-          btn.addEventListener('click', function() {
-            nav.classList.toggle('open');
-          });
+          const btn = document.querySelector('.menu-toggle');
+          const nav = document.getElementById('sidebar');
+          btn.addEventListener('click', () => nav.classList.toggle('open'));
         });
     });
-  })();
+
+    // Lógica del carrusel
+    (function(){
+      const slidesEl = document.querySelector('.slides');
+      const total = slidesEl.children.length;
+      let idx = 0;
+      document.querySelector('.prev').onclick = () => {
+        idx = (idx - 1 + total) % total;
+        slidesEl.style.transform = `translateX(-${idx * 100}%)`;
+      };
+      document.querySelector('.next').onclick = () => {
+        idx = (idx + 1) % total;
+        slidesEl.style.transform = `translateX(-${idx * 100}%)`;
+      };
+      // autoplay
+      let auto = setInterval(() => document.querySelector('.next').click(), 4500);
+      const carousel = document.querySelector('.carousel');
+      carousel.addEventListener('mouseenter', () => clearInterval(auto));
+      carousel.addEventListener('mouseleave', () => auto = setInterval(() => document.querySelector('.next').click(), 4500));
+      // teclado
+      carousel.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft') document.querySelector('.prev').click();
+        if (e.key === 'ArrowRight') document.querySelector('.next').click();
+      });
+    })();
   </script>
 </body>
 </html>
