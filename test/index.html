@@ -152,26 +152,6 @@
       animation: fadeUp 1.2s ease forwards;
       animation-delay: 0.3s;
     }
-    @media (max-width: 768px) {
-      body {
-        padding: 0 10px 50px 10px;
-      }
-      header {
-        justify-content: space-between;
-        padding: 0 20px;
-        height: 65px;
-      }
-      header a {
-        margin-left: auto;
-      }
-      header .logo {
-        max-width: 250px;
-        width: 60vw;
-      }
-      
-      #hero { flex-direction: column; }
-      #hero .hero-text { text-align: center; }
-    }
 
     section h2 {
       font-family: 'horizon'; font-size: 2rem;
@@ -187,11 +167,12 @@
       animation: fadeUp 1.2s ease forwards;
       animation-delay: 0.3s;
     }
+
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Carousel */
+    /* Carousel (you said forget it, but kept styles in case) */
     .carousel {
       position: relative; overflow: hidden; padding: 40px 0;
     }
@@ -246,15 +227,66 @@
 
     .title-top {
       display: block;
-      margin-bottom: 4px; /* reduce el espacio */
+      margin-bottom: 4px; /* reduce space */
     }
 
     .title-bottom {
       display: block;
-      font-size: 1.4rem; /* puedes ajustar este valor */
-      line-height: 1.2; /* más compacto */
+      font-size: 1.4rem;
+      line-height: 1.2;
     }
-    
+
+    /* MOBILE ADAPTATIONS */
+    @media (max-width: 768px) {
+      body {
+        padding: 0 10px 50px 10px;
+      }
+      header {
+        justify-content: space-between;
+        padding: 0 20px;
+        height: 65px;
+      }
+      header a {
+        margin-left: auto;
+      }
+      header .logo {
+        max-width: 250px;
+        width: 60vw;
+      }
+      
+      #hero { 
+        flex-direction: column; 
+        padding: 30px 0;
+      }
+      #hero .hero-text { 
+        text-align: center; 
+      }
+      #hero h1 {
+        font-size: 2.2rem;
+        letter-spacing: 1.5px;
+      }
+      #hero p {
+        font-size: 1rem;
+        line-height: 1.4;
+      }
+
+      section h2 {
+        font-size: 1.6rem;
+        letter-spacing: 1.5px;
+        margin-bottom: 10px;
+      }
+      section p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        max-width: 100%;
+        padding: 0 10px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .title-bottom {
+        font-size: 1.1rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -399,11 +431,9 @@
       function move(dir) {
         if (moving) return;
         moving = true;
-        // update highlight immediately
         if (dir === 'next') slides.push(slides.shift());
         else slides.unshift(slides.pop());
         updateClasses();
-        // animate container
         track.style.transition = 'transform .4s ease';
         track.style.transform = dir === 'next'
           ? 'translateX(-20%)'
@@ -412,7 +442,6 @@
           track.removeEventListener('transitionend', handler);
           track.style.transition = 'none';
           track.style.transform = 'translateX(0)';
-          // reorder in DOM
           if (dir === 'next') track.appendChild(track.firstElementChild);
           else track.insertBefore(track.lastElementChild, track.firstElementChild);
           moving = false;
@@ -422,7 +451,6 @@
       prevBtn.onclick = () => move('prev');
       nextBtn.onclick = () => move('next');
 
-      // autoplay until hover
       let auto = setInterval(() => move('next'), 4500);
       const carousel = document.querySelector('.carousel');
       carousel.addEventListener('mouseenter', () => clearInterval(auto));
