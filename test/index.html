@@ -141,12 +141,13 @@
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
-    /* Carousel with static center effect */
+    /* Carousel with fade animation */
     .carousel {
       position: relative; overflow: hidden; padding: 40px 0;
     }
     .slides {
-      display: flex; /* no transform/transition */
+      display: flex; opacity: 1;
+      transition: opacity .3s ease;
     }
     .slide {
       flex: 0 0 20%; padding: 0 8px;
@@ -230,18 +231,19 @@
       <p>Desde clandestine warehouse nights hasta raves al amanecer: nuestra pasión por el techno underground siempre arde.</p>
     </section>
 
-    <!-- Static-effect Carousel -->
+    <!-- Carousel with fade -->
     <section id="gallery">
       <h2>Gallery</h2>
       <div class="carousel" tabindex="0">
         <button class="nav-btn prev" aria-label="Anterior">&#10094;</button>
         <div class="slides">
+          <!-- Hasta 20 .slide -->
           <div class="slide"><div class="placeholder">Foto 1</div></div>
           <div class="slide"><div class="placeholder">Foto 2</div></div>
           <div class="slide"><div class="placeholder">Foto 3</div></div>
           <div class="slide"><div class="placeholder">Foto 4</div></div>
           <div class="slide"><div class="placeholder">Foto 5</div></div>
-          <!-- …hasta 20 -->
+          <!-- ... hasta Foto 20 -->
         </div>
         <button class="nav-btn next" aria-label="Siguiente">&#10095;</button>
       </div>
@@ -289,7 +291,7 @@
         });
     });
 
-    // Carousel: static center effect, images rotate instantly
+    // Carousel with fade animation on reorder
     (function(){
       const track = document.querySelector('.slides');
       let slides = Array.from(track.children);
@@ -306,39 +308,44 @@
         if (visible[4]) visible[4].classList.add('next2');
       }
 
-      function moveNext() {
-        // rotate array
-        slides.push(slides.shift());
-        // reattach in new order
-        track.innerHTML = '';
-        slides.forEach(el => track.appendChild(el));
-        updateClasses();
+      function animateReorder(direction){
+        track.style.opacity = '0.4';
+        track.addEventListener('transitionend', function handler(){
+          track.removeEventListener('transitionend', handler);
+          if(direction==='next'){
+            slides.push(slides.shift());
+          } else {
+            slides.unshift(slides.pop());
+          }
+          track.innerHTML = '';
+          slides.forEach(el => track.appendChild(el));
+          updateClasses();
+          // fade back in
+          requestAnimationFrame(() => {
+            track.style.opacity = '1';
+          });
+        }, { once: true });
       }
 
-      function movePrev() {
-        slides.unshift(slides.pop());
-        track.innerHTML = '';
-        slides.forEach(el => track.appendChild(el));
-        updateClasses();
-      }
-
-      prevBtn.addEventListener('click', movePrev);
-      nextBtn.addEventListener('click', moveNext);
+      prevBtn.addEventListener('click', ()=> animateReorder('prev'));
+      nextBtn.addEventListener('click', ()=> animateReorder('next'));
 
       // Autoplay
-      let auto = setInterval(moveNext, 4500);
+      let auto = setInterval(()=> animateReorder('next'), 4500);
       const carousel = document.querySelector('.carousel');
-      carousel.addEventListener('mouseenter', () => clearInterval(auto));
-      carousel.addEventListener('mouseleave', () => auto = setInterval(moveNext, 4500));
-      carousel.addEventListener('focusin', () => clearInterval(auto));
-      carousel.addEventListener('focusout', () => auto = setInterval(moveNext, 4500));
+      carousel.addEventListener('mouseenter', ()=> clearInterval(auto));
+      carousel.addEventListener('mouseleave', ()=> auto = setInterval(()=> animateReorder('next'), 4500));
+      carousel.addEventListener('focusin', ()=> clearInterval(auto));
+      carousel.addEventListener('focusout', ()=> auto = setInterval(()=> animateReorder('next'), 4500));
 
       // Keyboard
       carousel.addEventListener('keydown', e => {
-        if (e.key === 'ArrowLeft') movePrev();
-        if (e.key === 'ArrowRight') moveNext();
+        if(e.key==='ArrowLeft') animateReorder('prev');
+        if(e.key==='ArrowRight') animateReorder('next');
       });
 
+      // initial
+      track.style.transition = 'opacity .3s ease';
       updateClasses();
     })();
   </script>
