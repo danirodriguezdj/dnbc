@@ -368,25 +368,17 @@
     // Load menu.html without altering its styles
     document.addEventListener('DOMContentLoaded', () => {
       fetch('/menu.html')
-        .then(res => res.text())
-        .then(data => {
-          const menuContainer = document.getElementById('menu-container');
-          menuContainer.innerHTML = data;
-
-          const toggle = document.querySelector('.menu-toggle');
-          const sidebar = menuContainer.querySelector('.sidebar');
-
-          toggle.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-          });
-
-          // Close sidebar when clicking on a link
-          sidebar.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => sidebar.classList.remove('open'));
-          });
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById('menu-container').innerHTML = html;
+          document.querySelector('.menu-toggle')
+            .addEventListener('click', () =>
+              document.getElementById('sidebar').classList.toggle('open')
+            );
         });
     });
 
+    // Carousel logic (20 images, infinite, simultaneous highlight & move)
     (function(){
       const track = document.querySelector('.slides');
       let slides = Array.from(track.children);
@@ -394,112 +386,49 @@
       const nextBtn = document.querySelector('.next');
       let moving = false;
 
-      function checkImage(img) {
-        return new Promise((resolve) => {
-          if (img.complete && img.naturalWidth !== 0) {
-            resolve(true);
-          } else {
-            img.onload = () => resolve(true);
-            img.onerror = () => resolve(false);
-          }
-        });
-      }
-
-      async function filterValidSlides() {
-        for (let i = slides.length -1; i >= 0; i--) {
-          const img = slides[i].querySelector('img');
-          const valid = await checkImage(img);
-          if (!valid) {
-            slides[i].remove();
-            slides.splice(i,1);
-          }
-        }
-      }
-
       function updateClasses() {
         slides.forEach(sl => sl.className = 'slide');
-        if (slides.length === 0) return;
-
-        const count = slides.length;
-        const mid = Math.floor(count / 2);
-
-        slides.forEach((slide, i) => {
-          if (count < 5) {
-            if(i === 0) slide.classList.add('active');
-            else if(i === 1) slide.classList.add('next1');
-            else if(i === count -1) slide.classList.add('prev1');
-          } else {
-            const indexes = [
-              (mid - 2 + count) % count,
-              (mid - 1 + count) % count,
-              mid,
-              (mid + 1) % count,
-              (mid + 2) % count
-            ];
-            indexes.forEach((idx, pos) => {
-              if(slides[idx]) {
-                switch(pos) {
-                  case 0: slides[idx].classList.add('prev2'); break;
-                  case 1: slides[idx].classList.add('prev1'); break;
-                  case 2: slides[idx].classList.add('active'); break;
-                  case 3: slides[idx].classList.add('next1'); break;
-                  case 4: slides[idx].classList.add('next2'); break;
-                }
-              }
-            });
-          }
-        });
+        const v = slides.slice(0,5);
+        v[0]?.classList.add('prev2');
+        v[1]?.classList.add('prev1');
+        v[2]?.classList.add('active');
+        v[3]?.classList.add('next1');
+        v[4]?.classList.add('next2');
       }
 
       function move(dir) {
-        if (moving || slides.length === 0) return;
+        if (moving) return;
         moving = true;
-
-        if (dir === 'next') {
-          slides.push(slides.shift());
-        } else {
-          slides.unshift(slides.pop());
-        }
+        // update highlight immediately
+        if (dir === 'next') slides.push(slides.shift());
+        else slides.unshift(slides.pop());
         updateClasses();
-
+        // animate container
         track.style.transition = 'transform .4s ease';
-        track.style.transform = dir === 'next' ? 'translateX(-20%)' : 'translateX(20%)';
-
+        track.style.transform = dir === 'next'
+          ? 'translateX(-20%)'
+          : 'translateX(20%)';
         track.addEventListener('transitionend', function handler(){
           track.removeEventListener('transitionend', handler);
           track.style.transition = 'none';
           track.style.transform = 'translateX(0)';
-
-          if (dir === 'next') {
-            track.appendChild(track.firstElementChild);
-          } else {
-            track.insertBefore(track.lastElementChild, track.firstElementChild);
-          }
+          // reorder in DOM
+          if (dir === 'next') track.appendChild(track.firstElementChild);
+          else track.insertBefore(track.lastElementChild, track.firstElementChild);
           moving = false;
         });
       }
 
-      async function initCarousel() {
-        await filterValidSlides();
-        slides = Array.from(track.children);
-        if(slides.length === 0) {
-          track.innerHTML = '<p style="color:#ff0033; text-align:center;">No images available</p>';
-          return;
-        }
-        updateClasses();
+      prevBtn.onclick = () => move('prev');
+      nextBtn.onclick = () => move('next');
 
-        prevBtn.onclick = () => move('prev');
-        nextBtn.onclick = () => move('next');
-
-        let auto = setInterval(() => move('next'), 4500);
-        const carousel = document.querySelector('.carousel');
-        carousel.addEventListener('mouseenter', () => clearInterval(auto));
-        carousel.addEventListener('mouseleave', () =>
-          auto = setInterval(() => move('next'), 4500)
-        );
-      }
-
-      document.addEventListener('DOMContentLoaded', initCarousel);
+      // autoplay until hover
+      let auto = setInterval(() => move('next'), 4500);
+      const carousel = document.querySelector('.carousel');
+      carousel.addEventListener('mouseenter', () => clearInterval(auto));
+      carousel.addEventListener('mouseleave', () =>
+        auto = setInterval(() => move('next'), 4500)
+      );
     })();
   </script>
 </body>
