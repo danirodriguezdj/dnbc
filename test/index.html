@@ -47,7 +47,7 @@
     @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
     /* Carrusel con desplazamiento y destaque simultáneo */
     .carousel{position:relative;overflow:hidden;padding:40px 0}
-    .slides{display:flex;transition:transform .4s ease,opacity .4s ease;will-change:transform,opacity}
+    .slides{display:flex;transition:transform .4s ease;will-change:transform}
     .slide{flex:0 0 20%;padding:0 8px;opacity:0.3;transform:scale(0.8);transition:transform .4s,opacity .4s;display:flex;justify-content:center}
     .slide .placeholder{width:100%;padding-bottom:125%;background:#222;border:2px dashed #ff003355;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#ff0033bb;font-size:1rem;font-family:'horizon',sans-serif;text-align:center}
     .slide.prev2{opacity:0.2;transform:scale(0.8)}
@@ -79,7 +79,7 @@
 
     <section id="gallery">
       <h2>Gallery</h2>
-      <div class="carousel" tabindex="0">
+      <div class="carousel">
         <button class="nav-btn prev" aria-label="Anterior">&#10094;</button>
         <div class="slides">
           <!-- Hasta 20 slides -->
@@ -112,7 +112,7 @@
       });
     });
 
-    // Carrusel con movimiento y destaque simultáneo
+    // Carrusel fluido con destaque simultáneo y pausa solo en hover
     (function(){
       const track = document.querySelector('.slides');
       let slides = Array.from(track.children);
@@ -133,15 +133,14 @@
       function move(dir){
         if(moving) return;
         moving = true;
-        // primero actualizo clases para disparar animación de destaque
+        // actualizo clases simultáneo al transform
         if(dir==='next') slides.push(slides.shift());
         else slides.unshift(slides.pop());
         updateClasses();
-        // luego desplazo
         track.style.transition = 'transform .4s ease';
         track.style.transform = dir==='next' ? 'translateX(-20%)' : 'translateX(20%)';
-        track.addEventListener('transitionend', function h(){
-          track.removeEventListener('transitionend', h);
+        track.addEventListener('transitionend', function fn(){
+          track.removeEventListener('transitionend', fn);
           track.style.transition='none';
           track.style.transform='translateX(0)';
           // reordeno DOM
@@ -154,17 +153,11 @@
       prevBtn.addEventListener('click',()=>move('prev'));
       nextBtn.addEventListener('click',()=>move('next'));
 
-      // autoplay
+      // autoplay y pausa solo en hover
       let auto = setInterval(()=>move('next'),4500);
       const car = document.querySelector('.carousel');
       car.addEventListener('mouseenter',()=>clearInterval(auto));
       car.addEventListener('mouseleave',()=>auto=setInterval(()=>move('next'),4500));
-      car.addEventListener('focusin',()=>clearInterval(auto));
-      car.addEventListener('focusout',()=>auto=setInterval(()=>move('next'),4500));
-      car.addEventListener('keydown',e=>{
-        if(e.key==='ArrowLeft') move('prev');
-        if(e.key==='ArrowRight') move('next');
-      });
 
       updateClasses();
     })();
