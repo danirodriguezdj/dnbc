@@ -1,75 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!--
+    Archivo: main/index.html
+    Propósito: Página principal de Die Nacht Brennt Club.
+    Estándar de documentación: ISO/IEC/IEEE 26515
+  -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DNBC — Die Nacht Brennt Club</title>
+  <title>Die Nacht Brennt Club</title>
   <link rel="stylesheet" href="/style.css" />
-  <style>
-    .menu-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 1001;
-    }
-    .menu-toggle .bar {
-      display: block;
-      width: 30px;
-      height: 3px;
-      background: #fff;
-      margin: 6px 0;
-    }
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 75px;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 20px;
-      z-index: 999;
-    }
-    header a {
-      display: flex;
-      align-items: center;
-      height: 100%;
-    }
-    header .logo {
-      max-width: 400px;
-      width: 80vw;
-      height: auto;
-    }
-    .carousel {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-    .carousel img {
-      width: 100vw;
-      height: auto;
-      scroll-snap-align: center;
-      flex-shrink: 0;
-    }
-  </style>
+  <script src="/scripts/carousel.js" defer></script>
 </head>
 <body>
-  <button class="menu-toggle" aria-label="Toggle menu">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </button>
-
   <header>
     <a href="/" rel="noopener">
       <img src="/logoletraslargo.png" alt="DNBC Logo" class="logo" />
     </a>
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
   </header>
 
   <section id="hero">
@@ -82,13 +34,15 @@
     </div>
   </section>
 
-  <section id="carousel">
-    <div class="carousel">
-      <img src="/img/mainpage/crowd1.jpg" alt="Crowd 1">
-      <img src="/img/mainpage/dj1.jpg" alt="DJ 1">
-      <img src="/img/mainpage/crowd2.jpg" alt="Crowd 2">
-      <img src="/img/mainpage/dj2.jpg" alt="DJ 2">
+  <section id="carousel" class="carousel-container">
+    <button class="carousel-button left">&#10094;</button>
+    <div class="carousel-track">
+      <img src="/img/mainpage/crowd1.jpg" alt="Crowd 1" />
+      <img src="/img/mainpage/dj1.jpg" alt="DJ 1" />
+      <img src="/img/mainpage/crowd2.jpg" alt="Crowd 2" />
+      <img src="/img/mainpage/dj2.jpg" alt="DJ 2" />
     </div>
+    <button class="carousel-button right">&#10095;</button>
   </section>
 
   <section id="origins">
@@ -118,20 +72,18 @@
 
   <div id="menu-container"></div>
   <script>
-    (function() {
-      document.addEventListener('DOMContentLoaded', function() {
-        fetch('/menu.html')
-          .then(res => res.text())
-          .then(html => {
-            document.getElementById('menu-container').innerHTML = html;
-            var btn = document.querySelector('.menu-toggle');
-            var nav = document.getElementById('sidebar');
-            btn.addEventListener('click', function() {
-              nav.classList.toggle('open');
-            });
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('/menu.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('menu-container').innerHTML = html;
+          const btn = document.querySelector('.menu-toggle');
+          const nav = document.getElementById('sidebar');
+          btn.addEventListener('click', () => {
+            nav.classList.toggle('open');
           });
-      });
-    })();
+        });
+    });
   </script>
 </body>
 </html>
