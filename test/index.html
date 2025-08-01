@@ -4,229 +4,117 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DIE NACHT BRENNT CLUB</title>
-  <meta name="description" content="DNBC — Die Nacht Brennt Club. Official page. Underground electronic music, DJ sets, and events."/>
-  <meta name="keywords" content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club, spain, clubbing, dnbc"/>
-  <meta name="author" content="DNBC Team"/>
-
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"/>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-  <link rel="shortcut icon" href="/favicon.ico"/>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-  <meta name="apple-mobile-web-app-title" content="DNBC"/>
-  <link rel="manifest" href="/site.webmanifest"/>
-
   <style>
-    @font-face {
-      font-family: 'horizon_outlined';
-      src: url('/fonts/horizon_outlined.woff2') format('woff2'),
-           url('/fonts/horizon_outlined.woff') format('woff'),
-           url('/fonts/horizon_outlined.ttf') format('truetype');
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'horizon';
-      src: url('/fonts/horizon.woff2') format('woff2'),
-           url('/fonts/horizon.woff') format('woff'),
-           url('/fonts/horizon.ttf') format('truetype');
-      font-display: swap;
-    }
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0; padding: 0;
-    }
-    body {
-      background: #000;
-      color: #fff;
-      font-family: 'horizon', sans-serif;
-      padding-top: 75px;
-      scroll-behavior: smooth;
-      position: relative;
-    }
-    /* menú hamburguesa */
-    .menu-toggle {
-      position: fixed; top: 20px; left: 20px;
-      background: none; border: none; cursor: pointer;
-      z-index: 1001; display: flex; flex-direction: column; gap: 4px;
-    }
-    .menu-toggle .bar {
-      width: 30px; height: 3px; background: #fff; border-radius: 2px;
-    }
-    .sidebar {
-      position: fixed; top: 0; left: -250px;
-      width: 250px; height: 100%; background: #111;
-      padding-top: 60px; transition: left .3s ease; z-index: 1000;
-    }
-    .sidebar.open { left: 0; }
-    .sidebar ul { list-style: none; text-align: center; }
-    .sidebar a {
-      display: block; color: #fff; padding: 20px;
-      text-transform: uppercase; text-decoration: none;
-      border-bottom: 1px solid #222;
-      font-family: 'horizon', sans-serif; letter-spacing: 1px; font-size: 1.12rem;
-      transition: background .16s;
-    }
-    .sidebar a:hover, .sidebar a.active {
-      background: #222; color: #ff0033;
-    }
-    /* header / logo */
-    header {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 75px; background: #000;
-      display: flex; justify-content: center; align-items: center;
-      padding: 0 20px; z-index: 999; border-bottom: 2px solid #000;
-    }
-    header .logo {
-      max-width: 400px; width: 80vw; height: auto;
-    }
-    main {
-      max-width: 1280px; margin: 0 auto; padding: 18px;
-      display: flex; flex-direction: column; gap: 60px;
-    }
-    section {
-      text-align: center; position: relative; padding: 60px 0;
-    }
-    section h1, section h2 {
-      display: inline-block;
-      animation: fadeUp 1s ease forwards;
-      opacity: 0; transform: translateY(20px);
-    }
-    section h1 {
-      font-family: 'horizon_outlined', sans-serif;
-      font-size: 2.5rem; color: #ff0033; letter-spacing: 2px;
-      margin-bottom: 18px;
-    }
-    section h2 {
-      font-family: 'horizon', sans-serif;
-      font-size: 1.3rem; color: #ff0033; margin-bottom: 10px;
-    }
-    section p {
-      max-width: 900px; margin: 0 auto;
-      font-size: 1.1rem; line-height: 1.7; color: #ddd;
-      animation: fadeUp 1.3s ease forwards;
-      opacity: 0; transform: translateY(20px);
-      animation-delay: 0.4s;
-    }
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* CARRUSEL */
-    .carousel {
-      position: relative; overflow: hidden;
-      max-width: 800px; margin: 40px auto;
-    }
-    .slides {
-      display: flex; transition: transform 0.5s ease;
-    }
-    .slide {
-      flex: 0 0 100%;
-      border-radius: 18px;
-      overflow: hidden;
-      position: relative;
-    }
-    .slide img {
-      width: 100%; height: auto; display: block;
-      object-fit: cover;
-    }
-    .nav-btn {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(0,0,0,0.5); color: #fff;
-      border: none; font-size: 1.8rem;
-      width: 40px; height: 40px; line-height: 40px;
-      text-align: center; cursor: pointer; z-index: 2;
-      transition: background .3s;
-    }
-    .nav-btn:hover { background: rgba(255,255,255,0.2); }
-    .nav-btn.prev { left: 10px; }
-    .nav-btn.next { right: 10px; }
-
-    /* Coming Soon */
-    .coming-soon {
-      font-family: 'horizon', sans-serif;
-      font-size: 1.3rem; color: #ff0033;
-      letter-spacing: 1px; text-transform: uppercase;
-      margin-top: 24px;
-    }
-
-    /* Scroll to top */
-    .scroll-top {
-      position: fixed; bottom: 30px; right: 30px;
-      background: #ff0033; color: #000;
-      width: 42px; height: 42px; border-radius: 50%;
-      text-align: center; line-height: 42px;
-      font-size: 1.2rem; font-weight: bold;
-      text-decoration: none; z-index: 1000;
-      box-shadow: 0 2px 12px #0006;
-      transition: background .3s;
-    }
-    .scroll-top:hover { background: #fff; color: #ff0033; }
-
-    @media (max-width: 768px) {
-      section p { animation-delay: 0.6s; }
-      .nav-btn { font-size: 1.4rem; width: 36px; height: 36px; line-height: 36px; }
-    }
+    @font-face{font-family:'horizon_outlined';src:url('/fonts/horizon_outlined.woff2') format('woff2'),url('/fonts/horizon_outlined.woff') format('woff'),url('/fonts/horizon_outlined.ttf') format('truetype');font-display:swap}
+    @font-face{font-family:'horizon';src:url('/fonts/horizon.woff2') format('woff2'),url('/fonts/horizon.woff') format('woff'),url('/fonts/horizon.ttf') format('truetype');font-display:swap}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:#000;color:#fff;font-family:'horizon',sans-serif;padding-top:75px;scroll-behavior:smooth}
+    .menu-toggle{position:fixed;top:20px;left:20px;background:none;border:none;cursor:pointer;z-index:1001;display:flex;flex-direction:column;gap:4px}
+    .menu-toggle .bar{width:30px;height:3px;background:#fff;border-radius:2px}
+    .sidebar{position:fixed;top:0;left:-250px;width:250px;height:100%;background:#111;padding-top:60px;transition:left .3s ease;z-index:1000}
+    .sidebar.open{left:0}
+    .sidebar ul{list-style:none;text-align:center}
+    .sidebar a{display:block;color:#fff;padding:20px;text-transform:uppercase;text-decoration:none;border-bottom:1px solid #222;font-family:'horizon',sans-serif;letter-spacing:1px;font-size:1.12rem;transition:background .16s}
+    .sidebar a:hover,.sidebar a.active{background:#222;color:#ff0033}
+    header{position:fixed;top:0;left:0;width:100%;height:75px;background:#000;display:flex;justify-content:center;align-items:center;padding:0 20px;z-index:999;border-bottom:2px solid #000}
+    header .logo{max-width:400px;width:80vw;height:auto}
+    main{max-width:1280px;margin:0 auto;padding:18px;display:flex;flex-direction:column;gap:60px}
+    section{position:relative;text-align:center}
+    /* Hero */
+    #hero{display:flex;align-items:center;gap:40px;padding:60px 0}
+    #hero .hero-img{flex:1;height:0;padding-bottom:56%;position:relative}
+    #hero .hero-img .placeholder{position:absolute;inset:0;background:#191919;border:2px dashed #ff003355;border-radius:18px;display:flex;align-items:center;justify-content:center;color:#ff0033cc;font-family:'horizon',sans-serif;font-size:1.5rem}
+    #hero .hero-text{flex:1;text-align:left}
+    #hero .hero-text h1{font-family:'horizon_outlined';font-size:3rem;color:#ff0033;letter-spacing:2px;margin-bottom:16px;animation:fadeUp 1s ease forwards}
+    #hero .hero-text p{font-size:1.1rem;line-height:1.6;color:#ddd;animation:fadeUp 1.2s ease forwards;animation-delay:0.3s}
+    @media(max-width:800px){#hero{flex-direction:column}#hero .hero-text{text-align:center}}
+    /* Titles & paragraphs */
+    section h2{font-family:'horizon';font-size:2rem;color:#ff0033;letter-spacing:2px;margin-bottom:14px;opacity:0;transform:translateY(20px);animation:fadeUp 1s ease forwards}
+    section p{max-width:900px;margin:0 auto;font-size:1.1rem;line-height:1.7;color:#ddd;opacity:0;transform:translateY(20px);animation:fadeUp 1.2s ease forwards;animation-delay:0.3s}
+    /* Carousel */
+    .carousel{position:relative;overflow:hidden;padding:40px 0}
+    .slides{display:flex;transition:transform .5s ease;will-change:transform}
+    .slide{flex:0 0 20%;padding:0 8px;opacity:0;transform:scale(0.8);transition:transform .5s,opacity .5s;display:flex;justify-content:center}
+    .slide .placeholder{width:100%;padding-bottom:125%;background:#222;border:2px dashed #ff003355;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#ff0033bb;font-family:'horizon',sans-serif;font-size:1rem;text-align:center}
+    .slide.prev2{opacity:0.2;transform:scale(0.8)}
+    .slide.prev1,.slide.next1{opacity:0.6;transform:scale(0.9)}
+    .slide.active{opacity:1;transform:scale(1.1)}
+    .slide.next2{opacity:0.2;transform:scale(0.8)}
+    .nav-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:#fff;border:none;font-size:1.8rem;width:40px;height:40px;line-height:40px;text-align:center;cursor:pointer;z-index:2;transition:background .3s}
+    .nav-btn:hover{background:rgba(255,255,255,0.2)}
+    .nav-btn.prev{left:10px} .nav-btn.next{right:10px}
+    /* Coming soon */
+    .coming-soon{font-family:'horizon';font-size:1.3rem;color:#ff0033;letter-spacing:1px;text-transform:uppercase;margin-top:24px}
+    /* Scroll top */
+    .scroll-top{position:fixed;bottom:30px;right:30px;background:#ff0033;color:#000;width:42px;height:42px;border-radius:50%;text-align:center;line-height:42px;font-size:1.2rem;font-weight:bold;text-decoration:none;z-index:1000;box-shadow:0 2px 12px #0006;transition:background .3s}
+    .scroll-top:hover{background:#fff;color:#ff0033}
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
   </style>
 </head>
 <body>
-  <!-- Botón menú -->
   <button class="menu-toggle" aria-label="Toggle menu">
     <span class="bar"></span><span class="bar"></span><span class="bar"></span>
   </button>
-  <!-- Menú lateral -->
   <div id="menu-container"></div>
-  <!-- Header con logo -->
   <header>
-    <a href="https://dienachtbrenntclub.com" rel="noopener">
-      <img src="/logoletraslargo.png" alt="Logo DNBC" class="logo"/>
-    </a>
+    <a href="https://dienachtbrenntclub.com"><img src="/logoletraslargo.png" alt="Logo DNBC" class="logo"/></a>
   </header>
 
   <main>
-    <section id="history">
-      <h1>Club History</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed erat et elit dictum malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.
-      </p>
+    <!-- Hero -->
+    <section id="hero">
+      <div class="hero-img">
+        <div class="placeholder">[Foto Grande Aquí]</div>
+      </div>
+      <div class="hero-text">
+        <h1>Die Nacht Brennt Club</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et ligula in nunc bibendum fringilla a eu lectus.</p>
+      </div>
     </section>
 
+    <!-- Historia -->
+    <section id="history">
+      <h2>Club History</h2>
+      <p>Desde clandestine warehouse nights hasta raves al amanecer: nuestra pasión por el techno underground siempre arde.</p>
+    </section>
+
+    <!-- Carousel -->
     <section id="gallery">
       <h2>Gallery</h2>
       <div class="carousel" tabindex="0">
         <button class="nav-btn prev" aria-label="Anterior">&#10094;</button>
         <div class="slides">
-          <div class="slide">
-            <img src="/img/placeholder1.jpg" alt="Crowd Photo 1"/>
-          </div>
-          <div class="slide">
-            <img src="/img/placeholder2.jpg" alt="DJ Photo 2"/>
-          </div>
-          <div class="slide">
-            <img src="/img/placeholder3.jpg" alt="Crowd Photo 3"/>
-          </div>
+          <!-- Genera hasta 20 slides -->
+          <div class="slide active"><div class="placeholder">Foto 1</div></div>
+          <div class="slide next1"><div class="placeholder">Foto 2</div></div>
+          <div class="slide next2"><div class="placeholder">Foto 3</div></div>
+          <div class="slide"><div class="placeholder">Foto 4</div></div>
+          <div class="slide prev1"><div class="placeholder">Foto 5</div></div>
+          <!-- ... hasta 20 -->
         </div>
         <button class="nav-btn next" aria-label="Siguiente">&#10095;</button>
       </div>
     </section>
 
+    <!-- Valores -->
     <section id="values">
       <h2>Evolution & Values</h2>
-      <p>
-        Curabitur vulputate, sem at consectetur pulvinar, nulla justo dictum purus, sed luctus magna eros nec justo. Quisque vel enim sit amet metus porttitor pulvinar a nec dui.
-      </p>
+      <p>Inclusivity, freedom, and the raw energy of the dancefloor define our journey.</p>
     </section>
 
+    <!-- Personas -->
     <section id="people">
       <h2>People Make the Club</h2>
-      <p>
-        Donec sed velit fringilla, vulputate metus nec, tempus odio. Mauris efficitur lorem at nisl condimentum, nec accumsan nulla dictum.
-      </p>
+      <p>Residents, guests, and crowd: todos colaboran en la misma experiencia.</p>
     </section>
 
+    <!-- Eventos -->
     <section id="events">
       <h2>Upcoming Events</h2>
       <div class="coming-soon">Coming Soon</div>
     </section>
 
+    <!-- Merch -->
     <section id="merch">
       <h2>Merchandise</h2>
       <div class="coming-soon">Coming Soon</div>
@@ -236,41 +124,58 @@
   <a href="#top" class="scroll-top" aria-label="Back to top">↑</a>
 
   <script>
-    // Carga dinámica del menú
-    document.addEventListener('DOMContentLoaded', () => {
-      fetch('/menu.html')
-        .then(r => r.text())
-        .then(html => {
-          document.getElementById('menu-container').innerHTML = html;
-          const btn = document.querySelector('.menu-toggle');
-          const nav = document.getElementById('sidebar');
-          btn.addEventListener('click', () => nav.classList.toggle('open'));
-        });
+    // Carga menú
+    document.addEventListener('DOMContentLoaded',()=>{
+      fetch('/menu.html').then(r=>r.text()).then(html=>{
+        document.getElementById('menu-container').innerHTML=html;
+        const btn=document.querySelector('.menu-toggle');
+        const nav=document.getElementById('sidebar');
+        btn.addEventListener('click',()=>nav.classList.toggle('open'));
+      });
     });
 
-    // Lógica del carrusel
+    // Carrusel mejorado
     (function(){
-      const slidesEl = document.querySelector('.slides');
-      const total = slidesEl.children.length;
-      let idx = 0;
-      document.querySelector('.prev').onclick = () => {
-        idx = (idx - 1 + total) % total;
-        slidesEl.style.transform = `translateX(-${idx * 100}%)`;
+      const slides=document.querySelectorAll('.slide');
+      const total=slides.length;
+      let idx=0;
+
+      function updateSlides(i){
+        slides.forEach((s,j)=>{
+          s.className='slide';
+          const diff=(j - i + total) % total;
+          if(diff===0) s.classList.add('active');
+          else if(diff===1) s.classList.add('next1');
+          else if(diff===2) s.classList.add('next2');
+          else if(diff===total-1) s.classList.add('prev1');
+          else if(diff===total-2) s.classList.add('prev2');
+        });
+      }
+
+      document.querySelector('.prev').onclick=()=>{
+        idx=(idx-1+total)%total;
+        updateSlides(idx);
       };
-      document.querySelector('.next').onclick = () => {
-        idx = (idx + 1) % total;
-        slidesEl.style.transform = `translateX(-${idx * 100}%)`;
+      document.querySelector('.next').onclick=()=>{
+        idx=(idx+1)%total;
+        updateSlides(idx);
       };
-      // autoplay
-      let auto = setInterval(() => document.querySelector('.next').click(), 4500);
-      const carousel = document.querySelector('.carousel');
-      carousel.addEventListener('mouseenter', () => clearInterval(auto));
-      carousel.addEventListener('mouseleave', () => auto = setInterval(() => document.querySelector('.next').click(), 4500));
-      // teclado
-      carousel.addEventListener('keydown', e => {
-        if (e.key === 'ArrowLeft') document.querySelector('.prev').click();
-        if (e.key === 'ArrowRight') document.querySelector('.next').click();
+
+      // Autoplay
+      let auto=setInterval(()=>document.querySelector('.next').click(),4500);
+      const carousel=document.querySelector('.carousel');
+      carousel.addEventListener('mouseenter',()=>clearInterval(auto));
+      carousel.addEventListener('mouseleave',()=>auto=setInterval(()=>document.querySelector('.next').click(),4500));
+      carousel.addEventListener('focusin',()=>clearInterval(auto));
+      carousel.addEventListener('focusout',()=>auto=setInterval(()=>document.querySelector('.next').click(),4500));
+
+      // Teclado
+      carousel.addEventListener('keydown',e=>{
+        if(e.key==='ArrowLeft') document.querySelector('.prev').click();
+        if(e.key==='ArrowRight') document.querySelector('.next').click();
       });
+
+      updateSlides(idx);
     })();
   </script>
 </body>
