@@ -58,24 +58,17 @@
       width: 250px; height: 100%; background: #111;
       padding-top: 60px; transition: left .3s ease; z-index: 1000;
     }
-    .sidebar.open {
-      left: 0;
-    }
-    .sidebar ul {
-      list-style: none; text-align: center;
-    }
+    .sidebar.open { left: 0; }
+    .sidebar ul { list-style: none; text-align: center; }
     .sidebar a {
-      display: block;
-      color: #fff; padding: 20px;
+      display: block; color: #fff; padding: 20px;
       text-transform: uppercase; text-decoration: none;
       border-bottom: 1px solid #222;
       font-family: 'horizon', sans-serif;
       letter-spacing: 1px; font-size: 1.12rem;
       transition: background .16s;
     }
-    .sidebar a:hover, .sidebar a.active {
-      background: #222; color: #ff0033;
-    }
+    .sidebar a:hover, .sidebar a.active { background: #222; color: #ff0033; }
     /* Header */
     header {
       position: fixed; top: 0; left: 0;
@@ -148,17 +141,17 @@
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
-    /* Infinite carousel of 5 visible */
+    /* Carousel with static center effect */
     .carousel {
       position: relative; overflow: hidden; padding: 40px 0;
     }
     .slides {
-      display: flex; transition: transform .5s ease; will-change: transform;
+      display: flex; /* no transform/transition */
     }
     .slide {
       flex: 0 0 20%; padding: 0 8px;
       opacity: 0; transform: scale(0.8);
-      transition: transform .5s, opacity .5s;
+      transition: transform .3s, opacity .3s;
       display: flex; justify-content: center;
     }
     .slide .placeholder {
@@ -237,19 +230,18 @@
       <p>Desde clandestine warehouse nights hasta raves al amanecer: nuestra pasión por el techno underground siempre arde.</p>
     </section>
 
-    <!-- Infinite Carousel -->
+    <!-- Static-effect Carousel -->
     <section id="gallery">
       <h2>Gallery</h2>
       <div class="carousel" tabindex="0">
         <button class="nav-btn prev" aria-label="Anterior">&#10094;</button>
         <div class="slides">
-          <!-- Coloca hasta 20 .slide -->
           <div class="slide"><div class="placeholder">Foto 1</div></div>
           <div class="slide"><div class="placeholder">Foto 2</div></div>
           <div class="slide"><div class="placeholder">Foto 3</div></div>
           <div class="slide"><div class="placeholder">Foto 4</div></div>
           <div class="slide"><div class="placeholder">Foto 5</div></div>
-          <!-- ... -->
+          <!-- …hasta 20 -->
         </div>
         <button class="nav-btn next" aria-label="Siguiente">&#10095;</button>
       </div>
@@ -284,28 +276,28 @@
   <a href="#top" class="scroll-top" aria-label="Back to top">↑</a>
 
   <script>
-    // Dynamic menu load
+    // Load menu
     document.addEventListener('DOMContentLoaded', () => {
       fetch('/menu.html')
         .then(r => r.text())
         .then(html => {
           document.getElementById('menu-container').innerHTML = html;
           document.querySelector('.menu-toggle')
-            .addEventListener('click', () => document.getElementById('sidebar').classList.toggle('open'));
+            .addEventListener('click', () =>
+              document.getElementById('sidebar').classList.toggle('open')
+            );
         });
     });
 
-    // Infinite carousel with center highlight
+    // Carousel: static center effect, images rotate instantly
     (function(){
       const track = document.querySelector('.slides');
       let slides = Array.from(track.children);
       const prevBtn = document.querySelector('.prev');
       const nextBtn = document.querySelector('.next');
-      let isAnimating = false;
 
       function updateClasses() {
         slides.forEach(sl => sl.className = 'slide');
-        // Take first 5 to assign classes
         const visible = slides.slice(0, 5);
         if (visible[0]) visible[0].classList.add('prev2');
         if (visible[1]) visible[1].classList.add('prev1');
@@ -315,37 +307,19 @@
       }
 
       function moveNext() {
-        if (isAnimating) return;
-        isAnimating = true;
-        track.style.transition = 'transform .5s ease';
-        track.style.transform = 'translateX(-20%)';
-        track.addEventListener('transitionend', function handler() {
-          track.removeEventListener('transitionend', handler);
-          track.style.transition = 'none';
-          track.appendChild(track.firstElementChild);
-          track.style.transform = 'translateX(0)';
-          slides = Array.from(track.children);
-          updateClasses();
-          isAnimating = false;
-        });
+        // rotate array
+        slides.push(slides.shift());
+        // reattach in new order
+        track.innerHTML = '';
+        slides.forEach(el => track.appendChild(el));
+        updateClasses();
       }
 
       function movePrev() {
-        if (isAnimating) return;
-        isAnimating = true;
-        track.style.transition = 'none';
-        track.insertBefore(track.lastElementChild, track.firstElementChild);
-        track.style.transform = 'translateX(-20%)';
-        requestAnimationFrame(() => {
-          track.style.transition = 'transform .5s ease';
-          track.style.transform = 'translateX(0)';
-        });
-        track.addEventListener('transitionend', function handler() {
-          track.removeEventListener('transitionend', handler);
-          slides = Array.from(track.children);
-          updateClasses();
-          isAnimating = false;
-        });
+        slides.unshift(slides.pop());
+        track.innerHTML = '';
+        slides.forEach(el => track.appendChild(el));
+        updateClasses();
       }
 
       prevBtn.addEventListener('click', movePrev);
@@ -359,7 +333,7 @@
       carousel.addEventListener('focusin', () => clearInterval(auto));
       carousel.addEventListener('focusout', () => auto = setInterval(moveNext, 4500));
 
-      // Keyboard navigation
+      // Keyboard
       carousel.addEventListener('keydown', e => {
         if (e.key === 'ArrowLeft') movePrev();
         if (e.key === 'ArrowRight') moveNext();
