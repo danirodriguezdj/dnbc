@@ -1,49 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!--
+    Archivo: agency1/index.html
+    Propósito: Página principal de DNBC Agency con listado de artistas.
+    Estándar de documentación: ISO/IEC/IEEE 26515
+  -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" 
+        content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#000" />
-  <title>Club History – Die Nacht Brennt Club</title>
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <title>DIE NACHT BRENNT CLUB</title>
+  <meta name="description" 
+        content="DNBC — Die Nacht Brennt Club. Official page. Underground electronic music, DJ podcasts, and events." />
+  <meta name="keywords"
+        content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club, spain, clubbing, dnbc" />
+
+  <meta name="author" content="DNBC Team" />
+
+  <!-- Íconos y manifest para PWA -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="DNBC" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <style>
     @font-face {
-      font-family: 'horizon_outlined';
-      src: url('/fonts/horizon_outlined.woff2') format('woff2'),
-           url('/fonts/horizon_outlined.woff') format('woff');
-      font-display: swap;
-    }
-    @font-face {
       font-family: 'horizon';
-      src: url('/fonts/horizon.woff2') format('woff2'),
-           url('/fonts/horizon.woff') format('woff');
+      src: url('/fonts/horizon.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
       font-display: swap;
     }
-
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-
-    html, body {
-      scroll-behavior: smooth;
-      background: linear-gradient(180deg, #000, #0a0a0a);
-      background-size: 400% 400%;
-      animation: bgScroll 40s ease infinite;
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #000;
       color: #fff;
-      font-family: sans-serif;
-      min-height: 100%;
-      padding-top: 75px;
+      font-family: 'horizon', sans-serif;
+      text-align: center;
+      padding: 80px 20px 50px;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
     }
-
-    @keyframes bgScroll {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* Fondo GIF centrado y fijo */
+    .gif-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 0;
+      pointer-events: none;
+      background: transparent;
     }
-
+    .gif-bg img {
+      display: block;
+      max-width: 48vw;
+      max-height: 64vh;
+      width: auto;
+      height: auto;
+      margin: auto;
+    }
+    /* Botón hamburguesa para mobile/desktop */
     .menu-toggle {
       position: fixed;
       top: 20px;
@@ -52,17 +81,15 @@
       border: none;
       cursor: pointer;
       z-index: 1001;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
     }
     .menu-toggle .bar {
+      display: block;
       width: 30px;
       height: 3px;
       background: #fff;
-      border-radius: 2px;
+      margin: 6px 0;
     }
-
+    /* Sidebar oculto por defecto, aparece al clicar */
     .sidebar {
       position: fixed;
       top: 0;
@@ -71,11 +98,15 @@
       height: 100%;
       background: #111;
       padding-top: 60px;
-      transition: left 0.3s;
+      transition: left .3s ease;
       z-index: 1000;
     }
-    .sidebar.open { left: 0; }
-    .sidebar ul { list-style: none; text-align: center; }
+    .sidebar.open {
+      left: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+    }
     .sidebar a {
       display: block;
       color: #fff;
@@ -83,16 +114,11 @@
       text-transform: uppercase;
       text-decoration: none;
       border-bottom: 1px solid #222;
-      font-family: 'horizon';
-      letter-spacing: 1px;
-      font-size: 1.1rem;
-      transition: background 0.2s, color 0.2s;
     }
-    .sidebar a:hover, .sidebar a.active {
+    .sidebar a:hover {
       background: #222;
-      color: #ff0033;
     }
-
+    /* Header fijo con logo centrado */
     header {
       position: fixed;
       top: 0;
@@ -103,236 +129,354 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 0 20px;
       z-index: 999;
       border-bottom: 2px solid #000;
     }
-
+    header a {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
     header .logo {
       max-width: 400px;
       width: 80vw;
       height: auto;
     }
-
+    /* --- DOCK SOCIALS --- */
+    .dock-socials {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 30px;
+      background: rgba(20, 20, 20, 0.75);
+      border-radius: 32px;
+      padding: 10px 32px 10px 32px;
+      box-shadow: 0 6px 24px 4px rgba(0,0,0,0.35);
+      z-index: 2000;
+      align-items: center;
+      border: 1.5px solid #333;
+      backdrop-filter: blur(2px);
+      transition: background 0.2s;
+    }
+    .dock-socials a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      transition: background 0.1s;
+      text-decoration: none;
+    }
+    .dock-socials a:hover {
+      background: rgba(255,255,255,0.06);
+    }
+    .dock-socials img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      transition: filter 0.2s ease, transform 0.2s ease;
+    }
+    .dock-socials a:hover img {
+      transform: scale(1.1);
+    }
+    .dock-socials a.instagram:hover img {
+      filter: invert(33%) sepia(77%) saturate(7475%) hue-rotate(316deg) brightness(98%) contrast(101%);
+    }
+    .dock-socials a.soundcloud:hover img {
+      filter: invert(59%) sepia(90%) saturate(2000%) hue-rotate(-12deg) brightness(99%) contrast(97%);
+    }
+    .dock-socials a.spotify:hover img {
+      filter: invert(52%) sepia(76%) saturate(686%) hue-rotate(89deg) brightness(92%) contrast(91%);
+    }
+    /* MAIN CONTENT */
     main {
-      max-width: 1280px;
-      margin: auto;
-      padding: 0 18px;
+      max-width: 1200px;
+      width: 100%;
+      margin-top: 100px;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      scroll-behavior: smooth;
     }
-
-    h1, h2, h3 {
-      animation: fadeUp 1.2s ease both;
+    /* Section titles */
+    main section h2 {
+      font-size: 2.2rem;
+      color: #ff0033;
+      font-weight: 700;
+      margin-bottom: 24px;
+      font-family: 'horizon', sans-serif;
+      letter-spacing: 2px;
+      animation: fadeUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
     }
+    main section p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #ddd;
+      font-family: 'horizon', sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fadeUp 1.3s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    /* Animations fadeUp */
     @keyframes fadeUp {
-      0% {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-      100% {
+      to {
         opacity: 1;
         transform: translateY(0);
       }
     }
+    /* Delay for staggered text fade */
+    section:nth-of-type(1) h2 { animation-delay: 0.2s; }
+    section:nth-of-type(1) p { animation-delay: 0.4s; }
+    section:nth-of-type(2) h2 { animation-delay: 0.6s; }
+    section:nth-of-type(2) p { animation-delay: 0.8s; }
+    section:nth-of-type(3) h2 { animation-delay: 1s; }
+    section:nth-of-type(3) p { animation-delay: 1.2s; }
 
-    .club-hero, .mid-section, .creative-section {
-      margin-top: 60px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2vw;
-      justify-content: center;
+    /* --- CAROUSEL --- */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 6px 24px #ff003333;
+      user-select: none;
     }
-
-    .club-hero-img, .mid-img, .creative-img {
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      will-change: transform;
+    }
+    .carousel-item {
+      flex: 0 0 220px; /* ancho fijo por item */
+      margin: 12px;
+      border-radius: 14px;
       background: #191919;
-      border: 3px dashed #ff003355;
-      border-radius: 24px;
-      box-shadow: 0 2px 20px #0004;
+      box-shadow: 0 4px 18px #000;
+      color: #ff0033aa;
+      font-family: 'horizon', sans-serif;
+      font-size: 1rem;
       display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      justify-content: center;
-      min-width: 200px;
-      max-width: 420px;
+      user-select: none;
+      aspect-ratio: 4 / 5;
+      position: relative;
+    }
+    .carousel-item div.placeholder {
       width: 100%;
-      height: 200px;
-      font-family: 'horizon';
-      font-size: 1.2rem;
-      color: #ff0033bb;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .club-hero-img:hover, .mid-img:hover, .creative-img:hover {
-      transform: scale(1.03);
-      box-shadow: 0 4px 36px #ff003322;
-    }
-
-    .club-hero-content, .mid-section-content, .creative-section-content {
-      max-width: 600px;
-      padding: 24px;
-      line-height: 1.7;
-      color: #e1e1e1;
-      font-size: 1.05rem;
-    }
-    .club-hero-content h1, .mid-section-content h2, .creative-section-content h2 {
-      font-family: 'horizon_outlined';
-      color: #ff0033;
-      margin-bottom: 14px;
-    }
-
-    .bottom-panels {
-      margin-top: 64px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2vw;
-    }
-    .panel {
-      background: #131313;
-      border-radius: 16px;
-      box-shadow: 0 2px 18px #0005;
-      padding: 40px 20px;
-      text-align: center;
-      max-width: 400px;
-      width: 100%;
-    }
-    .panel h3 {
-      font-family: 'horizon_outlined';
-      color: #ff0033;
-      font-size: 1.4rem;
-      margin-bottom: 16px;
-    }
-    .coming-soon {
-      color: #ff0033;
-      background: #1a1a1a;
+      height: 100%;
+      background: #222;
+      border-radius: 14px;
       border: 2px dashed #ff003355;
-      padding: 10px 20px;
-      border-radius: 8px;
-      display: inline-block;
-    }
-
-    footer {
-      margin-top: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ff0033bb;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      user-select: none;
+      padding: 10px;
       text-align: center;
-      color: #aaa;
-      padding: 36px 0;
-      font-size: 0.95rem;
-      border-top: 2px solid #181818;
+      font-size: 1rem;
     }
-
-    .scroll-top {
-      position: fixed;
-      bottom: 32px;
-      right: 22px;
-      font-size: 1.6rem;
-      background: #ff0033;
-      color: #000;
+    /* Flechas */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      background: #ff0033cc;
       border-radius: 50%;
-      width: 42px;
-      height: 42px;
+      color: #000;
+      font-size: 2.4rem;
+      line-height: 44px;
       text-align: center;
-      line-height: 42px;
-      font-weight: bold;
-      text-decoration: none;
-      z-index: 1000;
-      box-shadow: 0 2px 12px #0006;
-      transition: background 0.3s;
+      font-weight: 900;
+      cursor: pointer;
+      user-select: none;
+      z-index: 10;
+      transition: background 0.3s ease;
     }
-    .scroll-top:hover {
+    .carousel-arrow:hover {
       background: #fff;
       color: #ff0033;
     }
+    .carousel-arrow.left {
+      left: 10px;
+    }
+    .carousel-arrow.right {
+      right: 10px;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 720px) {
+      .carousel-item {
+        flex: 0 0 180px;
+        margin: 10px;
+      }
+    }
+    @media (max-width: 460px) {
+      .carousel-item {
+        flex: 0 0 140px;
+        margin: 6px;
+      }
+    }
 
-    @media (max-width: 768px) {
-      .club-hero-content, .mid-section-content, .creative-section-content {
-        padding: 16px;
-      }
-      .club-hero-img, .mid-img, .creative-img {
-        height: 160px;
-      }
+    /* COMING SOON PANELS */
+    .coming-panels {
+      display: flex;
+      gap: 3vw;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .coming-panel {
+      background: #111;
+      flex: 1 1 300px;
+      border-radius: 16px;
+      padding: 42px 24px;
+      box-shadow: 0 4px 18px #0007;
+      color: #ff0033;
+      font-family: 'horizon', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      user-select: none;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      transition: box-shadow 0.3s ease;
+    }
+    .coming-panel:hover {
+      box-shadow: 0 6px 28px #ff0033aa;
+    }
+    .coming-panel::after {
+      content: 'Coming Soon';
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: 700;
+      font-size: 1.8rem;
+      opacity: 0.15;
+      letter-spacing: 6px;
+      user-select: none;
     }
   </style>
 </head>
-<body id="top">
+<body>
+  <!-- Fondo GIF fijo y centrado detrás de todo -->
+  <div class="gif-bg" aria-hidden="true">
+    <img src="/img/dnbc.gif" alt="Fondo DNBC animado" />
+  </div>
+  <!-- Botón para abrir/cerrar menú lateral -->
   <button class="menu-toggle" aria-label="Toggle menu">
-    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
   </button>
-  <nav class="sidebar" id="sidebar">
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/club-history.html" class="active">Club History</a></li>
-      <li><a href="/artists.html">Artists</a></li>
-      <li><a href="/events.html">Events</a></li>
-      <li><a href="/merch.html">Merch</a></li>
-      <li><a href="/contact.html">Contact</a></li>
-    </ul>
-  </nav>
+  
+  <!-- Navegación lateral -->
+  <div id="menu-container"></div>
+  
+  <!-- Header fijo con logo -->
   <header>
-    <a href="/">
-      <img src="/logoletraslargo.png" alt="Logo DNBC Club" class="logo" />
+    <a href="https://dienachtbrenntclub.com" rel="noopener">
+      <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
     </a>
   </header>
+
   <main>
-    <section class="club-hero">
-      <div class="club-hero-img">[ Club main image ]</div>
-      <div class="club-hero-content">
-        <h1>Club History</h1>
-        <p>
-          Die Nacht Brennt Club was born from the urge to create an authentic space for underground techno in Galicia. Since its inception, the club has united artists, ravers, and minds who crave something different.<br><br>
-          From warehouse nights to open-air raves, our story is one of rebellion and relentless love for music.
-        </p>
+    <section id="history" aria-label="History of Die Nacht Brennt Club">
+      <h2>Our Story</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed erat et elit dictum malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Fusce nec dolor nec urna pretium pulvinar. Integer posuere magna eu ligula dapibus, at condimentum lectus blandit.
+      </p>
+    </section>
+
+    <section id="values" aria-label="Values and evolution of the club">
+      <h2>Evolution & Values</h2>
+      <p>
+        Curabitur vulputate, sem at consectetur pulvinar, nulla justo dictum purus, sed luctus magna eros nec justo. Quisque vel enim sit amet metus porttitor pulvinar a nec dui. Nullam a bibendum eros. Nullam a urna at lectus tincidunt ullamcorper.
+      </p>
+    </section>
+
+    <section id="people" aria-label="The people behind the club">
+      <h2>People Make the Club</h2>
+      <p>
+        Donec sed velit fringilla, vulputate metus nec, tempus odio. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris efficitur lorem at nisl condimentum, nec accumsan nulla dictum.
+      </p>
+    </section>
+
+    <section id="carousel" aria-label="Gallery of DNBC crowd and DJs">
+      <h2>Gallery</h2>
+      <div class="carousel-container" tabindex="0">
+        <button class="carousel-arrow left" aria-label="Previous slide">&#8249;</button>
+        <div class="carousel-track">
+          <div class="carousel-item"><div class="placeholder">Crowd Photo 1</div></div>
+          <div class="carousel-item"><div class="placeholder">DJ Photo 2</div></div>
+          <div class="carousel-item"><div class="placeholder">Crowd Photo 3</div></div>
+          <div class="carousel-item"><div class="placeholder">DJ Photo 4</div></div>
+          <div class="carousel-item"><div class="placeholder">Crowd Photo 5</div></div>
+          <div class="carousel-item"><div class="placeholder">DJ Photo 6</div></div>
+        </div>
+        <button class="carousel-arrow right" aria-label="Next slide">&#8250;</button>
       </div>
     </section>
 
-    <section class="mid-section">
-      <div class="mid-img">[ Old flyer ]</div>
-      <div class="mid-img">[ Crowd ]</div>
-      <div class="mid-section-content">
-        <h2>Evolution & Values</h2>
-        <p>
-          DNBC stands for community, freedom, and raw energy. We believe in inclusivity, self-expression, and breaking down barriers. Over the years, the club has grown into an agency, label, and platform for new generations of electronic music lovers.
-        </p>
+    <section id="events" aria-label="Upcoming events">
+      <h2>Upcoming Events</h2>
+      <div class="coming-panels">
+        <div class="coming-panel">Events</div>
       </div>
     </section>
 
-    <section class="creative-section">
-      <div class="creative-img">[ Resident DJ ]</div>
-      <div class="creative-section-content">
-        <h2>People Make the Club</h2>
-        <p>
-          Our residents, guest DJs, and the crowd form one experience. Every event is a collective ritual. DNBC is not just a place—it’s a feeling.
-        </p>
-      </div>
-    </section>
-
-    <section class="bottom-panels">
-      <div class="panel">
-        <h3>Events</h3>
-        <div class="coming-soon">Coming Soon</div>
-      </div>
-      <div class="panel">
-        <h3>Merchandise</h3>
-        <div class="coming-soon">Coming Soon</div>
+    <section id="merch" aria-label="Merchandise">
+      <h2>Merchandise</h2>
+      <div class="coming-panels">
+        <div class="coming-panel">Merchandise</div>
       </div>
     </section>
   </main>
-  <footer>
-    &copy; 2025 Die Nacht Brennt Club. All rights reserved.
-  </footer>
-  <a href="#top" class="scroll-top">↑</a>
+
+  <!-- Dock social fijo abajo -->
+  <div class="dock-socials">
+    <a href="https://soundcloud.com/dienachtbrenntclub" class="soundcloud" target="_blank" rel="noopener" title="SoundCloud">
+      <img src="/img/icons/soundcloud.svg" alt="SoundCloud" />
+    </a>
+    <a href="https://instagram.com/dienachtbrenntclub" class="instagram" target="_blank" rel="noopener" title="Instagram">
+      <img src="/img/icons/instagram.svg" alt="Instagram" />
+    </a>
+    <a href="https://open.spotify.com/playlist/3dAUufff9G37F3r1NHhWhI?si=a4uTV6mjS7mVpcWcBuur6w" class="spotify" target="_blank" rel="noopener" title="Spotify">
+      <img src="/img/icons/spotify.svg" alt="Spotify" />
+    </a>
+  </div>
 
   <script>
-    document.querySelector('.menu-toggle').addEventListener('click', () => {
-      document.getElementById('sidebar').classList.toggle('open');
-    });
-    document.addEventListener('click', (event) => {
-      const sidebar = document.getElementById('sidebar');
-      const toggle = document.querySelector('.menu-toggle');
-      if (sidebar.classList.contains('open') && !sidebar.contains(event.target) && !toggle.contains(event.target)) {
-        sidebar.classList.remove('open');
-      }
-    });
-    document.querySelectorAll('.sidebar a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('sidebar').classList.remove('open');
-      });
-    });
-  </script>
-</body>
-</html>
+    (function(){
+      const track = document.querySelector('.carousel-track');
+      const items = Array.from(track.children);
+      const btnLeft = document.querySelector('.carousel-arrow.left');
+      const btnRight = document.querySelector('.carousel-arrow.right');
+      const itemWidth = items[0].getBoundingClientRect().width + 24; // width + margin both sides (12px each)
+      let currentIndex = 0;
+      const maxIndex = items.length - Math.floor(track.parentElement.offsetWidth / itemWidth);
+
+      // Set initial position of items
+      function moveToIndex(index) {
+        if(index < 0) index = maxIndex;
+        if(index
