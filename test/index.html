@@ -1,106 +1,367 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="top">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DNBC — Die Nacht Brennt Club</title>
-  <link rel="stylesheet" href="/style.css" />
-  <script defer src="/script.js"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DIE NACHT BRENNT CLUB</title>
+  <meta name="description" content="DNBC — Die Nacht Brennt Club. Official page. Underground electronic music, DJ sets, and events."/>
+  <meta name="keywords" content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club, spain, clubbing, dnbc"/>
+  <meta name="author" content="DNBC Team"/>
+
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="shortcut icon" href="/favicon.ico"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <meta name="apple-mobile-web-app-title" content="DNBC"/>
+  <link rel="manifest" href="/site.webmanifest"/>
+
+  <style>
+    @font-face {
+      font-family: 'horizon_outlined';
+      src: url('/fonts/horizon_outlined.woff2') format('woff2'),
+           url('/fonts/horizon_outlined.woff') format('woff'),
+           url('/fonts/horizon_outlined.ttf') format('truetype');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'horizon';
+      src: url('/fonts/horizon.woff2') format('woff2'),
+           url('/fonts/horizon.woff') format('woff'),
+           url('/fonts/horizon.ttf') format('truetype');
+      font-display: swap;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+    }
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'horizon', sans-serif;
+      padding-top: 75px;
+      scroll-behavior: smooth;
+    }
+
+    /* ——————— ORIGINAL MENU & HEADER (unchanged) ——————— */
+    .menu-toggle {
+      position: fixed;
+      top: 20px; left: 20px;
+      background: none; border: none;
+      cursor: pointer; z-index: 1001;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .menu-toggle .bar {
+      width: 30px; height: 3px;
+      background: #fff; border-radius: 2px;
+    }
+    .sidebar {
+      position: fixed; top: 0; left: -250px;
+      width: 250px; height: 100%;
+      background: #111; padding-top: 60px;
+      transition: left .3s ease; z-index: 1000;
+    }
+    .sidebar.open { left: 0; }
+    .sidebar ul {
+      list-style: none; padding: 0; text-align: center;
+    }
+    .sidebar a {
+      display: block;
+      color: #fff; padding: 20px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid #222;
+      font-family: 'horizon', sans-serif;
+      letter-spacing: 1px;
+      font-size: 1.12rem;
+      transition: background .16s;
+    }
+    .sidebar a:hover,
+    .sidebar a.active {
+      background: #222; color: #ff0033;
+    }
+    header {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 75px;
+      background: #000; display: flex;
+      justify-content: center; align-items: center;
+      padding: 0 20px; z-index: 999;
+      border-bottom: 2px solid #000;
+    }
+    header .logo {
+      max-width: 400px; width: 80vw; height: auto;
+    }
+    /* ————————————————————————————————————————————— */
+
+    main {
+      max-width: 1280px; margin: 0 auto; padding: 18px;
+      display: flex; flex-direction: column; gap: 60px;
+    }
+    section {
+      text-align: center; position: relative;
+    }
+    /* Hero */
+    #hero {
+      display: flex; align-items: center; gap: 40px;
+      padding: 60px 0;
+    }
+    #hero .hero-img {
+      flex: 1; position: relative; padding-bottom: 56%;
+    }
+    #hero .hero-img img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+    #hero .hero-text {
+      flex: 1; text-align: left;
+    }
+    #hero h1 {
+      font-family: 'horizon_outlined'; font-size: 3rem;
+      color: #ff0033; letter-spacing: 2px;
+      margin-bottom: 16px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s ease forwards;
+    }
+    #hero p {
+      font-size: 1.1rem; line-height: 1.6; color: #ddd;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1.2s ease forwards;
+      animation-delay: 0.3s;
+    }
+    @media (max-width: 800px) {
+      #hero { flex-direction: column; }
+      #hero .hero-text { text-align: center; }
+    }
+
+    section h2 {
+      font-family: 'horizon'; font-size: 2rem;
+      color: #ff0033; letter-spacing: 2px;
+      margin-bottom: 14px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s ease forwards;
+    }
+    section p {
+      max-width: 900px; margin: 0 auto;
+      font-size: 1.1rem; line-height: 1.7; color: #ddd;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1.2s ease forwards;
+      animation-delay: 0.3s;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Carousel */
+    .carousel {
+      position: relative; overflow: hidden; padding: 40px 0;
+    }
+    .slides {
+      display: flex; transition: transform .4s ease;
+      will-change: transform;
+    }
+    .slide {
+      flex: 0 0 20%; padding: 0 8px;
+      opacity: 0.3; transform: scale(0.8);
+      transition: transform .4s, opacity .4s;
+      display: flex; justify-content: center;
+    }
+    .slide img {
+      width: 100%; border-radius: 12px;
+      object-fit: cover;
+    }
+    .slide.prev2  { opacity: 0.2;  transform: scale(0.8); }
+    .slide.prev1  { opacity: 0.6;  transform: scale(0.9); }
+    .slide.active { opacity: 1;    transform: scale(1.1); }
+    .slide.next1  { opacity: 0.6;  transform: scale(0.9); }
+    .slide.next2  { opacity: 0.2;  transform: scale(0.8); }
+
+    .nav-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.5); color: #fff; border: none;
+      font-size: 1.8rem; width: 40px; height: 40px; line-height: 40px;
+      text-align: center; cursor: pointer; z-index: 2;
+      transition: background .3s;
+    }
+    .nav-btn:hover { background: rgba(255,255,255,0.2); }
+    .nav-btn.prev { left: 10px; }
+    .nav-btn.next { right: 10px; }
+
+    .coming-soon {
+      font-family: 'horizon'; font-size: 1.3rem;
+      color: #ff0033; letter-spacing: 1px;
+      text-transform: uppercase; margin-top: 24px;
+    }
+
+    .scroll-top {
+      position: fixed; bottom: 30px; right: 30px;
+      background: #ff0033; color: #000;
+      width: 42px; height: 42px; border-radius: 50%;
+      text-align: center; line-height: 42px;
+      font-size: 1.2rem; font-weight: bold;
+      text-decoration: none; z-index: 1000;
+      box-shadow: 0 2px 12px #0006;
+      transition: background .3s;
+    }
+    .scroll-top:hover { background: #fff; color: #ff0033; }
+  </style>
 </head>
 <body>
+  <!-- Hamburger & Menu -->
+  <button class="menu-toggle" aria-label="Toggle menu">
+    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+  </button>
+  <div id="menu-container"></div>
+
+  <!-- Header -->
   <header>
-    <button class="menu-toggle" aria-label="Toggle menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-    <a href="/" class="logo-link">
-      <img src="/logoletraslargo.png" alt="DNBC Logo" class="logo" />
+    <a href="https://dienachtbrenntclub.com">
+      <img src="/logoletraslargo.png" alt="Logo DNBC" class="logo"/>
     </a>
   </header>
 
-  <section id="hero">
-    <div class="hero-img">
-      <img src="/img/mainpage/dnbc1.png" alt="Main DNBC Image" />
-    </div>
-    <div class="hero-text">
-      <h1>Die Nacht Brennt Club</h1>
-      <p>Fueling the underground with relentless beats and unforgettable nights, DNBC ignites the dancefloor like no other.</p>
-    </div>
-  </section>
-
-  <section class="carousel">
-    <div class="carousel-container">
-      <div class="carousel-track">
-        <img src="/img/mainpage/1.jpg" alt="Crowd 1" />
-        <img src="/img/mainpage/2.jpg" alt="Crowd 2" />
-        <img src="/img/mainpage/3.jpg" alt="Crowd 3" />
-        <img src="/img/mainpage/4.jpg" alt="Crowd 4" />
-        <img src="/img/mainpage/5.jpg" alt="Crowd 5" />
+  <main>
+    <!-- Hero -->
+    <section id="hero">
+      <div class="hero-img">
+        <img src="/img/mainpage/dnbc1.png" alt="Main DNBC Image"/>
       </div>
-      <button class="carousel-btn prev">&#10094;</button>
-      <button class="carousel-btn next">&#10095;</button>
-    </div>
-  </section>
+      <div class="hero-text">
+        <h1>Die Nacht Brennt Club</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </section>
 
-  <section id="origins">
-    <h2>Origins</h2>
-    <p>Die Nacht Brennt Club (DNBC) was born in early 2022 from a shared frustration: southern Galicia’s electronic music scene lay dormant in the wake of the pandemic. Dani Rodríguez, who had long been fascinated by dance music icons, and Coke Cortés, whose early taste for bass-heavy tunes evolved into a passion for industrial-hard techno, found each other while studying at a local music school. There, both honed their skills behind the decks and discovered the raw power of uncompromising techno. In 2021, during one of the first parties organized by the Vigo-based promoter Wildlife, Coke and Dani crossed paths—and their creative chemistry became undeniable.</p>
-  </section>
+    <!-- History -->
+    <section id="history">
+      <h2>Club History</h2>
+      <p>Desde clandestine warehouse nights hasta raves al amanecer: nuestra pasión por el techno underground siempre arde.</p>
+    </section>
 
-  <section id="birth">
-    <h2>The Birth of “The Night Is Burning”</h2>
-    <p>With venues across the region reluctant or ill-equipped to host true techno events, Dani decided to take matters into his own hands. He coined the name Die Nacht Brennt, German for “the night is burning,” and on March 11, 2022, staged the project’s first party in Lolita, a tiny 45-person bar in his hometown of Redondela. Armed with their own sound system—ensuring every beat would hit hard—they sold out the evening instantly. A second night followed with the same result, proving that there was a hunger for authentic, high-energy techno. A subsequent attempt at a larger club in Vigo drew just a few dozen people, but rather than defeat, it fueled their resolve to find a space they could call their own.</p>
-  </section>
+    <!-- Gallery Carousel -->
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div class="carousel">
+        <button class="nav-btn prev" aria-label="Anterior">&#10094;</button>
+        <div class="slides">
+          <!-- 20 images named 1.png–20.png -->
+          <div class="slide"><img src="/img/carrousel/1.png" alt="Foto 1"/></div>
+          <div class="slide"><img src="/img/carrousel/2.png" alt="Foto 2"/></div>
+          <div class="slide"><img src="/img/carrousel/3.png" alt="Foto 3"/></div>
+          <div class="slide"><img src="/img/carrousel/4.png" alt="Foto 4"/></div>
+          <div class="slide"><img src="/img/carrousel/5.png" alt="Foto 5"/></div>
+          <div class="slide"><img src="/img/carrousel/6.png" alt="Foto 6"/></div>
+          <div class="slide"><img src="/img/carrousel/7.png" alt="Foto 7"/></div>
+          <div class="slide"><img src="/img/carrousel/8.png" alt="Foto 8"/></div>
+          <div class="slide"><img src="/img/carrousel/9.png" alt="Foto 9"/></div>
+          <div class="slide"><img src="/img/carrousel/10.png" alt="Foto 10"/></div>
+          <div class="slide"><img src="/img/carrousel/11.png" alt="Foto 11"/></div>
+          <div class="slide"><img src="/img/carrousel/12.png" alt="Foto 12"/></div>
+          <div class="slide"><img src="/img/carrousel/13.png" alt="Foto 13"/></div>
+          <div class="slide"><img src="/img/carrousel/14.png" alt="Foto 14"/></div>
+          <div class="slide"><img src="/img/carrousel/15.png" alt="Foto 15"/></div>
+          <div class="slide"><img src="/img/carrousel/16.png" alt="Foto 16"/></div>
+          <div class="slide"><img src="/img/carrousel/17.png" alt="Foto 17"/></div>
+          <div class="slide"><img src="/img/carrousel/18.png" alt="Foto 18"/></div>
+          <div class="slide"><img src="/img/carrousel/19.png" alt="Foto 19"/></div>
+          <div class="slide"><img src="/img/carrousel/20.png" alt="Foto 20"/></div>
+        </div>
+        <button class="nav-btn next" aria-label="Siguiente">&#10095;</button>
+      </div>
+    </section>
 
-  <section id="the-gary">
-    <h2>The Gary: From Abandoned Hotel to Rave Cathedral</h2>
-    <p>Opportunity arrived through Rober Stark, the charismatic occupant of an old hotel within the derelict Massó fish-canning factory in Cangas. Constructed in 1942 and shuttered decades later, the complex—complete with cold-storage rooms and forgotten workshops—offered a unique canvas for DNBC’s vision. On July 8, 2022, the collective transformed the dusty halls of the “Gary” into a makeshift cathedral of sound, welcoming almost 400 strangers who danced from dusk until sunrise. That night crystallized DNBC’s identity: more than event promoters, they were the spark for a genuine community united by a love of pure techno.</p>
-  </section>
+    <!-- Values -->
+    <section id="values">
+      <h2>Evolution & Values</h2>
+      <p>Inclusivity, freedom, and the raw energy of the dancefloor define our journey.</p>
+    </section>
 
-  <section id="lineup">
-    <h2>Today’s Lineup and Recent Triumphs</h2>
-    <p>Today, the core of Die Nacht Brennt Club consists of Dani Rodríguez overseeing creative direction, Coke Cortés shaping the musical programming, and La Vera Notte bringing fresh artistic insight. Alongside them, Giulia Nigro—Calabrian by birth and now based in Lisbon—manages bookings and forges key collaborations. While early contributors like Pestdokter, Manu Losada and José Díaz have moved on to their own artistic and professional pursuits, they remain fondly connected to DNBC. Most recently, the collective made its international debut in London, teaming up with Hostile Takeover for a landmark event at Fire London. Meanwhile, their SoundCloud channel pulses with podcast mixes, and behind the scenes they’re laying the groundwork for a record label that will echo the same uncompromising spirit of their live shows.</p>
-  </section>
+    <!-- People -->
+    <section id="people">
+      <h2>People Make the Club</h2>
+      <p>Residents, guests, and crowd: todos colaboran en la misma experiencia.</p>
+    </section>
 
-  <section id="philosophy">
-    <h2>Philosophy and Legacy</h2>
-    <p>At its heart, Die Nacht Brennt Club stands for authenticity, inclusion, sonic excellence and community. Every party is conceived from a place of honest passion rather than commercial formulae, inviting anyone with an open mind and a love for heavy, unfiltered beats. It’s this genuine energy—far more than towering speaker stacks or marathon sets—that has allowed a small idea in Galicia to spark a movement reaching beyond local borders. As DNBC continues to light up new venues around the world, its founders remain committed to nurturing emerging talent, fostering connections, and ensuring that as long as the night burns, the dancefloor will never go dark.</p>
-  </section>
+    <!-- Upcoming Events -->
+    <section id="events">
+      <h2>Upcoming Events</h2>
+      <div class="coming-soon">Coming Soon</div>
+    </section>
 
-  <div id="menu-container"></div>
+    <!-- Merchandise -->
+    <section id="merch">
+      <h2>Merchandise</h2>
+      <div class="coming-soon">Coming Soon</div>
+    </section>
+  </main>
+
+  <a href="#top" class="scroll-top" aria-label="Back to top">↑</a>
+
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      fetch("/menu.html")
-        .then((res) => res.text())
-        .then((html) => {
-          document.getElementById("menu-container").innerHTML = html;
-          const btn = document.querySelector(".menu-toggle");
-          const nav = document.getElementById("sidebar");
-          btn.addEventListener("click", () => {
-            nav.classList.toggle("open");
-          });
+    // Load menu.html without altering its styles
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('/menu.html')
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById('menu-container').innerHTML = html;
+          document.querySelector('.menu-toggle')
+            .addEventListener('click', () =>
+              document.getElementById('sidebar').classList.toggle('open')
+            );
         });
-
-      const track = document.querySelector('.carousel-track');
-      const prev = document.querySelector('.carousel-btn.prev');
-      const next = document.querySelector('.carousel-btn.next');
-      let position = 0;
-
-      next.addEventListener('click', () => {
-        if (position > -((track.children.length - 1) * 100)) {
-          position -= 100;
-          track.style.transform = `translateX(${position}%)`;
-        }
-      });
-
-      prev.addEventListener('click', () => {
-        if (position < 0) {
-          position += 100;
-          track.style.transform = `translateX(${position}%)`;
-        }
-      });
     });
+
+    // Carousel logic (20 images, infinite, simultaneous highlight & move)
+    (function(){
+      const track = document.querySelector('.slides');
+      let slides = Array.from(track.children);
+      const prevBtn = document.querySelector('.prev');
+      const nextBtn = document.querySelector('.next');
+      let moving = false;
+
+      function updateClasses() {
+        slides.forEach(sl => sl.className = 'slide');
+        const v = slides.slice(0,5);
+        v[0]?.classList.add('prev2');
+        v[1]?.classList.add('prev1');
+        v[2]?.classList.add('active');
+        v[3]?.classList.add('next1');
+        v[4]?.classList.add('next2');
+      }
+
+      function move(dir) {
+        if (moving) return;
+        moving = true;
+        // update highlight immediately
+        if (dir === 'next') slides.push(slides.shift());
+        else slides.unshift(slides.pop());
+        updateClasses();
+        // animate container
+        track.style.transition = 'transform .4s ease';
+        track.style.transform = dir === 'next'
+          ? 'translateX(-20%)'
+          : 'translateX(20%)';
+        track.addEventListener('transitionend', function handler(){
+          track.removeEventListener('transitionend', handler);
+          track.style.transition = 'none';
+          track.style.transform = 'translateX(0)';
+          // reorder in DOM
+          if (dir === 'next') track.appendChild(track.firstElementChild);
+          else track.insertBefore(track.lastElementChild, track.firstElementChild);
+          moving = false;
+        });
+      }
+
+      prevBtn.onclick = () => move('prev');
+      nextBtn.onclick = () => move('next');
+
+      // autoplay until hover
+      let auto = setInterval(() => move('next'), 4500);
+      const carousel = document.querySelector('.carousel');
+      carousel.addEventListener('mouseenter', () => clearInterval(auto));
+      carousel.addEventListener('mouseleave', () =>
+        auto = setInterval(() => move('next'), 4500)
+      );
+    })();
   </script>
 </body>
 </html>
