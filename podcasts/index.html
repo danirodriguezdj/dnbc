@@ -33,7 +33,6 @@
       background: #000;
       color: #fff;
       font-family: 'horizon', sans-serif;
-      text-align: center;
       overflow-x: hidden;
       position: relative;
       min-height: 100vh;
@@ -90,7 +89,7 @@
       height: 75px;
       background: #000;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       padding: 0 20px;
       z-index: 999;
@@ -100,6 +99,7 @@
       display: flex;
       align-items: center;
       height: 100%;
+      margin-left: auto;
     }
     header .logo {
       max-width: 400px;
@@ -108,9 +108,8 @@
     }
     @media (max-width: 768px) {
       header {
-        justify-content: space-between;
-        padding: 0 20px;
         height: 65px;
+        padding: 0 20px;
       }
       header .logo {
         max-width: 250px;
@@ -139,23 +138,24 @@
 
 </head>
 <body>
-  <!-- Botón para abrir/cerrar menú lateral -->
+  <!-- Botón hamburguesa -->
   <button class="menu-toggle" aria-label="Toggle menu">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
 
-  <!-- Contenedor del menú lateral -->
+  <!-- Contenedor del menú -->
   <div id="menu-container"></div>
 
-  <!-- Header fijo con logo -->
+  <!-- Header -->
   <header>
     <a href="https://dienachtbrenntclub.com" rel="noopener">
       <img src="/logoletraslargo.png" alt="DNBC logo" class="logo" />
     </a>
   </header>
 
+  <!-- Carga menú desde menu.html -->
   <script>
     (function() {
       'use strict';
