@@ -142,7 +142,7 @@
       min-height: 220px;
       position: relative;
       overflow: hidden;
-      border-radius: 10px;
+      border-radius: 0px;
       display: block;
       cursor: pointer;
       background: #181818;
@@ -220,6 +220,23 @@
     .artist.manager-banner:hover .manager-name-title span {
       transform: scale(1.22);
       transition: transform .13s linear;
+    }
+
+    .artist-section {
+      width: 100%;
+      max-width: 1200px;
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .artist-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 20px;
     }
 
     .artist {
@@ -304,104 +321,39 @@
       filter: drop-shadow(0 0 6px #e1306c70);
     }
 
-    /* Secciones personalizadas para artistas */
-    .artist-section {
-      width: 100%;
-      max-width: 1200px;
-      margin-bottom: 30px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    @media (max-width: 1200px) {
+      main.artist-grid, .artist-section .artist-row {
+        max-width: 100vw;
+      }
     }
-    .artist-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      justify-content: center;
-      width: 75%;
-      margin-bottom: 20px;
-    }
-    .artist-row-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      justify-content: center;
-      width: 50%;
-      margin-bottom: 20px;
-    }
-    .artist-row.single {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      margin-bottom: 20px;
-      gap: 20px;
-    }
-    /* Responsive */
     @media (max-width: 900px) {
       main.artist-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .artist-section .artist-row {
+        grid-template-columns: repeat(3, 1fr);
       }
       .artist.manager-banner,
       .artist.manager-banner img.base,
       .artist.manager-banner img.playing {
-        height: 140px;
-        min-height: 140px;
-        border-radius: 8px;
-      }
-      .artist.manager-banner .artist-info {
-        font-size: 1rem;
-        padding: 8px 5px;
-      }
-      .manager-name-title span {
-        font-size: 1rem !important;
-        margin-top: 8px;
-      }
-      .artist-row {
-        grid-template-columns: repeat(2, 1fr);
-        width: 100%;
-      }
-      .artist-row-2 {
-        grid-template-columns: repeat(2, 1fr);
-        width: 100%;
+        height: 220px;
+        min-height: 220px;
+        border-radius: 0px;
       }
     }
     @media (max-width: 600px) {
       main.artist-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .artist-section .artist-row {
+        grid-template-columns: repeat(3, 1fr);
       }
       .artist.manager-banner,
       .artist.manager-banner img.base,
       .artist.manager-banner img.playing {
-        height: 90px;
-        min-height: 90px;
-        border-radius: 7px;
-      }
-      .artist.manager-banner .artist-info {
-        font-size: 13px;
-        padding: 6px 2px;
-      }
-      .manager-name-title span {
-        font-size: 13px !important;
-        margin-top: 2px;
-      }
-      .artist-info {
-        font-size: 13px;
-      }
-      .artist-row,
-      .artist-row-2 {
-        grid-template-columns: repeat(2, 1fr);
-        width: 98vw;
-        max-width: 400px;
-        margin-left: auto;
-        margin-right: auto;
-        justify-items: center;
-      }
-      .artist-row.single {
-        width: 98vw;
-        max-width: 400px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 20px;
+        height: 220px;
+        min-height: 220px;
+        border-radius: 0px;
       }
       .artist-section {
         padding-left: 0;
@@ -409,9 +361,43 @@
         width: 100vw;
         box-sizing: border-box;
       }
+      .artist-row {
+        width: 100vw;
+        max-width: 380px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+    @media (max-width: 500px) {
+      main.artist-grid, .artist-section .artist-row {
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 100vw;
+        max-width: 380px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .artist.manager-banner,
+      .artist.manager-banner img.base,
+      .artist.manager-banner img.playing {
+        height: 220px;
+        min-height: 220px;
+        border-radius: 0px;
+      }
+      .artist-section {
+        padding-left: 0;
+        padding-right: 0;
+        width: 100vw;
+        box-sizing: border-box;
+      }
+      .artist-info {
+        font-size: 13px;
+      }
+      .manager-name-title span {
+        font-size: 13px !important;
+      }
     }
     @media (max-width: 350px) {
-      .artist-row, .artist-row-2, .artist-row.single {
+      .artist-row {
         max-width: 98vw;
         gap: 8px;
       }
@@ -437,8 +423,8 @@
         padding: 8px 16px;
         bottom: 12px;
       }
-      main.artist-grid {
-        grid-template-columns: repeat(2, 1fr);
+      main.artist-grid, .artist-section .artist-row {
+        grid-template-columns: repeat(3, 1fr);
         margin-top: 70px;
       }
       .artist-info {
@@ -520,7 +506,7 @@
         <div class="artist-info">Trance Driver</div>
       </a>
     </div>
-    <div class="artist-row-2">
+    <div class="artist-row">
       <a class="artist" href="https://dienachtbrenntclub.com/filo">
         <img class="base"    src="img/filo.jpg"            alt="FILØ" />
         <img class="playing" src="img/filoplaying.jpg"     alt="FILØ pinchando" />
@@ -531,12 +517,9 @@
         <img class="playing" src="img/deathwrapplaying.jpg" alt="DEATHWRAP pinchando" />
         <div class="artist-info">Bounce Fury</div>
       </a>
+      <!-- Fila incompleta, celda vacía para centrar -->
+      <div></div>
     </div>
-  </section>
-
-  <!-- Fila de 1 artista centrada (si alguna sección la necesita en móvil) -->
-  <section class="artist-section" style="display:none;">
-    <div class="artist-row single"></div>
   </section>
 
   <div class="footer-link-dock">
