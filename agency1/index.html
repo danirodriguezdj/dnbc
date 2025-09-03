@@ -107,11 +107,11 @@
     }
     .artist-grid {
       display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
-      justify-content: center;
-      padding: 20px;
       width: 100%;
       max-width: 1200px;
+      padding: 20px;
     }
     .artist {
       position: relative;
@@ -156,6 +156,11 @@
     .artist:hover .artist-info {
       opacity: 1;
     }
+    .manager-banner .manager-name-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
     .footer-link-dock {
       position: fixed;
       left: 50%;
@@ -175,7 +180,7 @@
     }
     @media (max-width: 768px) {
       .artist-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: repeat(2, 1fr);
       }
       .artist-info {
         opacity: 1 !important;
@@ -215,19 +220,22 @@
       <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
     </a>
   </header>
-<main>
-    <!-- GiulianiGro destacado arriba -->
+  <main>
+    <!-- Manager destacado: GIULIA NIGRO -->
     <div class="artist-grid" style="grid-template-columns: repeat(1, 1fr); justify-content: center;">
-      <a class="artist" href="https://dienachtbrenntclub.com/giulianigro">
-        <img class="base" src="img/giulianigro.jpg" alt="GiulianiGro" />
-        <img class="playing" src="img/giulianigroplaying.jpg" alt="GiulianiGro pinchando" />
-        <div class="artist-info">Techno Architect</div>
+      <a class="artist manager-banner" href="https://dienachtbrenntclub.com/giulianigro">
+        <div class="manager-name-title">
+          <span>GIULIA NIGRO</span>
+        </div>
+        <img class="base" src="img/giulianigro.jpg" alt="Giuliani Gro" />
+        <img class="playing" src="img/giulianigroplaying.jpg" alt="Giuliani Gro en acción" />
+        <div class="artist-info">Management Mama</div>
       </a>
     </div>
 
     <!-- WORLDWIDE Section -->
     <h2>WORLDWIDE</h2>
-    <div class="artist-grid" style="grid-template-columns: repeat(3, 1fr); justify-content: center;">
+    <div class="artist-grid">
       <a class="artist" href="https://dienachtbrenntclub.com/cokecortes">
         <img class="base" src="img/cokecortes.jpg" alt="Coke Cortés" />
         <img class="playing" src="img/cokecortesplaying.jpg" alt="Coke Cortés pinchando" />
@@ -247,7 +255,7 @@
 
     <!-- SPAIN & PORTUGAL Section -->
     <h2>SPAIN & PORTUGAL</h2>
-    <div class="artist-grid" style="grid-template-columns: repeat(3, 1fr); justify-content: center;">
+    <div class="artist-grid">
       <a class="artist" href="https://dienachtbrenntclub.com/mikes">
         <img class="base" src="img/mikes.jpg" alt="Mikes" />
         <img class="playing" src="img/mikesplaying.jpg" alt="Mikes pinchando" />
@@ -264,7 +272,7 @@
         <div class="artist-info">Trance Driver</div>
       </a>
     </div>
-    <div class="artist-grid" style="grid-template-columns: repeat(2, 1fr); justify-content: center; margin-top: 20px;">
+    <div class="artist-grid" style="grid-template-columns: repeat(4, 1fr); justify-content: center;">
       <a class="artist" href="https://dienachtbrenntclub.com/filo">
         <img class="base" src="img/filo.jpg" alt="FILØ" />
         <img class="playing" src="img/filoplaying.jpg" alt="FILØ pinchando" />
