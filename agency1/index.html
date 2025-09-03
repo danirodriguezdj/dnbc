@@ -139,14 +139,15 @@
 
     .artist.manager-banner {
       grid-column: 1 / -1;
-      min-height: 220px;
       position: relative;
       overflow: hidden;
-      border-radius: 0px;
+      border-radius: 0;
       display: block;
       cursor: pointer;
       background: #181818;
       box-shadow: 0 2px 16px 0 rgba(0,0,0,.18);
+      height: 220px;
+      max-width: 1200px;
     }
     .artist.manager-banner img.base,
     .artist.manager-banner img.playing {
@@ -230,32 +231,48 @@
       flex-direction: column;
       align-items: center;
     }
+
     .artist-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 32px;
       justify-content: center;
       width: 100%;
+      max-width: 1200px;
       margin-bottom: 20px;
+    }
+
+    /* Centrado filas incompletas en escritorio y móvil */
+    .artist-row > a:nth-child(4),
+    .artist-row > a:nth-child(5),
+    .artist-row > a:nth-child(6) {
+      /* No afecta el grid, pero ayuda a identificar filas incompletas */
+    }
+    .artist-row.incomplete {
+      justify-content: center;
     }
 
     .artist {
       position: relative;
       overflow: hidden;
       cursor: pointer;
+      height: 220px;
+      display: block;
+      border-radius: 10px;
+      background: #181818;
     }
-    .artist img.base {
+    .artist img.base,
+    .artist img.playing {
       width: 100%;
+      height: 220px;
+      object-fit: cover;
       display: block;
       transition: opacity .3s, transform .3s, filter .3s;
-      z-index: 1;
     }
     .artist img.playing {
       position: absolute;
       top: 0; left: 0;
-      width: 100%;
       opacity: 0;
-      transition: opacity .3s, transform .3s, filter .3s;
       z-index: 2;
     }
     .artist:hover img.base {
@@ -321,76 +338,68 @@
       filter: drop-shadow(0 0 6px #e1306c70);
     }
 
+    /* Responsive */
     @media (max-width: 1200px) {
       main.artist-grid, .artist-section .artist-row {
         max-width: 100vw;
       }
     }
     @media (max-width: 900px) {
-      main.artist-grid {
+      main.artist-grid, .artist-section .artist-row {
         grid-template-columns: repeat(3, 1fr);
-      }
-      .artist-section .artist-row {
-        grid-template-columns: repeat(3, 1fr);
+        max-width: 100vw;
+        gap: 24px;
       }
       .artist.manager-banner,
       .artist.manager-banner img.base,
       .artist.manager-banner img.playing {
-        height: 220px;
-        min-height: 220px;
+        height: 180px;
+        min-height: 180px;
         border-radius: 0px;
+      }
+      .artist,
+      .artist img.base,
+      .artist img.playing {
+        height: 180px;
+        min-height: 180px;
       }
     }
-    @media (max-width: 600px) {
-      main.artist-grid {
+    @media (max-width: 700px) {
+      main.artist-grid, .artist-section .artist-row {
         grid-template-columns: repeat(3, 1fr);
-      }
-      .artist-section .artist-row {
-        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        max-width: 98vw;
       }
       .artist.manager-banner,
       .artist.manager-banner img.base,
       .artist.manager-banner img.playing {
-        height: 220px;
-        min-height: 220px;
-        border-radius: 0px;
+        height: 140px;
       }
-      .artist-section {
-        padding-left: 0;
-        padding-right: 0;
-        width: 100vw;
-        box-sizing: border-box;
+      .artist,
+      .artist img.base,
+      .artist img.playing {
+        height: 140px;
       }
-      .artist-row {
-        width: 100vw;
-        max-width: 380px;
-        margin-left: auto;
-        margin-right: auto;
+      .artist-info {
+        font-size: 13px;
       }
     }
     @media (max-width: 500px) {
       main.artist-grid, .artist-section .artist-row {
-        grid-template-columns: 1fr 1fr 1fr;
-        width: 100vw;
-        max-width: 380px;
-        margin-left: auto;
-        margin-right: auto;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        max-width: 99vw;
+        padding: 0 2vw;
       }
       .artist.manager-banner,
       .artist.manager-banner img.base,
       .artist.manager-banner img.playing {
-        height: 220px;
-        min-height: 220px;
-        border-radius: 0px;
+        height: 110px;
       }
-      .artist-section {
-        padding-left: 0;
-        padding-right: 0;
-        width: 100vw;
-        box-sizing: border-box;
-      }
-      .artist-info {
-        font-size: 13px;
+      .artist,
+      .artist img.base,
+      .artist img.playing {
+        height: 110px;
       }
       .manager-name-title span {
         font-size: 13px !important;
@@ -399,16 +408,16 @@
     @media (max-width: 350px) {
       .artist-row {
         max-width: 98vw;
-        gap: 8px;
+        gap: 4px;
       }
     }
     @media (max-width: 768px) {
       body {
-        padding: 0 10px 50px 10px;
+        padding: 0 8px 50px 8px;
       }
       header {
         justify-content: space-between;
-        padding: 0 20px;
+        padding: 0 10px;
         height: 65px;
       }
       header a {
@@ -422,17 +431,6 @@
         font-size: 1rem;
         padding: 8px 16px;
         bottom: 12px;
-      }
-      main.artist-grid, .artist-section .artist-row {
-        grid-template-columns: repeat(3, 1fr);
-        margin-top: 70px;
-      }
-      .artist-info {
-        opacity: 1 !important;
-        text-decoration: none !important;
-        pointer-events: none;
-        font-size: 13px;
-        line-height: 1.2;
       }
     }
   </style>
@@ -467,7 +465,7 @@
   <!-- WORLDWIDE SECTION -->
   <section class="artist-section">
     <div class="section-title">WORLDWIDE</div>
-    <div class="artist-row">
+    <div class="artist-row incomplete">
       <a class="artist" href="https://dienachtbrenntclub.com/cokecortes">
         <img class="base"    src="img/cokecortes.jpg"        alt="Coke Cortés" />
         <img class="playing" src="img/cokecortesplaying.jpg" alt="Coke Cortés pinchando" />
@@ -506,7 +504,7 @@
         <div class="artist-info">Trance Driver</div>
       </a>
     </div>
-    <div class="artist-row">
+    <div class="artist-row incomplete">
       <a class="artist" href="https://dienachtbrenntclub.com/filo">
         <img class="base"    src="img/filo.jpg"            alt="FILØ" />
         <img class="playing" src="img/filoplaying.jpg"     alt="FILØ pinchando" />
@@ -517,7 +515,7 @@
         <img class="playing" src="img/deathwrapplaying.jpg" alt="DEATHWRAP pinchando" />
         <div class="artist-info">Bounce Fury</div>
       </a>
-      <!-- Fila incompleta, celda vacía para centrar -->
+      <!-- Celda vacía para centrar la fila -->
       <div></div>
     </div>
   </section>
