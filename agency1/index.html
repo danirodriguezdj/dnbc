@@ -135,7 +135,7 @@
       font-weight: bold;
       margin: 40px 0 20px 0;
       letter-spacing: 3px;
-      color: #e1306c;
+      color: #fff; /* Blanco */
       text-align: center;
       font-family: 'horizon', sans-serif;
       text-shadow: 0 2px 14px #000, 0 0 6px #222;
@@ -310,40 +310,49 @@
       filter: drop-shadow(0 0 6px #e1306c70);
     }
 
-    /* Responsive grid for sections */
+    /* Secciones personalizadas para artistas */
     .artist-section {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
       width: 100%;
       max-width: 1200px;
       margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    /* Centrado para filas incompletas */
-    .artist-row {
+    /* WORLDWIDE ROW */
+    .artist-row-worldwide {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       justify-content: center;
-      width: 100%;
+      width: 75%;
       margin-bottom: 20px;
     }
-    .artist-row-2 {
+    /* SPAIN & PORTUGAL filas */
+    .artist-row-spain-1 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      justify-content: center;
+      width: 75%;
+      margin-bottom: 20px;
+    }
+    .artist-row-spain-2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
       justify-content: center;
-      width: 100%;
+      width: 50%;
       margin-bottom: 20px;
     }
-    /* Para responsive, igual que original */
-    @media (max-width: 900px) {
-      main.artist-grid,
-      .artist-section,
-      .artist-row {
-        grid-template-columns: repeat(2, 1fr);
+    /* Responsive, igual al original */
+    @media (max-width: 1200px) {
+      .artist-row-worldwide, .artist-row-spain-1, .artist-row-spain-2 {
+        width: 100%;
       }
-      .artist-row-2 {
+    }
+    @media (max-width: 900px) {
+      main.artist-grid {
         grid-template-columns: repeat(2, 1fr);
       }
       .artist.manager-banner,
@@ -361,12 +370,17 @@
         font-size: 1rem !important;
         margin-top: 8px;
       }
+      .artist-row-worldwide, .artist-row-spain-1 {
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+      }
+      .artist-row-spain-2 {
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+      }
     }
     @media (max-width: 500px) {
-      main.artist-grid,
-      .artist-section,
-      .artist-row,
-      .artist-row-2 {
+      main.artist-grid {
         grid-template-columns: 1fr;
       }
       .artist.manager-banner,
@@ -386,6 +400,10 @@
       }
       .artist-info {
         font-size: 13px;
+      }
+      .artist-row-worldwide, .artist-row-spain-1, .artist-row-spain-2 {
+        grid-template-columns: 1fr;
+        width: 100%;
       }
     }
     @media (max-width: 768px) {
@@ -409,15 +427,19 @@
         padding: 8px 16px;
         bottom: 12px;
       }
-      main.artist-grid,
-      .artist-section,
-      .artist-row {
+      main.artist-grid {
         grid-template-columns: repeat(2, 1fr);
         margin-top: 70px;
       }
-      .artist-row-2 {
+      .artist-row-worldwide, .artist-row-spain-1 {
         grid-template-columns: repeat(2, 1fr);
         margin-top: 0;
+        width: 100%;
+      }
+      .artist-row-spain-2 {
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 0;
+        width: 100%;
       }
       .artist-info {
         opacity: 1 !important;
@@ -429,23 +451,6 @@
     }
   </style>
   <!-- Meta Pixel Code (insert here if needed) -->
-  <!-- Example: 
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'YOUR_PIXEL_ID');
-    fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
-  /></noscript>
-  -->
 </head>
 <body>
   <button class="menu-toggle" aria-label="Toggle menu">
@@ -462,7 +467,7 @@
     </a>
   </header>
 
-  <!-- Grid principal solo contiene el banner manager -->
+  <!-- Banner manager GIULIA NIGRO -->
   <main class="artist-grid">
     <a class="artist manager-banner" href="https://dienachtbrenntclub.com/giulianigro">
       <div class="manager-name-title">
@@ -477,7 +482,7 @@
   <!-- WORLDWIDE SECTION -->
   <section class="artist-section">
     <div class="section-title">WORLDWIDE</div>
-    <div class="artist-row">
+    <div class="artist-row-worldwide">
       <a class="artist" href="https://dienachtbrenntclub.com/cokecortes">
         <img class="base"    src="img/cokecortes.jpg"        alt="Coke Cortés" />
         <img class="playing" src="img/cokecortesplaying.jpg" alt="Coke Cortés pinchando" />
@@ -499,7 +504,7 @@
   <!-- SPAIN & PORTUGAL SECTION -->
   <section class="artist-section">
     <div class="section-title">SPAIN &amp; PORTUGAL</div>
-    <div class="artist-row">
+    <div class="artist-row-spain-1">
       <a class="artist" href="https://dienachtbrenntclub.com/mikes">
         <img class="base"    src="img/mikes.jpg"            alt="Mikes" />
         <img class="playing" src="img/mikesplaying.jpg"     alt="Mikes pinchando" />
@@ -516,7 +521,7 @@
         <div class="artist-info">Trance Driver</div>
       </a>
     </div>
-    <div class="artist-row-2">
+    <div class="artist-row-spain-2">
       <a class="artist" href="https://dienachtbrenntclub.com/filo">
         <img class="base"    src="img/filo.jpg"            alt="FILØ" />
         <img class="playing" src="img/filoplaying.jpg"     alt="FILØ pinchando" />
