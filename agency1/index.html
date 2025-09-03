@@ -129,6 +129,19 @@
       margin-top: 40px;
     }
 
+    .section-title {
+      grid-column: 1 / -1;
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin: 40px 0 20px 0;
+      letter-spacing: 3px;
+      color: #e1306c;
+      text-align: center;
+      font-family: 'horizon', sans-serif;
+      text-shadow: 0 2px 14px #000, 0 0 6px #222;
+      user-select: none;
+    }
+
     .artist.manager-banner {
       grid-column: 1 / -1;
       min-height: 220px;
@@ -297,8 +310,40 @@
       filter: drop-shadow(0 0 6px #e1306c70);
     }
 
+    /* Responsive grid for sections */
+    .artist-section {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px;
+      margin-bottom: 30px;
+    }
+    /* Centrado para filas incompletas */
+    .artist-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .artist-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    /* Para responsive, igual que original */
     @media (max-width: 900px) {
-      main.artist-grid {
+      main.artist-grid,
+      .artist-section,
+      .artist-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .artist-row-2 {
         grid-template-columns: repeat(2, 1fr);
       }
       .artist.manager-banner,
@@ -318,7 +363,10 @@
       }
     }
     @media (max-width: 500px) {
-      main.artist-grid {
+      main.artist-grid,
+      .artist-section,
+      .artist-row,
+      .artist-row-2 {
         grid-template-columns: 1fr;
       }
       .artist.manager-banner,
@@ -361,9 +409,15 @@
         padding: 8px 16px;
         bottom: 12px;
       }
-      main.artist-grid {
+      main.artist-grid,
+      .artist-section,
+      .artist-row {
         grid-template-columns: repeat(2, 1fr);
         margin-top: 70px;
+      }
+      .artist-row-2 {
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 0;
       }
       .artist-info {
         opacity: 1 !important;
@@ -374,6 +428,24 @@
       }
     }
   </style>
+  <!-- Meta Pixel Code (insert here if needed) -->
+  <!-- Example: 
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+  /></noscript>
+  -->
 </head>
 <body>
   <button class="menu-toggle" aria-label="Toggle menu">
@@ -390,6 +462,7 @@
     </a>
   </header>
 
+  <!-- Grid principal solo contiene el banner manager -->
   <main class="artist-grid">
     <a class="artist manager-banner" href="https://dienachtbrenntclub.com/giulianigro">
       <div class="manager-name-title">
@@ -399,47 +472,63 @@
       <img class="playing" src="img/giulianigroplaying.jpg"  alt="Giuliani Gro en acción" />
       <div class="artist-info">Management Mama</div>
     </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/cokecortes">
-      <img class="base"    src="img/cokecortes.jpg"        alt="Coke Cortés" />
-      <img class="playing" src="img/cokecortesplaying.jpg" alt="Coke Cortés pinchando" />
-      <div class="artist-info">Sacred Violence</div>
-    </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/danirodriguez">
-      <img class="base"    src="img/danirodriguez.jpg"        alt="Dani Rodriguez" />
-      <img class="playing" src="img/danirodriguezplaying.jpg" alt="Dani Rodriguez pinchando" />
-      <div class="artist-info">Fast soul</div>
-    </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/laveranotte">
-      <img class="base"    src="img/laveranotte.jpg"      alt="La Vera Notte" />
-      <img class="playing" src="img/laveranotteplaying.jpg" alt="La Vera Notte pinchando" />
-      <div class="artist-info">Dance Authority</div>
-    </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/mikes">
-      <img class="base"    src="img/mikes.jpg"            alt="Mikes" />
-      <img class="playing" src="img/mikesplaying.jpg"     alt="Mikes pinchando" />
-      <div class="artist-info">Oldschool Rage</div>
-    </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/vitalgroove">
-      <img class="base"    src="img/vitalgroove.jpg"       alt="Vital Groove" />
-      <img class="playing" src="img/vitalgrooveplaying.jpg" alt="Vital Groove pinchando" />
-      <div class="artist-info">Groove Commander</div>
-    </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/kb45">
-      <img class="base"    src="img/kb45.jpg"            alt="KB45" />
-      <img class="playing" src="img/kb45playing.jpg"     alt="KB45 pinchando" />
-      <div class="artist-info">Trance Driver</div>
-    </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/filo">
-      <img class="base"    src="img/filo.jpg"            alt="FILØ" />
-      <img class="playing" src="img/filoplaying.jpg"     alt="FILØ pinchando" />
-      <div class="artist-info">Power Surgeon</div>
-    </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/deathwrap">
-      <img class="base"    src="img/deathwrap.jpg"       alt="DEATHWRAP" />
-      <img class="playing" src="img/deathwrapplaying.jpg" alt="DEATHWRAP pinchando" />
-      <div class="artist-info">Bounce Fury</div>
-    </a>
   </main>
+
+  <!-- WORLDWIDE SECTION -->
+  <section class="artist-section">
+    <div class="section-title">WORLDWIDE</div>
+    <div class="artist-row">
+      <a class="artist" href="https://dienachtbrenntclub.com/cokecortes">
+        <img class="base"    src="img/cokecortes.jpg"        alt="Coke Cortés" />
+        <img class="playing" src="img/cokecortesplaying.jpg" alt="Coke Cortés pinchando" />
+        <div class="artist-info">Sacred Violence</div>
+      </a>
+      <a class="artist" href="https://dienachtbrenntclub.com/danirodriguez">
+        <img class="base"    src="img/danirodriguez.jpg"        alt="Dani Rodriguez" />
+        <img class="playing" src="img/danirodriguezplaying.jpg" alt="Dani Rodriguez pinchando" />
+        <div class="artist-info">Fast soul</div>
+      </a>
+      <a class="artist" href="https://dienachtbrenntclub.com/laveranotte">
+        <img class="base"    src="img/laveranotte.jpg"      alt="La Vera Notte" />
+        <img class="playing" src="img/laveranotteplaying.jpg" alt="La Vera Notte pinchando" />
+        <div class="artist-info">Dance Authority</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- SPAIN & PORTUGAL SECTION -->
+  <section class="artist-section">
+    <div class="section-title">SPAIN &amp; PORTUGAL</div>
+    <div class="artist-row">
+      <a class="artist" href="https://dienachtbrenntclub.com/mikes">
+        <img class="base"    src="img/mikes.jpg"            alt="Mikes" />
+        <img class="playing" src="img/mikesplaying.jpg"     alt="Mikes pinchando" />
+        <div class="artist-info">Oldschool Rage</div>
+      </a>
+      <a class="artist" href="https://dienachtbrenntclub.com/vitalgroove">
+        <img class="base"    src="img/vitalgroove.jpg"       alt="Vital Groove" />
+        <img class="playing" src="img/vitalgrooveplaying.jpg" alt="Vital Groove pinchando" />
+        <div class="artist-info">Groove Commander</div>
+      </a>
+      <a class="artist" href="https://dienachtbrenntclub.com/kb45">
+        <img class="base"    src="img/kb45.jpg"            alt="KB45" />
+        <img class="playing" src="img/kb45playing.jpg"     alt="KB45 pinchando" />
+        <div class="artist-info">Trance Driver</div>
+      </a>
+    </div>
+    <div class="artist-row-2">
+      <a class="artist" href="https://dienachtbrenntclub.com/filo">
+        <img class="base"    src="img/filo.jpg"            alt="FILØ" />
+        <img class="playing" src="img/filoplaying.jpg"     alt="FILØ pinchando" />
+        <div class="artist-info">Power Surgeon</div>
+      </a>
+      <a class="artist" href="https://dienachtbrenntclub.com/deathwrap">
+        <img class="base"    src="img/deathwrap.jpg"       alt="DEATHWRAP" />
+        <img class="playing" src="img/deathwrapplaying.jpg" alt="DEATHWRAP pinchando" />
+        <div class="artist-info">Bounce Fury</div>
+      </a>
+    </div>
+  </section>
 
   <div class="footer-link-dock">
     <a href="https://instagram.com/dnbcagency" target="_blank" rel="noopener">@dnbcagency</a>
@@ -463,6 +552,6 @@
         });
     });
   })();
-</script>
+  </script>
 </body>
 </html>
