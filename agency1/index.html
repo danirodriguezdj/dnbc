@@ -346,6 +346,7 @@
         max-width: 99vw;
       }
     }
+
     @media (max-width: 700px) {
       .artist.manager-banner {
         max-width: 99vw;
@@ -359,7 +360,22 @@
       h2 {
         font-size: 1.1rem !important;
       }
+
+      /* Mantener el mismo tamaño de tarjeta en la última fila (2 cols) que en la fila de 3, y centrar */
+      main.artist-grid,
+      main.artist-grid.two-cols { --gap: 8px; }
+
+      /* Ancho de tarjeta = (ancho disponible para 3 columnas - gaps) / 3 */
+      main.artist-grid.two-cols {
+        grid-template-columns: repeat(2, calc((min(900px, 100vw) - (2 * var(--gap))) / 3)) !important;
+        justify-content: center;
+      }
+      main.artist-grid.two-cols .artist {
+        width: calc((min(900px, 100vw) - (2 * var(--gap))) / 3);
+        justify-self: center;
+      }
     }
+
     @media (max-width: 500px) {
       .footer-link-dock {
         font-size: 1rem;
@@ -367,6 +383,7 @@
         bottom: 12px;
       }
     }
+
     section {
       margin-bottom: 10px;
     }
