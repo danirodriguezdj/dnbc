@@ -48,6 +48,11 @@
       font-display: swap;
     }
 
+    :root {
+      /* Reducimos ligeramente el gap global entre tarjetas para que crezcan un poco */
+      --artist-gap: 6px;
+    }
+
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -298,7 +303,7 @@
     main.artist-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr) !important;
-      gap: 8px !important;
+      gap: var(--artist-gap) !important;
       max-width: 900px;
       margin: 0 auto;
       padding: 0;
@@ -365,6 +370,8 @@
     }
 
     @media (max-width: 700px) {
+      :root { --artist-gap: 5px; } /* un poco menos de espacio en móvil */
+
       .artist.manager-banner {
         max-width: 99vw;
         min-height: 90px;
@@ -379,15 +386,12 @@
       }
 
       /* Mantener tamaño de tarjeta en la última fila (2 cols) igual al de 3-col y centrar */
-      main.artist-grid,
-      main.artist-grid.two-cols { --gap: 8px; }
-
       main.artist-grid.two-cols {
-        grid-template-columns: repeat(2, calc((min(900px, 100vw) - (2 * var(--gap))) / 3)) !important;
+        grid-template-columns: repeat(2, calc((min(900px, 100vw) - (2 * var(--artist-gap))) / 3)) !important;
         justify-content: center;
       }
       main.artist-grid.two-cols .artist {
-        width: calc((min(900px, 100vw) - (2 * var(--gap))) / 3);
+        width: calc((min(900px, 100vw) - (2 * var(--artist-gap))) / 3);
         justify-self: center;
       }
     }
