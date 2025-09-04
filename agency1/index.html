@@ -140,29 +140,10 @@
       display: block;
     }
 
-    @media (max-width: 768px) {
-      body {
-        padding: 0 10px 50px 10px;
-      }
-      header {
-        justify-content: space-between;
-        padding: 0 20px;
-        height: 65px;
-      }
-      header a {
-        margin-left: auto;
-      }
-      header .logo {
-        max-width: 250px;
-        width: 60vw;
-      }
-    }
-
     section {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      /* Espaciado por defecto entre secciones */
       margin-bottom: 10px;
     }
 
@@ -185,7 +166,8 @@
       cursor: pointer;
       background: #181818;
       box-shadow: 0 2px 16px 0 rgba(0,0,0,.18);
-      margin: 92px auto 4px auto; /* antes 22px de bottom; ahora ~25% del gap total objetivo */
+      /* Justo debajo del header fijo: header(75px) + pequeño gap */
+      margin: 78px auto 4px auto;
       max-width: 900px;
     }
     .artist.manager-banner img.base,
@@ -332,13 +314,35 @@
     }
 
     /* Ajustes de espaciados específicos entre secciones */
-    /* 1) Entre GIULIA (section 1) y WORLDWIDE (section 2): ~25% del espacio original */
-    section:first-of-type { margin-bottom: 4px; } /* antes 10px */
-    section:nth-of-type(2) h2 { margin-top: 6.5px; } /* 25% de 26px = 6.5px */
+    /* 1) Entre GIULIA y WORLDWIDE: ~25% del espacio original */
+    section:first-of-type { margin-bottom: 4px; }
+    section:nth-of-type(2) h2 { margin-top: 6.5px; }
 
     /* 2) Espacio superior de SPAIN AND PORTUGAL a la mitad */
-    section:nth-of-type(2) { margin-bottom: 5px; } /* mitad de 10px */
-    section:nth-of-type(3) h2 { margin-top: 13px; } /* mitad de 26px */
+    section:nth-of-type(2) { margin-bottom: 5px; }
+    section:nth-of-type(3) h2 { margin-top: 13px; }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 0 10px 50px 10px;
+      }
+      header {
+        justify-content: space-between;
+        padding: 0 20px;
+        height: 65px;
+      }
+      header a {
+        margin-left: auto;
+      }
+      header .logo {
+        max-width: 250px;
+        width: 60vw;
+      }
+      /* Ajuste de margen superior del banner en móvil: header(65px) + pequeño gap */
+      .artist.manager-banner {
+        margin-top: 68px;
+      }
+    }
 
     @media (max-width: 950px) {
       .artist.manager-banner {
@@ -394,10 +398,6 @@
         padding: 8px 16px;
         bottom: 12px;
       }
-    }
-
-    section {
-      margin-bottom: 10px;
     }
 
     /* Footer dock */
