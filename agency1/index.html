@@ -397,20 +397,37 @@
         justify-self: center;
       }
 
-      /* Mostrar SIEMPRE el texto en móvil, más pequeño y sin dividir palabras */
+      /* Mostrar SIEMPRE el texto en móvil, más pequeño y sin dividir palabras (artistas del grid) */
       main.artist-grid .artist .artist-info {
         opacity: 1 !important;
         background: rgba(0,0,0,0.6);
-        font-size: clamp(0.60rem, 2.4vw, 0.80rem); /* más pequeño */
+        font-size: clamp(0.60rem, 2.4vw, 0.80rem);
         line-height: 1.15;
         padding: 7px 8px;
-        white-space: normal;       /* permite saltos solo entre palabras */
-        word-break: normal;        /* no partir palabras */
-        overflow-wrap: normal;     /* no forzar cortes dentro de palabras */
-        hyphens: none;             /* sin guiones automáticos */
-        text-overflow: clip;       /* sin elipsis, que se vea completo */
+        white-space: normal;    /* permite saltos solo entre palabras */
+        word-break: normal;     /* no partir palabras */
+        overflow-wrap: normal;  /* no forzar cortes dentro de palabras */
+        hyphens: none;          /* sin guiones automáticos */
+        text-overflow: clip;
       }
       main.artist-grid .artist:hover .artist-info {
+        opacity: 1 !important;
+      }
+
+      /* Mostrar SIEMPRE el texto del banner de la manager en móvil, del MISMO tamaño y sin dividir palabras */
+      .artist.manager-banner .artist-info {
+        opacity: 1 !important;
+        background: rgba(0,0,0,0.6);
+        font-size: clamp(0.60rem, 2.4vw, 0.80rem);
+        line-height: 1.15;
+        padding: 7px 8px;
+        white-space: normal;
+        word-break: normal;
+        overflow-wrap: normal;
+        hyphens: none;
+        text-overflow: clip;
+      }
+      .artist.manager-banner:hover .artist-info {
         opacity: 1 !important;
       }
     }
