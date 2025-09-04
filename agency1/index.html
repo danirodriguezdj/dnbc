@@ -14,25 +14,6 @@
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Meta Pixel Code -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'XXXXXXXXXXXXXXX'); // Reemplaza con tu ID de píxel
-    fbq('track', 'PageView');
-  </script>
-  <noscript>
-    <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"/>
-  </noscript>
-  <!-- End Meta Pixel Code -->
-
   <style>
     @font-face {
       font-family: 'horizon';
@@ -100,6 +81,8 @@
       text-shadow: 0 2px 14px #000, 0 0 6px #222;
       user-select: none;
     }
+
+    /* ARTIST GRID: SIEMPRE 3 COLUMNAS, FILAS INCOMPLETAS CENTRADAS */
     .artists-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -109,18 +92,19 @@
       margin-bottom: 20px;
       justify-content: center;
     }
-    .artists-row.centered-2 {
-      grid-template-columns: repeat(3, 1fr);
+    .artists-row.centered {
       justify-content: center;
     }
-    .artists-row.centered-1 {
-      grid-template-columns: repeat(3, 1fr);
-      justify-content: center;
+    .artists-row.centered > .artist {
+      /* Todos los artistas tienen el mismo tamaño y formato */
     }
-    .artists-row.centered-2 > .empty,
-    .artists-row.centered-1 > .empty {
+    .artists-row.centered > .empty {
+      /* Celda invisible, no ocupa espacio visual */
       visibility: hidden;
+      pointer-events: none;
     }
+
+    /* ARTISTA Y MANAGER FORMATO ORIGINAL */
     .artist.manager-banner {
       grid-column: 1 / -1;
       min-height: 220px;
@@ -189,9 +173,7 @@
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      border-radius: 10px;
-      background: #181818;
-      box-shadow: 0 2px 16px 0 rgba(0,0,0,.10);
+      /* SIN MODIFICAR FORMATOS NI BORDES */
     }
     .artist img.base {
       width: 100%;
@@ -236,8 +218,9 @@
       color: #e1306c; filter: drop-shadow(0 0 6px #e1306c70);
     }
     @media (max-width: 900px) {
-      .artists-row, .artists-row.centered-2, .artists-row.centered-1 {
-        grid-template-columns: repeat(2, 1fr);
+      .artists-row, .artists-row.centered {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
       }
       .artist.manager-banner,
       .artist.manager-banner img.base,
@@ -248,8 +231,10 @@
       .manager-name-title span { font-size: 1rem !important; margin-top: 8px; }
     }
     @media (max-width: 600px) {
-      .artists-row, .artists-row.centered-2, .artists-row.centered-1 {
-        grid-template-columns: 1fr;
+      .artists-row, .artists-row.centered {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+        max-width: 98vw;
       }
       .artist.manager-banner,
       .artist.manager-banner img.base,
@@ -331,7 +316,7 @@
         <div class="artist-info">Trance Driver</div>
       </a>
     </div>
-    <div class="artists-row centered-2">
+    <div class="artists-row centered">
       <a class="artist" href="https://dienachtbrenntclub.com/filo">
         <img class="base"    src="img/filo.jpg"            alt="FILØ" />
         <img class="playing" src="img/filoplaying.jpg"     alt="FILØ pinchando" />
@@ -348,6 +333,24 @@
   <div class="footer-link-dock">
     <a href="https://instagram.com/dnbcagency" target="_blank" rel="noopener">@dnbcagency</a>
   </div>
+  <!-- Meta Pixel Code (donde estaba) -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'XXXXXXXXXXXXXXX'); // Reemplaza con tu ID de píxel
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
   <script>
   (function() {
     'use strict';
