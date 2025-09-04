@@ -13,6 +13,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
+
   <style>
     @font-face {
       font-family: 'horizon';
@@ -21,7 +22,11 @@
       font-style: normal;
       font-display: swap;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
       display: flex;
       flex-direction: column;
@@ -34,32 +39,61 @@
       overflow-x: hidden;
     }
     .menu-toggle {
-      position: fixed; top: 20px; left: 20px;
-      background: none; border: none; cursor: pointer; z-index: 1001;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
     }
     .menu-toggle .bar {
-      display: block; width: 30px; height: 3px; background: #fff; margin: 6px 0;
+      display: block;
+      width: 30px;
+      height: 3px;
+      background: #fff;
+      margin: 6px 0;
     }
     .sidebar {
-      position: fixed; top: 0; left: -250px; width: 250px; height: 100%; background: #111;
-      padding-top: 60px; transition: left .3s ease; z-index: 1000;
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #111;
+      padding-top: 60px;
+      transition: left .3s ease;
+      z-index: 1000;
     }
     .sidebar.open { left: 0; }
     .sidebar ul { list-style: none; }
     .sidebar a {
-      display: block; color: #fff; padding: 20px; text-transform: uppercase; text-decoration: none;
+      display: block;
+      color: #fff;
+      padding: 20px;
+      text-transform: uppercase;
+      text-decoration: none;
       border-bottom: 1px solid #222;
     }
     .sidebar a:hover { background: #222; }
     header {
-      position: fixed; top: 0; left: 0; width: 100%; height: 75px; background: #000;
-      display: flex; justify-content: center; align-items: center; padding: 0 20px; z-index: 999;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 75px;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 999;
       border-bottom: 2px solid #000;
     }
     header a { display: flex; align-items: center; height: 100%; }
     header .logo { max-width: 400px; width: 80vw; height: auto; }
 
-    /* Manager banner EXACTAMENTE como tu ejemplo: */
+    /* MANAGER EXACTAMENTE COMO TU EJEMPLO */
     .artist.manager-banner {
       grid-column: 1 / -1;
       min-height: 220px;
@@ -142,13 +176,13 @@
       visibility: hidden;
       pointer-events: none;
     }
-
     .artist {
       position: relative;
       overflow: hidden;
       cursor: pointer;
       background: #181818;
       box-shadow: 0 2px 16px 0 rgba(0,0,0,.10);
+      border-radius: 0;
     }
     .artist img.base {
       width: 100%;
@@ -236,6 +270,7 @@
       <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
     </a>
   </header>
+
   <main>
     <div class="artist-grid">
       <!-- Manager banner EXACTAMENTE como tu ejemplo -->
@@ -249,7 +284,7 @@
       </a>
     </div>
   </main>
-  <!-- Secciones artisticas agrupadas -->
+
   <section class="artist-section">
     <div class="section-title">WORLDWIDE</div>
     <div class="artists-row">
@@ -303,10 +338,11 @@
       <div class="empty"></div>
     </div>
   </section>
+
   <div class="footer-link-dock">
     <a href="https://instagram.com/dnbcagency" target="_blank" rel="noopener">@dnbcagency</a>
   </div>
-  <!-- Meta Pixel Code (en su lugar original) -->
+  <!-- Meta Pixel intacto -->
   <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
