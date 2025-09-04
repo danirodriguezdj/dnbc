@@ -81,7 +81,6 @@
       user-select: none;
     }
 
-    /* ARTIST GRID: SIEMPRE 3 COLUMNAS, FILAS INCOMPLETAS CENTRADAS */
     .artists-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -99,7 +98,6 @@
       pointer-events: none;
     }
 
-    /* MANAGER SIN BORDER RADIUS */
     .artist.manager-banner {
       grid-column: 1 / -1;
       min-height: 220px;
@@ -165,12 +163,11 @@
     }
     .artist.manager-banner:hover .manager-name-title span { transform: scale(1.22); }
 
-    /* FORMATO ORIGINAL DE LOS ARTISTAS */
     .artist {
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      border-radius: 10px; /* Si en escritorio era redondo, así queda */
+      border-radius: 0; /* Esquinas rectas */
       background: #181818;
       box-shadow: 0 2px 16px 0 rgba(0,0,0,.10);
     }
@@ -220,7 +217,7 @@
     /* SOLO AJUSTAMOS GAP EN MOVIL (NO COLUMNAS NI ALTURA NI BORDES) */
     @media (max-width: 900px) {
       .artists-row, .artists-row.centered {
-        gap: 14px;
+        gap: 4px; /* Muy pequeño en móvil */
       }
       .artist.manager-banner,
       .artist.manager-banner img.base,
@@ -230,7 +227,7 @@
     }
     @media (max-width: 600px) {
       .artists-row, .artists-row.centered {
-        gap: 6px;
+        gap: 2px; /* Casi 0 en móvil */
         max-width: 98vw;
       }
       .artist.manager-banner,
