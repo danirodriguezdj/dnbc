@@ -1,26 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    Archivo: agency1/index.html
-    Propósito: Página principal de DNBC Agency con listado de artistas.
-    Estándar de documentación: ISO/IEC/IEEE 26515
-  -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#000" />
   <title>DNBC Agency</title>
   <meta name="description" content="DIE NACHT BRENNT AGENCY – Underground electronic music artist roster." />
   <meta name="author" content="DNBC Team" />
-
-  <!-- Íconos y manifest para PWA -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
-
   <style>
     @font-face {
       font-family: 'horizon';
@@ -29,13 +21,7 @@
       font-style: normal;
       font-display: swap;
     }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       display: flex;
       flex-direction: column;
@@ -47,414 +33,157 @@
       padding: 0 20px 50px 20px;
       overflow-x: hidden;
     }
-
     .menu-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 1001;
+      position: fixed; top: 20px; left: 20px; background: none; border: none;
+      cursor: pointer; z-index: 1001;
     }
     .menu-toggle .bar {
-      display: block;
-      width: 30px;
-      height: 3px;
-      background: #fff;
-      margin: 6px 0;
+      display: block; width: 30px; height: 3px; background: #fff; margin: 6px 0;
     }
-
     .sidebar {
-      position: fixed;
-      top: 0;
-      left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #111;
-      padding-top: 60px;
-      transition: left .3s ease;
-      z-index: 1000;
+      position: fixed; top: 0; left: -250px; width: 250px; height: 100%; background: #111;
+      padding-top: 60px; transition: left .3s ease; z-index: 1000;
     }
-    .sidebar.open {
-      left: 0;
-    }
-    .sidebar ul {
-      list-style: none;
-    }
+    .sidebar.open { left: 0; }
+    .sidebar ul { list-style: none; }
     .sidebar a {
-      display: block;
-      color: #fff;
-      padding: 20px;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-bottom: 1px solid #222;
+      display: block; color: #fff; padding: 20px; text-transform: uppercase;
+      text-decoration: none; border-bottom: 1px solid #222;
     }
-    .sidebar a:hover {
-      background: #222;
-    }
-
+    .sidebar a:hover { background: #222; }
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 75px;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 20px;
-      z-index: 999;
-      border-bottom: 2px solid #000;
+      position: fixed; top: 0; left: 0; width: 100%; height: 75px; background: #000;
+      display: flex; justify-content: center; align-items: center; padding: 0 20px;
+      z-index: 999; border-bottom: 2px solid #000;
     }
-    header a {
-      display: flex;
-      align-items: center;
-      height: 100%;
-    }
-    header .logo {
-      max-width: 400px;
-      width: 80vw;
-      height: auto;
-    }
+    header a { display: flex; align-items: center; height: 100%; }
+    header .logo { max-width: 400px; width: 80vw; height: auto; }
+    main { margin-top: 85px; width: 100%; display: block; }
 
-    /* --- SEPARADORES Y TITULOS DE SECCION --- */
-    .artist-section {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto 40px auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    /* Secciones y títulos */
+    .artist-section { width: 100%; max-width: 1200px; margin: 0 auto 40px auto; display: flex; flex-direction: column; align-items: center; }
     .artist-section-title {
-      font-size: 1.45rem;
-      font-family: 'horizon', sans-serif;
-      font-weight: 400;
-      letter-spacing: 3px;
-      color: #fff;
-      margin: 28px 0 24px 0;
-      text-align: center;
-      text-transform: uppercase;
-      opacity: .94;
+      font-size: 1.2rem; font-family: 'horizon', sans-serif; font-weight: 400; letter-spacing: 2px;
+      color: #fff; margin: 28px 0 24px 0; text-align: center; text-transform: uppercase; opacity: .94;
     }
 
-    /* --- GRID ARTISTAS --- */
+    /* Grid de artistas */
     .artist-grid {
       display: grid;
-      gap: 20px;
       width: 100%;
-      max-width: 1200px;
-      padding: 0;
       margin: 0 auto;
     }
-
-    /* Worldwide: 3 columnas */
+    /* Worldwide: 3 columnas, menos espacio */
     .artist-grid.worldwide {
       grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 900px;
     }
-
-    /* Spain & Portugal: 2 filas, 1 de 3 y 1 de 2 centrados */
+    /* Spain & Portugal: 3 en la fila 1, 2 centrados en la fila 2 */
     .artist-grid.spain {
       grid-template-columns: repeat(3, 1fr);
-      grid-auto-rows: 1fr;
-    }
-    .artist-grid.spain .artist:nth-child(6), /* solo si hay más filas */
-    .artist-grid.spain .artist:nth-child(7),
-    .artist-grid.spain .artist:nth-child(8),
-    .artist-grid.spain .artist:nth-child(9),
-    .artist-grid.spain .artist:nth-child(10) {
-      grid-column: auto;
-    }
-    .artist-grid.spain .artist.empty {
-      /* Espacio vacío para centrar la última fila de 2 */
-      pointer-events: none;
-      visibility: hidden;
-    }
-    .artist-grid.spain {
-      /* Hacemos 2 filas: la de abajo con 2 artistas centrados usando un espacio vacío */
       grid-template-rows: 1fr 1fr;
+      gap: 12px;
+      max-width: 1100px;
     }
-    /* Los dos artistas de la última fila */
     .artist-grid.spain .artist.spain-row2 {
       grid-row: 2;
     }
-    .artist-grid.spain .artist.spain-row2.first {
-      grid-column: 2;
-    }
-    .artist-grid.spain .artist.spain-row2.second {
-      grid-column: 3;
-    }
-    .artist-grid.spain .artist.empty {
-      grid-row: 2;
-      grid-column: 1;
-    }
+    .artist-grid.spain .artist.spain-row2.first { grid-column: 2; }
+    .artist-grid.spain .artist.spain-row2.second { grid-column: 3; }
+    .artist-grid.spain .artist.empty { grid-row: 2; grid-column: 1; pointer-events: none; visibility: hidden; }
 
+    /* GIULIA banner: igual altura que los artistas */
     .artist.manager-banner {
-      grid-column: 1 / -1;
-      min-height: 220px;
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px;
-      display: block;
-      cursor: pointer;
-      background: #181818;
-      box-shadow: 0 2px 16px 0 rgba(0,0,0,.18);
+      grid-column: 1 / -1; min-height: 220px; height: 220px; position: relative; overflow: hidden;
+      border-radius: 10px; display: block; cursor: pointer; background: #181818;
+      box-shadow: 0 2px 16px 0 rgba(0,0,0,.18); margin-bottom: 28px;
+      width: 100%; max-width: 900px;
     }
-    .artist.manager-banner img.base,
-    .artist.manager-banner img.playing {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-      transition: opacity .3s, transform .3s, filter .3s;
+    .artist.manager-banner img.base, .artist.manager-banner img.playing {
+      width: 100%; height: 220px; object-fit: cover; display: block; transition: opacity .3s, transform .3s, filter .3s;
     }
-    .artist.manager-banner img.playing {
-      position: absolute;
-      top: 0; left: 0;
-      opacity: 0;
-      z-index: 2;
-    }
-    .artist.manager-banner:hover img.base {
-      opacity: 0;
-      filter: brightness(.5);
-      transform: scale(1.05);
-    }
-    .artist.manager-banner:hover img.playing {
-      opacity: 1;
-      filter: brightness(.5);
-      transform: scale(1.05);
-    }
+    .artist.manager-banner img.playing { position: absolute; top: 0; left: 0; opacity: 0; z-index: 2; }
+    .artist.manager-banner:hover img.base { opacity: 0; filter: brightness(.5); transform: scale(1.05); }
+    .artist.manager-banner:hover img.playing { opacity: 1; filter: brightness(.5); transform: scale(1.05); }
     .artist.manager-banner .artist-info {
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 100%;
-      padding: 16px 10px;
-      background: rgba(0,0,0,.7);
-      color: #fff;
-      font-size: 1rem;
-      font-family: 'horizon', sans-serif;
-      opacity: 0;
-      transition: opacity .3s;
-      z-index: 3;
-      letter-spacing: 1px;
-      text-align: center;
+      position: absolute; bottom: 0; left: 0; width: 100%; padding: 16px 10px;
+      background: rgba(0,0,0,.7); color: #fff; font-size: 1rem; font-family: 'horizon', sans-serif;
+      opacity: 0; transition: opacity .3s; z-index: 3; letter-spacing: 1px; text-align: center;
     }
-    .artist.manager-banner:hover .artist-info {
-      opacity: 1;
-    }
-
+    .artist.manager-banner:hover .artist-info { opacity: 1; }
     .manager-name-title {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 4;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      pointer-events: none;
+      position: absolute; top: 0; left: 0; width: 100%; z-index: 4; display: flex;
+      align-items: flex-start; justify-content: center; pointer-events: none;
     }
     .manager-name-title span {
-      display: block;
-      width: 100%;
-      text-align: center;
-      font-family: 'horizon', sans-serif;
-      color: #fff;
-      text-shadow: 0 2px 14px #000, 0 0 6px #222;
-      font-size: 1rem !important;
-      font-weight: normal;
-      letter-spacing: 2px;
-      margin: 30px 0 0 0;
-      line-height: 1.1;
-      user-select: none;
+      display: block; width: 100%; text-align: center; font-family: 'horizon', sans-serif;
+      color: #fff; text-shadow: 0 2px 14px #000, 0 0 6px #222; font-size: 1rem !important;
+      font-weight: normal; letter-spacing: 2px; margin: 30px 0 0 0; line-height: 1.1; user-select: none;
       transition: font-size .13s linear, transform .13s linear, margin .13s linear;
     }
-    .artist.manager-banner:hover .manager-name-title span {
-      transform: scale(1.22);
-      transition: transform .13s linear;
-    }
+    .artist.manager-banner:hover .manager-name-title span { transform: scale(1.22); transition: transform .13s linear; }
 
+    /* Artistas normales: mismos tamaños y proporciones */
     .artist {
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
+      position: relative; overflow: hidden; cursor: pointer; min-height: 220px; border-radius: 10px;
     }
-    .artist img.base {
-      width: 100%;
-      display: block;
-      transition: opacity .3s, transform .3s, filter .3s;
-      z-index: 1;
-    }
-    .artist img.playing {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      opacity: 0;
-      transition: opacity .3s, transform .3s, filter .3s;
-      z-index: 2;
-    }
-    .artist:hover img.base {
-      opacity: 0;
-      filter: brightness(.5);
-      transform: scale(1.05);
-    }
-    .artist:hover img.playing {
-      opacity: 1;
-      filter: brightness(.5);
-      transform: scale(1.05);
-    }
-
+    .artist img.base { width: 100%; height: 220px; object-fit: cover; display: block; transition: opacity .3s, transform .3s, filter .3s; z-index: 1; }
+    .artist img.playing { position: absolute; top: 0; left: 0; width: 100%; height: 220px; opacity: 0; transition: opacity .3s, transform .3s, filter .3s; z-index: 2; }
+    .artist:hover img.base { opacity: 0; filter: brightness(.5); transform: scale(1.05); }
+    .artist:hover img.playing { opacity: 1; filter: brightness(.5); transform: scale(1.05); }
     .artist-info {
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 100%;
-      padding: 10px;
-      background: rgba(0,0,0,.7);
-      opacity: 0;
-      transition: opacity .3s;
-      color: #fff;
-      z-index: 3;
-      font-size: 1rem;
+      position: absolute; bottom: 0; left: 0; width: 100%; padding: 10px;
+      background: rgba(0,0,0,.7); opacity: 0; transition: opacity .3s; color: #fff; z-index: 3; font-size: 1rem;
     }
-    .artist:hover .artist-info {
-      opacity: 1;
-    }
+    .artist:hover .artist-info { opacity: 1; }
 
-    /* --- DOCK STYLE FOOTER LINK --- */
-    .footer-link {
-      display: none;
-    }
+    .footer-link { display: none; }
     .footer-link-dock {
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      background: rgba(20, 20, 20, 0.75);
-      border-radius: 32px;
-      padding: 10px 32px;
-      box-shadow: 0 6px 24px 4px rgba(0,0,0,0.35);
-      border: 1.5px solid #333;
-      backdrop-filter: blur(2px);
-      font-family: 'horizon', sans-serif;
-      font-size: 1.12rem;
-      letter-spacing: 1px;
-      transition: background 0.2s;
-      z-index: 2000;
+      position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%);
+      display: flex; align-items: center; background: rgba(20, 20, 20, 0.75);
+      border-radius: 32px; padding: 10px 32px; box-shadow: 0 6px 24px 4px rgba(0,0,0,0.35);
+      border: 1.5px solid #333; backdrop-filter: blur(2px); font-family: 'horizon', sans-serif;
+      font-size: 1.12rem; letter-spacing: 1px; transition: background 0.2s; z-index: 2000;
     }
     .footer-link-dock a {
-      color: #fff;
-      text-decoration: none;
-      font-family: 'horizon', sans-serif;
-      font-size: 1.15rem;
-      transition: color 0.2s, filter 0.2s;
-      display: flex;
-      align-items: center;
+      color: #fff; text-decoration: none; font-family: 'horizon', sans-serif; font-size: 1.15rem;
+      transition: color 0.2s, filter 0.2s; display: flex; align-items: center;
     }
-    .footer-link-dock a:hover {
-      color: #e1306c;
-      filter: drop-shadow(0 0 6px #e1306c70);
-    }
+    .footer-link-dock a:hover { color: #e1306c; filter: drop-shadow(0 0 6px #e1306c70); }
 
-    /* --- CORREGIR SOLAPAMIENTO DEL HEADER --- */
-    main {
-      margin-top: 85px; /* Un poco más alto que el header */
-      width: 100%;
-      display: block;
-    }
+    /* Responsive: misma disposición en todas las resoluciones */
     @media (max-width: 900px) {
-      .artist-section {
-        max-width: 98vw;
-      }
-      .artist-grid.worldwide,
-      .artist-grid.spain {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-      }
-      .artist.manager-banner,
-      .artist.manager-banner img.base,
-      .artist.manager-banner img.playing {
-        height: 140px;
-        min-height: 140px;
-        border-radius: 8px;
-      }
-      .artist.manager-banner .artist-info {
-        font-size: 1rem;
-        padding: 8px 5px;
-      }
-      .manager-name-title span {
-        font-size: 1rem !important;
-        margin-top: 8px;
-      }
-      main {
-        margin-top: 75px; /* Ajusta para header más pequeño */
-      }
+      header .logo { max-width: 250px; width: 60vw; }
+      main { margin-top: 75px; }
+      .artist.manager-banner, .artist.manager-banner img.base, .artist.manager-banner img.playing,
+      .artist, .artist img.base, .artist img.playing { min-height: 140px; height: 140px; }
+      .artist-grid.worldwide { max-width: 98vw; }
+      .artist-grid.spain { max-width: 98vw; }
     }
     @media (max-width: 500px) {
-      .artist-section {
-        max-width: 100vw;
-      }
-      .artist-grid.worldwide,
+      main { margin-top: 70px; }
+      .artist.manager-banner, .artist.manager-banner img.base, .artist.manager-banner img.playing,
+      .artist, .artist img.base, .artist img.playing { min-height: 90px; height: 90px; border-radius: 7px; }
+      .artist-info { font-size: 13px; }
+      .artist-section { max-width: 100vw; }
+      .artist-grid.worldwide { grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 100vw; }
       .artist-grid.spain {
-        grid-template-columns: 1fr;
-        gap: 10px;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr 1fr;
+        gap: 8px; max-width: 100vw;
       }
-      .artist.manager-banner,
-      .artist.manager-banner img.base,
-      .artist.manager-banner img.playing {
-        height: 90px;
-        min-height: 90px;
-        border-radius: 7px;
-      }
-      .artist.manager-banner .artist-info {
-        font-size: 13px;
-        padding: 6px 2px;
-      }
-      .manager-name-title span {
-        font-size: 13px !important;
-        margin-top: 2px;
-      }
-      .artist-info {
-        font-size: 13px;
-      }
-      main {
-        margin-top: 70px;
-      }
+      .artist-grid.spain .artist.spain-row2.first { grid-column: 2; }
+      .artist-grid.spain .artist.spain-row2.second { grid-column: 3; }
+      .artist-grid.spain .artist.empty { grid-row: 2; grid-column: 1; }
     }
     @media (max-width: 768px) {
-      body {
-        padding: 0 10px 50px 10px;
-      }
-      header {
-        justify-content: space-between;
-        padding: 0 20px;
-        height: 65px;
-      }
-      header a {
-        margin-left: auto;
-      }
-      header .logo {
-        max-width: 250px;
-        width: 60vw;
-      }
-      .footer-link-dock {
-        font-size: 1rem;
-        padding: 8px 16px;
-        bottom: 12px;
-      }
-      .artist-info {
-        opacity: 1 !important;
-        text-decoration: none !important;
-        pointer-events: none;
-        font-size: 13px;
-        line-height: 1.2;
-      }
-      main {
-        margin-top: 70px;
-      }
+      body { padding: 0 10px 50px 10px; }
+      header { justify-content: space-between; padding: 0 20px; height: 65px; }
+      header a { margin-left: auto; }
+      main { margin-top: 70px; }
+      .footer-link-dock { font-size: 1rem; padding: 8px 16px; bottom: 12px; }
+      .artist-info { opacity: 1 !important; text-decoration: none !important; pointer-events: none; font-size: 13px; line-height: 1.2; }
     }
   </style>
 </head>
@@ -464,16 +193,13 @@
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
-
   <div id="menu-container"></div>
-
   <header>
     <a href="https://dienachtbrenntclub.com" rel="noopener">
       <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
     </a>
   </header>
 
-  <!-- Banner management separado -->
   <main>
     <a class="artist manager-banner" href="https://dienachtbrenntclub.com/giulianigro">
       <div class="manager-name-title">
@@ -550,12 +276,10 @@
   (function() {
     'use strict';
     document.addEventListener('DOMContentLoaded', function() {
-      // 1. Carga el menú desde menu.html
       fetch('/menu.html')
         .then(res => res.text())
         .then(html => {
           document.getElementById('menu-container').innerHTML = html;
-          // 2. Después de insertar el menú, añade el evento al botón hamburguesa
           var btn = document.querySelector('.menu-toggle');
           var nav = document.getElementById('sidebar');
           btn.addEventListener('click', function() {
