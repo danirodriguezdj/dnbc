@@ -13,6 +13,24 @@
   <meta name="description" content="DIE NACHT BRENNT AGENCY – Underground electronic music artist roster." />
   <meta name="author" content="DNBC Team" />
 
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1234694877952614');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1234694877952614&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
   <!-- Íconos y manifest para PWA -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -117,6 +135,25 @@
       max-width: 400px;
       width: 80vw;
       height: auto;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 0 10px 50px 10px;
+      }
+      header {
+        justify-content: space-between;
+        padding: 0 20px;
+        height: 65px;
+      }
+      header a {
+        margin-left: auto;
+      }
+      header .logo {
+        max-width: 250px;
+        width: 60vw;
+      }
     }
 
     section {
