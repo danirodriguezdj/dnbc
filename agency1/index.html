@@ -397,17 +397,18 @@
         justify-self: center;
       }
 
-      /* Mostrar SIEMPRE el texto de tarjeta en móvil y adaptar tamaño para que no se corte */
+      /* Mostrar SIEMPRE el texto en móvil, más pequeño y sin dividir palabras */
       main.artist-grid .artist .artist-info {
         opacity: 1 !important;
         background: rgba(0,0,0,0.6);
-        font-size: clamp(0.68rem, 2.8vw, 0.9rem);
+        font-size: clamp(0.60rem, 2.4vw, 0.80rem); /* más pequeño */
         line-height: 1.15;
-        padding: 8px 8px;
-        white-space: normal;
-        word-break: break-word;
-        hyphens: auto;
-        text-overflow: unset;
+        padding: 7px 8px;
+        white-space: normal;       /* permite saltos solo entre palabras */
+        word-break: normal;        /* no partir palabras */
+        overflow-wrap: normal;     /* no forzar cortes dentro de palabras */
+        hyphens: none;             /* sin guiones automáticos */
+        text-overflow: clip;       /* sin elipsis, que se vea completo */
       }
       main.artist-grid .artist:hover .artist-info {
         opacity: 1 !important;
