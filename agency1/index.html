@@ -49,7 +49,7 @@
     }
 
     :root {
-      /* Reducimos ligeramente el gap global entre tarjetas para que crezcan un poco */
+      /* Gap entre tarjetas (ligeramente reducido para que crezcan un poco) */
       --artist-gap: 6px;
     }
 
@@ -294,6 +294,8 @@
       z-index: 3;
       font-size: 1rem;
       border-radius: 0 0 7px 7px;
+      text-align: center;
+      white-space: normal;
     }
     .artist:hover .artist-info {
       opacity: 1;
@@ -370,7 +372,7 @@
     }
 
     @media (max-width: 700px) {
-      :root { --artist-gap: 5px; } /* un poco menos de espacio en móvil */
+      :root { --artist-gap: 5px; } /* menos espacio en móvil para tarjetas un poco más grandes */
 
       .artist.manager-banner {
         max-width: 99vw;
@@ -393,6 +395,22 @@
       main.artist-grid.two-cols .artist {
         width: calc((min(900px, 100vw) - (2 * var(--artist-gap))) / 3);
         justify-self: center;
+      }
+
+      /* Mostrar SIEMPRE el texto de tarjeta en móvil y adaptar tamaño para que no se corte */
+      main.artist-grid .artist .artist-info {
+        opacity: 1 !important;
+        background: rgba(0,0,0,0.6);
+        font-size: clamp(0.68rem, 2.8vw, 0.9rem);
+        line-height: 1.15;
+        padding: 8px 8px;
+        white-space: normal;
+        word-break: break-word;
+        hyphens: auto;
+        text-overflow: unset;
+      }
+      main.artist-grid .artist:hover .artist-info {
+        opacity: 1 !important;
       }
     }
 
@@ -490,7 +508,7 @@
 
   <!-- Sección SPAIN AND PORTUGAL -->
   <section>
-    <h2>SPAIN & PORTUGAL</h2>
+    <h2>SPAIN AND PORTUGAL</h2>
     <main class="artist-grid">
       <a class="artist" href="https://dienachtbrenntclub.com/mikes">
         <img class="base"    src="img/mikes.jpg"            alt="Mikes" />
