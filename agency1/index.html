@@ -1,26 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    Archivo: agency1/index.html
-    Propósito: Página principal de DNBC Agency con listado de artistas.
-    Estándar de documentación: ISO/IEC/IEEE 26515
-  -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#000" />
   <title>DNBC Agency</title>
   <meta name="description" content="DIE NACHT BRENNT AGENCY – Underground electronic music artist roster." />
   <meta name="author" content="DNBC Team" />
-
-  <!-- Íconos y manifest para PWA -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="DNBC" />
   <link rel="manifest" href="/site.webmanifest" />
-
   <style>
     @font-face {
       font-family: 'horizon';
@@ -29,13 +21,7 @@
       font-style: normal;
       font-display: swap;
     }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       display: flex;
       flex-direction: column;
@@ -47,88 +33,33 @@
       padding: 0 20px 50px 20px;
       overflow-x: hidden;
     }
-
     .menu-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 1001;
+      position: fixed; top: 20px; left: 20px;
+      background: none; border: none; cursor: pointer; z-index: 1001;
     }
     .menu-toggle .bar {
-      display: block;
-      width: 30px;
-      height: 3px;
-      background: #fff;
-      margin: 6px 0;
+      display: block; width: 30px; height: 3px; background: #fff; margin: 6px 0;
     }
-
     .sidebar {
-      position: fixed;
-      top: 0;
-      left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #111;
-      padding-top: 60px;
-      transition: left .3s ease;
-      z-index: 1000;
+      position: fixed; top: 0; left: -250px; width: 250px; height: 100%; background: #111;
+      padding-top: 60px; transition: left .3s ease; z-index: 1000;
     }
-    .sidebar.open {
-      left: 0;
-    }
-    .sidebar ul {
-      list-style: none;
-    }
+    .sidebar.open { left: 0; }
+    .sidebar ul { list-style: none; }
     .sidebar a {
-      display: block;
-      color: #fff;
-      padding: 20px;
-      text-transform: uppercase;
-      text-decoration: none;
+      display: block; color: #fff; padding: 20px; text-transform: uppercase; text-decoration: none;
       border-bottom: 1px solid #222;
     }
-    .sidebar a:hover {
-      background: #222;
-    }
-
+    .sidebar a:hover { background: #222; }
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 75px;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 20px;
-      z-index: 999;
+      position: fixed; top: 0; left: 0; width: 100%; height: 75px; background: #000;
+      display: flex; justify-content: center; align-items: center; padding: 0 20px; z-index: 999;
       border-bottom: 2px solid #000;
     }
-    header a {
-      display: flex;
-      align-items: center;
-      height: 100%;
-    }
-    header .logo {
-      max-width: 400px;
-      width: 80vw;
-      height: auto;
-    }
+    header a { display: flex; align-items: center; height: 100%; }
+    header .logo { max-width: 400px; width: 80vw; height: auto; }
 
-    main.artist-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      width: 100%;
-      max-width: 1200px;
-      padding: 20px;
-      margin-top: 40px;
-    }
-
+    /* Manager banner EXACTAMENTE como tu ejemplo: */
     .artist.manager-banner {
       grid-column: 1 / -1;
       min-height: 220px;
@@ -179,45 +110,45 @@
       letter-spacing: 1px;
       text-align: center;
     }
-    .artist.manager-banner:hover .artist-info {
-      opacity: 1;
-    }
-
+    .artist.manager-banner:hover .artist-info { opacity: 1; }
     .manager-name-title {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 4;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      pointer-events: none;
+      top: 0; left: 0; width: 100%; z-index: 4;
+      display: flex; align-items: flex-start; justify-content: center; pointer-events: none;
     }
     .manager-name-title span {
-      display: block;
-      width: 100%;
-      text-align: center;
-      font-family: 'horizon', sans-serif;
-      color: #fff;
-      text-shadow: 0 2px 14px #000, 0 0 6px #222;
-      font-size: 1rem !important;
-      font-weight: normal;
-      letter-spacing: 2px;
-      margin: 30px 0 0 0;
-      line-height: 1.1;
-      user-select: none;
+      display: block; width: 100%; text-align: center; font-family: 'horizon', sans-serif;
+      color: #fff; text-shadow: 0 2px 14px #000, 0 0 6px #222;
+      font-size: 1rem !important; font-weight: normal; letter-spacing: 2px;
+      margin: 30px 0 0 0; line-height: 1.1; user-select: none;
       transition: font-size .13s linear, transform .13s linear, margin .13s linear;
     }
-    .artist.manager-banner:hover .manager-name-title span {
-      transform: scale(1.22);
-      transition: transform .13s linear;
+    .artist.manager-banner:hover .manager-name-title span { transform: scale(1.22); }
+
+    /* ARTISTAS: grid SIEMPRE de 3 columnas, gap mínimo en móvil */
+    .artists-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+    .artists-row.centered {
+      justify-content: center;
+    }
+    .artists-row.centered > .empty {
+      visibility: hidden;
+      pointer-events: none;
     }
 
     .artist {
       position: relative;
       overflow: hidden;
       cursor: pointer;
+      background: #181818;
+      box-shadow: 0 2px 16px 0 rgba(0,0,0,.10);
     }
     .artist img.base {
       width: 100%;
@@ -234,144 +165,62 @@
       z-index: 2;
     }
     .artist:hover img.base {
-      opacity: 0;
-      filter: brightness(.5);
-      transform: scale(1.05);
+      opacity: 0; filter: brightness(.5); transform: scale(1.05);
     }
     .artist:hover img.playing {
-      opacity: 1;
-      filter: brightness(.5);
-      transform: scale(1.05);
+      opacity: 1; filter: brightness(.5); transform: scale(1.05);
     }
-
     .artist-info {
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 100%;
-      padding: 10px;
-      background: rgba(0,0,0,.7);
-      opacity: 0;
-      transition: opacity .3s;
-      color: #fff;
-      z-index: 3;
-      font-size: 1rem;
+      position: absolute; bottom: 0; left: 0; width: 100%; padding: 10px;
+      background: rgba(0,0,0,.7); opacity: 0; transition: opacity .3s;
+      color: #fff; z-index: 3; font-size: 1rem;
     }
-    .artist:hover .artist-info {
-      opacity: 1;
-    }
+    .artist:hover .artist-info { opacity: 1; }
 
-    /* --- DOCK STYLE FOOTER LINK --- */
-    .footer-link {
-      display: none;
-    }
+    .footer-link { display: none; }
     .footer-link-dock {
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      background: rgba(20, 20, 20, 0.75);
-      border-radius: 32px;
-      padding: 10px 32px;
-      box-shadow: 0 6px 24px 4px rgba(0,0,0,0.35);
-      border: 1.5px solid #333;
-      backdrop-filter: blur(2px);
-      font-family: 'horizon', sans-serif;
-      font-size: 1.12rem;
-      letter-spacing: 1px;
-      transition: background 0.2s;
-      z-index: 2000;
+      position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%);
+      display: flex; align-items: center;
+      background: rgba(20, 20, 20, 0.75); border-radius: 32px; padding: 10px 32px;
+      box-shadow: 0 6px 24px 4px rgba(0,0,0,0.35); border: 1.5px solid #333;
+      backdrop-filter: blur(2px); font-family: 'horizon', sans-serif; font-size: 1.12rem;
+      letter-spacing: 1px; transition: background 0.2s; z-index: 2000;
     }
     .footer-link-dock a {
-      color: #fff;
-      text-decoration: none;
-      font-family: 'horizon', sans-serif;
-      font-size: 1.15rem;
-      transition: color 0.2s, filter 0.2s;
-      display: flex;
-      align-items: center;
+      color: #fff; text-decoration: none; font-family: 'horizon', sans-serif; font-size: 1.15rem;
+      transition: color 0.2s, filter 0.2s; display: flex; align-items: center;
     }
     .footer-link-dock a:hover {
-      color: #e1306c;
-      filter: drop-shadow(0 0 6px #e1306c70);
+      color: #e1306c; filter: drop-shadow(0 0 6px #e1306c70);
     }
-
     @media (max-width: 900px) {
-      main.artist-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .artists-row, .artists-row.centered { gap: 4px; }
       .artist.manager-banner,
       .artist.manager-banner img.base,
       .artist.manager-banner img.playing {
-        height: 140px;
-        min-height: 140px;
-        border-radius: 8px;
+        height: 140px; min-height: 140px; border-radius: 8px;
       }
-      .artist.manager-banner .artist-info {
-        font-size: 1rem;
-        padding: 8px 5px;
-      }
-      .manager-name-title span {
-        font-size: 1rem !important;
-        margin-top: 8px;
-      }
+      .artist.manager-banner .artist-info { font-size: 1rem; padding: 8px 5px; }
+      .manager-name-title span { font-size: 1rem !important; margin-top: 8px; }
     }
-    @media (max-width: 500px) {
-      main.artist-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 600px) {
+      .artists-row, .artists-row.centered { gap: 2px; max-width: 98vw; }
       .artist.manager-banner,
       .artist.manager-banner img.base,
       .artist.manager-banner img.playing {
-        height: 90px;
-        min-height: 90px;
-        border-radius: 7px;
+        height: 90px; min-height: 90px; border-radius: 7px;
       }
-      .artist.manager-banner .artist-info {
-        font-size: 13px;
-        padding: 6px 2px;
-      }
-      .manager-name-title span {
-        font-size: 13px !important;
-        margin-top: 2px;
-      }
-      .artist-info {
-        font-size: 13px;
-      }
+      .artist.manager-banner .artist-info { font-size: 13px; padding: 6px 2px; }
+      .manager-name-title span { font-size: 13px !important; margin-top: 2px; }
+      .artist-info { font-size: 13px; }
     }
     @media (max-width: 768px) {
-      body {
-        padding: 0 10px 50px 10px;
-      }
-      header {
-        justify-content: space-between;
-        padding: 0 20px;
-        height: 65px;
-      }
-      header a {
-        margin-left: auto;
-      }
-      header .logo {
-        max-width: 250px;
-        width: 60vw;
-      }
-      .footer-link-dock {
-        font-size: 1rem;
-        padding: 8px 16px;
-        bottom: 12px;
-      }
-      main.artist-grid {
-        grid-template-columns: repeat(2, 1fr);
-        margin-top: 70px;
-      }
-      .artist-info {
-        opacity: 1 !important;
-        text-decoration: none !important;
-        pointer-events: none;
-        font-size: 13px;
-        line-height: 1.2;
-      }
+      body { padding: 0 10px 50px 10px; }
+      header { justify-content: space-between; padding: 0 20px; height: 65px; }
+      header a { margin-left: auto; }
+      header .logo { max-width: 250px; width: 60vw; }
+      .footer-link-dock { font-size: 1rem; padding: 8px 16px; bottom: 12px; }
+      .artist-info { opacity: 1 !important; text-decoration: none !important; pointer-events: none; font-size: 13px; line-height: 1.2; }
     }
   </style>
 </head>
@@ -381,80 +230,108 @@
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
-
   <div id="menu-container"></div>
-
   <header>
     <a href="https://dienachtbrenntclub.com" rel="noopener">
       <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
     </a>
   </header>
-
-  <main class="artist-grid">
-    <a class="artist manager-banner" href="https://dienachtbrenntclub.com/giulianigro">
-      <div class="manager-name-title">
-        <span>GIULIA NIGRO</span>
-      </div>
-      <img class="base"    src="img/giulianigro.jpg"         alt="Giuliani Gro" />
-      <img class="playing" src="img/giulianigroplaying.jpg"  alt="Giuliani Gro en acción" />
-      <div class="artist-info">Management Mama</div>
-    </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/cokecortes">
-      <img class="base"    src="img/cokecortes.jpg"        alt="Coke Cortés" />
-      <img class="playing" src="img/cokecortesplaying.jpg" alt="Coke Cortés pinchando" />
-      <div class="artist-info">Sacred Violence</div>
-    </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/danirodriguez">
-      <img class="base"    src="img/danirodriguez.jpg"        alt="Dani Rodriguez" />
-      <img class="playing" src="img/danirodriguezplaying.jpg" alt="Dani Rodriguez pinchando" />
-      <div class="artist-info">Fast soul</div>
-    </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/laveranotte">
-      <img class="base"    src="img/laveranotte.jpg"      alt="La Vera Notte" />
-      <img class="playing" src="img/laveranotteplaying.jpg" alt="La Vera Notte pinchando" />
-      <div class="artist-info">Dance Authority</div>
-    </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/mikes">
-      <img class="base"    src="img/mikes.jpg"            alt="Mikes" />
-      <img class="playing" src="img/mikesplaying.jpg"     alt="Mikes pinchando" />
-      <div class="artist-info">Oldschool Rage</div>
-    </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/vitalgroove">
-      <img class="base"    src="img/vitalgroove.jpg"       alt="Vital Groove" />
-      <img class="playing" src="img/vitalgrooveplaying.jpg" alt="Vital Groove pinchando" />
-      <div class="artist-info">Groove Commander</div>
-    </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/kb45">
-      <img class="base"    src="img/kb45.jpg"            alt="KB45" />
-      <img class="playing" src="img/kb45playing.jpg"     alt="KB45 pinchando" />
-      <div class="artist-info">Trance Driver</div>
-    </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/filo">
-      <img class="base"    src="img/filo.jpg"            alt="FILØ" />
-      <img class="playing" src="img/filoplaying.jpg"     alt="FILØ pinchando" />
-      <div class="artist-info">Power Surgeon</div>
-    </a>
-    <a class="artist" href="https://dienachtbrenntclub.com/deathwrap">
-      <img class="base"    src="img/deathwrap.jpg"       alt="DEATHWRAP" />
-      <img class="playing" src="img/deathwrapplaying.jpg" alt="DEATHWRAP pinchando" />
-      <div class="artist-info">Bounce Fury</div>
-    </a>
+  <main>
+    <div class="artist-grid">
+      <!-- Manager banner EXACTAMENTE como tu ejemplo -->
+      <a class="artist manager-banner" href="https://dienachtbrenntclub.com/giulianigro">
+        <div class="manager-name-title">
+          <span>GIULIA NIGRO</span>
+        </div>
+        <img class="base"    src="img/giulianigro.jpg"         alt="Giuliani Gro" />
+        <img class="playing" src="img/giulianigroplaying.jpg"  alt="Giuliani Gro en acción" />
+        <div class="artist-info">Management Mama</div>
+      </a>
+    </div>
   </main>
-
+  <!-- Secciones artisticas agrupadas -->
+  <section class="artist-section">
+    <div class="section-title">WORLDWIDE</div>
+    <div class="artists-row">
+      <a class="artist" href="https://dienachtbrenntclub.com/cokecortes">
+        <img class="base"    src="img/cokecortes.jpg"        alt="Coke Cortés" />
+        <img class="playing" src="img/cokecortesplaying.jpg" alt="Coke Cortés pinchando" />
+        <div class="artist-info">Sacred Violence</div>
+      </a>
+      <a class="artist" href="https://dienachtbrenntclub.com/danirodriguez">
+        <img class="base"    src="img/danirodriguez.jpg"        alt="Dani Rodriguez" />
+        <img class="playing" src="img/danirodriguezplaying.jpg" alt="Dani Rodriguez pinchando" />
+        <div class="artist-info">Fast soul</div>
+      </a>
+      <a class="artist" href="https://dienachtbrenntclub.com/laveranotte">
+        <img class="base"    src="img/laveranotte.jpg"      alt="La Vera Notte" />
+        <img class="playing" src="img/laveranotteplaying.jpg" alt="La Vera Notte pinchando" />
+        <div class="artist-info">Dance Authority</div>
+      </a>
+    </div>
+  </section>
+  <section class="artist-section">
+    <div class="section-title">SPAIN &amp; PORTUGAL</div>
+    <div class="artists-row">
+      <a class="artist" href="https://dienachtbrenntclub.com/mikes">
+        <img class="base"    src="img/mikes.jpg"            alt="Mikes" />
+        <img class="playing" src="img/mikesplaying.jpg"     alt="Mikes pinchando" />
+        <div class="artist-info">Oldschool Rage</div>
+      </a>
+      <a class="artist" href="https://dienachtbrenntclub.com/vitalgroove">
+        <img class="base"    src="img/vitalgroove.jpg"       alt="Vital Groove" />
+        <img class="playing" src="img/vitalgrooveplaying.jpg" alt="Vital Groove pinchando" />
+        <div class="artist-info">Groove Commander</div>
+      </a>
+      <a class="artist" href="https://dienachtbrenntclub.com/kb45">
+        <img class="base"    src="img/kb45.jpg"            alt="KB45" />
+        <img class="playing" src="img/kb45playing.jpg"     alt="KB45 pinchando" />
+        <div class="artist-info">Trance Driver</div>
+      </a>
+    </div>
+    <div class="artists-row centered">
+      <a class="artist" href="https://dienachtbrenntclub.com/filo">
+        <img class="base"    src="img/filo.jpg"            alt="FILØ" />
+        <img class="playing" src="img/filoplaying.jpg"     alt="FILØ pinchando" />
+        <div class="artist-info">Power Surgeon</div>
+      </a>
+      <a class="artist" href="https://dienachtbrenntclub.com/deathwrap">
+        <img class="base"    src="img/deathwrap.jpg"       alt="DEATHWRAP" />
+        <img class="playing" src="img/deathwrapplaying.jpg" alt="DEATHWRAP pinchando" />
+        <div class="artist-info">Bounce Fury</div>
+      </a>
+      <div class="empty"></div>
+    </div>
+  </section>
   <div class="footer-link-dock">
     <a href="https://instagram.com/dnbcagency" target="_blank" rel="noopener">@dnbcagency</a>
   </div>
-
+  <!-- Meta Pixel Code (en su lugar original) -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'XXXXXXXXXXXXXXX'); // Reemplaza con tu ID de píxel
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
   <script>
   (function() {
     'use strict';
     document.addEventListener('DOMContentLoaded', function() {
-      // 1. Carga el menú desde menu.html
       fetch('/menu.html')
         .then(res => res.text())
         .then(html => {
           document.getElementById('menu-container').innerHTML = html;
-          // 2. Después de insertar el menú, añade el evento al botón hamburguesa
           var btn = document.querySelector('.menu-toggle');
           var nav = document.getElementById('sidebar');
           btn.addEventListener('click', function() {
@@ -463,6 +340,6 @@
         });
     });
   })();
-</script>
+  </script>
 </body>
 </html>
