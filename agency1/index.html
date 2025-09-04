@@ -359,6 +359,12 @@
       filter: drop-shadow(0 0 6px #e1306c70);
     }
 
+    /* --- CORREGIR SOLAPAMIENTO DEL HEADER --- */
+    main {
+      margin-top: 85px; /* Un poco más alto que el header */
+      width: 100%;
+      display: block;
+    }
     @media (max-width: 900px) {
       .artist-section {
         max-width: 98vw;
@@ -382,6 +388,9 @@
       .manager-name-title span {
         font-size: 1rem !important;
         margin-top: 8px;
+      }
+      main {
+        margin-top: 75px; /* Ajusta para header más pequeño */
       }
     }
     @media (max-width: 500px) {
@@ -411,6 +420,9 @@
       .artist-info {
         font-size: 13px;
       }
+      main {
+        margin-top: 70px;
+      }
     }
     @media (max-width: 768px) {
       body {
@@ -439,6 +451,9 @@
         pointer-events: none;
         font-size: 13px;
         line-height: 1.2;
+      }
+      main {
+        margin-top: 70px;
       }
     }
   </style>
