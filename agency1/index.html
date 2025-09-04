@@ -94,15 +94,12 @@
     .artists-row.centered {
       justify-content: center;
     }
-    .artists-row.centered > .artist {
-      /* Todos los artistas tienen el mismo tamaño y formato */
-    }
     .artists-row.centered > .empty {
       visibility: hidden;
       pointer-events: none;
     }
 
-    /* SOLO EL MANAGER SIN BORDER-RADIUS */
+    /* MANAGER SIN BORDER RADIUS */
     .artist.manager-banner {
       grid-column: 1 / -1;
       min-height: 220px;
@@ -167,11 +164,15 @@
       transition: font-size .13s linear, transform .13s linear, margin .13s linear;
     }
     .artist.manager-banner:hover .manager-name-title span { transform: scale(1.22); }
+
+    /* FORMATO ORIGINAL DE LOS ARTISTAS */
     .artist {
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      /* SIN MODIFICAR FORMATOS NI BORDES */
+      border-radius: 10px; /* Si en escritorio era redondo, así queda */
+      background: #181818;
+      box-shadow: 0 2px 16px 0 rgba(0,0,0,.10);
     }
     .artist img.base {
       width: 100%;
@@ -199,6 +200,7 @@
       color: #fff; z-index: 3; font-size: 1rem;
     }
     .artist:hover .artist-info { opacity: 1; }
+
     .footer-link { display: none; }
     .footer-link-dock {
       position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%);
@@ -215,9 +217,9 @@
     .footer-link-dock a:hover {
       color: #e1306c; filter: drop-shadow(0 0 6px #e1306c70);
     }
+    /* SOLO AJUSTAMOS GAP EN MOVIL (NO COLUMNAS NI ALTURA NI BORDES) */
     @media (max-width: 900px) {
       .artists-row, .artists-row.centered {
-        grid-template-columns: repeat(3, 1fr);
         gap: 14px;
       }
       .artist.manager-banner,
@@ -225,12 +227,9 @@
       .artist.manager-banner img.playing {
         height: 140px; min-height: 140px; border-radius: 0 !important;
       }
-      .artist.manager-banner .artist-info { font-size: 1rem; padding: 8px 5px; }
-      .manager-name-title span { font-size: 1rem !important; margin-top: 8px; }
     }
     @media (max-width: 600px) {
       .artists-row, .artists-row.centered {
-        grid-template-columns: repeat(3, 1fr);
         gap: 6px;
         max-width: 98vw;
       }
@@ -239,9 +238,6 @@
       .artist.manager-banner img.playing {
         height: 90px; min-height: 90px; border-radius: 0 !important;
       }
-      .artist.manager-banner .artist-info { font-size: 13px; padding: 6px 2px; }
-      .manager-name-title span { font-size: 13px !important; margin-top: 2px; }
-      .artist-info { font-size: 13px; }
     }
     @media (max-width: 768px) {
       body { padding: 0 10px 50px 10px; }
@@ -331,7 +327,7 @@
   <div class="footer-link-dock">
     <a href="https://instagram.com/dnbcagency" target="_blank" rel="noopener">@dnbcagency</a>
   </div>
-  <!-- Meta Pixel Code (donde estaba) -->
+  <!-- Meta Pixel Code (manteniendo en la posición original) -->
   <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
