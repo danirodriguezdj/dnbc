@@ -1,0 +1,34 @@
+[
+  {
+    "title": "003 - Progressive House Mix",
+    "description": "Third episode with progressive house tracks",
+    "publishedAt": "2024-01-29T10:00:00Z",
+    "url": "https://soundcloud.com/dienachtbrenntclub/003-progressive",
+    "duration": 4200,
+    "episodeNumber": "003"
+  },
+  {
+    "title": "EP 002 - Underground Vibes",
+    "description": "Second episode featuring underground sounds",
+    "publishedAt": "2024-01-22T10:00:00Z",
+    "url": "https://soundcloud.com/dienachtbrenntclub/ep-002-underground",
+    "duration": 3900,
+    "episodeNumber": "002"
+  },
+  {
+    "title": "001 - Tech House Selection",
+    "description": "First episode of our podcast series",
+    "publishedAt": "2024-01-15T10:00:00Z",
+    "url": "https://soundcloud.com/dienachtbrenntclub/001-tech-house",
+    "duration": 3600,
+    "episodeNumber": "001"
+  },
+  {
+    "title": "Special Mix - No Number",
+    "description": "A special mix without episode number",
+    "publishedAt": "2024-02-01T10:00:00Z",
+    "url": "https://soundcloud.com/dienachtbrenntclub/special-mix",
+    "duration": 2700,
+    "episodeNumber": null
+  }
+]
