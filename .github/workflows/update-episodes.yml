@@ -1,0 +1,213 @@
+name: Update Podcast Episodes from SoundCloud
+
+on:
+  # Run daily at 6 AM UTC
+  schedule:
+    - cron: '0 6 * * *'
+  # Allow manual trigger
+  workflow_dispatch:
+  # Run when episodes.json is manually updated (to validate)
+  push:
+    paths:
+      - 'podcasts/episodes.json'
+
+jobs:
+  update-episodes:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: |
+        cat > package.json << 'EOF'
+        {
+          "name": "dnbc-soundcloud-updater",
+          "version": "1.0.0",
+          "description": "Updates DNBC podcast episodes from SoundCloud",
+          "main": "update-episodes.js",
+          "scripts": {
+            "update": "node update-episodes.js"
+          },
+          "dependencies": {
+            "node-fetch": "^3.3.2"
+          }
+        }
+        EOF
+        npm install
+        
+    - name: Create update script
+      run: |
+        cat > update-episodes.js << 'EOF'
+        import fetch from 'node-fetch';
+        import fs from 'fs/promises';
+        import path from 'path';
+
+        // SoundCloud API configuration
+        const SOUNDCLOUD_USER_ID = 'dienachtbrenntclub'; // Replace with actual user ID
+        const SOUNDCLOUD_CLIENT_ID = process.env.SOUNDCLOUD_CLIENT_ID;
+
+        async function getSoundCloudTracks() {
+          if (!SOUNDCLOUD_CLIENT_ID) {
+            console.log('⚠️  SOUNDCLOUD_CLIENT_ID not configured. Using existing episodes.');
+            return null;
+          }
+
+          try {
+            // Note: This is a simplified example. The actual SoundCloud API endpoint may vary
+            const response = await fetch(`https://api.soundcloud.com/users/${SOUNDCLOUD_USER_ID}/tracks?client_id=${SOUNDCLOUD_CLIENT_ID}&limit=50`);
+            
+            if (!response.ok) {
+              throw new Error(`SoundCloud API error: ${response.status}`);
+            }
+            
+            const tracks = await response.json();
+            return tracks;
+          } catch (error) {
+            console.error('Error fetching from SoundCloud:', error);
+            return null;
+          }
+        }
+
+        function transformSoundCloudTrack(track, index) {
+          // Transform SoundCloud track data to our episode format
+          return {
+            id: track.id,
+            title: track.title,
+            artist: track.user?.username || 'DNBC',
+            description: track.description || 'Underground electronic music from DNBC',
+            duration: formatDuration(track.duration),
+            publishDate: track.created_at ? track.created_at.split('T')[0] : new Date().toISOString().split('T')[0],
+            soundcloudUrl: track.permalink_url,
+            embedUrl: `https://w.soundcloud.com/player/?url=${encodeURIComponent(track.uri)}&color=%23ff0033&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true`,
+            genre: extractGenre(track.tag_list || track.genre || 'Electronic'),
+            artwork: track.artwork_url || `/img/podcasts/podcast-${String(index + 1).padStart(3, '0')}.jpg`
+          };
+        }
+
+        function formatDuration(milliseconds) {
+          if (!milliseconds) return '01:00:00';
+          
+          const totalSeconds = Math.floor(milliseconds / 1000);
+          const hours = Math.floor(totalSeconds / 3600);
+          const minutes = Math.floor((totalSeconds % 3600) / 60);
+          const seconds = totalSeconds % 60;
+          
+          return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        function extractGenre(tagList) {
+          // Extract genre from tags or return default
+          const genres = ['techno', 'house', 'deep house', 'tech house', 'minimal', 'industrial'];
+          const lowerTags = tagList.toLowerCase();
+          
+          for (const genre of genres) {
+            if (lowerTags.includes(genre)) {
+              return genre.charAt(0).toUpperCase() + genre.slice(1);
+            }
+          }
+          
+          return 'Electronic';
+        }
+
+        async function updateEpisodes() {
+          console.log('🎧 Starting DNBC episodes update...');
+          
+          try {
+            // Read current episodes
+            const episodesPath = path.join(process.cwd(), 'podcasts', 'episodes.json');
+            let currentEpisodes = [];
+            
+            try {
+              const currentData = await fs.readFile(episodesPath, 'utf8');
+              currentEpisodes = JSON.parse(currentData);
+              console.log(`📚 Found ${currentEpisodes.length} existing episodes`);
+            } catch (error) {
+              console.log('📝 No existing episodes file found, creating new one');
+            }
+            
+            // Get tracks from SoundCloud
+            const soundcloudTracks = await getSoundCloudTracks();
+            
+            let updatedEpisodes = currentEpisodes;
+            
+            if (soundcloudTracks && soundcloudTracks.length > 0) {
+              console.log(`🎵 Found ${soundcloudTracks.length} tracks from SoundCloud`);
+              
+              // Transform SoundCloud tracks to episode format
+              const newEpisodes = soundcloudTracks.map((track, index) => transformSoundCloudTrack(track, index));
+              
+              // Merge with existing episodes (avoid duplicates by checking soundcloudUrl)
+              const existingUrls = new Set(currentEpisodes.map(ep => ep.soundcloudUrl));
+              const uniqueNewEpisodes = newEpisodes.filter(ep => !existingUrls.has(ep.soundcloudUrl));
+              
+              updatedEpisodes = [...currentEpisodes, ...uniqueNewEpisodes];
+              
+              console.log(`✨ Added ${uniqueNewEpisodes.length} new episodes`);
+            }
+            
+            // Sort by publish date (newest first)
+            updatedEpisodes.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
+            
+            // Write updated episodes
+            await fs.writeFile(episodesPath, JSON.stringify(updatedEpisodes, null, 2));
+            
+            console.log(`💾 Updated episodes.json with ${updatedEpisodes.length} total episodes`);
+            console.log('✅ Update completed successfully!');
+            
+            return updatedEpisodes.length !== currentEpisodes.length;
+            
+          } catch (error) {
+            console.error('❌ Error updating episodes:', error);
+            process.exit(1);
+          }
+        }
+
+        // Run the update
+        updateEpisodes().then(hasChanges => {
+          if (hasChanges) {
+            console.log('📢 Episodes updated - changes will be committed');
+          } else {
+            console.log('📋 No new episodes found');
+          }
+        });
+        EOF
+        
+    - name: Update episodes from SoundCloud
+      env:
+        SOUNDCLOUD_CLIENT_ID: ${{ secrets.SOUNDCLOUD_CLIENT_ID }}
+      run: npm run update
+      
+    - name: Check for changes
+      id: verify-changed-files
+      run: |
+        if git diff --exit-code podcasts/episodes.json; then
+          echo "changed=false" >> $GITHUB_OUTPUT
+        else
+          echo "changed=true" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Commit and push changes
+      if: steps.verify-changed-files.outputs.changed == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add podcasts/episodes.json
+        git commit -m "🎧 Update podcast episodes from SoundCloud [automated]"
+        git push
+        
+    - name: Summary
+      run: |
+        if [ "${{ steps.verify-changed-files.outputs.changed }}" == "true" ]; then
+          echo "✅ Episodes updated and committed to repository"
+        else
+          echo "ℹ️  No changes detected in episodes"
+        fi

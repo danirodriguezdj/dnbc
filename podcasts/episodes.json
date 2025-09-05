@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "DNBC Podcast #001",
+    "artist": "Dani Rodriguez",
+    "description": "Underground techno selection featuring the best tracks from the DNBC collective",
+    "duration": "01:15:30",
+    "publishDate": "2024-01-15",
+    "soundcloudUrl": "https://soundcloud.com/dienachtbrenntclub/dnbc-podcast-001",
+    "embedUrl": "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/example1&color=%23ff0033&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
+    "genre": "Techno",
+    "artwork": "/img/podcasts/podcast-001.jpg"
+  },
+  {
+    "id": 2,
+    "title": "DNBC Podcast #002",
+    "artist": "Various Artists",
+    "description": "Deep house journey through the underground scene",
+    "duration": "01:22:45",
+    "publishDate": "2024-01-22",
+    "soundcloudUrl": "https://soundcloud.com/dienachtbrenntclub/dnbc-podcast-002",
+    "embedUrl": "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/example2&color=%23ff0033&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
+    "genre": "Deep House",
+    "artwork": "/img/podcasts/podcast-002.jpg"
+  },
+  {
+    "id": 3,
+    "title": "DNBC Podcast #003",
+    "artist": "Die Nacht Brennt",
+    "description": "Industrial techno showcase from the underground",
+    "duration": "01:08:15",
+    "publishDate": "2024-01-29",
+    "soundcloudUrl": "https://soundcloud.com/dienachtbrenntclub/dnbc-podcast-003",
+    "embedUrl": "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/example3&color=%23ff0033&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
+    "genre": "Industrial Techno",
+    "artwork": "/img/podcasts/podcast-003.jpg"
+  }
+]
