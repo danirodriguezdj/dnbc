@@ -203,7 +203,8 @@
       position: absolute;
       bottom: 0; left: 0;
       width: 100%;
-      padding: 16px 10px;
+      /* 14px -> 12px (otro -15% aprox) para banda más fina */
+      padding: 12px 10px;
       background: rgba(0,0,0,.7);
       color: #fff;
       font-size: 1rem;
@@ -414,13 +415,14 @@
         opacity: 1 !important;
       }
 
-      /* Mostrar SIEMPRE el texto del banner de la manager en móvil, del MISMO tamaño y sin dividir palabras */
+      /* Mostrar SIEMPRE el texto del banner de la manager en móvil, mismo tamaño y AÚN más fino (-15% adicional) */
       .artist.manager-banner .artist-info {
         opacity: 1 !important;
         background: rgba(0,0,0,0.6);
         font-size: clamp(0.60rem, 2.4vw, 0.80rem);
         line-height: 1.15;
-        padding: 7px 8px;
+        /* 6px -> 5px (otro -15% aprox) */
+        padding: 5px 8px;
         white-space: normal;
         word-break: normal;
         overflow-wrap: normal;
