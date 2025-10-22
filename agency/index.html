@@ -319,6 +319,16 @@
     main.artist-grid.two-cols {
       grid-template-columns: repeat(2, 1fr) !important;
       max-width: 600px;
+      /* Centrar los elementos dentro de su celda y permitir reglas específicas cuando hay un único hijo */
+      justify-items: center;
+    }
+
+    /* Si solo hay UN artista dentro de la línea de 2 columnas, que ocupe ambas columnas y quede centrado */
+    main.artist-grid.two-cols > .artist:only-child {
+      grid-column: 1 / -1;
+      justify-self: center;
+      max-width: 360px;
+      width: 100%;
     }
 
     /* Ajustes de espaciados específicos entre secciones */
@@ -552,9 +562,8 @@
         <img class="playing" src="img/filoplaying.jpg"     alt="FILØ pinchando" />
         <div class="artist-info">Power Surgeon</div>
       </a>
-   </section>
     </main>
-  
+  </section>
 
   <div class="footer-link-dock">
     <a href="https://instagram.com/dnbcagency" target="_blank" rel="noopener">@dnbcagency</a>
