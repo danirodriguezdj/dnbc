@@ -2,7 +2,7 @@
 <html lang="en"><head>
   <!--
     Archivo: agency1/index.html
-    Propósito: Página principal de DNBC Agency (correcciones: eliminado dock-socials duplicado, solo queda footer-link-dock).
+    Propósito: Página principal de DNBC Agency (ajuste espacio superior en móvil).
     Estándar de documentación: ISO/IEC/IEEE 26515
   -->
   <meta charset="UTF-8">
@@ -115,7 +115,8 @@
     }
 
     @media (max-width: 768px) {
-      body { padding: 60px 10px 50px; }
+      /* Reducido el padding-top en móvil para eliminar el espacio extra */
+      body { padding: 0 10px 50px; } /* antes 60px top, ahora 0 */
       header { justify-content: space-between; padding: 0 20px; height: 65px; }
       header a { margin-left: auto; }
       header .logo { max-width: 250px; width: 60vw; }
@@ -162,7 +163,7 @@
       max-width: calc(100% - (var(--page-padding-x) * 2));
       height: calc(var(--card-height) * 0.70);
       transition: width .18s ease, height .18s ease;
-      margin: 78px auto 4px auto; /* queda justo debajo del header */
+      margin: 78px auto 4px auto; /* queda justo debajo del header en desktop */
     }
     .artist.manager-banner img.base,
     .artist.manager-banner img.playing {
@@ -265,7 +266,7 @@
       margin: 8px 0 28px 0;
     }
 
-    /* Móvil: 3 columnas, ARTISTS más pequeño (50%) */
+    /* Móvil: 3 columnas, ARTISTS más pequeño (50%) y menor margen superior */
     @media (max-width: 700px) {
       main.artist-grid {
         grid-template-columns: repeat(3, var(--card-width));
@@ -275,11 +276,12 @@
         font-size: 0.8rem; /* ~50% of 1.6rem */
       }
       :root { --artist-gap: 5px; --page-padding-x: 10px; }
-      body { padding: 60px 10px 50px; }
-      .artist.manager-banner { margin-bottom: 6px; }
+      /* reducir padding-top en mobile y ajustar margin-top de la banner para quedar justo debajo del header */
+      body { padding: 0 10px 50px; }
+      .artist.manager-banner { margin: 68px auto 6px auto; } /* 65px header + 3px gap */
     }
 
-    /* Footer bubble original de agency con @dnbcagency (restaurado; ESTE ES EL ÚNICO DOCK) */
+    /* Footer bubble original de agency con @dnbcagency (restaurado; ÚNICO dock) */
     .footer-link-dock {
       position: fixed;
       left: 50%;
@@ -428,7 +430,7 @@
     </section>
   </main>
 
-  <!-- FOOTER BUBBLE ORIGINAL restaurado con @dnbcagency (ÚNICO dock presente) -->
+  <!-- FOOTER BUBBLE ORIGINAL restaurado con @dnbcagency (ÚNICO dock) -->
   <div class="footer-link-dock" id="footer-link-dock">
     <a href="https://instagram.com/dnbcagency" target="_blank" rel="noopener">@dnbcagency</a>
   </div>
