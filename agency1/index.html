@@ -1,8 +1,8 @@
+<!DOCTYPE html>
 <html lang="en"><head>
   <!--
     Archivo: agency1/index.html
-    Propósito: Página principal de DNBC Agency (ajustada: grid unificado, tarjetas rectangulares, banner Giulia 70% altura tarjeta).
-    NOTA: Header y menú restaurados exactamente como me enviaste; no hay GIF de fondo añadido.
+    Propósito: Página principal de DNBC Agency (correcciones: restaurado footer @dnbcagency y eliminado espaciado extra).
     Estándar de documentación: ISO/IEC/IEEE 26515
   -->
   <meta charset="UTF-8">
@@ -34,6 +34,8 @@
       margin: 0;
       padding: 0;
     }
+
+    /* RESTAURADO: body padding original de la versión agency (sin el espaciado grande que venía en main) */
     body {
       display: flex;
       flex-direction: column;
@@ -42,13 +44,13 @@
       color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
-      padding: 80px 20px 50px;
+      padding: 0 8px 50px 8px; /* <-- restaurado */
       overflow-x: hidden;
       position: relative;
       min-height: 100vh;
     }
 
-    /* Botón hamburguesa para mobile/desktop (MANTENIDO EXACTO) */
+    /* Botón hamburguesa (COPIADO EXACTO) */
     .menu-toggle {
       position: fixed;
       top: 20px;
@@ -65,7 +67,8 @@
       background: #fff;
       margin: 6px 0;
     }
-    /* Sidebar oculto por defecto, aparece al clicar (MANTENIDO EXACTO) */
+
+    /* Sidebar (COPIADO EXACTO) */
     .sidebar {
       position: fixed;
       top: 0;
@@ -77,12 +80,8 @@
       transition: left .3s ease;
       z-index: 1000;
     }
-    .sidebar.open {
-      left: 0;
-    }
-    .sidebar ul {
-      list-style: none;
-    }
+    .sidebar.open { left: 0; }
+    .sidebar ul { list-style: none; }
     .sidebar a {
       display: block;
       color: #fff;
@@ -91,11 +90,9 @@
       text-decoration: none;
       border-bottom: 1px solid #222;
     }
-    .sidebar a:hover {
-      background: #222;
-    }
+    .sidebar a:hover { background: #222; }
 
-    /* Header fijo con logo centrado (MANTENIDO EXACTO) */
+    /* Header fijo con logo centrado (COPIADO EXACTO) */
     header {
       position: fixed;
       top: 0;
@@ -110,18 +107,14 @@
       z-index: 999;
       border-bottom: 2px solid #000;
     }
-    header a {
-      display: flex;
-      align-items: center;
-      height: 100%;
-    }
+    header a { display: flex; align-items: center; height: 100%; }
     header .logo {
       max-width: 400px;
       width: 80vw;
       height: auto;
     }
 
-    /* --- DOCK SOCIALS (lo dejo tal cual en tu main page snippet) --- */
+    /* Dock socials (mantengo tal cual) */
     .dock-socials {
       position: fixed;
       left: 50%;
@@ -139,68 +132,22 @@
       backdrop-filter: blur(2px);
       transition: background 0.2s;
     }
-    .dock-socials a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      transition: background 0.1s;
-      text-decoration: none;
-    }
-    .dock-socials a:hover {
-      background: rgba(255,255,255,0.06);
-    }
-    .dock-socials img {
-      width: 28px;
-      height: 28px;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-      transition: filter 0.2s ease, transform 0.2s ease;
-    }
-    .dock-socials a:hover img {
-      transform: scale(1.1);
-    }
-    .dock-socials a.instagram:hover img {
-      filter: invert(33%) sepia(77%) saturate(7475%) hue-rotate(316deg) brightness(98%) contrast(101%);
-    }
-    .dock-socials a.soundcloud:hover img {
-      filter: invert(59%) sepia(90%) saturate(2000%) hue-rotate(-12deg) brightness(99%) contrast(97%);
-    }
-    .dock-socials a.spotify:hover img {
-      filter: invert(52%) sepia(76%) saturate(686%) hue-rotate(89deg) brightness(92%) contrast(91%);
-    }
+    .dock-socials a { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; transition: background 0.1s; text-decoration: none; }
+    .dock-socials a:hover { background: rgba(255,255,255,0.06); }
+    .dock-socials img { width: 28px; height: 28px; object-fit: contain; filter: brightness(0) invert(1); transition: filter 0.2s ease, transform 0.2s ease; }
+    .dock-socials a:hover img { transform: scale(1.1); }
+    .dock-socials a.instagram:hover img { filter: invert(33%) sepia(77%) saturate(7475%) hue-rotate(316deg) brightness(98%) contrast(101%); }
+    .dock-socials a.soundcloud:hover img { filter: invert(59%) sepia(90%) saturate(2000%) hue-rotate(-12deg) brightness(99%) contrast(97%); }
+    .dock-socials a.spotify:hover img { filter: invert(52%) sepia(76%) saturate(686%) hue-rotate(89deg) brightness(92%) contrast(91%); }
 
     @media (max-width: 768px) {
-      body {
-        padding: 60px 10px 50px;
-      }
-      header {
-        justify-content: space-between;
-        padding: 0 20px;
-        height: 65px;
-      }
-      header a {
-        margin-left: auto;
-      }
-      header .logo {
-        max-width: 250px;
-        width: 60vw;
-      }
-      .dock-socials {
-        gap: 18px;
-        padding: 8px 18px;
-        bottom: 12px;
-      }
-      .dock-socials a {
-        width: 36px;
-        height: 36px;
-      }
-      .dock-socials img {
-        width: 22px;
-        height: 22px;
-      }
+      body { padding: 60px 10px 50px; }
+      header { justify-content: space-between; padding: 0 20px; height: 65px; }
+      header a { margin-left: auto; }
+      header .logo { max-width: 250px; width: 60vw; }
+      .dock-socials { gap: 18px; padding: 8px 18px; bottom: 12px; }
+      .dock-socials a { width: 36px; height: 36px; }
+      .dock-socials img { width: 22px; height: 22px; }
     }
   </style>
 
@@ -210,15 +157,15 @@
       --artist-gap: 6px;
       --card-width: 180px;
       --card-height: 240px;
-      --page-padding-x: 20px;
+      --page-padding-x: 8px;
     }
 
-    /* Mantener header encima de todo */
+    /* Mantener header encima de todo; eliminar padding-top que añadía espacio extra */
     main.container {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding-top: 78px; /* espacio para header */
+      padding-top: 0; /* <-- no añadir espacio extra aquí */
       z-index: 1;
       position: relative;
       display: flex;
@@ -232,20 +179,20 @@
       letter-spacing: 2px;
     }
 
-    /* Banner Giulia: ancho igual al grid; altura 70% de la tarjeta (como pediste) */
+    /* Banner Giulia: ancho igual al grid; altura 70% de la tarjeta; mantiene margin-top para colocarlo debajo del header */
     .artist.manager-banner {
       position: relative;
       overflow: hidden;
-      border-radius: 10px; /* la banner conserva esquinas redondeadas */
+      border-radius: 10px;
       display: block;
       cursor: pointer;
       background: #181818;
       box-shadow: 0 2px 16px 0 rgba(0,0,0,.18);
       width: calc( (var(--card-width) * 4) + (var(--artist-gap) * 3) );
       max-width: calc(100% - (var(--page-padding-x) * 2));
-      height: calc(var(--card-height) * 0.70); /* 70% de la altura tarjeta */
+      height: calc(var(--card-height) * 0.70);
       transition: width .18s ease, height .18s ease;
-      margin-bottom: 8px;
+      margin: 78px auto 4px auto; /* restaurado margen superior para quedar justo debajo del header */
     }
     .artist.manager-banner img.base,
     .artist.manager-banner img.playing {
@@ -300,7 +247,7 @@
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      border-radius: 0; /* sin redondeado */
+      border-radius: 0;
       display: block;
     }
     .artist img.base {
@@ -337,7 +284,7 @@
     }
     .artist:hover .artist-info { opacity: 1; }
 
-    /* GRID unificada: 4 columnas, mismas en desktop y móvil (tal y como pediste) */
+    /* GRID unificada: 4 columnas, mismas en desktop y móvil */
     main.artist-grid {
       display: grid;
       grid-template-columns: repeat(4, var(--card-width));
@@ -348,7 +295,41 @@
       margin: 8px 0 28px 0;
     }
 
-    /* En móviles, mantener 4 columnas pero limitar gaps para mejorar escalado */
+    /* Footer bubble original de agency con @dnbcagency (restaurado) */
+    .footer-link-dock {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      background: rgba(20, 20, 20, 0.75);
+      border-radius: 21px;
+      padding: 7px 21px;
+      box-shadow: 0 6px 24px 4px rgba(0,0,0,0.35);
+      border: 1.5px solid #333;
+      backdrop-filter: blur(2px);
+      font-family: 'horizon', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      transition: background 0.2s;
+      z-index: 2000;
+    }
+    .footer-link-dock a {
+      color: #fff;
+      text-decoration: none;
+      font-family: 'horizon', sans-serif;
+      font-size: 0.77rem;
+      transition: color 0.2s, filter 0.2s;
+      display: flex;
+      align-items: center;
+    }
+    .footer-link-dock a:hover {
+      color: #e1306c;
+      filter: drop-shadow(0 0 6px #e1306c70);
+    }
+
+    /* En móviles, mantener 4 columnas pero reducir gap */
     @media (max-width: 700px) {
       :root { --artist-gap: 5px; --page-padding-x: 10px; }
       body { padding: 60px 10px 50px; }
@@ -471,7 +452,7 @@
   </main>
 
   <!-- Dock social fijo abajo (mantengo el nombre original dock-socials) -->
-  <div class="dock-socials" id="footer-dock">
+  <div class="dock-socials" id="dock-socials">
     <a href="https://soundcloud.com/dienachtbrenntclub" class="soundcloud" target="_blank" rel="noopener" title="SoundCloud">
       <img src="/img/icons/soundcloud.svg" alt="SoundCloud">
     </a>
@@ -483,6 +464,11 @@
     </a>
   </div>
 
+  <!-- FOOTER BUBBLE ORIGINAL restaurado con @dnbcagency -->
+  <div class="footer-link-dock" id="footer-link-dock">
+    <a href="https://instagram.com/dnbcagency" target="_blank" rel="noopener">@dnbcagency</a>
+  </div>
+
   <script>
   (function() {
     'use strict';
@@ -492,7 +478,7 @@
         .then(res => res.text())
         .then(html => {
           document.getElementById('menu-container').innerHTML = html;
-          // 2. Después de insertar el menú, añade el evento al botón hamburguesa
+          // 2. Después de insertar el menú, añade el evento al botón hamburguesa (igual que antes)
           var btn = document.querySelector('.menu-toggle');
           var nav = document.getElementById('sidebar');
           if (btn && nav) {
@@ -508,8 +494,7 @@
   })();
   </script>
 
-  <!-- Script que calcula tamaños para que todo se adapte al viewport.
-       Calcula --card-width y --card-height y fuerza que el banner de Giulia sea 70% de la altura de tarjeta. -->
+  <!-- Script que calcula tamaños para que todo se adapte al viewport (se mantiene comportamientos previos) -->
   <script>
   (function () {
     'use strict';
@@ -519,7 +504,7 @@
       var vw = window.innerWidth;
 
       var header = document.querySelector('header');
-      var footer = document.getElementById('footer-dock');
+      var footer = document.getElementById('footer-link-dock');
       var grid = document.getElementById('artist-grid');
       var container = document.getElementById('main-container');
 
@@ -532,7 +517,7 @@
 
       var computed = getComputedStyle(document.documentElement);
       var gap = parseInt(computed.getPropertyValue('--artist-gap')) || 6;
-      var pagePaddingX = 20; // coincide con CSS
+      var pagePaddingX = 8; // coincide con CSS restaurado
 
       // Espacio vertical disponible
       var availableHeight = vh - headerH - footerH - extraVertical;
