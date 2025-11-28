@@ -2,7 +2,7 @@
 <html lang="en"><head>
   <!--
     Archivo: agency1/index.html
-    Propósito: Página principal de DNBC Agency (ajuste espacio superior en móvil).
+    Propósito: Página principal de DNBC Agency (ajuste: evitar que el banner de Giulia quede parcialmente oculto en móvil).
     Estándar de documentación: ISO/IEC/IEEE 26515
   -->
   <meta charset="UTF-8">
@@ -115,8 +115,8 @@
     }
 
     @media (max-width: 768px) {
-      /* Reducido el padding-top en móvil para eliminar el espacio extra */
-      body { padding: 0 10px 50px; } /* antes 60px top, ahora 0 */
+      /* padding reducido en móvil; el JS coloca el padding-top exacto en main.container */
+      body { padding: 0 10px 50px; }
       header { justify-content: space-between; padding: 0 20px; height: 65px; }
       header a { margin-left: auto; }
       header .logo { max-width: 250px; width: 60vw; }
@@ -136,7 +136,7 @@
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding-top: 0;
+      padding-top: 0; /* JS actualizará esto en runtime para que el contenido quede debajo del header */
       z-index: 1;
       position: relative;
       display: flex;
@@ -150,7 +150,8 @@
       letter-spacing: 2px;
     }
 
-    /* Banner Giulia: ancho igual al grid; altura 70% de la tarjeta */
+    /* Banner Giulia: ancho igual al grid; altura 70% de la tarjeta
+       margin-top reducido (JS aplica padding en el contenedor para separarlo del header) */
     .artist.manager-banner {
       position: relative;
       overflow: hidden;
@@ -162,8 +163,8 @@
       width: calc( (var(--card-width) * 4) + (var(--artist-gap) * 3) );
       max-width: calc(100% - (var(--page-padding-x) * 2));
       height: calc(var(--card-height) * 0.70);
-      transition: width .18s ease, height .18s ease;
-      margin: 78px auto 4px auto; /* queda justo debajo del header en desktop */
+      transition: width .18s ease, height .18s ease, margin .12s ease;
+      margin: 4px auto 4px auto; /* margen pequeño: la separación del header la maneja main.container padding */
     }
     .artist.manager-banner img.base,
     .artist.manager-banner img.playing {
@@ -194,7 +195,7 @@
       font-size: 1rem !important;
       font-weight: normal;
       letter-spacing: 2px;
-      margin: 18px 0 0 0;
+      margin: 12px 0 0 0;
       line-height: 1.1;
     }
     .artist.manager-banner .artist-info {
@@ -266,7 +267,7 @@
       margin: 8px 0 28px 0;
     }
 
-    /* Móvil: 3 columnas, ARTISTS más pequeño (50%) y menor margen superior */
+    /* Móvil: 3 columnas, ARTISTS más pequeño (50%) */
     @media (max-width: 700px) {
       main.artist-grid {
         grid-template-columns: repeat(3, var(--card-width));
@@ -276,9 +277,9 @@
         font-size: 0.8rem; /* ~50% of 1.6rem */
       }
       :root { --artist-gap: 5px; --page-padding-x: 10px; }
-      /* reducir padding-top en mobile y ajustar margin-top de la banner para quedar justo debajo del header */
       body { padding: 0 10px 50px; }
-      .artist.manager-banner { margin: 68px auto 6px auto; } /* 65px header + 3px gap */
+      /* margin pequeño; spacing below header handled via JS applied padding on main.container */
+      .artist.manager-banner { margin-bottom: 6px; }
     }
 
     /* Footer bubble original de agency con @dnbcagency (restaurado; ÚNICO dock) */
@@ -544,8 +545,16 @@
         giulia.style.width = computedGridWidth + 'px';
       }
 
+      // IMPORTANT: asegurar que el contenido quede debajo del header -> aplicar padding-top al contenedor
       if (container) {
+        // ponemos el padding-top igual a la altura del header + 3px gap
+        container.style.paddingTop = (headerH + 3) + 'px';
         container.style.maxWidth = Math.min(1200, vw - 40) + 'px';
+      }
+
+      // asegurar que la banner no quede ocultada por el header (margen pequeño local)
+      if (giulia) {
+        giulia.style.marginTop = '4px';
       }
 
       // intentar evitar scroll vertical si cabe
