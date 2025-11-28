@@ -1,7 +1,8 @@
 <html lang="en"><head>
   <!--
     Archivo: agency1/index.html
-    Propósito: Página principal de DNBC Agency con listado de artistas (integrada con tu main page y ajustes solicitados).
+    Propósito: Página principal de DNBC Agency (ajustada: grid unificado, tarjetas rectangulares, banner Giulia 70% altura tarjeta).
+    NOTA: Header y menú restaurados exactamente como me enviaste; no hay GIF de fondo añadido.
     Estándar de documentación: ISO/IEC/IEEE 26515
   -->
   <meta charset="UTF-8">
@@ -10,7 +11,6 @@
   <title>DIE NACHT BRENNT CLUB</title>
   <meta name="description" content="DNBC — Die Nacht Brennt Club. Official page. Underground electronic music, DJ podcasts, and events.">
   <meta name="keywords" content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club, spain, clubbing, dnbc">
-
   <meta name="author" content="DNBC Team">
 
   <!-- Íconos y manifest para PWA -->
@@ -47,27 +47,8 @@
       position: relative;
       min-height: 100vh;
     }
-    /* Fondo GIF centrado y fijo */
-    .gif-bg {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 0;
-      pointer-events: none;
-      background: transparent;
-    }
-    .gif-bg img {
-      display: block;
-      max-width: 48vw;
-      max-height: 64vh;
-      width: auto;
-      height: auto;
-      margin: auto;
-    }
-    /* Botón hamburguesa para mobile/desktop (MANTENIDO EXACTO A TU CÓDIGO) */
+
+    /* Botón hamburguesa para mobile/desktop (MANTENIDO EXACTO) */
     .menu-toggle {
       position: fixed;
       top: 20px;
@@ -84,7 +65,7 @@
       background: #fff;
       margin: 6px 0;
     }
-    /* Sidebar oculto por defecto, aparece al clicar */
+    /* Sidebar oculto por defecto, aparece al clicar (MANTENIDO EXACTO) */
     .sidebar {
       position: fixed;
       top: 0;
@@ -113,7 +94,8 @@
     .sidebar a:hover {
       background: #222;
     }
-    /* Header fijo con logo centrado */
+
+    /* Header fijo con logo centrado (MANTENIDO EXACTO) */
     header {
       position: fixed;
       top: 0;
@@ -138,7 +120,8 @@
       width: 80vw;
       height: auto;
     }
-    /* --- DOCK SOCIALS --- */
+
+    /* --- DOCK SOCIALS (lo dejo tal cual en tu main page snippet) --- */
     .dock-socials {
       position: fixed;
       left: 50%;
@@ -188,6 +171,7 @@
     .dock-socials a.spotify:hover img {
       filter: invert(52%) sepia(76%) saturate(686%) hue-rotate(89deg) brightness(92%) contrast(91%);
     }
+
     @media (max-width: 768px) {
       body {
         padding: 60px 10px 50px;
@@ -203,10 +187,6 @@
       header .logo {
         max-width: 250px;
         width: 60vw;
-      }
-      .gif-bg img {
-        max-width: 95vw;
-        max-height: 60vh;
       }
       .dock-socials {
         gap: 18px;
@@ -252,7 +232,7 @@
       letter-spacing: 2px;
     }
 
-    /* Banner Giulia: ancho igual al grid; altura 70% de la tarjeta */
+    /* Banner Giulia: ancho igual al grid; altura 70% de la tarjeta (como pediste) */
     .artist.manager-banner {
       position: relative;
       overflow: hidden;
@@ -396,18 +376,14 @@
   
 </head>
 <body>
-  <!-- Fondo GIF fijo y centrado detrás de todo -->
-  <div class="gif-bg" aria-hidden="true">
-    <img src="/img/dnbc.gif" alt="Fondo DNBC animado">
-  </div>
-  <!-- Botón para abrir/cerrar menú lateral (sin modificaciones visuales) -->
+  <!-- Botón para abrir/cerrar menú lateral (SIN MODIFICACIONES VISUALES) -->
   <button class="menu-toggle" aria-label="Toggle menu">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
   
-  <!-- Navegación lateral -->
+  <!-- Navegación lateral: contenido inicial (menu.html se cargará en DOMContentLoaded) -->
   <div id="menu-container"><nav id="sidebar" class="sidebar" aria-label="Main navigation">
   <ul>
     <li><a href="/">Home</a></li>
@@ -417,7 +393,7 @@
 </nav>
 </div>
   
-  <!-- Header fijo con logo -->
+  <!-- Header fijo con logo (COPIADO EXACTO) -->
   <header>
     <a href="https://dienachtbrenntclub.com" rel="noopener">
       <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo">
@@ -526,7 +502,6 @@
           }
         })
         .catch(function(err){
-          // mantener silencioso como antes, pero guardar en consola para debug
           console.warn('menu load failed', err);
         });
     });
@@ -552,13 +527,13 @@
       var footerH = footer ? footer.offsetHeight : 50;
       var extraVertical = 30; // espacio para títulos/gaps
 
-      // filas verticales: 1 fila Giulia + 2 filas de artistas = 3 (como antes)
+      // filas verticales: 1 fila Giulia + 2 filas de artistas = 3
       var rows = 3;
 
-      // gap desde CSS
       var computed = getComputedStyle(document.documentElement);
       var gap = parseInt(computed.getPropertyValue('--artist-gap')) || 6;
       var pagePaddingX = 20; // coincide con CSS
+
       // Espacio vertical disponible
       var availableHeight = vh - headerH - footerH - extraVertical;
       if (availableHeight < 120) availableHeight = Math.max(120, vh - headerH - footerH);
@@ -594,19 +569,16 @@
       document.documentElement.style.setProperty('--card-width', cardWidth + 'px');
       document.documentElement.style.setProperty('--card-height', cardHeight + 'px');
 
-      // ajustar ancho del grid y de la banner de Giulia (CSS ya usa las variables)
+      // ajustar ancho del grid y del contenedor
       if (grid) {
         grid.style.width = ((cardWidth * 4) + (gap * 3)) + 'px';
       }
       if (container) {
-        // ajustar máximo del contenedor para centrado correcto
         container.style.maxWidth = Math.min(1200, vw - 40) + 'px';
       }
 
-      // INTENTO de evitar scroll vertical en la mayoría de pantallas:
-      // si todo cabe en viewport, ocultamos overflow; si no, dejamos scroll.
-      var neededHeight = headerH + footerH + extraVertical + // header/footer/titles
-                         (cardHeight * rows);
+      // intentar evitar scroll vertical si cabe
+      var neededHeight = headerH + footerH + extraVertical + (cardHeight * rows);
       if (neededHeight <= vh + 1) {
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
@@ -622,7 +594,6 @@
     });
 
     document.addEventListener('DOMContentLoaded', function () {
-      // Ejecutar al inicio y tras carga de imágenes
       setTimeout(applyLayout, 80);
 
       var imgs = document.querySelectorAll('img');
