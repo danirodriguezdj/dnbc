@@ -2,7 +2,12 @@
 <html lang="en"><head>
   <!--
     Archivo: agency1/index.html
-    Propósito: Página principal de DNBC Agency (correcciones: eliminado dock-socials duplicado).
+    Propósito: Página principal de DNBC Agency (ajustes solicitados).
+    NOTAS:
+      - Header y menú preservados igual que en tu snippet.
+      - Giulia banner width ahora se iguala exactamente al ancho del grid.
+      - Móvil: 3 artistas por fila máximo.
+      - "ARTISTS" reducido al 50% en móvil.
     Estándar de documentación: ISO/IEC/IEEE 26515
   -->
   <meta charset="UTF-8">
@@ -35,7 +40,7 @@
       padding: 0;
     }
 
-    /* RESTAURADO: body padding original de la versión agency (sin el espaciado grande que venía en main) */
+    /* RESTAURADO: body padding original de la versión agency */
     body {
       display: flex;
       flex-direction: column;
@@ -44,7 +49,7 @@
       color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
-      padding: 0 8px 50px 8px; /* <-- restaurado */
+      padding: 0 8px 50px 8px; /* restaurado */
       overflow-x: hidden;
       position: relative;
       min-height: 100vh;
@@ -114,11 +119,40 @@
       height: auto;
     }
 
+    /* Dock socials (se mantiene si lo tienes en tu layout) */
+    .dock-socials {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 30px;
+      background: rgba(20, 20, 20, 0.75);
+      border-radius: 32px;
+      padding: 10px 32px 10px 32px;
+      box-shadow: 0 6px 24px 4px rgba(0,0,0,0.35);
+      z-index: 2000;
+      align-items: center;
+      border: 1.5px solid #333;
+      backdrop-filter: blur(2px);
+      transition: background 0.2s;
+    }
+    .dock-socials a { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; transition: background 0.1s; text-decoration: none; }
+    .dock-socials a:hover { background: rgba(255,255,255,0.06); }
+    .dock-socials img { width: 28px; height: 28px; object-fit: contain; filter: brightness(0) invert(1); transition: filter 0.2s ease, transform 0.2s ease; }
+    .dock-socials a:hover img { transform: scale(1.1); }
+    .dock-socials a.instagram:hover img { filter: invert(33%) sepia(77%) saturate(7475%) hue-rotate(316deg) brightness(98%) contrast(101%); }
+    .dock-socials a.soundcloud:hover img { filter: invert(59%) sepia(90%) saturate(2000%) hue-rotate(-12deg) brightness(99%) contrast(97%); }
+    .dock-socials a.spotify:hover img { filter: invert(52%) sepia(76%) saturate(686%) hue-rotate(89deg) brightness(92%) contrast(91%); }
+
     @media (max-width: 768px) {
       body { padding: 60px 10px 50px; }
       header { justify-content: space-between; padding: 0 20px; height: 65px; }
       header a { margin-left: auto; }
       header .logo { max-width: 250px; width: 60vw; }
+      .dock-socials { gap: 18px; padding: 8px 18px; bottom: 12px; }
+      .dock-socials a { width: 36px; height: 36px; }
+      .dock-socials img { width: 22px; height: 22px; }
     }
   </style>
 
@@ -131,12 +165,11 @@
       --page-padding-x: 8px;
     }
 
-    /* Mantener header encima de todo; eliminar padding-top que añadía espacio extra */
     main.container {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding-top: 0; /* <-- no añadir espacio extra aquí */
+      padding-top: 0;
       z-index: 1;
       position: relative;
       display: flex;
@@ -150,11 +183,11 @@
       letter-spacing: 2px;
     }
 
-    /* Banner Giulia: ancho igual al grid; altura 70% de la tarjeta; mantiene margin-top para colocarlo debajo del header */
+    /* Banner Giulia: ancho igual al grid; altura 70% de la tarjeta */
     .artist.manager-banner {
       position: relative;
       overflow: hidden;
-      border-radius: 0px;
+      border-radius: 10px;
       display: block;
       cursor: pointer;
       background: #181818;
@@ -163,7 +196,7 @@
       max-width: calc(100% - (var(--page-padding-x) * 2));
       height: calc(var(--card-height) * 0.70);
       transition: width .18s ease, height .18s ease;
-      margin: 78px auto 4px auto; /* restaurado margen superior para quedar justo debajo del header */
+      margin: 78px auto 4px auto; /* queda justo debajo del header */
     }
     .artist.manager-banner img.base,
     .artist.manager-banner img.playing {
@@ -172,7 +205,7 @@
       object-fit: cover;
       display: block;
       transition: opacity .3s, transform .3s, filter .3s;
-      border-radius: 0px;
+      border-radius: 10px;
     }
     .manager-name-title {
       position: absolute;
@@ -255,7 +288,7 @@
     }
     .artist:hover .artist-info { opacity: 1; }
 
-    /* GRID unificada: 4 columnas, mismas en desktop y móvil */
+    /* GRID: columnas dinámicas según CSS/JS (desktop 4, móvil 3) */
     main.artist-grid {
       display: grid;
       grid-template-columns: repeat(4, var(--card-width));
@@ -266,42 +299,15 @@
       margin: 8px 0 28px 0;
     }
 
-    /* Footer bubble original de agency con @dnbcagency (restaurado) */
-    .footer-link-dock {
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      background: rgba(20, 20, 20, 0.75);
-      border-radius: 21px;
-      padding: 7px 21px;
-      box-shadow: 0 6px 24px 4px rgba(0,0,0,0.35);
-      border: 1.5px solid #333;
-      backdrop-filter: blur(2px);
-      font-family: 'horizon', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 1px;
-      transition: background 0.2s;
-      z-index: 2000;
-    }
-    .footer-link-dock a {
-      color: #fff;
-      text-decoration: none;
-      font-family: 'horizon', sans-serif;
-      font-size: 0.77rem;
-      transition: color 0.2s, filter 0.2s;
-      display: flex;
-      align-items: center;
-    }
-    .footer-link-dock a:hover {
-      color: #e1306c;
-      filter: drop-shadow(0 0 6px #e1306c70);
-    }
-
-    /* En móviles, mantener 4 columnas pero reducir gap */
+    /* Móvil: 3 columnas, ARTISTS más pequeño (50%) */
     @media (max-width: 700px) {
+      main.artist-grid {
+        grid-template-columns: repeat(3, var(--card-width));
+        width: calc((var(--card-width) * 3) + (var(--artist-gap) * 2));
+      }
+      h2.section-title {
+        font-size: 0.8rem; /* 50% of 1.6rem */
+      }
       :root { --artist-gap: 5px; --page-padding-x: 10px; }
       body { padding: 60px 10px 50px; }
       .artist.manager-banner { margin-bottom: 6px; }
@@ -422,6 +428,19 @@
     </section>
   </main>
 
+  <!-- Dock social fijo abajo (si lo necesitas) -->
+  <div class="dock-socials" id="dock-socials" aria-hidden="true">
+    <a href="https://soundcloud.com/dienachtbrenntclub" class="soundcloud" target="_blank" rel="noopener" title="SoundCloud">
+      <img src="/img/icons/soundcloud.svg" alt="SoundCloud">
+    </a>
+    <a href="https://instagram.com/dienachtbrenntclub" class="instagram" target="_blank" rel="noopener" title="Instagram">
+      <img src="/img/icons/instagram.svg" alt="Instagram">
+    </a>
+    <a href="https://open.spotify.com/playlist/3dAUufff9G37F3r1NHhWhI?si=a4uTV6mjS7mVpcWcBuur6w" class="spotify" target="_blank" rel="noopener" title="Spotify">
+      <img src="/img/icons/spotify.svg" alt="Spotify">
+    </a>
+  </div>
+
   <!-- FOOTER BUBBLE ORIGINAL restaurado con @dnbcagency -->
   <div class="footer-link-dock" id="footer-link-dock">
     <a href="https://instagram.com/dnbcagency" target="_blank" rel="noopener">@dnbcagency</a>
@@ -452,7 +471,7 @@
   })();
   </script>
 
-  <!-- Script que calcula tamaños para que todo se adapte al viewport (se mantiene comportamientos previos) -->
+  <!-- Script que calcula tamaños para que todo se adapte al viewport -->
   <script>
   (function () {
     'use strict';
@@ -464,30 +483,43 @@
       var header = document.querySelector('header');
       var footer = document.getElementById('footer-link-dock');
       var grid = document.getElementById('artist-grid');
+      var giulia = document.getElementById('giulia-banner');
       var container = document.getElementById('main-container');
 
       var headerH = header ? header.offsetHeight : 75;
       var footerH = footer ? footer.offsetHeight : 50;
       var extraVertical = 30; // espacio para títulos/gaps
 
-      // filas verticales: 1 fila Giulia + 2 filas de artistas = 3
-      var rows = 3;
+      // decidir columnas según ancho (móvil 3, desktop 4)
+      var columns = (vw <= 700) ? 3 : 4;
 
+      // contar artistas
+      var artistCount = 0;
+      if (grid) artistCount = grid.querySelectorAll('.artist').length || 0;
+      if (artistCount <= 0) artistCount = 8; // fallback
+
+      // filas necesarias para artistas
+      var artistRows = Math.ceil(artistCount / columns);
+
+      // total de filas verticales = giulia (1) + artistRows
+      var totalRows = 1 + artistRows;
+
+      // gap desde CSS
       var computed = getComputedStyle(document.documentElement);
       var gap = parseInt(computed.getPropertyValue('--artist-gap')) || 6;
-      var pagePaddingX = 8; // coincide con CSS restaurado
+      var pagePaddingX = parseInt(computed.getPropertyValue('--page-padding-x')) || 8;
 
       // Espacio vertical disponible
       var availableHeight = vh - headerH - footerH - extraVertical;
       if (availableHeight < 120) availableHeight = Math.max(120, vh - headerH - footerH);
 
-      // altura máxima por tarjeta para que quepan `rows` filas
-      var maxCardHeightByHeight = Math.floor(availableHeight / rows);
+      // altura máxima por tarjeta para que quepan `totalRows` filas
+      var maxCardHeightByHeight = Math.floor(availableHeight / totalRows);
 
-      // restricción horizontal: 4 columnas
-      var totalGapsWidth = gap * 3;
+      // restricción horizontal: calcular ancho máximo por columna
+      var totalGapsWidth = gap * (columns - 1);
       var availableWidth = vw - (pagePaddingX * 2);
-      var maxCardWidthByWidth = Math.floor((availableWidth - totalGapsWidth) / 4);
+      var maxCardWidthByWidth = Math.floor((availableWidth - totalGapsWidth) / columns);
       if (maxCardWidthByWidth < 40) maxCardWidthByWidth = 40;
 
       // relación 3/4 -> height = width * 4/3
@@ -501,9 +533,9 @@
       if (cardWidth < 40) cardWidth = 40;
 
       // si el grid total excede el ancho, reducir cardWidth
-      var totalGridWidth = (cardWidth * 4) + (gap * 3);
+      var totalGridWidth = (cardWidth * columns) + (gap * (columns - 1));
       if (totalGridWidth > availableWidth) {
-        cardWidth = Math.floor((availableWidth - (gap * 3)) / 4);
+        cardWidth = Math.floor((availableWidth - (gap * (columns - 1))) / columns);
         if (cardWidth < 40) cardWidth = 40;
         cardHeight = Math.floor(cardWidth * (4/3));
       }
@@ -512,16 +544,23 @@
       document.documentElement.style.setProperty('--card-width', cardWidth + 'px');
       document.documentElement.style.setProperty('--card-height', cardHeight + 'px');
 
-      // ajustar ancho del grid y del contenedor
+      // ajustar ancho del grid y del banner Giulia para que sean exactamente iguales
+      var computedGridWidth = ((cardWidth * columns) + (gap * (columns - 1)));
       if (grid) {
-        grid.style.width = ((cardWidth * 4) + (gap * 3)) + 'px';
+        grid.style.width = computedGridWidth + 'px';
+        // actualizar grid-template-columns según columnas (en caso CSS media query no empata)
+        grid.style.gridTemplateColumns = 'repeat(' + columns + ', ' + cardWidth + 'px)';
       }
+      if (giulia) {
+        giulia.style.width = computedGridWidth + 'px';
+      }
+
       if (container) {
         container.style.maxWidth = Math.min(1200, vw - 40) + 'px';
       }
 
       // intentar evitar scroll vertical si cabe
-      var neededHeight = headerH + footerH + extraVertical + (cardHeight * rows);
+      var neededHeight = headerH + footerH + extraVertical + (cardHeight * totalRows);
       if (neededHeight <= vh + 1) {
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
@@ -537,6 +576,7 @@
     });
 
     document.addEventListener('DOMContentLoaded', function () {
+      // run after small delay and after images load to get correct sizes
       setTimeout(applyLayout, 80);
 
       var imgs = document.querySelectorAll('img');
