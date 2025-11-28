@@ -2,12 +2,7 @@
 <html lang="en"><head>
   <!--
     Archivo: agency1/index.html
-    Propósito: Página principal de DNBC Agency (ajustes solicitados).
-    NOTAS:
-      - Header y menú preservados igual que en tu snippet.
-      - Giulia banner width ahora se iguala exactamente al ancho del grid.
-      - Móvil: 3 artistas por fila máximo.
-      - "ARTISTS" reducido al 50% en móvil.
+    Propósito: Página principal de DNBC Agency (correcciones: eliminado dock-socials duplicado, solo queda footer-link-dock).
     Estándar de documentación: ISO/IEC/IEEE 26515
   -->
   <meta charset="UTF-8">
@@ -40,7 +35,7 @@
       padding: 0;
     }
 
-    /* RESTAURADO: body padding original de la versión agency */
+    /* RESTAURADO: body padding original de la versión agency (sin el espaciado grande que venía en main) */
     body {
       display: flex;
       flex-direction: column;
@@ -49,7 +44,7 @@
       color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
-      padding: 0 8px 50px 8px; /* restaurado */
+      padding: 0 8px 50px 8px; /* <-- restaurado */
       overflow-x: hidden;
       position: relative;
       min-height: 100vh;
@@ -119,40 +114,11 @@
       height: auto;
     }
 
-    /* Dock socials (se mantiene si lo tienes en tu layout) */
-    .dock-socials {
-      position: fixed;
-      left: 50%;
-      bottom: 22px;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 30px;
-      background: rgba(20, 20, 20, 0.75);
-      border-radius: 32px;
-      padding: 10px 32px 10px 32px;
-      box-shadow: 0 6px 24px 4px rgba(0,0,0,0.35);
-      z-index: 2000;
-      align-items: center;
-      border: 1.5px solid #333;
-      backdrop-filter: blur(2px);
-      transition: background 0.2s;
-    }
-    .dock-socials a { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; transition: background 0.1s; text-decoration: none; }
-    .dock-socials a:hover { background: rgba(255,255,255,0.06); }
-    .dock-socials img { width: 28px; height: 28px; object-fit: contain; filter: brightness(0) invert(1); transition: filter 0.2s ease, transform 0.2s ease; }
-    .dock-socials a:hover img { transform: scale(1.1); }
-    .dock-socials a.instagram:hover img { filter: invert(33%) sepia(77%) saturate(7475%) hue-rotate(316deg) brightness(98%) contrast(101%); }
-    .dock-socials a.soundcloud:hover img { filter: invert(59%) sepia(90%) saturate(2000%) hue-rotate(-12deg) brightness(99%) contrast(97%); }
-    .dock-socials a.spotify:hover img { filter: invert(52%) sepia(76%) saturate(686%) hue-rotate(89deg) brightness(92%) contrast(91%); }
-
     @media (max-width: 768px) {
       body { padding: 60px 10px 50px; }
       header { justify-content: space-between; padding: 0 20px; height: 65px; }
       header a { margin-left: auto; }
       header .logo { max-width: 250px; width: 60vw; }
-      .dock-socials { gap: 18px; padding: 8px 18px; bottom: 12px; }
-      .dock-socials a { width: 36px; height: 36px; }
-      .dock-socials img { width: 22px; height: 22px; }
     }
   </style>
 
@@ -306,16 +272,50 @@
         width: calc((var(--card-width) * 3) + (var(--artist-gap) * 2));
       }
       h2.section-title {
-        font-size: 0.8rem; /* 50% of 1.6rem */
+        font-size: 0.8rem; /* ~50% of 1.6rem */
       }
       :root { --artist-gap: 5px; --page-padding-x: 10px; }
       body { padding: 60px 10px 50px; }
       .artist.manager-banner { margin-bottom: 6px; }
     }
+
+    /* Footer bubble original de agency con @dnbcagency (restaurado; ESTE ES EL ÚNICO DOCK) */
+    .footer-link-dock {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      background: rgba(20, 20, 20, 0.75);
+      border-radius: 21px;
+      padding: 7px 21px;
+      box-shadow: 0 6px 24px 4px rgba(0,0,0,0.35);
+      border: 1.5px solid #333;
+      backdrop-filter: blur(2px);
+      font-family: 'horizon', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      transition: background 0.2s;
+      z-index: 2000;
+    }
+    .footer-link-dock a {
+      color: #fff;
+      text-decoration: none;
+      font-family: 'horizon', sans-serif;
+      font-size: 0.77rem;
+      transition: color 0.2s, filter 0.2s;
+      display: flex;
+      align-items: center;
+    }
+    .footer-link-dock a:hover {
+      color: #e1306c;
+      filter: drop-shadow(0 0 6px #e1306c70);
+    }
   </style>
 
   <!-- Meta Pixel Code -->
-  <script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script><script>
+  <script async src="https://connect.facebook.net/en_US/fbevents.js"></script><script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -428,20 +428,7 @@
     </section>
   </main>
 
-  <!-- Dock social fijo abajo (si lo necesitas) -->
-  <div class="dock-socials" id="dock-socials" aria-hidden="true">
-    <a href="https://soundcloud.com/dienachtbrenntclub" class="soundcloud" target="_blank" rel="noopener" title="SoundCloud">
-      <img src="/img/icons/soundcloud.svg" alt="SoundCloud">
-    </a>
-    <a href="https://instagram.com/dienachtbrenntclub" class="instagram" target="_blank" rel="noopener" title="Instagram">
-      <img src="/img/icons/instagram.svg" alt="Instagram">
-    </a>
-    <a href="https://open.spotify.com/playlist/3dAUufff9G37F3r1NHhWhI?si=a4uTV6mjS7mVpcWcBuur6w" class="spotify" target="_blank" rel="noopener" title="Spotify">
-      <img src="/img/icons/spotify.svg" alt="Spotify">
-    </a>
-  </div>
-
-  <!-- FOOTER BUBBLE ORIGINAL restaurado con @dnbcagency -->
+  <!-- FOOTER BUBBLE ORIGINAL restaurado con @dnbcagency (ÚNICO dock presente) -->
   <div class="footer-link-dock" id="footer-link-dock">
     <a href="https://instagram.com/dnbcagency" target="_blank" rel="noopener">@dnbcagency</a>
   </div>
@@ -548,7 +535,7 @@
       var computedGridWidth = ((cardWidth * columns) + (gap * (columns - 1)));
       if (grid) {
         grid.style.width = computedGridWidth + 'px';
-        // actualizar grid-template-columns según columnas (en caso CSS media query no empata)
+        // actualizar grid-template-columns según columnas
         grid.style.gridTemplateColumns = 'repeat(' + columns + ', ' + cardWidth + 'px)';
       }
       if (giulia) {
