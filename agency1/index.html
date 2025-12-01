@@ -155,13 +155,14 @@
     .artist.manager-banner {
       position: relative;
       overflow: hidden;
-      border-radius: 10px;
+      border-radius: 0; /* removed rounded corners for Giulia */
       display: block;
       cursor: pointer;
       background: #181818;
       box-shadow: 0 2px 16px 0 rgba(0,0,0,.18);
       width: calc( (var(--card-width) * 4) + (var(--artist-gap) * 3) );
-      max-width: calc(100% - (var(--page-padding-x) * 2));
+      /* allow the JS-set width to take precedence and avoid double-limiting on small screens */
+      max-width: none;
       height: calc(var(--card-height) * 0.70);
       transition: width .18s ease, height .18s ease, margin .12s ease;
       margin: 4px auto 4px auto; /* margen pequeño: la separación del header la maneja main.container padding */
@@ -173,7 +174,7 @@
       object-fit: cover;
       display: block;
       transition: opacity .3s, transform .3s, filter .3s;
-      border-radius: 10px;
+      border-radius: 0; /* ensure images have no rounded corners */
     }
     .manager-name-title {
       position: absolute;
