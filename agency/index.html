@@ -364,18 +364,6 @@
 
   <!-- CONTENIDO PRINCIPAL -->
   <main class="container" id="main-container">
-    <!-- Banner Giulia Nigro adaptada al ancho del grid y 70% altura tarjeta -->
-    <section>
-      <a class="artist manager-banner" href="https://dienachtbrenntclub.com/giulianigro" id="giulia-banner">
-        <div class="manager-name-title">
-          <span>GIULIA NIGRO</span>
-        </div>
-        <img class="base"    src="img/giulianigro.jpg"         alt="Giuliani Gro" />
-        <img class="playing" src="img/giulianigroplaying.jpg"  alt="Giuliani Gro en acción" />
-        <div class="artist-info">Management Mama</div>
-      </a>
-    </section>
-
     <!-- Sección UNIFICADA: todos los artistas en un único grid, mismo orden que antes. -->
     <section style="width:100%; display:flex; flex-direction:column; align-items:center;">
       <h2 class="section-title">ARTISTS</h2>
@@ -492,8 +480,8 @@
       // filas necesarias para artistas
       var artistRows = Math.ceil(artistCount / columns);
 
-      // total de filas verticales = giulia (1) + artistRows
-      var totalRows = 1 + artistRows;
+      // total de filas verticales = banner (si existe) + artistRows
+      var totalRows = (giulia ? 1 : 0) + artistRows;
 
       // gap desde CSS
       var computed = getComputedStyle(document.documentElement);
@@ -505,7 +493,7 @@
       if (availableHeight < 120) availableHeight = Math.max(120, vh - headerH - footerH);
 
       // altura máxima por tarjeta para que quepan `totalRows` filas
-      var maxCardHeightByHeight = Math.floor(availableHeight / totalRows);
+      var maxCardHeightByHeight = Math.floor(availableHeight / Math.max(1, totalRows));
 
       // restricción horizontal: calcular ancho máximo por columna
       var totalGapsWidth = gap * (columns - 1);
@@ -535,7 +523,7 @@
       document.documentElement.style.setProperty('--card-width', cardWidth + 'px');
       document.documentElement.style.setProperty('--card-height', cardHeight + 'px');
 
-      // ajustar ancho del grid y del banner Giulia para que sean exactamente iguales
+      // ajustar ancho del grid y del banner (si existe) para que sean exactamente iguales
       var computedGridWidth = ((cardWidth * columns) + (gap * (columns - 1)));
       if (grid) {
         grid.style.width = computedGridWidth + 'px';
