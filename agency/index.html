@@ -44,7 +44,7 @@
       color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
-      padding: 0 8px 80px 8px; /* <-- aumentado de 50px a 80px */
+      padding: 0 8px 120px 8px; /* <-- aumentado a 120px para evitar recorte del hover */
       overflow-x: hidden;
       position: relative;
       min-height: 100vh;
@@ -116,7 +116,7 @@
 
     @media (max-width: 768px) {
       /* padding reducido en móvil; el JS coloca el padding-top exacto en main.container */
-      body { padding: 0 10px 80px; } /* <-- aumentado de 50px a 80px */
+      body { padding: 0 10px 120px; } /* <-- también aumentado a 120px */
       header { justify-content: space-between; padding: 0 20px; height: 65px; }
       header a { margin-left: auto; }
       header .logo { max-width: 250px; width: 60vw; }
@@ -243,9 +243,11 @@
     .artist:hover img.base { opacity: 0; filter: brightness(.5); transform: scale(1.05); }
     .artist:hover img.playing { opacity: 1; filter: brightness(.5); transform: scale(1.05); }
 
+    /* AQUI: subimos z-index y levantamos ligeramente el overlay para que no quede tapado por el dock */
     .artist-info {
       position: absolute;
-      bottom: 0; left: 0;
+      bottom: 12px; /* <-- se sube un poco para evitar solapamiento con la zona inferior */
+      left: 0;
       width: var(--card-width);
       padding: 8px;
       background: rgba(0,0,0,.7);
@@ -254,6 +256,7 @@
       color: #fff;
       font-size: 0.9rem;
       text-align: center;
+      z-index: 2101; /* <-- mayor que el dock (2000) para que el overlay quede por encima */
     }
     .artist:hover .artist-info { opacity: 1; }
 
@@ -278,7 +281,7 @@
         font-size: 0.8rem; /* ~50% of 1.6rem */
       }
       :root { --artist-gap: 5px; --page-padding-x: 10px; }
-      body { padding: 0 10px 80px; } /* <-- aumentado de 50px a 80px */
+      body { padding: 0 10px 120px; } /* <-- móvil también aumentado */
       /* margin pequeño; spacing below header handled via JS applied padding on main.container */
       .artist.manager-banner { margin-bottom: 6px; }
     }
