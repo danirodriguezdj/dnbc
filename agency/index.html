@@ -44,7 +44,7 @@
       color: #fff;
       font-family: 'horizon', sans-serif;
       text-align: center;
-      padding: 0 8px 50px 8px; /* <-- restaurado */
+      padding: 0 8px 80px 8px; /* <-- aumentado de 50px a 80px */
       overflow-x: hidden;
       position: relative;
       min-height: 100vh;
@@ -116,7 +116,7 @@
 
     @media (max-width: 768px) {
       /* padding reducido en móvil; el JS coloca el padding-top exacto en main.container */
-      body { padding: 0 10px 50px; }
+      body { padding: 0 10px 80px; } /* <-- aumentado de 50px a 80px */
       header { justify-content: space-between; padding: 0 20px; height: 65px; }
       header a { margin-left: auto; }
       header .logo { max-width: 250px; width: 60vw; }
@@ -278,7 +278,7 @@
         font-size: 0.8rem; /* ~50% of 1.6rem */
       }
       :root { --artist-gap: 5px; --page-padding-x: 10px; }
-      body { padding: 0 10px 50px; }
+      body { padding: 0 10px 80px; } /* <-- aumentado de 50px a 80px */
       /* margin pequeño; spacing below header handled via JS applied padding on main.container */
       .artist.manager-banner { margin-bottom: 6px; }
     }
