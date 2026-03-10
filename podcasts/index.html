@@ -4,172 +4,122 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#000" />
-  <title>DIE NACHT BRENNT CLUB</title>
-  <meta name="description" content="DNBC — Die Nacht Brennt Club. Official page. Underground electronic music, DJ podcasts, and events." />
-  <meta name="keywords" content="DNBC, Die Nacht Brennt Club, techno, electronic music, DJ sets, underground club, spain, clubbing, dnbc" />
-  <meta name="author" content="DNBC Team" />
-
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="DNBC" />
-  <link rel="manifest" href="/site.webmanifest" />
-
+  <title>Podcasts – DNBC</title>
+  <link rel="icon" href="/favicon.ico" />
   <style>
     @font-face {
       font-family: 'horizon';
       src: url('/fonts/horizon.woff2') format('woff2');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
     }
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      background: #000;
-      color: #fff;
-      font-family: 'horizon', sans-serif;
-      overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
-    }
-    .menu-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 1001;
-    }
-    .menu-toggle .bar {
-      display: block;
-      width: 30px;
-      height: 3px;
-      background: #fff;
-      margin: 6px 0;
-    }
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #111;
-      padding-top: 60px;
-      transition: left .3s ease;
-      z-index: 1000;
-    }
-    .sidebar.open {
-      left: 0;
-    }
-    .sidebar ul {
-      list-style: none;
-    }
-    .sidebar a {
-      display: block;
-      color: #fff;
-      padding: 20px;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-bottom: 1px solid #222;
-    }
-    .sidebar a:hover {
-      background: #222;
-    }
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 75px;
-      background: #000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      z-index: 999;
-      border-bottom: 2px solid #000;
-    }
-    header a {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      margin-left: auto;
-    }
-    header .logo {
-      max-width: 400px;
-      width: 80vw;
-      height: auto;
-    }
-    @media (max-width: 768px) {
-      header {
-        height: 65px;
-        padding: 0 20px;
-      }
-      header .logo {
-        max-width: 250px;
-        width: 60vw;
-      }
+    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+    html, body { width:100vw; height:100vh; font-family:'horizon',sans-serif; background:#000; color:#fff; }
+    body { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; overflow:hidden; }
+    
+    /* Menu hamburguesa */
+    .menu-toggle { position: fixed; top: 20px; left:20px; z-index:1001; background:none; border:none; cursor:pointer; }
+    .menu-toggle .bar { display:block; width:30px; height:3px; background:#fff; margin:6px 0; }
+    .sidebar { position: fixed; top:0; left:-250px; width:250px; height:100%; background:#111; padding-top:60px; transition:left .3s ease; z-index:1000; }
+    .sidebar.open { left:0; }
+    .sidebar ul { list-style:none; }
+    .sidebar a { display:block; color:#fff; padding:20px; text-transform:uppercase; text-decoration:none; border-bottom:1px solid #222; }
+    .sidebar a:hover { background:#222; }
+
+    /* Header */
+    header { position: fixed; top:0; left:0; width:100%; height:75px; background:#000; display:flex; justify-content:center; align-items:center; padding:0 20px; z-index:999; border-bottom:2px solid #000; }
+    header a { display:flex; align-items:center; height:100%; }
+    header .logo { max-width:400px; width:80vw; height:auto; }
+
+    /* Sección podcasts */
+    main.podcast-main { flex:1 1 auto; width:100vw; margin-top:75px; padding:40px 5vw; overflow-y:auto; }
+    h1.section-title { font-size:2rem; margin-bottom:40px; letter-spacing:2px; text-align:center; }
+
+    #podcast-container { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+
+    .podcast-card { background:#111; border-radius:12px; padding:15px; text-align:center; transition:transform 0.2s; }
+    .podcast-card:hover { transform:scale(1.05); }
+    .podcast-card img { width:100%; border-radius:8px; margin-bottom:12px; }
+    .podcast-card h3 { font-size:1rem; margin-bottom:8px; }
+    .podcast-card button { background:#ff0033; border:none; color:#fff; padding:8px 14px; font-size:0.9rem; cursor:pointer; border-radius:6px; transition:background 0.2s; }
+    .podcast-card button:hover { background:#ff3355; }
+
+    #podcast-player { width:100%; margin-top:40px; }
+
+    @media(max-width:768px) {
+      header { justify-content:space-between; height:65px; }
+      header .logo { max-width:250px; width:60vw; }
+      h1.section-title { font-size:1.4rem; margin-bottom:25px; }
     }
   </style>
-
-  <!-- Meta Pixel Code -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1234694877952614');
-    fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1234694877952614&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
-
 </head>
 <body>
-  <!-- Botón hamburguesa -->
+  <!-- Botón menú -->
   <button class="menu-toggle" aria-label="Toggle menu">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
 
-  <!-- Contenedor del menú -->
+  <!-- Contenedor menú lateral -->
   <div id="menu-container"></div>
 
-  <!-- Header -->
+  <!-- Header con logo -->
   <header>
     <a href="https://dienachtbrenntclub.com" rel="noopener">
-      <img src="/logoletraslargo.png" alt="DNBC logo" class="logo" />
+      <img src="/logoletraslargo.png" alt="DNBC Agency logo" class="logo" />
     </a>
   </header>
 
-  <!-- Carga menú desde menu.html -->
+  <!-- Sección podcasts -->
+  <main class="podcast-main">
+    <h1 class="section-title">DNBC Podcasts</h1>
+    <div id="podcast-container"></div>
+    <audio id="podcast-player" controls></audio>
+  </main>
+
   <script>
-    (function() {
+    (function(){
       'use strict';
-      document.addEventListener('DOMContentLoaded', function() {
+
+      // Cargar menú lateral
+      document.addEventListener('DOMContentLoaded', function(){
         fetch('/menu.html')
-          .then(res => res.text())
-          .then(html => {
-            document.getElementById('menu-container').innerHTML = html;
-            var btn = document.querySelector('.menu-toggle');
-            var nav = document.getElementById('sidebar');
-            btn.addEventListener('click', function() {
-              nav.classList.toggle('open');
-            });
+          .then(res=>res.text())
+          .then(html=>{
+            document.getElementById('menu-container').innerHTML=html;
+            var btn=document.querySelector('.menu-toggle');
+            var nav=document.getElementById('sidebar');
+            btn.addEventListener('click',()=>nav.classList.toggle('open'));
           });
+      });
+
+      // Configuración SoundCloud
+      const clientId = 'XlICQ46p1u4j2Hu4Dgn113743G6lRaWM';
+      const userId = '1141405360';
+
+      document.addEventListener('DOMContentLoaded', function(){
+        const container=document.getElementById('podcast-container');
+        const player=document.getElementById('podcast-player');
+
+        fetch(`https://api.soundcloud.com/users/${userId}/tracks?client_id=${clientId}`)
+          .then(res=>res.json())
+          .then(tracks=>{
+            tracks.forEach(track=>{
+              const card=document.createElement('div');
+              card.className='podcast-card';
+              card.innerHTML=`
+                <img src="${track.artwork_url || 'placeholder.jpg'}" alt="${track.title}" />
+                <h3>${track.title}</h3>
+                <button>▶ Play</button>
+              `;
+              const btn=card.querySelector('button');
+              btn.addEventListener('click', ()=>{
+                player.src=`${track.stream_url}?client_id=${clientId}`;
+                player.play();
+              });
+              container.appendChild(card);
+            });
+          })
+          .catch(err=>console.error('Error cargando podcasts:',err));
       });
     })();
   </script>
