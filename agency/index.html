@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 
@@ -203,6 +204,7 @@ grid-template-columns:repeat(3,var(--card-width));
 }
 
 </style>
+
 </head>
 
 <body>
@@ -315,14 +317,9 @@ const vw=window.innerWidth
 let columns
 
 if(vw<=700){
-
 columns=3
-
 }else{
-
-const rows=Math.round(Math.sqrt(artists))
-columns=Math.ceil(artists/rows)
-
+columns=Math.ceil(artists/2)
 }
 
 document.documentElement.style.setProperty('--grid-columns',columns)
