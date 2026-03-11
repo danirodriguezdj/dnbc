@@ -80,7 +80,7 @@ header{
   height:75px;
   background:#000;
   display:flex;
-  justify-content:center; /* centrado en web */
+  justify-content:center; /* logo centrado en web */
   align-items:center;
   padding:0 20px;
   z-index:999;
@@ -94,13 +94,14 @@ header .logo{
 
 @media(max-width:700px){
   header{
-    justify-content:space-between; /* logo a la derecha, botón a la izquierda */
+    justify-content:space-between; /* botón menú izquierda, logo derecha */
     height:65px;
     padding:0 20px;
   }
   header .logo{
     max-width:220px;
     width:60vw;
+    margin-left:auto; /* fuerza el logo a la derecha */
   }
 }
 
