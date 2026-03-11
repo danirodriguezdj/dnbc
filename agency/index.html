@@ -8,10 +8,10 @@
 
 <style>
 
-@font-face {
-  font-family:'horizon';
-  src:url('/fonts/horizon.woff2') format('woff2');
-  font-display:swap;
+@font-face{
+font-family:'horizon';
+src:url('/fonts/horizon.woff2') format('woff2');
+font-display:swap;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -125,7 +125,12 @@ margin:8px 0 28px;
 position:relative;
 overflow:hidden;
 cursor:pointer;
+text-decoration:none;
+color:#fff;
 }
+
+.artist:visited{color:#fff;}
+.artist:hover{color:#fff;}
 
 .artist img{
 width:var(--card-width);
@@ -141,8 +146,15 @@ left:0;
 opacity:0;
 }
 
-.artist:hover img.base{opacity:0;transform:scale(1.05);}
-.artist:hover img.playing{opacity:1;transform:scale(1.05);}
+.artist:hover img.base{
+opacity:0;
+transform:scale(1.05);
+}
+
+.artist:hover img.playing{
+opacity:1;
+transform:scale(1.05);
+}
 
 .artist-info{
 position:absolute;
@@ -153,9 +165,12 @@ padding:6px;
 font-size:.85rem;
 opacity:0;
 transition:.2s;
+color:#fff;
 }
 
-.artist:hover .artist-info{opacity:1;}
+.artist:hover .artist-info{
+opacity:1;
+}
 
 .footer-link-dock{
 position:fixed;
@@ -175,13 +190,11 @@ color:#fff;
 text-decoration:none;
 }
 
-.footer-link-dock a:hover{color:#e1306c;}
+.footer-link-dock a:hover{
+color:#e1306c;
+}
 
 @media(max-width:700px){
-
-:root{
---artist-gap:5px;
-}
 
 main.artist-grid{
 grid-template-columns:repeat(3,var(--card-width));
@@ -220,68 +233,67 @@ grid-template-columns:repeat(3,var(--card-width));
 
 <main class="artist-grid" id="artist-grid">
 
-<a class="artist" href="https://dienachtbrenntclub.com/cokecortes">
+<a class="artist" href="/cokecortes">
 <img class="base" src="img/cokecortes.jpg">
 <img class="playing" src="img/cokecortesplaying.jpg">
 <div class="artist-info">Sacred Violence</div>
 </a>
 
-<a class="artist" href="https://dienachtbrenntclub.com/danirodriguez">
+<a class="artist" href="/danirodriguez">
 <img class="base" src="img/danirodriguez.jpg">
 <img class="playing" src="img/danirodriguezplaying.jpg">
-<div class="artist-info">Fast soul</div>
+<div class="artist-info">Fast Soul</div>
 </a>
 
-<a class="artist" href="https://dienachtbrenntclub.com/laveranotte">
+<a class="artist" href="/laveranotte">
 <img class="base" src="img/laveranotte.jpg">
 <img class="playing" src="img/laveranotteplaying.jpg">
 <div class="artist-info">Dance Authority</div>
 </a>
 
-<a class="artist" href="https://dienachtbrenntclub.com/mikes">
+<a class="artist" href="/mikes">
 <img class="base" src="img/mikes.jpg">
 <img class="playing" src="img/mikesplaying.jpg">
 <div class="artist-info">Oldschool Rage</div>
 </a>
 
-<a class="artist" href="https://dienachtbrenntclub.com/vitalgroove">
+<a class="artist" href="/vitalgroove">
 <img class="base" src="img/vitalgroove.jpg">
 <img class="playing" src="img/vitalgrooveplaying.jpg">
 <div class="artist-info">Groove Commander</div>
 </a>
 
-<a class="artist" href="https://dienachtbrenntclub.com/kb45">
+<a class="artist" href="/kb45">
 <img class="base" src="img/kb45.jpg">
 <img class="playing" src="img/kb45playing.jpg">
 <div class="artist-info">Trance Driver</div>
 </a>
 
-<a class="artist" href="https://dienachtbrenntclub.com/bxlr">
+<a class="artist" href="/bxlr">
 <img class="base" src="img/bxlr.jpg">
 <img class="playing" src="img/bxlrplaying.jpg">
 <div class="artist-info">THE WITCHER</div>
 </a>
 
-<a class="artist" href="https://dienachtbrenntclub.com/filo">
+<a class="artist" href="/filo">
 <img class="base" src="img/filo.jpg">
 <img class="playing" src="img/filoplaying.jpg">
 <div class="artist-info">Power Surgeon</div>
 </a>
 
-<a class="artist" href="https://dienachtbrenntclub.com/driusaki">
+<a class="artist" href="/driusaki">
 <img class="base" src="img/driusaki.jpg">
 <img class="playing" src="img/driusakiplaying.jpg">
 <div class="artist-info">Astral Operator</div>
 </a>
 
-<a class="artist" href="https://dienachtbrenntclub.com/kimera">
+<a class="artist" href="/kimera">
 <img class="base" src="img/kimera.jpg">
 <img class="playing" src="img/kimeraplaying.jpg">
 <div class="artist-info">Frequency Warden</div>
 </a>
 
 </main>
-
 </main>
 
 <div class="footer-link-dock">
@@ -308,7 +320,8 @@ columns=3
 
 }else{
 
-columns=Math.ceil(Math.sqrt(artists))
+const rows=Math.round(Math.sqrt(artists))
+columns=Math.ceil(artists/rows)
 
 }
 
