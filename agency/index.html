@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 
@@ -107,19 +106,21 @@ font-size:1.6rem;
 letter-spacing:2px;
 }
 
+/* --- GRID ADAPTIVO --- */
 :root{
---artist-gap:6px;
---card-width:180px;
---card-height:240px;
+--artist-gap:8px;
 --grid-columns:4;
 }
 
 main.artist-grid{
 display:grid;
-grid-template-columns:repeat(var(--grid-columns),var(--card-width));
+grid-template-columns:repeat(var(--grid-columns),1fr);
 gap:var(--artist-gap);
 justify-content:center;
 margin:8px 0 28px;
+width:100%;
+max-width:1400px;
+height:calc(100vh - 220px); /* deja espacio para header + footer + margen */
 }
 
 .artist{
@@ -128,14 +129,12 @@ overflow:hidden;
 cursor:pointer;
 text-decoration:none;
 color:#fff;
+aspect-ratio:3/4; /* mantiene proporción ancho/alto */
 }
 
-.artist:visited{color:#fff;}
-.artist:hover{color:#fff;}
-
 .artist img{
-width:var(--card-width);
-height:var(--card-height);
+width:100%;
+height:100%;
 object-fit:cover;
 transition:.3s;
 }
@@ -195,16 +194,17 @@ text-decoration:none;
 color:#e1306c;
 }
 
+/* --- MÓVIL --- */
 @media(max-width:700px){
 
 main.artist-grid{
-grid-template-columns:repeat(3,var(--card-width));
+grid-template-columns:repeat(3,1fr);
+height:auto;
 }
 
 }
 
 </style>
-
 </head>
 
 <body>
@@ -319,7 +319,7 @@ let columns
 if(vw<=700){
 columns=3
 }else{
-columns=Math.ceil(artists/2)
+columns=Math.ceil(artists/2) // siempre 2 filas
 }
 
 document.documentElement.style.setProperty('--grid-columns',columns)
