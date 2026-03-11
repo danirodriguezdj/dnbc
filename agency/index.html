@@ -92,7 +92,7 @@ width:80vw;
 
 main.container{
 width:100%;
-max-width:1200px;
+max-width:1400px;
 margin:0 auto;
 padding-top:90px;
 display:flex;
@@ -120,7 +120,9 @@ justify-content:center;
 margin:8px 0 28px;
 width:100%;
 max-width:1400px;
-height:calc(100vh - 220px); /* deja espacio para header + footer + margen */
+
+/* altura flexible según filas */
+height:calc(100vh - 75px - 60px - 36px); /* header + footer + margen */
 }
 
 .artist{
@@ -129,7 +131,6 @@ overflow:hidden;
 cursor:pointer;
 text-decoration:none;
 color:#fff;
-aspect-ratio:3/4; /* mantiene proporción ancho/alto */
 }
 
 .artist img{
