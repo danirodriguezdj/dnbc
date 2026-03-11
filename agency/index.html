@@ -9,198 +9,200 @@
 <style>
 
 @font-face{
-font-family:'horizon';
-src:url('/fonts/horizon.woff2') format('woff2');
-font-display:swap;
+  font-family:'horizon';
+  src:url('/fonts/horizon.woff2') format('woff2');
+  font-display:swap;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-display:flex;
-flex-direction:column;
-align-items:center;
-background:#000;
-color:#fff;
-font-family:'horizon',sans-serif;
-text-align:center;
-overflow:hidden;
-min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background:#000;
+  color:#fff;
+  font-family:'horizon',sans-serif;
+  text-align:center;
+  overflow:hidden;
+  min-height:100vh;
 }
 
 .menu-toggle{
-position:fixed;
-top:20px;
-left:20px;
-background:none;
-border:none;
-cursor:pointer;
-z-index:1001;
+  position:fixed;
+  top:20px;
+  left:20px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  z-index:1001;
 }
 
 .menu-toggle .bar{
-display:block;
-width:30px;
-height:3px;
-background:#fff;
-margin:6px 0;
+  display:block;
+  width:30px;
+  height:3px;
+  background:#fff;
+  margin:6px 0;
 }
 
 .sidebar{
-position:fixed;
-top:0;
-left:-250px;
-width:250px;
-height:100%;
-background:#111;
-padding-top:60px;
-transition:left .3s;
-z-index:1000;
+  position:fixed;
+  top:0;
+  left:-250px;
+  width:250px;
+  height:100%;
+  background:#111;
+  padding-top:60px;
+  transition:left .3s;
+  z-index:1000;
 }
 
 .sidebar.open{left:0;}
 
 .sidebar a{
-display:block;
-color:#fff;
-padding:20px;
-text-transform:uppercase;
-text-decoration:none;
-border-bottom:1px solid #222;
+  display:block;
+  color:#fff;
+  padding:20px;
+  text-transform:uppercase;
+  text-decoration:none;
+  border-bottom:1px solid #222;
 }
 
 .sidebar a:hover{background:#222;}
 
 header{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:75px;
-background:#000;
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:999;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:75px;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
 }
 
 header .logo{
-max-width:400px;
-width:80vw;
+  max-width:400px;
+  width:80vw;
 }
 
 main.container{
-width:100%;
-max-width:1400px;
-margin:0 auto;
-padding-top:90px;
-display:flex;
-flex-direction:column;
-align-items:center;
+  width:100%;
+  max-width:1400px;
+  margin:0 auto;
+  padding-top:90px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
 h2.section-title{
-margin:18px 0 8px;
-font-size:1.6rem;
-letter-spacing:2px;
+  margin:18px 0 8px;
+  font-size:1.6rem;
+  letter-spacing:2px;
 }
 
 :root{
---artist-gap:8px;
---grid-columns:4;
---grid-rows:2;
---bottom-margin:60px; /* espacio para la burbuja */
+  --artist-gap:8px;
+  --grid-columns:4;
+  --grid-rows:2;
+  --header-height:75px;      /* altura del header */
+  --footer-space:60px;       /* espacio para la burbuja */
+  --bottom-margin: calc(var(--header-height) + var(--footer-space)); /* espacio total arriba y abajo */
 }
 
 main.artist-grid{
-display:grid;
-grid-template-columns:repeat(var(--grid-columns),1fr);
-grid-template-rows:repeat(var(--grid-rows),1fr);
-gap:var(--artist-gap);
-justify-content:center;
-margin:8px 0;
-width:100%;
-max-width:1400px;
-height:calc(100vh - 75px - var(--bottom-margin)); /* full screen menos header y burbuja */
+  display:grid;
+  grid-template-columns:repeat(var(--grid-columns),1fr);
+  grid-template-rows:repeat(var(--grid-rows),1fr);
+  gap:var(--artist-gap);
+  justify-content:center;
+  margin:8px 0;
+  width:100%;
+  max-width:1400px;
+  height:calc(100vh - var(--bottom-margin)); /* full screen menos header y burbuja */
 }
 
 .artist{
-position:relative;
-overflow:hidden;
-cursor:pointer;
-text-decoration:none;
-color:#fff;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  text-decoration:none;
+  color:#fff;
 }
 
 .artist img{
-width:100%;
-height:100%;
-object-fit:cover;
-transition:.3s;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.3s;
 }
 
 .artist img.playing{
-position:absolute;
-top:0;
-left:0;
-opacity:0;
+  position:absolute;
+  top:0;
+  left:0;
+  opacity:0;
 }
 
 .artist:hover img.base{
-opacity:0;
-transform:scale(1.05);
+  opacity:0;
+  transform:scale(1.05);
 }
 
 .artist:hover img.playing{
-opacity:1;
-transform:scale(1.05);
+  opacity:1;
+  transform:scale(1.05);
 }
 
 .artist-info{
-position:absolute;
-bottom:10px;
-width:100%;
-background:rgba(0,0,0,.7);
-padding:6px;
-font-size:.85rem;
-opacity:0;
-transition:.2s;
-color:#fff;
+  position:absolute;
+  bottom:10px;
+  width:100%;
+  background:rgba(0,0,0,.7);
+  padding:6px;
+  font-size:.85rem;
+  opacity:0;
+  transition:.2s;
+  color:#fff;
 }
 
 .artist:hover .artist-info{
-opacity:1;
+  opacity:1;
 }
 
 .footer-link-dock{
-position:fixed;
-left:50%;
-bottom:18px;
-transform:translateX(-50%);
-background:rgba(20,20,20,.75);
-border-radius:21px;
-padding:7px 21px;
-border:1px solid #333;
-font-size:.75rem;
-z-index:2000;
+  position:fixed;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  background:rgba(20,20,20,.75);
+  border-radius:21px;
+  padding:7px 21px;
+  border:1px solid #333;
+  font-size:.75rem;
+  z-index:2000;
 }
 
 .footer-link-dock a{
-color:#fff;
-text-decoration:none;
+  color:#fff;
+  text-decoration:none;
 }
 
 .footer-link-dock a:hover{
-color:#e1306c;
+  color:#e1306c;
 }
 
 @media(max-width:700px){
 
-main.artist-grid{
-grid-template-columns:repeat(3,1fr);
-grid-template-rows:auto;
-height:calc(100vh - 75px - var(--bottom-margin));
-}
+  main.artist-grid{
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:auto;
+    height:calc(100vh - var(--bottom-margin));
+  }
 
 }
 
@@ -210,124 +212,124 @@ height:calc(100vh - 75px - var(--bottom-margin));
 <body>
 
 <button class="menu-toggle">
-<span class="bar"></span>
-<span class="bar"></span>
-<span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
 </button>
 
 <nav id="sidebar" class="sidebar">
-<ul>
-<li><a href="/">Home</a></li>
-<li><a href="/agency">Agency</a></li>
-<li><a href="/contact">Contact</a></li>
-</ul>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/agency">Agency</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
 </nav>
 
 <header>
-<a href="https://dienachtbrenntclub.com">
-<img src="/logoletraslargo.png" class="logo">
-</a>
+  <a href="https://dienachtbrenntclub.com">
+    <img src="/logoletraslargo.png" class="logo">
+  </a>
 </header>
 
 <main class="container">
 
-<h2 class="section-title">ARTISTS</h2>
+  <h2 class="section-title">ARTISTS</h2>
 
-<main class="artist-grid" id="artist-grid">
+  <main class="artist-grid" id="artist-grid">
 
-<a class="artist" href="/cokecortes">
-<img class="base" src="img/cokecortes.jpg">
-<img class="playing" src="img/cokecortesplaying.jpg">
-<div class="artist-info">Sacred Violence</div>
-</a>
+    <a class="artist" href="/cokecortes">
+      <img class="base" src="img/cokecortes.jpg">
+      <img class="playing" src="img/cokecortesplaying.jpg">
+      <div class="artist-info">Sacred Violence</div>
+    </a>
 
-<a class="artist" href="/danirodriguez">
-<img class="base" src="img/danirodriguez.jpg">
-<img class="playing" src="img/danirodriguezplaying.jpg">
-<div class="artist-info">Fast Soul</div>
-</a>
+    <a class="artist" href="/danirodriguez">
+      <img class="base" src="img/danirodriguez.jpg">
+      <img class="playing" src="img/danirodriguezplaying.jpg">
+      <div class="artist-info">Fast Soul</div>
+    </a>
 
-<a class="artist" href="/laveranotte">
-<img class="base" src="img/laveranotte.jpg">
-<img class="playing" src="img/laveranotteplaying.jpg">
-<div class="artist-info">Dance Authority</div>
-</a>
+    <a class="artist" href="/laveranotte">
+      <img class="base" src="img/laveranotte.jpg">
+      <img class="playing" src="img/laveranotteplaying.jpg">
+      <div class="artist-info">Dance Authority</div>
+    </a>
 
-<a class="artist" href="/mikes">
-<img class="base" src="img/mikes.jpg">
-<img class="playing" src="img/mikesplaying.jpg">
-<div class="artist-info">Oldschool Rage</div>
-</a>
+    <a class="artist" href="/mikes">
+      <img class="base" src="img/mikes.jpg">
+      <img class="playing" src="img/mikesplaying.jpg">
+      <div class="artist-info">Oldschool Rage</div>
+    </a>
 
-<a class="artist" href="/vitalgroove">
-<img class="base" src="img/vitalgroove.jpg">
-<img class="playing" src="img/vitalgrooveplaying.jpg">
-<div class="artist-info">Groove Commander</div>
-</a>
+    <a class="artist" href="/vitalgroove">
+      <img class="base" src="img/vitalgroove.jpg">
+      <img class="playing" src="img/vitalgrooveplaying.jpg">
+      <div class="artist-info">Groove Commander</div>
+    </a>
 
-<a class="artist" href="/kb45">
-<img class="base" src="img/kb45.jpg">
-<img class="playing" src="img/kb45playing.jpg">
-<div class="artist-info">Trance Driver</div>
-</a>
+    <a class="artist" href="/kb45">
+      <img class="base" src="img/kb45.jpg">
+      <img class="playing" src="img/kb45playing.jpg">
+      <div class="artist-info">Trance Driver</div>
+    </a>
 
-<a class="artist" href="/bxlr">
-<img class="base" src="img/bxlr.jpg">
-<img class="playing" src="img/bxlrplaying.jpg">
-<div class="artist-info">THE WITCHER</div>
-</a>
+    <a class="artist" href="/bxlr">
+      <img class="base" src="img/bxlr.jpg">
+      <img class="playing" src="img/bxlrplaying.jpg">
+      <div class="artist-info">THE WITCHER</div>
+    </a>
 
-<a class="artist" href="/filo">
-<img class="base" src="img/filo.jpg">
-<img class="playing" src="img/filoplaying.jpg">
-<div class="artist-info">Power Surgeon</div>
-</a>
+    <a class="artist" href="/filo">
+      <img class="base" src="img/filo.jpg">
+      <img class="playing" src="img/filoplaying.jpg">
+      <div class="artist-info">Power Surgeon</div>
+    </a>
 
-<a class="artist" href="/driusaki">
-<img class="base" src="img/driusaki.jpg">
-<img class="playing" src="img/driusakiplaying.jpg">
-<div class="artist-info">Astral Operator</div>
-</a>
+    <a class="artist" href="/driusaki">
+      <img class="base" src="img/driusaki.jpg">
+      <img class="playing" src="img/driusakiplaying.jpg">
+      <div class="artist-info">Astral Operator</div>
+    </a>
 
-<a class="artist" href="/kimera">
-<img class="base" src="img/kimera.jpg">
-<img class="playing" src="img/kimeraplaying.jpg">
-<div class="artist-info">Frequency Warden</div>
-</a>
+    <a class="artist" href="/kimera">
+      <img class="base" src="img/kimera.jpg">
+      <img class="playing" src="img/kimeraplaying.jpg">
+      <div class="artist-info">Frequency Warden</div>
+    </a>
 
-</main>
+  </main>
 </main>
 
 <div class="footer-link-dock">
-<a href="https://instagram.com/dnbcagency">@dnbcagency</a>
+  <a href="https://instagram.com/dnbcagency">@dnbcagency</a>
 </div>
 
 <script>
 
-document.querySelector(".menu-toggle").onclick=()=>{
-document.getElementById("sidebar").classList.toggle("open")
+document.querySelector(".menu-toggle").onclick = () => {
+  document.getElementById("sidebar").classList.toggle("open")
 }
 
 function adaptiveGrid(){
-  const grid=document.getElementById("artist-grid")
-  const artists=grid.querySelectorAll(".artist").length
-  const vw=window.innerWidth
+  const grid = document.getElementById("artist-grid")
+  const artists = grid.querySelectorAll(".artist").length
+  const vw = window.innerWidth
 
   let columns, rows
-  if(vw<=700){
-    columns=3
-    rows=Math.ceil(artists/columns)
+  if(vw <= 700){
+    columns = 3
+    rows = Math.ceil(artists / columns)
   } else {
-    rows=2
-    columns=Math.ceil(artists/rows)
+    rows = 2
+    columns = Math.ceil(artists / rows)
   }
 
-  document.documentElement.style.setProperty('--grid-columns',columns)
-  document.documentElement.style.setProperty('--grid-rows',rows)
+  document.documentElement.style.setProperty('--grid-columns', columns)
+  document.documentElement.style.setProperty('--grid-rows', rows)
 }
 
-window.addEventListener("resize",adaptiveGrid)
-window.addEventListener("DOMContentLoaded",adaptiveGrid)
+window.addEventListener("resize", adaptiveGrid)
+window.addEventListener("DOMContentLoaded", adaptiveGrid)
 
 </script>
 
