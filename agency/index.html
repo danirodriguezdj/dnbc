@@ -24,8 +24,7 @@ background:#000;
 color:#fff;
 font-family:'horizon',sans-serif;
 text-align:center;
-padding:0 8px 120px 8px;
-overflow-x:hidden;
+overflow:hidden;
 min-height:100vh;
 }
 
@@ -106,23 +105,23 @@ font-size:1.6rem;
 letter-spacing:2px;
 }
 
-/* --- GRID ADAPTIVO --- */
 :root{
 --artist-gap:8px;
 --grid-columns:4;
+--grid-rows:2;
+--bottom-margin:60px; /* espacio para la burbuja */
 }
 
 main.artist-grid{
 display:grid;
 grid-template-columns:repeat(var(--grid-columns),1fr);
+grid-template-rows:repeat(var(--grid-rows),1fr);
 gap:var(--artist-gap);
 justify-content:center;
-margin:8px 0 28px;
+margin:8px 0;
 width:100%;
 max-width:1400px;
-
-/* altura flexible según filas */
-height:calc(100vh - 75px - 60px - 36px); /* header + footer + margen */
+height:calc(100vh - 75px - var(--bottom-margin)); /* full screen menos header y burbuja */
 }
 
 .artist{
@@ -195,12 +194,12 @@ text-decoration:none;
 color:#e1306c;
 }
 
-/* --- MÓVIL --- */
 @media(max-width:700px){
 
 main.artist-grid{
 grid-template-columns:repeat(3,1fr);
-height:auto;
+grid-template-rows:auto;
+height:calc(100vh - 75px - var(--bottom-margin));
 }
 
 }
@@ -310,21 +309,21 @@ document.getElementById("sidebar").classList.toggle("open")
 }
 
 function adaptiveGrid(){
+  const grid=document.getElementById("artist-grid")
+  const artists=grid.querySelectorAll(".artist").length
+  const vw=window.innerWidth
 
-const grid=document.getElementById("artist-grid")
-const artists=grid.querySelectorAll(".artist").length
-const vw=window.innerWidth
+  let columns, rows
+  if(vw<=700){
+    columns=3
+    rows=Math.ceil(artists/columns)
+  } else {
+    rows=2
+    columns=Math.ceil(artists/rows)
+  }
 
-let columns
-
-if(vw<=700){
-columns=3
-}else{
-columns=Math.ceil(artists/2) // siempre 2 filas
-}
-
-document.documentElement.style.setProperty('--grid-columns',columns)
-
+  document.documentElement.style.setProperty('--grid-columns',columns)
+  document.documentElement.style.setProperty('--grid-rows',rows)
 }
 
 window.addEventListener("resize",adaptiveGrid)
