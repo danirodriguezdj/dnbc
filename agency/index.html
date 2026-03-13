@@ -92,16 +92,23 @@ header .logo{
   height:auto;
 }
 
-@media(max-width:700px){
-  header{
-    justify-content:space-between; /* botón menú izquierda, logo derecha */
-    height:65px;
-    padding:0 20px;
+@media(max-width: 700px) {
+  header {
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 65px;
   }
-  header .logo{
-    max-width:220px;
-    width:60vw;
-    margin-left:auto; /* fuerza el logo a la derecha */
+  /* Esto asegura que el enlace que envuelve al logo empuje hacia la derecha */
+  header a {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  header .logo {
+    max-width: 250px; /* Ajustado a 250px como en /contact */
+    width: 60vw;
+    margin-left: 0; /* Reseteamos el margin del logo en sí */
   }
 }
 
