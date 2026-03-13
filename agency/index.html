@@ -22,7 +22,6 @@ body{
   color:#fff;
   font-family:'horizon',sans-serif;
   text-align:center;
-  /* Garantizamos que nunca haya scroll y use el 100% de la pantalla real del móvil */
   overflow:hidden !important;
   height:100vh;
   height:100dvh; 
@@ -117,18 +116,16 @@ header .logo{
   }
 }
 
-/* CONTENEDOR PRINCIPAL: Ajustado para pegarse más arriba */
 main.container{
   width:100%;
   max-width:1400px;
   margin:0 auto;
-  padding-top:75px; /* Empieza justo debajo del header */
+  padding-top:75px; 
   display:flex;
   flex-direction:column;
   align-items:center;
 }
 
-/* TÍTULO: Más compacto y pegado arriba */
 h2.section-title{
   margin: 15px 0 10px 0;
   font-size:1.5rem;
@@ -137,11 +134,11 @@ h2.section-title{
 
 @media(max-width:700px){
   main.container{
-    padding-top:65px; /* Ajuste exacto al header móvil */
+    padding-top:65px; 
   }
   h2.section-title{
-    margin: 5px 0 8px 0; /* Lo subimos casi al tope */
-    font-size:1.1rem; /* Reducimos texto para ganar espacio abajo */
+    margin: 5px 0 5px 0; 
+    font-size:1rem;
   }
 }
 
@@ -149,22 +146,19 @@ h2.section-title{
   --artist-gap:8px;
 }
 
-/* GRID EN CSS PURO */
 main.artist-grid{
   display:grid;
-  /* Escritorio: 5 columnas fijas (automáticamente hace 2 filas con 10 artistas) */
   grid-template-columns:repeat(5, 1fr);
   gap:var(--artist-gap);
   width:100%;
   max-width:1400px;
-  padding: 0 10px; /* Un pelín de margen lateral para que no toque los bordes */
+  padding: 0 10px;
 }
 
 @media(max-width:700px){
   main.artist-grid{
-    /* Móvil: 3 columnas fijas */
     grid-template-columns:repeat(3, 1fr);
-    padding-bottom: 90px; /* Aquí le damos mucho más espacio abajo para separarlo de la pantalla */
+    padding-bottom: 100px; /* Espacio extra para que no toque el dock de IG */
   }
 }
 
@@ -203,21 +197,31 @@ main.artist-grid{
 
 .artist-info{
   position:absolute;
-  bottom:10px;
+  bottom:0; /* Pegado al fondo de la imagen */
   width:100%;
   background:rgba(0,0,0,.7);
-  padding:6px;
+  padding:6px 4px;
   font-size:.85rem;
   opacity:0;
   transition:.2s;
   color:#fff;
+  /* Evitamos el salto de línea siempre */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media(max-width:700px){
+  .artist-info{
+    font-size: 0.55rem; /* Texto más pequeño para que quepa en 3 columnas */
+    padding: 4px 2px;
+  }
 }
 
 .artist:hover .artist-info{
   opacity:1;
 }
 
-/* GLOBO DE INSTAGRAM */
 .footer-link-dock{
   position:fixed;
   left:50%;
@@ -320,7 +324,6 @@ main.artist-grid{
 </div>
 
 <script>
-// El script ahora SOLO se encarga de cargar el menú externo. Adiós al cálculo matemático de columnas.
 (function() {
   'use strict';
   document.addEventListener('DOMContentLoaded', function() {
