@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DNBC AGENCY ROSTER</title>
 
 <style>
-
 @font-face{
   font-family:'horizon';
   src:url('/fonts/horizon.woff2') format('woff2');
@@ -46,6 +44,7 @@ body{
   margin:6px 0;
 }
 
+/* El estilo de la sidebar se mantiene igual */
 .sidebar{
   position:fixed;
   top:0;
@@ -71,7 +70,7 @@ body{
 
 .sidebar a:hover{background:#222;}
 
-/* HEADER */
+/* HEADER CORREGIDO */
 header{
   position:fixed;
   top:0;
@@ -80,35 +79,39 @@ header{
   height:75px;
   background:#000;
   display:flex;
-  justify-content:center; /* logo centrado en web */
+  justify-content:center;
   align-items:center;
   padding:0 20px;
   z-index:999;
+  border-bottom: 2px solid #000;
+}
+
+header a {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 header .logo{
   max-width:400px;
   width:80vw;
   height:auto;
+  display: block;
 }
 
-@media(max-width: 700px) {
-  header {
-    justify-content: space-between;
-    padding: 0 20px;
-    height: 65px;
+@media(max-width:700px){
+  header{
+    justify-content:space-between;
+    height:65px;
+    padding:0 20px;
   }
-  /* Esto asegura que el enlace que envuelve al logo empuje hacia la derecha */
   header a {
     margin-left: auto;
-    display: flex;
-    align-items: center;
-    height: 100%;
   }
-  header .logo {
-    max-width: 250px; /* Ajustado a 250px como en /contact */
-    width: 60vw;
-    margin-left: 0; /* Reseteamos el margin del logo en sí */
+  header .logo{
+    max-width:250px;
+    width:60vw;
+    margin-left: 0;
   }
 }
 
@@ -116,7 +119,7 @@ main.container{
   width:100%;
   max-width:1400px;
   margin:0 auto;
-  padding-top:85px; /* deja espacio para header */
+  padding-top:85px;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -130,7 +133,7 @@ h2.section-title{
 
 @media(max-width:700px){
   h2.section-title{
-    margin-top:0; /* menos espacio arriba en móvil */
+    margin-top:0;
     margin-bottom:8px;
   }
 }
@@ -158,7 +161,7 @@ main.artist-grid{
   cursor:pointer;
   text-decoration:none;
   color:#fff;
-  aspect-ratio:4/5; /* Fija la proporción 4:5 */
+  aspect-ratio:4/5;
 }
 
 .artist img{
@@ -227,28 +230,21 @@ main.artist-grid{
   main.artist-grid{
     grid-template-columns:repeat(3,1fr);
     grid-template-rows:auto;
-    padding-bottom:70px; /* deja espacio para globo IG */
+    padding-bottom:70px;
   }
 }
-
 </style>
 </head>
 
 <body>
 
-<button class="menu-toggle">
+<button class="menu-toggle" aria-label="Toggle menu">
 <span class="bar"></span>
 <span class="bar"></span>
 <span class="bar"></span>
 </button>
 
-<nav id="sidebar" class="sidebar">
-<ul>
-<li><a href="/">Home</a></li>
-<li><a href="/agency">Agency</a></li>
-<li><a href="/contact">Contact</a></li>
-</ul>
-</nav>
+<div id="menu-container"></div>
 
 <header>
 <a href="https://dienachtbrenntclub.com">
@@ -257,72 +253,58 @@ main.artist-grid{
 </header>
 
 <main class="container">
-
 <h2 class="section-title">ARTISTS</h2>
-
 <main class="artist-grid" id="artist-grid">
-
-<!-- ARTISTAS -->
 <a class="artist" href="/cokecortes">
 <img class="base" src="img/cokecortes.jpg">
 <img class="playing" src="img/cokecortesplaying.jpg">
 <div class="artist-info">Sacred Violence</div>
 </a>
-
 <a class="artist" href="/danirodriguez">
 <img class="base" src="img/danirodriguez.jpg">
 <img class="playing" src="img/danirodriguezplaying.jpg">
 <div class="artist-info">Fast Soul</div>
 </a>
-
 <a class="artist" href="/laveranotte">
 <img class="base" src="img/laveranotte.jpg">
 <img class="playing" src="img/laveranotteplaying.jpg">
 <div class="artist-info">Dance Authority</div>
 </a>
-
 <a class="artist" href="/mikes">
 <img class="base" src="img/mikes.jpg">
 <img class="playing" src="img/mikesplaying.jpg">
 <div class="artist-info">Oldschool Rage</div>
 </a>
-
 <a class="artist" href="/vitalgroove">
 <img class="base" src="img/vitalgroove.jpg">
 <img class="playing" src="img/vitalgrooveplaying.jpg">
 <div class="artist-info">Groove Commander</div>
 </a>
-
 <a class="artist" href="/kb45">
 <img class="base" src="img/kb45.jpg">
 <img class="playing" src="img/kb45playing.jpg">
 <div class="artist-info">Trance Driver</div>
 </a>
-
 <a class="artist" href="/bxlr">
 <img class="base" src="img/bxlr.jpg">
 <img class="playing" src="img/bxlrplaying.jpg">
 <div class="artist-info">THE WITCHER</div>
 </a>
-
 <a class="artist" href="/filo">
 <img class="base" src="img/filo.jpg">
 <img class="playing" src="img/filoplaying.jpg">
 <div class="artist-info">Power Surgeon</div>
 </a>
-
 <a class="artist" href="/driusaki">
 <img class="base" src="img/driusaki.jpg">
 <img class="playing" src="img/driusakiplaying.jpg">
 <div class="artist-info">Astral Operator</div>
 </a>
-
 <a class="artist" href="/kimera">
 <img class="base" src="img/kimera.jpg">
 <img class="playing" src="img/kimeraplaying.jpg">
 <div class="artist-info">Frequency Warden</div>
 </a>
-
 </main>
 </main>
 
@@ -331,26 +313,39 @@ main.artist-grid{
 </div>
 
 <script>
-document.querySelector(".menu-toggle").onclick = () => {
-document.getElementById("sidebar").classList.toggle("open")
-}
+// Nuevo Script que carga el menú externo e inicializa el toggle
+(function() {
+  'use strict';
+  document.addEventListener('DOMContentLoaded', function() {
+    fetch('/menu.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('menu-container').innerHTML = html;
+        var btn = document.querySelector('.menu-toggle');
+        // Importante: El ID 'sidebar' debe estar dentro de tu menu.html
+        var nav = document.getElementById('sidebar'); 
+        btn.addEventListener('click', function() {
+          nav.classList.toggle('open');
+        });
+      });
+  });
+})();
 
+// Tu lógica de grid adaptativo se mantiene igual
 function adaptiveGrid(){
-const grid=document.getElementById("artist-grid")
-const artists=grid.querySelectorAll(".artist").length
-const vw=window.innerWidth
-
-let columns,rows
-if(vw<=700){
-columns=3
-rows=Math.ceil(artists/columns)
-}else{
-rows=2
-columns=Math.ceil(artists/rows)
-}
-
-document.documentElement.style.setProperty('--grid-columns',columns)
-document.documentElement.style.setProperty('--grid-rows',rows)
+  const grid=document.getElementById("artist-grid")
+  const artists=grid.querySelectorAll(".artist").length
+  const vw=window.innerWidth
+  let columns,rows
+  if(vw<=700){
+    columns=3
+    rows=Math.ceil(artists/columns)
+  }else{
+    rows=2
+    columns=Math.ceil(artists/rows)
+  }
+  document.documentElement.style.setProperty('--grid-columns',columns)
+  document.documentElement.style.setProperty('--grid-rows',rows)
 }
 window.addEventListener("resize",adaptiveGrid)
 window.addEventListener("DOMContentLoaded",adaptiveGrid)
