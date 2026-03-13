@@ -22,8 +22,11 @@ body{
   color:#fff;
   font-family:'horizon',sans-serif;
   text-align:center;
-  overflow:hidden;
-  min-height:100vh;
+  /* Garantizamos que nunca haya scroll y use el 100% de la pantalla real del móvil */
+  overflow:hidden !important;
+  height:100vh;
+  height:100dvh; 
+  width:100vw;
 }
 
 .menu-toggle{
@@ -44,7 +47,6 @@ body{
   margin:6px 0;
 }
 
-/* El estilo de la sidebar se mantiene igual */
 .sidebar{
   position:fixed;
   top:0;
@@ -70,7 +72,7 @@ body{
 
 .sidebar a:hover{background:#222;}
 
-/* HEADER CORREGIDO */
+/* HEADER */
 header{
   position:fixed;
   top:0;
@@ -115,44 +117,55 @@ header .logo{
   }
 }
 
+/* CONTENEDOR PRINCIPAL: Ajustado para pegarse más arriba */
 main.container{
   width:100%;
   max-width:1400px;
   margin:0 auto;
-  padding-top:85px;
+  padding-top:75px; /* Empieza justo debajo del header */
   display:flex;
   flex-direction:column;
   align-items:center;
 }
 
+/* TÍTULO: Más compacto y pegado arriba */
 h2.section-title{
-  margin:4px 0 8px;
-  font-size:1.6rem;
+  margin: 15px 0 10px 0;
+  font-size:1.5rem;
   letter-spacing:2px;
 }
 
 @media(max-width:700px){
+  main.container{
+    padding-top:65px; /* Ajuste exacto al header móvil */
+  }
   h2.section-title{
-    margin-top:0;
-    margin-bottom:8px;
+    margin: 5px 0 8px 0; /* Lo subimos casi al tope */
+    font-size:1.1rem; /* Reducimos texto para ganar espacio abajo */
   }
 }
 
 :root{
   --artist-gap:8px;
-  --grid-columns:5;
-  --grid-rows:2;
-  --footer-space:70px;
 }
 
+/* GRID EN CSS PURO */
 main.artist-grid{
   display:grid;
-  grid-template-columns:repeat(var(--grid-columns),1fr);
-  grid-template-rows:repeat(var(--grid-rows),auto);
+  /* Escritorio: 5 columnas fijas (automáticamente hace 2 filas con 10 artistas) */
+  grid-template-columns:repeat(5, 1fr);
   gap:var(--artist-gap);
   width:100%;
   max-width:1400px;
-  padding-bottom:var(--footer-space);
+  padding: 0 10px; /* Un pelín de margen lateral para que no toque los bordes */
+}
+
+@media(max-width:700px){
+  main.artist-grid{
+    /* Móvil: 3 columnas fijas */
+    grid-template-columns:repeat(3, 1fr);
+    padding-bottom: 90px; /* Aquí le damos mucho más espacio abajo para separarlo de la pantalla */
+  }
 }
 
 .artist{
@@ -161,7 +174,7 @@ main.artist-grid{
   cursor:pointer;
   text-decoration:none;
   color:#fff;
-  aspect-ratio:4/5;
+  aspect-ratio:4/5; 
 }
 
 .artist img{
@@ -204,6 +217,7 @@ main.artist-grid{
   opacity:1;
 }
 
+/* GLOBO DE INSTAGRAM */
 .footer-link-dock{
   position:fixed;
   left:50%;
@@ -224,14 +238,6 @@ main.artist-grid{
 
 .footer-link-dock a:hover{
   color:#e1306c;
-}
-
-@media(max-width:700px){
-  main.artist-grid{
-    grid-template-columns:repeat(3,1fr);
-    grid-template-rows:auto;
-    padding-bottom:70px;
-  }
 }
 </style>
 </head>
@@ -254,6 +260,7 @@ main.artist-grid{
 
 <main class="container">
 <h2 class="section-title">ARTISTS</h2>
+
 <main class="artist-grid" id="artist-grid">
 <a class="artist" href="/cokecortes">
 <img class="base" src="img/cokecortes.jpg">
@@ -313,7 +320,7 @@ main.artist-grid{
 </div>
 
 <script>
-// Nuevo Script que carga el menú externo e inicializa el toggle
+// El script ahora SOLO se encarga de cargar el menú externo. Adiós al cálculo matemático de columnas.
 (function() {
   'use strict';
   document.addEventListener('DOMContentLoaded', function() {
@@ -322,33 +329,15 @@ main.artist-grid{
       .then(html => {
         document.getElementById('menu-container').innerHTML = html;
         var btn = document.querySelector('.menu-toggle');
-        // Importante: El ID 'sidebar' debe estar dentro de tu menu.html
         var nav = document.getElementById('sidebar'); 
-        btn.addEventListener('click', function() {
-          nav.classList.toggle('open');
-        });
+        if(btn && nav) {
+          btn.addEventListener('click', function() {
+            nav.classList.toggle('open');
+          });
+        }
       });
   });
 })();
-
-// Tu lógica de grid adaptativo se mantiene igual
-function adaptiveGrid(){
-  const grid=document.getElementById("artist-grid")
-  const artists=grid.querySelectorAll(".artist").length
-  const vw=window.innerWidth
-  let columns,rows
-  if(vw<=700){
-    columns=3
-    rows=Math.ceil(artists/columns)
-  }else{
-    rows=2
-    columns=Math.ceil(artists/rows)
-  }
-  document.documentElement.style.setProperty('--grid-columns',columns)
-  document.documentElement.style.setProperty('--grid-rows',rows)
-}
-window.addEventListener("resize",adaptiveGrid)
-window.addEventListener("DOMContentLoaded",adaptiveGrid)
 </script>
 
 </body>
