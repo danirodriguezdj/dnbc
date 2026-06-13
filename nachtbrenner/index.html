@@ -310,7 +310,7 @@
     /* MODIFICACIONES SOLO PARA MOVIL */
     @media (max-width: 768px) {
       .artist-name {
-        font-size: clamp(26px, 9vw, 42px);
+        font-size: clamp(18px, 7vw, 32px);
         text-align: left;
         align-self: flex-start;
       }
@@ -460,6 +460,21 @@
 
       #mobile-order .extras-section .video-wrapper {
         order: 6;
+      }
+    }
+
+    /* Para pantallas muy pequeñas (menos de 480px) */
+    @media (max-width: 480px) {
+      .artist-name {
+        font-size: clamp(16px, 6vw, 28px);
+      }
+
+      .hero-content {
+        padding: 15px;
+      }
+
+      .hero-content > * {
+        max-width: 100%;
       }
     }
 
